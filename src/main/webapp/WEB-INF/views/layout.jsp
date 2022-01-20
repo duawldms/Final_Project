@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="${cp }/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+</script>
+<div id="wrap">
+	<div id="header">
+		<div id="header-logo">
+			<h2><a href="">배달요기이츠</a></h2>
+		</div>
+		<div>
+			<ul class="header-li">
+				<li><a href="">로그인</a></li>
+				<li><a href="">주문표</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main">
+		aaa<br>
+		aaa<br>
+		dddd<br>
+		<jsp:include page="${requestScope.main }"/>
+	</div>
+	<div id="footer">
+		<div id="footer-menu">
+			<ul>
+				<li><a href="">a</a></li>
+				<li><a href="">b</a></li>
+				<li><a href="">c</a></li>
+				<li><a href="">d</a></li>
+			</ul>
+		</div>
+		<div id="footer-info">
+			<p>유한책임회사 위대한개발자</p>
+			<p>서울특별시 종로구 율곡로10길 105 디아망 4F(봉익동 10-1 디아망 4F) TEL : 070-8240-3211~3 FAX : 02-777-5407</p>
+			<p>사업자등록번호 : 104-81-59383 통신판매업신고번호 : 중구 065325 중앙HTA㈜</p>
+			<p>COPYRIGHT(C) HTA CO., LTD. ALL RIGHTS RESERVED.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
