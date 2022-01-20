@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.project.mybatis.mapper.user.UserMapper">
+	<resultMap type="com.jhta.project.service.security.CustomUserDetail" id="userDetail">
+		<id property="userid" column="ui_id"/>
+		<result property="password" column="ui_pwd"/>
+		<result property="enabled" column="ui_state"/>
+		<collection property="authList" ofType="com.jhta.project.vo.security.AuthorityVo">
+			<result property="au_id" column="au_id"/>
+			<result property="au_authority" column="au_authority"/>
+		</collection>
+	</resultMap>
+	<select id="getAuths" parameterType="String" resultMap="userDetail">
+		select * from user_information m, authority a
+		where m.ui_id=a.au_id and m.ui_id=#{ui_id}
+	</select>
+	<insert id="userinsert" parameterType="com.jhta.project.vo.user.UserVo">
+		insert into user_information values(#{ui_id},#{ui_pwd},#{ui_name},#{ui_email},#{ui_phone},sysdate,1)
+	</insert>
+
+	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
+		insert into authority values(#{au_id},#{au_authority})
+	</insert>
+	
+</mapper> 
+
+
+
+

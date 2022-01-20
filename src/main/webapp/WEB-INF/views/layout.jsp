@@ -10,10 +10,19 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="${cp }/js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <script type="text/javascript">
+	$(function(){
+		if(${code='success'}){
+			alert('ㅊㅊㅊ');
+		}else if(${code='fail'}){
+			alert('ㄲㅂ');
+		}else{
+			alert('무무무');
+		}
+	});
 </script>
 <div id="wrap">
 	<div id="header">
@@ -22,8 +31,8 @@
 		</div>
 		<div>
 			<ul class="header-li">
-				<li><a href="">로그인</a></li>
-				<li><a href="">주문표</a></li>
+				<li><a href="${cp }/loginuser">로그인</a></li>
+				<li><a href="${cp }/joinuser">주문표</a></li>
 			</ul>
 		</div>
 	</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.project.mybatis.mapper.restaurant.RestaurantMapper">
+	<resultMap type="com.jhta.project.service.security.CustomUserDetail" id="userDetail">
+		<id property="userid" column="r_id"/>
+		<result property="password" column="r_pwd"/>
+		<result property="enabled" column="r_state"/>
+		<collection property="authList" ofType="com.jhta.project.vo.security.AuthorityVo">
+			<result property="userid" column="au_id"/>
+			<result property="authority" column="au_authority"/>
+		</collection>
+	</resultMap>
+	<select id="getAuths" parameterType="String" resultMap="userDetail">
+		select * from restaurant r, authority a
+		where r.r_id=a.au_id and r.r_id=#{r_id}
+	</select>
+	<insert id="restaurantInsert">
+		insert into restaurant values(#{r_id}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate)
+	</insert>
+	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
+		insert into authority values(#{au_id},#{au_authority})
+	</insert>
+</mapper>

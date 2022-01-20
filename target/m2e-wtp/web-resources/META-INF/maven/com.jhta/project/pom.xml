@@ -234,6 +234,15 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            <!-- web.xml이 없어도 실행될 수 있도록 하는 설정. -->
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<version>3.3.2</version>
+            	<configuration>
+            		<failOnMissingWebXml>false</failOnMissingWebXml>
+            	</configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
