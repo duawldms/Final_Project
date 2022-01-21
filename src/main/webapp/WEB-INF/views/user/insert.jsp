@@ -18,7 +18,7 @@
 			data:{"ui_id":ui_id},
 			dataType:'json', 
 			success:function(data){    
-			if(data.using==true){
+			if(data.using==true){ 
 				$("#idresult").html("사용중인 아이디입니다.");
 			}else{
 				$("#idresult").html("해당아이디는 사용하실 수 있습니다.");
