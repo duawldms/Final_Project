@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css?after">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -14,15 +14,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	$(function(){
-		if(${code='success'}){
-			alert('ㅊㅊㅊ');
-		}else if(${code='fail'}){
-			alert('ㄲㅂ');
-		}else{
-			alert('무무무');
-		}
-	});
+	
 </script>
 <div id="wrap">
 	<div id="header">
@@ -41,6 +33,7 @@
 		aaa<br>
 		dddd<br>
 		<jsp:include page="${requestScope.main }"/>
+
 	</div>
 	<div id="footer">
 		<div id="footer-menu">
