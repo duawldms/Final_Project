@@ -18,7 +18,7 @@ public class JoinController {
 	
 	@GetMapping("/joinuser")
 	public String joinForm(Model model) {
-		model.addAttribute("main",sc.getContextPath()+"/user/join.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/layout.jsp");
 		return "user/join";
 	}
 	@PostMapping("/joinuser")
