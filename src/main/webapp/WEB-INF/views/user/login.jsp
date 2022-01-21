@@ -8,6 +8,6 @@
 	<input type="text" name="username"><br>
 	비밀번호<br>
 	<input type="password" name="password"><br>  
-	<input type="submit" value="로그인"><br><br>
+	<input type="submit" value="로그인"><br><br> 
 	<a href="${cp }/insertuser">회원가입하기</a>
 </form:form>
