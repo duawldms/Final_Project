@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+    //아이디 중복확인
 	$(function(){
 		$("#btn").click(function(){
 		let ui_id=$("#ui_id").val();
@@ -25,7 +26,35 @@
 		  }
 		});
 	  });
+	//필수값 확인 
+	$("form").submit(function(){
+		let ui_id=$("input[name='ui_id']").val();
+		if(ui_id==''){
+			$("input[name=='ui_id']").next().html("아이디를 입력하세요");
+			return false;
+		}
+		let ui_pwd=$("input[name='ui_pwd']").val();
+		if(ui_pwd==''){
+			$("input[name=='ui_pwd']").next().html("비밀번호를 입력하세요");
+			return false;
+		}
+		let ui_email=$("input[name='ui_email']").val();
+		if(ui_email==''){
+			$("input[name=='ui_email']").next().html("이메일을 입력하세요");
+			return false;
+		}
+		let ui_addr=$("input[name='ui_addr']").val();
+		if(ui_addr==''){
+			$("input[name=='ui_addr']").next().html("주소를 입력하세요");
+			return false;
+		}
+		let ui_phone=$("input[name='ui_phone']").val();
+		if(ui_phone==''){
+			$("input[name=='ui_phone']").next().html("전화번호를 입력하세요");
+			return false;
+		}
 	});
+});
 </script>
 </head>
 <body>
