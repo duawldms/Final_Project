@@ -16,7 +16,7 @@
 		$.ajax({
 			url:'/project/checkid',
 			data:{"ui_id":ui_id},
-			dataType:'json',
+			dataType:'json', 
 			success:function(data){    
 			if(data.using==true){
 				$("#idresult").html("사용중인 아이디입니다.");
