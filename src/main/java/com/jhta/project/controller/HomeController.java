@@ -17,7 +17,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		System.out.println("test");
 		sc.setAttribute("cp", sc.getContextPath());
 		
 		return "layout";
