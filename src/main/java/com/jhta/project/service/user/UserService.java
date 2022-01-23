@@ -32,4 +32,13 @@ public class UserService {
 	public int addAuth(AuthorityVo vo) {
 		return mapper.addAuth(vo);
 	}
+	public int userinsert(UserVo vo) {
+		return mapper.userinsert(vo);
+	}
+	public UserVo checkid(String ui_id) {
+		return mapper.checkid(ui_id);
+	}
+	public boolean selectId(UserVo vo) {
+		return mapper.selectId(vo);
+	}
 }
