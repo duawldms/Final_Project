@@ -10,5 +10,6 @@
 	<input type="password" name="password"><br>  
 	<input type="submit" value="로그인"><br><br> 
 	로그인 유지 <input type="checkbox" name="chk" checked="checked"><br>
+	아직 회원이 아니신가요?
 	<a href="${cp }/insertuser">회원가입하기</a>
 </form:form>
