@@ -8,4 +8,5 @@ public interface RestaurantMapper {
 	CustomUserDetail getAuths(String r_id);
 	int restaurantInsert(RestaurantVo vo);
 	int addAuth(AuthorityVo vo);
+	RestaurantVo idCheck(String id);
 }

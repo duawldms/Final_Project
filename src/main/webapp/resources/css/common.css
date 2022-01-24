@@ -3,8 +3,10 @@
 #wrap{margin:auto}
 #header{width:100%;height:80px;background-color:#CADEFC;margin:auto}
 
-#header #header-logo{position:relative;left:45%;top:20px}
-#header #header-logo a{text-decoration:none;color:black;}
+
+#header #header-logo a{position:relative;left:45%;top:20px; text-decoration:none;color:black;
+}
+
 #header .header-li li{
 	float:right;display:inline-block;position:relative;top:-25px;
 	left:-300px;
@@ -12,6 +14,10 @@
 	}
 #main{width:70%;height:auto;background-color:orange;margin:auto}
 #footer{width:100%;height:250px;background-color:#CADEFC}
-#footer-menu{position:relative;left:350px}
+
+
+
+#footer-menu{position:relative;left:350px;}
 #footer-menu li{display:inline-block;margin-right:10px;}
+
 #footer-info{text-align:center}

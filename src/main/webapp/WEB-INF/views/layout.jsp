@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css?after">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -14,25 +15,26 @@
 </head>
 <body>
 <script type="text/javascript">
-	$(function(){
-		if(${code='success'}){
-			alert('ㅊㅊㅊ');
-		}else if(${code='fail'}){
-			alert('ㄲㅂ');
-		}else{
-			alert('무무무');
-		}
-	});
+	
 </script>
 <div id="wrap">
 	<div id="header">
 		<div id="header-logo">
-			<h2><a href="">배달요기이츠</a></h2>
+			<h2><a href="${cp }/">배달요기이츠</a></h2>
 		</div>
 		<div>
 			<ul class="header-li">
+				<c:choose>
+				<c:when test="${empty sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
 				<li><a href="${cp }/loginuser">로그인</a></li>
 				<li><a href="${cp }/joinuser">주문표</a></li>
+				</c:when>
+				<c:otherwise>
+				<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
+				<li><a href="${cp }/joinuser">주문표</a></li>
+				<li><a href="${cp }/usermypage">회원정보</a></li>
+				</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>
@@ -41,12 +43,13 @@
 		aaa<br>
 		dddd<br>
 		<jsp:include page="${requestScope.main }"/>
+
 	</div>
 	<div id="footer">
 		<div id="footer-menu">
 			<ul>
-				<li><a href="">a</a></li>
-				<li><a href="">b</a></li>
+				<li><a href="${cp }/loginRestaurant">판매자 로그인</a></li>
+				<li><a href="${cp }/sellerInsert">도로 주소명 테스트</a></li>
 				<li><a href="">c</a></li>
 				<li><a href="">d</a></li>
 			</ul>

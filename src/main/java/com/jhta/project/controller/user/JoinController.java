@@ -1,7 +1,5 @@
 package com.jhta.project.controller.user;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +12,11 @@ import com.jhta.project.vo.user.UserVo;
 @Controller
 public class JoinController {
 	@Autowired private UserService service;
-	@Autowired private ServletContext sc;
 	
 	@GetMapping("/joinuser")
 	public String joinForm(Model model) {
-		model.addAttribute("main",sc.getContextPath()+"/user/join.jsp");
-		return "user/join";
+		model.addAttribute("main","/WEB-INF/views/user/join.jsp");
+		return "layout";
 	}
 	@PostMapping("/joinuser")
 	public String join(UserVo vo,Model model) {

@@ -28,7 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/**").access("permitAll");
-		http.formLogin().loginPage("/loginuser");
+		//로그인관련 설정
+		http.formLogin().loginPage("/loginuser")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.loginProcessingUrl("/loginuser")
+				.defaultSuccessUrl("/loginsuccess");
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 	@Bean

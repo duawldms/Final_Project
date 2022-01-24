@@ -22,4 +22,12 @@
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
+
+	<select id="restaurantSalesList" parameterType="String" resultType="com.jhta.project.vo.restaurant.OrderListVo">
+	</select>
+
+	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+
+
+	</select>
 </mapper>
