@@ -28,7 +28,7 @@
 		   queryTextColor: "#FFFFFF", //검색창 글자색
 		   //postcodeTextColor: "", //우편번호 글자색
 		   //emphTextColor: "", //강조 글자색
-		   outlineColor: "#444444" //테두리
+		   outlineColor: "#444444" //테두리 
 		};
 	window.onload = function(){
 		document.getElementById("addr-addon").addEventListener('click',function(){
