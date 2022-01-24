@@ -9,4 +9,5 @@ public interface UserMapper {
 	int userinsert(UserVo vo);
 	int addAuth(AuthorityVo vo);
 	UserVo checkid(String ui_id);
+	boolean selectId(UserVo vo);
 }

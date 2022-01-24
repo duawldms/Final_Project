@@ -38,4 +38,7 @@ public class UserService {
 	public UserVo checkid(String ui_id) {
 		return mapper.checkid(ui_id);
 	}
+	public boolean selectId(UserVo vo) {
+		return mapper.selectId(vo);
+	}
 }

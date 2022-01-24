@@ -25,7 +25,9 @@
 	<select id="checkid" parameterType="string" resultType="com.jhta.project.vo.user.UserVo">
 	 	select * from user_information where ui_id=#{ui_id}
 	</select>
-	
+	<select id="selectId" parameterType="com.jhta.project.vo.user.UserVo">
+		select * from user_information where ui_id=#{ui_id} and ui_pwd=#{ui_pwd}
+	</select>
 </mapper> 
 
 
