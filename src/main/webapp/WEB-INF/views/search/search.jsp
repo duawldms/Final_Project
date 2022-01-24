@@ -37,7 +37,7 @@
 		    	   	document.getElementById("place").value = data.address; // 주소 넣기
 		        	document.getElementById("placeDetail").placeholder = "상세주소를 입력하세요";
 		        	document.getElementById("placeDetail").focus();
-		        },
+		        },   
 		        theme:themeObj
 			 }).open({
 				q:document.getElementById("place").value
