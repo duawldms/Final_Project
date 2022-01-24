@@ -39,9 +39,6 @@
 		</div>
 	</div>
 	<div id="main">
-		aaa<br>
-		aaa<br>
-		dddd<br>
 		<jsp:include page="${requestScope.main }"/>
 
 	</div>
