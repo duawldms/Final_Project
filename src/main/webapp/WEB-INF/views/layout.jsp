@@ -29,7 +29,7 @@
 				<li><a href="${cp }/loginuser">로그인</a></li>
 				<li><a href="${cp }/joinuser">주문표</a></li>
 				</c:when>
-				<c:otherwise>
+				<c:otherwise> 
 				<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 				<li><a href="${cp }/joinuser">주문표</a></li>
 				<li><a href="${cp }/usermypage">회원정보</a></li>

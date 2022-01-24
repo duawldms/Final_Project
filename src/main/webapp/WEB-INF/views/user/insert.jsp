@@ -14,9 +14,31 @@
 
 </style>
 <script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+var themeObj = {
+		   bgColor: "#162525", //바탕 배경색
+		   searchBgColor: "#162525", //검색창 배경색
+		   contentBgColor: "#162525", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+		   pageBgColor: "#162525", //페이지 배경색
+		   textColor: "#FFFFFF", //기본 글자색
+		   queryTextColor: "#FFFFFF", //검색창 글자색
+		   outlineColor: "#444444" //테두리
+		};
     //아이디 중복확인
 	$(function(){
+		document.getElementById("addr-addon").addEventListener('click',function(){
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		    	   	document.getElementById("ua_addr").value = data.address; // 주소 넣기
+		        	document.getElementById("ua_addrdetail").placeholder = "상세주소를 입력하세요";
+		        	document.getElementById("ua_addrdetail").focus();
+		        },
+		        theme:themeObj
+			 }).open({
+				q:document.getElementById("ua_addr").value
+			 });
+		});
 		$("#useridbtn").click(function(){
 		let ui_id=$("#ui_id").val();
 		$.ajax({
@@ -135,8 +157,9 @@
 		<input type="text" name="ui_phone"><span></span><br>
 		<!-- useraddr//추가사항-api /입력값과 같으면 얻어와서 뿌려주기(추가사항)-->
 		<!-- 입력값과 같으면 불러오기 기능(추가) -->
-		주소<br> 
-		<input type="text" name="ua_addr"><span></span><br>
+		<input type="text" class="form-control col-6" id="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!">
+		<input type="text" class="form-control col-4 place" id="ua_addrdetail" aria-describedby="addr-addon">
+		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button>
 		배송받을 사람<br> 
 		<input type="text" name="ua_name"><span></span><br>
 		배송받을 전화번호<br> 
