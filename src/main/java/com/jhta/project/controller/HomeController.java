@@ -20,6 +20,7 @@ public class HomeController {
 		System.out.println("test");
 		sc.setAttribute("cp", sc.getContextPath());
 		
+		
 		return "layout";
 	}
 	
