@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class);
-
+ 
 		http.authorizeRequests()
 		.antMatchers("/user/**").access("hasRole('ROLE_USER')")
 		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
