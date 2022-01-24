@@ -19,7 +19,7 @@
 <div id="wrap">
 	<div id="header">
 		<div id="header-logo">
-			<h2><a href="">배달요기이츠</a></h2>
+			<h2><a href="${cp }/">배달요기이츠</a></h2>
 		</div>
 		<div>
 			<ul class="header-li">
