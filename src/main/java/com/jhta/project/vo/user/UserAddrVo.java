@@ -16,5 +16,4 @@ public class UserAddrVo {
 	private String ua_addr;
 	private String ua_name;
 	private String ua_phone;
-	private String ua_addrdetail;
 }

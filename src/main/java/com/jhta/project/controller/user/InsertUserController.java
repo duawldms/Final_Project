@@ -1,5 +1,8 @@
 package com.jhta.project.controller.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +25,12 @@ public class InsertUserController {
 		return "layout";
 	}
 	@PostMapping("/insertuser")
-	public String UserInsert(UserVo vo,Model model,UserAddrVo vo1) {
-
+	public String UserInsert(UserVo vo,Model model,UserAddrVo vo1,HttpServletRequest req,HttpServletResponse resp) {
 		try {
 			service.addUser(vo);
+			vo1.setUa_name(vo.getUi_name());
+			vo1.setUa_phone(vo.getUi_phone());
 			service1.insertaddr(vo1);
-			System.out.println(vo1);
 			model.addAttribute("result","success");
 			model.addAttribute("main","/WEB-INF/views/user/result.jsp");
 		}catch(Exception e){
