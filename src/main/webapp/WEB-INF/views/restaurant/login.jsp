@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h1>판매자 로그인</h1>
-	<form:form method="post" action="${cp }">
+	<form:form method="post" action="${cp }/loginRestaurant">
 		<div class="login-group">
 			<input type="text" name="r_id" placeholder="아이디">
 		</div>
