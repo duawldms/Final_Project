@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.jhta.project.mybatis.mapper.user.UserAddrMapper">
 	<insert id="insertaddr" parameterType="com.jhta.project.vo.user.UserAddrVo">
-		insert into user_addr values(user_addr_seq.nextval,#{ui_id},#{ua_nickname},#{ua_addr},#{ua_name},#{ua_phone})
+		insert into user_addr values(user_addr_seq.nextval,#{ui_id},#{ua_nickname},#{ua_addr},#{ua_name},#{ua_phone},#{ua_addrdetail})
 	</insert>
 	<select id="checknickname" parameterType="String" resultType="com.jhta.project.vo.user.UserAddrVo">
 		select * from user_addr where ua_nickname=#{ua_nickname}

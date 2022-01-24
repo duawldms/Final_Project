@@ -27,6 +27,7 @@ public class InsertUserController {
 		try {
 			service.addUser(vo);
 			service1.insertaddr(vo1);
+			System.out.println(vo1);
 			model.addAttribute("result","success");
 			model.addAttribute("main","/WEB-INF/views/user/result.jsp");
 		}catch(Exception e){
