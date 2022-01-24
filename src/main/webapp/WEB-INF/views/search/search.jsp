@@ -32,16 +32,15 @@
 		};
 	window.onload = function(){
 		document.getElementById("addr-addon").addEventListener('click',function(){
-			 new daum.Postcode({
+			new daum.Postcode({
 		        oncomplete: function(data) {
-		        	 document.getElementById("place").value = data.address; // 주소 넣기
-		        	 document.getElementById("placeDetail").placeholder = "상세주소를 입력하세요";
-		             document.getElementById("placeDetail").focus();
+		    	   	document.getElementById("place").value = data.address; // 주소 넣기
+		        	document.getElementById("placeDetail").placeholder = "상세주소를 입력하세요";
+		        	document.getElementById("placeDetail").focus();
 		        },
 		        theme:themeObj
 			 }).open({
-				 q:document.getElementById("place").value,
-				 autoClose:true
+				q:document.getElementById("place").value
 			 });
 		});
 	}

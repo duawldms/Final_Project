@@ -23,6 +23,7 @@ public class InsertUserController {
 	}
 	@PostMapping("/insertuser")
 	public String UserInsert(UserVo vo,Model model,UserAddrVo vo1) {
+
 		try {
 			service.addUser(vo);
 			service1.insertaddr(vo1);
