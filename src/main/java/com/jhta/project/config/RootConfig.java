@@ -1,5 +1,7 @@
 package com.jhta.project.config;
 
+import java.util.Properties;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -28,4 +30,5 @@ public class RootConfig {
 		sb.setDataSource(dataSource());
 		return (SqlSessionFactory)sb.getObject();				
 	}
+
 }
