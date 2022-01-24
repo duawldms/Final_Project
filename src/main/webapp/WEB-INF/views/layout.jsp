@@ -38,8 +38,8 @@
 	<div id="footer">
 		<div id="footer-menu">
 			<ul>
-				<li><a href="">a</a></li>
-				<li><a href="">b</a></li>
+				<li><a href="${cp }/loginRestaurant">판매자 로그인</a></li>
+				<li><a href="${cp }/sellerInsert">도로 주소명 테스트</a></li>
 				<li><a href="">c</a></li>
 				<li><a href="">d</a></li>
 			</ul>

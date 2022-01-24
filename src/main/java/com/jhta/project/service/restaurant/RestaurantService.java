@@ -18,6 +18,7 @@ public class RestaurantService {
 	public CustomUserDetail getAuths(String r_id) {
 		return mapper.getAuths(r_id);
 	}
+	
 	public int addRestaurant(RestaurantVo vo) {
 		try {
 			String r_pwd=vo.getR_pwd();
@@ -32,8 +33,14 @@ public class RestaurantService {
 		}
 		return 1;
 	}
+	
 	public int addAuth(AuthorityVo vo) {
 		return mapper.addAuth(vo);
+	}
+	
+	// 아이디 중복체크
+	public RestaurantVo idCheck(String id) {
+		return mapper.idCheck(id);
 	}
 }
 
