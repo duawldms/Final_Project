@@ -1,5 +1,6 @@
 package com.jhta.project.controller.user;
 
+
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -32,10 +33,10 @@ public class SearchController {
 			model.addAttribute("vo",vo);
 			model.addAttribute("list",list);
 		}
-		
 		model.addAttribute("main","/WEB-INF/views/search/search.jsp");
 		return "layout";
 	}
+
 }
 
 
