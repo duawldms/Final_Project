@@ -29,6 +29,7 @@ public class RestaurantService {
 			auth.setAu_authority("ROLE_RESTAURANT");
 			mapper.addAuth(auth);
 		}catch(Exception e) {
+			e.printStackTrace();
 			return -1;
 		}
 		return 1;
