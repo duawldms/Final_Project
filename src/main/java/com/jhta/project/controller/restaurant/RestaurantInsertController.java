@@ -31,18 +31,14 @@ public class RestaurantInsertController {
 	
 	@PostMapping("/sellerInsert")
 	public String sellerInsert(RestaurantVo vo, MultipartFile file1) {
-		System.out.println("vo : " + vo);
 		String path = sc.getRealPath("/resources/img");
 		System.out.println("경로 : " + path);
 		String orgFileName = file1.getOriginalFilename();
 		String saveFileName = UUID.randomUUID() + "_" + orgFileName;
 		if (file1 != null) {
-			System.out.println("이미지 있음");
 			vo.setR_img(saveFileName);
 		}
-		
 		service.addRestaurant(vo);
-		
 		try {
 			InputStream is = file1.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + saveFileName);

@@ -23,8 +23,6 @@ public class RestaurantService {
 		try {
 			String r_pwd = vo.getR_pwd();
 			vo.setR_pwd(passwordEncoder.encode(r_pwd));
-			System.out.println("패스 : " + vo.getR_pwd());
-			System.out.println("vo : " + vo);
 			mapper.restaurantInsert(vo);
 			AuthorityVo auth = new AuthorityVo();
 			auth.setAu_id(vo.getR_id());
@@ -43,6 +41,9 @@ public class RestaurantService {
 	// 아이디 중복체크
 	public RestaurantVo idCheck(String id) {
 		return mapper.idCheck(id);
+	}
+	public int restaurantinfoinsert(RestaurantVo vo) {
+		return mapper.infoinsert(vo);
 	}
 }
 
