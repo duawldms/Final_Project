@@ -9,8 +9,9 @@ public class SerchIdController {
 	
 	@GetMapping("/searchid")
 	public String SerchIdForm(Model model) {
-		model.addAttribute("main","/WEB-INF/views/user/searchId.jsp");
+		model.addAttribute("main","/WEB-INF/views/searchId.jsp");
 		return "layout";
 	}
+
 
 }

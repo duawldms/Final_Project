@@ -41,4 +41,7 @@ public class UserService {
 	public boolean selectId(UserVo vo) {
 		return mapper.selectId(vo);
 	}
+	public String searchId(UserVo vo) {
+		return mapper.searchId(vo);
+	}
 }
