@@ -31,7 +31,7 @@ public class InsertUserController {
 			vo1.setUa_name(vo.getUi_name());
 			vo1.setUa_phone(vo.getUi_phone());
 			service1.insertaddr(vo1);
-			model.addAttribute("result","success");
+			model.addAttribute("result","회원가입 완료!");
 			model.addAttribute("main","/WEB-INF/views/user/result.jsp");
 		}catch(Exception e){
 			e.printStackTrace();

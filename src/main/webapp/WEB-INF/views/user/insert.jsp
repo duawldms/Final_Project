@@ -48,26 +48,35 @@ var themeObj = {
 			success:function(data){    
 			if(data.using==true){ 
 				$("#idresult").html("사용중인 아이디입니다.");
+				$("input[name='idChk']").prop("value","N");
+			}else if(ui_id==''){
+				$("#idresult").html("아이디를 입력해 주세요.");
 			}else{
 				$("#idresult").html("해당아이디는 사용하실 수 있습니다.");
+				$("input[name='idChk']").prop("value","Y");
 			}
 		  }
 		});
 	  });
 		
   	$("form").submit(function(){
+  		let idChk=$("input[name='idChk']").val();
   		let ui_id=$("input[name='ui_id']").val();
+  		let ui_pwd=$("input[name='ui_pwd']").val();
+		let ui_pwdchk=$("input[name='ui_pwdchk']").val();
+		let ui_name=$("input[name='ui_name']").val();
+		let ui_email=$("input[name='ui_email']").val();
+	    let ui_phone=$("input[name='ui_phone']").val();
+		let ua_addr=$("input[name='ua_addr']").val();    
+		
+  		if(idChk=='N'){
+  			alert("id중복확인을 해 주세요");
+  			return false;
+  		}
 	  		if(ui_id==''){
 		  		alert("아이디를 입력해 주세요");
 		  		return false;
-	  		}
-	  	let ua_nickname=$("input[name='ua_nickname']").val();
-		  if(ua_nickname==''){
-			  alert("닉네임을 입력해 주세요");
-			  return false;
-		  	}
-		let ui_pwd=$("input[name='ui_pwd']").val();
-		let ui_pwdchk=$("input[name='ui_pwdchk']").val();
+	  	}
 		 if(ui_pwd==''){
 			  $("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
 			 return false;
@@ -80,38 +89,22 @@ var themeObj = {
 				$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
 				 return false;
 		}
-		let ui_name=$("input[name='ui_name']").val();
 		  if(ui_name==''){
 			 $("input[name='ui_name']").next().html("이름을 입력해 주세요");
 			return false;
 		 }
-	    let ui_email=$("input[name='ui_email']").val();
 		  if(ui_email==''){
 			$("input[name='ui_email']").next().html("이메일을 입력해 주세요");
 		    return false;
 	    }
-	    let ui_phone=$("input[name='ui_phone']").val();
 		  if(ui_phone==''){
 			$("input[name='ui_phone']").next().html("전화번호를 입력해 주세요");
 		    return false;
 	    }
-	   let ua_addr=$("input[name='ua_addr']").val();
 		  if(ua_addr==''){
 			$("input[name='ua_addr']").next().html("주소를 입력해 주세요");
 		    return false;
-		}
-		 /* let ua_name=$("input[name='ua_name']").val();
-		  if(ua_name==''){
-			$("input[name='ua_name']").next().html("배송받을분의 성함을 입력해 주세요");
-		    return false;
-	    }
-	    let ua_phone=$("input[name='ua_phone']").val();
-		  if(ua_phone==''){
-			$("input[name='ua_phone']").next().html("배송받을 전화번호를 입력해 주세요");
-		    return false;
-	    }
-        */
-	   
+		}   
   	});	
 });
 </script>
@@ -121,7 +114,8 @@ var themeObj = {
 	<h2>기본정보</h2>
 		아이디<br>
 		<input type="text" name="ui_id" id="ui_id"><br>
-		<input type="button" value="아이디 검사" id="useridbtn">
+		<input type="hidden" id="idChk" value="N" name="idChk">
+		<input type="button" value="아이디 검사" id="useridbtn" name="useridbtn">
 		<span id="idresult"></span>
 		<br>
 		비밀번호<br>
@@ -134,12 +128,6 @@ var themeObj = {
 		<input type="text" name="ui_email"><span></span><br>
 		전화번호<br>
 		<input type="text" name="ui_phone"><span></span><br>
-		<!-- 
-		배송받을 사람<br> 
-		<input type="text" name="ua_name"><span></span><br>
-		배송받을 전화번호<br> 
-		<input type="text" name="ua_phone"><span></span><br> 	
-		 -->
 		배송받을 주소<br>
 		<input type="text" class="form-control col-6" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!">
 		<input type="text" class="form-control col-4 place" id="ua_addr" name="ua_addr" aria-describedby="addr-addon">
