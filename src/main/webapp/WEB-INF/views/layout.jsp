@@ -32,6 +32,7 @@
 				<c:otherwise> 
 				<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 				<li><a href="${cp }/joinuser">주문표</a></li>
+				<li><a href="${cp }/menuadd">메뉴 추가</a></li>
 				<li><a href="${cp }/usermypage">회원정보</a></li>
 				</c:otherwise>
 				</c:choose>

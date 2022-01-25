@@ -1,25 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	#sample6_address { /* 도로명 주소 */
-		width: 500px;
-	}
-	#sample6_detailAddress { /* 상세 주소 */
-		width: 300px;
-	}
-	#sample6_extraAddress { /* 참고 목록 */
-		width: 195px;	
-	}
-</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	// 주소 api
     function sample6_execDaumPostcode() {
-        new daum.Postcode({
+        new daum.Postcode({ 
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
@@ -58,7 +44,7 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
+                //document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
@@ -68,160 +54,187 @@
 	// 주소 api 끝
 	
 </script>
-</head>
-<body>
+<div>
 	<h1>판매자 가입</h1>
-	<form:form method="post" action="">
+	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="multipart/form-data">
 		<input type="text" id="r_id" name="r_id" placeholder="아이디" onblur="idCheck()">
-		<span id="idCheckResult"></span>
+		<span id="r_idResult"></span>
 		<br>
 		<input type="password" id="r_pwd" name="r_pwd" placeholder="비밀번호" onblur="commonCheck(event)">
-		<span id="pwdResult"></span>
+		<span id="r_pwdResult"></span>
 		<br>
 		<input type="password" id="r_pwd_check" name="r_pwd_check" placeholder="비밀번호 확인" onblur="pwdCheck()">
-		<span id="pwdCheckResult"></span>
+		<span id="r_pwd_checkResult"></span>
 		<br>
-		<input type="text" id="r_name" name="r_name" placeholder="이름">
-		<span id="nameResult"></span>
+		<input type="text" id="r_name" name="r_name" placeholder="매장명" onblur="commonCheck(event)">
+		<span id="r_nameResult"></span>
 		<br>
-		<div class="addr">
-			<input type="text" id="sample6_postcode" placeholder="우편번호">
-			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample6_address" placeholder="주소"><br>
-			<span id="addr1Result"></span>
-			<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-			<span id="addr2Result"></span>
-			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+		<input type="text" id="cg_name" name="cg_name" placeholder="카테고리" onblur="commonCheck(event)">
+		<span id="cg_nameResult"></span>
+		<br>
+		<div class="restaurant_addr">
+			<input type="text" id="sample6_address" placeholder="주소">
+			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
+			<br>
+			<span id="sample6_addressResult"></span>
+			<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)">
+			<input type="hidden" id="r_addr" name="r_addr">
+			<span id="sample6_detailAddressResult"></span>
 		</div>
-		<input type="text" id="r_minCost" name="r_minCost" placeholder="최소 주문금액">
+		<input type="text" id="r_minCost" name="r_minCost" placeholder="최소 주문금액" onblur="commonCheck(event)">
 		<span id="r_minCostResult"></span>
 		<br>
-		<input type="text" id="r_delCost" name="r_delCost" placeholder="배달비">
+		<input type="text" id="r_delCost" name="r_delCost" placeholder="배달비" onblur="commonCheck(event)">
 		<span id="r_delCostResult"></span>
 		<br>
-		<input type="file" id="r_img" name="r_img">
+		<input type="file" id="r_img" name="file1">
 		<br>
-		<textarea rows="5" cols="40" id="r_info" name="r_info" placeholder="매장 소개" style="resize: none;"></textarea>
+		<textarea rows="5" cols="40" id="r_info" name="r_info" placeholder="매장 소개" style="resize: none;" onblur="commonCheck(event)"></textarea>
 		<span id="r_infoResult"></span>
 		<br>
 		<input type="button" value="가입" onclick="sellerInsert()">
 	</form:form>
-	<script type="text/javascript">
-		var xhr = null;
-		var idCheckFlag = false;
-		// 아이디 중복 체크
-		function idCheck() {
-			let r_id = document.getElementById("r_id");
-			let idCheckResult = document.getElementById("idCheckResult");
-			if (r_id.value == '') {
-				idCheckResult.innerText = "아이디를 입력해 주세요.";
-				return;
-			}
-			let url = "${cp}/restaurantIdCheck?id=" + r_id.value;
-			xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					let data = xhr.responseText;
-					let json = JSON.parse(data);
-					
-					if (json.result == 'success') {
-						idCheckResult.innerText = "사용 가능한 아이디입니다.";
-						idCheckFlag = true;
-					} else {
-						idCheckResult.innerText = "이미 사용중인 아이디입니다.";
-						idCheckFlag = false;
-					}
+</div>
+<script type="text/javascript">
+	var xhr = null;
+	var idCheckFlag = false;
+	// 아이디 중복 체크
+	function idCheck() {
+		let r_id = document.getElementById("r_id");
+		let idCheckResult = document.getElementById("r_idResult");
+		if (r_id.value == '') {
+			idCheckResult.innerText = "아이디를 입력해 주세요.";
+			return;
+		}
+		let url = "${cp}/restaurantIdCheck?id=" + r_id.value;
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				let data = xhr.responseText;
+				let json = JSON.parse(data);
+				
+				if (json.result == 'success') {
+					idCheckResult.innerText = "사용 가능한 아이디입니다.";
+					idCheckFlag = true;
+				} else {
+					idCheckResult.innerText = "이미 사용중인 아이디입니다.";
+					idCheckFlag = false;
 				}
 			}
-			xhr.open('get', url, true);
-			xhr.send();
 		}
-		// 아이디 중복 체크 end
-		
-		function commonCheck(e) {
-			if (e.target.value != "") {
-				alert(e.target.id);
-			}
+		xhr.open('get', url, true);
+		xhr.send();
+	}
+	// 아이디 중복 체크 end
+	
+	// 모든 span 값 초기화
+	function commonCheck(e) {
+		if (e.target.value != "") {
+			let id = e.target.id + "Result";
+			let span = document.getElementById("" + id);
+			span.innerText = "";
 		}
+	}
+	// 모든 span 값 초기화 end
 
-		// 비밀번호 확인
-		function pwdCheck() {
-			let r_pwd = document.getElementById("r_pwd");
-			let r_pwd_check = document.getElementById("r_pwd_check");
-			let pwdCheckResult = document.getElementById("pwdCheckResult");
-			if (r_pwd.value != r_pwd_check.value) {
-				pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다."
-			} else if (r_pwd.value != '' && r_pwd_check.value != '') {
-				pwdCheckResult.innerText = "두 비밀번호가 일치합니다.";
-			}
+	// 비밀번호 확인
+	function pwdCheck() {
+		let r_pwd = document.getElementById("r_pwd");
+		let r_pwd_check = document.getElementById("r_pwd_check");
+		let pwdCheckResult = document.getElementById("r_pwd_checkResult");
+		if (r_pwd.value != r_pwd_check.value) {
+			pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다."
+		} else if (r_pwd.value != '' && r_pwd_check.value != '' && r_pwd.value === r_pwd_check.value) {
+			pwdCheckResult.innerText = "두 비밀번호가 일치합니다.";
 		}
-		// 비밀번호 확인 end
+	}
+	// 비밀번호 확인 end
+	
+	// 가입
+	function sellerInsert() {
+		let r_id = document.getElementById("r_id");
+		let r_pwd = document.getElementById("r_pwd");
+		let r_pwd_check = document.getElementById("r_pwd_check");
+		let r_name = document.getElementById("r_name");
+		let cg_name = document.getElementById("cg_name");
+		let addr1 = document.getElementById("sample6_address");
+		let addr2 = document.getElementById("sample6_detailAddress");
+		let r_minCost = document.getElementById("r_minCost");
+		let r_delCost = document.getElementById("r_delCost");
+		let r_img = document.getElementById("r_img");
+		let r_info = document.getElementById("r_info");
+
+		if (r_id.value == '') {
+			document.getElementById("r_idResult").innerText = "아이디를 입력해 주세요.";
+			r_id.focus();
+			return;
+		}
+		if (r_pwd.value == '') {
+			document.getElementById("r_pwdResult").innerText = "비밀번호를 입력해 주세요.";
+			r_pwd.focus();
+			return;
+		}
+		if (r_pwd_check.value == '') {
+			document.getElementById("r_pwd_checkResult").innerText = "비밀번호를 확인해 주세요.";
+			r_pwd_check.focus();
+			return;
+		}
+		if (r_name.value == '') {
+			document.getElementById("r_nameResult").innerText = "매장명을 입력해 주세요.";
+			r_name.focus();
+			return;
+		}
+		if (cg_name.value == '') {
+			document.getElementById("cg_nameResult").innerText = "카테고리를 입력해 주세요.";
+			cg_name.focus();
+			return;
+		}
+		if (addr1.value == '') {
+			document.getElementById("sample6_addressResult").innerHTML = "주소를 입력해 주세요.<br>";
+			addr1.focus();
+			return;
+		} else {
+			document.getElementById("sample6_addressResult").innerText = "";
+		}
+		if (addr2.value == '') {
+			document.getElementById("sample6_detailAddressResult").innerHTML = "상세 주소를 입력해 주세요.<br>";
+			addr2.focus();
+			return;
+		} else {
+			document.getElementById("sample6_detailAddressResult").innerText = "";
+		}
+		// 주소 + 상세 주소 합쳐서 보내기
+		let r_addr = document.getElementById("r_addr");
+		r_addr.value = addr1.value + addr2.value;
 		
-		// 가입
-		function sellerInsert() {
-			let r_id = document.getElementById("r_id");
-			let r_pwd = document.getElementById("r_pwd");
-			let r_pwd_check = document.getElementById("r_pwd_check");
-			let r_name = document.getElementById("r_name");
-			let r_addr = '';
-			let addr1 = document.getElementById("sample6_address");
-			let addr2 = document.getElementById("sample6_detailAddress");
-			let r_minCost = document.getElementById("r_minCost");
-			let r_delCost = document.getElementById("r_delCost");
-			let r_img = document.getElementById("r_img");
-			let r_info = document.getElementById("r_info");
-
-			if (r_id.value == '') {
-				document.getElementById("idCheckResult").innerText = "아이디를 입력해 주세요.";
-				r_id.focus();
-				return;
-			}
-			if (r_pwd.value == '') {
-				document.getElementById("pwdResult").innerText = "비밀번호를 입력해 주세요.";
-				r_pwd.focus();
-				return;
-			}
-			if (r_pwd_check.value == '') {
-				document.getElementById("pwdCheckResult").innerText = "비밀번호를 확인해 주세요.";
-				r_pwd_check.focus();
-				return;
-			}
-			if (r_name.value == '') {
-				document.getElementById("nameResult").innerText = "이름을 입력해 주세요.";
-				r_name.focus();
-				return;
-			}
-			if (addr1.value == '') {
-				document.getElementById("addr1Result").innerText = "주소를 입력해 주세요.";
-				addr1.focus();
-				return;
-			} else if (addr2.value == '') {
-				document.getElementById("addr2Result").innerText = "상세 주소를 입력해 주세요.";
-				addr2.focus();
-				return;
-			} else {
-				r_addr = addr1 + addr2;
-				alert(r_addr);
-			}
-			if (r_minCost.value == '') {
-				document.getElementById("r_minCostResult").innerText = "최소 주문 금액을 입력해 주세요.";
-				r_minCost.focus();
-				return;
-			}
-			if (r_delCost.value == '') {
-				document.getElementById("r_delCostResult").innerText = "배달비를 입력해 주세요";
-				r_delCost.focus();
-				return;
-			}
-			if (r_info.value == '') {
-				document.getElementById("r_infoResult").innerText = "매장 소개를 입력해 주세요";
-				r_info.focus();
-				return;
-			}
-
+		if (r_minCost.value == '') {
+			document.getElementById("r_minCostResult").innerText = "최소 주문 금액을 입력해 주세요.";
+			r_minCost.focus();
+			return;
+		}
+		if (r_delCost.value == '') {
+			document.getElementById("r_delCostResult").innerText = "배달비를 입력해 주세요";
+			r_delCost.focus();
+			return;
+		}
+		if (r_info.value == '') {
+			document.getElementById("r_infoResult").innerHTML = "<br>매장 소개를 입력해 주세요";
+			r_info.focus();
+			return;
+		}
+		if (r_pwd.value != r_pwd_check.value) {
+			alert("비밀번호를 확인해주세요.");
+			r_pwd.focuse();
+			return;
+		}
+		if (idCheckFlag == false) {
+			alert("아이디를 확인해주세요.");
+			r_id.focuse();
+			return;
 		}
 		
-		
-	</script>
-</body>
-</html>
+		document.getElementById("restaurantForm").submit();
+	}
+	
+	
+</script>

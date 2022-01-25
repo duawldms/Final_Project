@@ -18,7 +18,6 @@ public class LoginController {
 	@GetMapping("/loginsuccess")
 	public String login(Model model){
 		model.addAttribute("main","/WEB-INF/views/user/result.jsp");
-			
 		return "layout";
 	}
 	

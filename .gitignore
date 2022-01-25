@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/target/
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,maven
 
@@ -91,4 +88,3 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,maven
->>>>>>> branch 'master' of https://github.com/HyunwooY/Final_Project.git

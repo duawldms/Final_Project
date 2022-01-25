@@ -21,14 +21,15 @@ public class RestaurantService {
 	
 	public int addRestaurant(RestaurantVo vo) {
 		try {
-			String r_pwd=vo.getR_pwd();
+			String r_pwd = vo.getR_pwd();
 			vo.setR_pwd(passwordEncoder.encode(r_pwd));
 			mapper.restaurantInsert(vo);
-			AuthorityVo auth=new AuthorityVo();
+			AuthorityVo auth = new AuthorityVo();
 			auth.setAu_id(vo.getR_id());
 			auth.setAu_authority("ROLE_RESTAURANT");
 			mapper.addAuth(auth);
 		}catch(Exception e) {
+			e.printStackTrace();
 			return -1;
 		}
 		return 1;

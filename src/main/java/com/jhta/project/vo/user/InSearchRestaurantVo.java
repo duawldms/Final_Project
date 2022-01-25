@@ -1,15 +1,17 @@
-package com.jhta.project.vo.restaurant;
+package com.jhta.project.vo.user;
 
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RestaurantVo {
+@ToString
+public class InSearchRestaurantVo {
 	private String r_id;
 	private String r_pwd;
 	private String r_name;
@@ -21,4 +23,7 @@ public class RestaurantVo {
 	private String r_info;
 	private Date r_regdate;
 	private String cg_name;
+	private int r_coordx;
+	private int r_coordy;
+	private int distance;
 }
