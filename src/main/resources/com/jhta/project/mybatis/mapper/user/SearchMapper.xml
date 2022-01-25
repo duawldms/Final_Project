@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.project.mybatis.mapper.user.SearchMapper">
+	<select id="selectAddr" parameterType="hashmap" resultType="com.jhta.project.vo.user.UserAddrVo">
+		select * from user_addr where ui_id=#{ui_id}
+		<if test="ua_nickname!=null and ua_nickname!=''">
+			and ua_nickname=#{ua_nickname}
+		</if>
+	</select>
+</mapper> 
+
+
+
+
