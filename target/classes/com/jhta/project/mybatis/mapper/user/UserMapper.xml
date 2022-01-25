@@ -28,6 +28,9 @@
 	<select id="selectId" parameterType="com.jhta.project.vo.user.UserVo">
 		select * from user_information where ui_id=#{ui_id} and ui_pwd=#{ui_pwd}
 	</select>
+	<select id="searchId" parameterType="com.jhta.project.vo.user.UserVo" resultType="string">
+		select * from user_information where ui_name=#{ui_name} and ui_phone=#{ui_phone}
+	</select>
 </mapper> 
 
 

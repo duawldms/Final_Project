@@ -19,7 +19,6 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
 		
-		
 		return "layout";
 	}
 	

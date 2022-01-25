@@ -42,6 +42,9 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String id) {
 		return mapper.idCheck(id);
 	}
+	public int restaurantinfoinsert(RestaurantVo vo) {
+		return mapper.infoinsert(vo);
+	}
 }
 
 
