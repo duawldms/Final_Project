@@ -18,9 +18,10 @@ public class RestaurantLoginController {
 		return "layout";
 	}
 	
-	@PostMapping("/loginRestaurant")
-	public String login(Model model, String id, String pwd) {
-		model.addAttribute("");
+	@GetMapping("/loginRestaurantsuccess")
+	public String login(Model model){
+		model.addAttribute("main", "/WEB-INF/views/restaurant/result.jsp");
 		return "layout";
 	}
+	
 }

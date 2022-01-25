@@ -56,7 +56,7 @@
 </script>
 <div>
 	<h1>판매자 가입</h1>
-	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="mulitpart/form-data">
+	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="multipart/form-data">
 		<input type="text" id="r_id" name="r_id" placeholder="아이디" onblur="idCheck()">
 		<span id="r_idResult"></span>
 		<br>
@@ -66,8 +66,11 @@
 		<input type="password" id="r_pwd_check" name="r_pwd_check" placeholder="비밀번호 확인" onblur="pwdCheck()">
 		<span id="r_pwd_checkResult"></span>
 		<br>
-		<input type="text" id="r_name" name="r_name" placeholder="이름" onblur="commonCheck(event)">
+		<input type="text" id="r_name" name="r_name" placeholder="매장명" onblur="commonCheck(event)">
 		<span id="r_nameResult"></span>
+		<br>
+		<input type="text" id="cg_name" name="cg_name" placeholder="카테고리" onblur="commonCheck(event)">
+		<span id="cg_nameResult"></span>
 		<br>
 		<div class="restaurant_addr">
 			<input type="text" id="sample6_address" placeholder="주소">
@@ -84,7 +87,7 @@
 		<input type="text" id="r_delCost" name="r_delCost" placeholder="배달비" onblur="commonCheck(event)">
 		<span id="r_delCostResult"></span>
 		<br>
-		<input type="file" id="r_img" name="r_img">
+		<input type="file" id="r_img" name="file1">
 		<br>
 		<textarea rows="5" cols="40" id="r_info" name="r_info" placeholder="매장 소개" style="resize: none;" onblur="commonCheck(event)"></textarea>
 		<span id="r_infoResult"></span>
@@ -153,6 +156,7 @@
 		let r_pwd = document.getElementById("r_pwd");
 		let r_pwd_check = document.getElementById("r_pwd_check");
 		let r_name = document.getElementById("r_name");
+		let cg_name = document.getElementById("cg_name");
 		let addr1 = document.getElementById("sample6_address");
 		let addr2 = document.getElementById("sample6_detailAddress");
 		let r_minCost = document.getElementById("r_minCost");
@@ -176,8 +180,13 @@
 			return;
 		}
 		if (r_name.value == '') {
-			document.getElementById("r_nameResult").innerText = "이름을 입력해 주세요.";
+			document.getElementById("r_nameResult").innerText = "매장명을 입력해 주세요.";
 			r_name.focus();
+			return;
+		}
+		if (cg_name.value == '') {
+			document.getElementById("cg_nameResult").innerText = "카테고리를 입력해 주세요.";
+			cg_name.focus();
 			return;
 		}
 		if (addr1.value == '') {
@@ -213,6 +222,17 @@
 			r_info.focus();
 			return;
 		}
+		if (r_pwd.value != r_pwd_check.value) {
+			alert("비밀번호를 확인해주세요.");
+			r_pwd.focuse();
+			return;
+		}
+		if (idCheckFlag == false) {
+			alert("아이디를 확인해주세요.");
+			r_id.focuse();
+			return;
+		}
+		
 		document.getElementById("restaurantForm").submit();
 	}
 	

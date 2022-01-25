@@ -8,9 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-
+	<h1>메뉴 추가</h1>
+	
 </body>
 </html>

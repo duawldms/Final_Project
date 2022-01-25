@@ -23,13 +23,13 @@ public class RestaurantService {
 		try {
 			String r_pwd = vo.getR_pwd();
 			vo.setR_pwd(passwordEncoder.encode(r_pwd));
-			System.out.println("비번 : " + vo.getR_pwd());
+			System.out.println("패스 : " + vo.getR_pwd());
+			System.out.println("vo : " + vo);
 			mapper.restaurantInsert(vo);
 			AuthorityVo auth = new AuthorityVo();
 			auth.setAu_id(vo.getR_id());
 			auth.setAu_authority("ROLE_RESTAURANT");
-			System.out.println("auth : " + auth);
-			addAuth(auth);
+			mapper.addAuth(auth);
 		}catch(Exception e) {
 			return -1;
 		}

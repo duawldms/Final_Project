@@ -20,7 +20,7 @@
 <div id="wrap">
 	<div id="header">
 		<div id="header-logo">
-			<h2><a href="">배달요기이츠</a></h2>
+			<h2><a href="${cp }/">배달요기이츠</a></h2>
 		</div>
 		<div>
 			<ul class="header-li">
@@ -29,9 +29,10 @@
 				<li><a href="${cp }/loginuser">로그인</a></li>
 				<li><a href="${cp }/joinuser">주문표</a></li>
 				</c:when>
-				<c:otherwise>
+				<c:otherwise> 
 				<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 				<li><a href="${cp }/joinuser">주문표</a></li>
+				<li><a href="${cp }/menuadd">메뉴 추가</a></li>
 				<li><a href="${cp }/usermypage">회원정보</a></li>
 				</c:otherwise>
 				</c:choose>
@@ -39,9 +40,6 @@
 		</div>
 	</div>
 	<div id="main">
-		aaa<br>
-		aaa<br>
-		dddd<br>
 		<jsp:include page="${requestScope.main }"/>
 
 	</div>

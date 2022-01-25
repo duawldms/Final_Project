@@ -8,8 +8,8 @@
 		<result property="password" column="r_pwd"/>
 		<result property="enabled" column="r_state"/>
 		<collection property="authList" ofType="com.jhta.project.vo.security.AuthorityVo">
-			<result property="userid" column="au_id"/>
-			<result property="authority" column="au_authority"/>
+			<result property="au_id" column="au_id"/>
+			<result property="au_authority" column="au_authority"/>
 		</collection>
 	</resultMap>
 	<select id="getAuths" parameterType="String" resultMap="userDetail">
@@ -17,11 +17,15 @@
 		where r.r_id=a.au_id and r.r_id=#{r_id}
 	</select>
 	<insert id="restaurantInsert" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
-		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate)
+		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name})
 	</insert>
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
+
+	<select id="restaurantSalesList" parameterType="String" resultType="com.jhta.project.vo.restaurant.OrderListVo">
+	</select>
+
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
 	</select>
