@@ -42,8 +42,9 @@
 			onblur="commonCheck(event)">
 		<span id="r_delCostResult"></span>
 		<br>
-		<input type="file" id="r_img" name="file1">
+		<input type="file" id="r_img" name="file1" onchange="imageView(event)">
 		<br>
+		<img style="width: 200px; height: 200px; display: none;" id="food_img" src="">
 		<textarea rows="5" cols="40" id="r_info" name="r_info"
 			placeholder="매장 소개" style="resize: none;" onblur="commonCheck(event)"></textarea>
 		<span id="r_infoResult"></span>
@@ -82,7 +83,21 @@
 		xhr.send();
 	}
 	// 아이디 중복 체크 end
-
+	
+	// 이미지 미리보기
+	function imageView(e) {
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			let food_img = document.getElementById("food_img");
+			food_img.src = e.target.result;
+			food_img.style.display = 'block';
+		}
+		// readAsDataURL 파일을 데이터 URL로 만들기
+		reader.readAsDataURL(e.target.files[0]);
+	}
+	// 이미지 미리보기 end
+	
 	// 모든 span 값 초기화
 	function commonCheck(e) {
 		if (e.target.value != "") {

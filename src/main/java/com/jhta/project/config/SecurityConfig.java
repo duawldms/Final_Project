@@ -45,16 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logout()
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/");
-		
-		http
-		.formLogin()
-		.loginPage("/loginRestaurant")
-		.loginProcessingUrl("/loginRestaurant")
-		.failureUrl("/loginRestaurant")
-		.and()
-		.logout()
-		.logoutUrl("/logout")
-		.logoutSuccessUrl("/");
 	}
 	@Bean
 	public CustomUserDetailService detailService() {
