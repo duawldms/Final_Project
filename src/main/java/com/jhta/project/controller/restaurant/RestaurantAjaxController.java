@@ -16,7 +16,6 @@ public class RestaurantAjaxController {
 	
 	@GetMapping(value = "/restaurantIdCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, String> idCheck(String id) {
-		System.out.println("아이디 : " + id);
 		HashMap<String, String> map = new HashMap<String, String>();
 		RestaurantVo vo = service.idCheck(id);
 		if (vo != null) {
