@@ -9,5 +9,5 @@ public interface RestaurantMapper {
 	int restaurantInsert(RestaurantVo vo);
 	int addAuth(AuthorityVo vo);
 	RestaurantVo idCheck(String id);
-	int infoinsert(RestaurantVo vo);
+	int infoupdate(String r_id);
 }

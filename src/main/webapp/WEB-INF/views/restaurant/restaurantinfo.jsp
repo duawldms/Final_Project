@@ -53,9 +53,8 @@
 
 		<tr>
 			<td colspan="4" style="text-align: right;">
-			<a href="${cp }/infoinsert" style="text-decoration-line : none; color: #F6416C;">등록</a>			
-			<a href="" style="text-decoration-line : none; color: #F6416C;">이전</a>
-			<a href="" style="text-decoration-line : none; color: #F6416C;">수정</a>
+			<a href="" style="text-decoration-line : none; color: #F6416C; position: absolute; left:370px;">이전</a>
+			<a href="${cp }/infoupdate" style="text-decoration-line : none; color: #F6416C;">수정</a>			
 			<a href="" style="text-decoration-line : none; color: #F6416C;">삭제</a>
 			</td>
 		</tr>
