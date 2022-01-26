@@ -44,4 +44,11 @@ public class UserService {
 	public String searchId(UserVo vo) {
 		return mapper.searchId(vo);
 	}
+	public UserVo searchPwd(UserVo vo) {
+		return mapper.searchPwd(vo);
+	}
+	public int updatePwd(UserVo vo) {
+		vo.setUi_pwd(passwordEncoder.encode(vo.getUi_pwd()));
+		return mapper.updatePwd(vo);
+	}
 }
