@@ -36,7 +36,6 @@ public class SearchController {
 		model.addAttribute("main","/WEB-INF/views/search/search.jsp");
 		return "layout";
 	}
-
 }
 
 

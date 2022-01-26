@@ -48,16 +48,6 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	$("#button-addon2").click(function(){
-		$.ajax({
-			url:'https://dapi.kakao.com/v2/local/search/address.json?query='+encodeURIComponent('경기 분당구 판교역로 235'),
-			headers:{'Authorization':'KakaoAK 014061fc744c0ff612250f25392cfa98'},
-			type:'get'
-		}).done(function(data){
-			console.log(data.documents[0].x);
-		});
-	});
-	
 	function changeAddr(selected){
 		$.ajax({
 			url:"${cp}/user/addrDetail?ua_nickname="+selected,
@@ -85,7 +75,7 @@
 			document.getElementById("addr-addon").addEventListener('click',function(){
 				new daum.Postcode({
 			        oncomplete: function(data) {
-			    	   	document.getElementById("place").value = data.address.x; // 주소 넣기
+			    	   	document.getElementById("place").value = data.address; // 주소 넣기
 			    	   	detail.disabled=false;
 			    	   	detail.placeholder = "상세주소를 입력하세요";
 			    	   	detail.focus();
