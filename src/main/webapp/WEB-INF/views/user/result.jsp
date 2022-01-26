@@ -10,7 +10,6 @@
 </head>
 <body>
 결과 : ${result }<br>
-${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님이 로그인하셨습니다.
 </body>
 </html>
 

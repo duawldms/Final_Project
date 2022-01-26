@@ -69,41 +69,57 @@ var themeObj = {
 	    let ui_phone=$("input[name='ui_phone']").val();
 		let ua_addr=$("input[name='ua_addr']").val();    
 		
-  		if(idChk=='N'){
-  			alert("id중복확인을 해 주세요");
-  			return false;
-  		}
-	  		if(ui_id==''){
-		  		alert("아이디를 입력해 주세요");
-		  		return false;
-	  	}
-		 if(ui_pwd==''){
-			  $("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
-			 return false;
-	     }
-		 if(ui_pwdchk==''){
-			  $("input[name='ui_pwdchk']").next().html("비밀번호를 입력해 주세요");
-			 return false;
-	     }
-		 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
-				$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
+		 var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			
+	  		if(idChk=='N'){
+	  			alert("id중복확인을 해 주세요");
+	  			return false;
+	  		}
+		  		if(ui_id==''){
+			  		alert("아이디를 입력해 주세요");
+			  		$("input[name='ui_id']").focus();
+			  		return false;
+		  	}
+			 if(ui_pwd==''){
+				  //$("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
+				  alert("비밀번호를 입력해 주세요.");
+				  $("input[name='ui_pwd']").focus();
 				 return false;
-		}
-		  if(ui_name==''){
-			 $("input[name='ui_name']").next().html("이름을 입력해 주세요");
-			return false;
-		 }
-		  if(ui_email==''){
-			$("input[name='ui_email']").next().html("이메일을 입력해 주세요");
-		    return false;
-	    }
-		  if(ui_phone==''){
-			$("input[name='ui_phone']").next().html("전화번호를 입력해 주세요");
-		    return false;
-	    }
-		  if(ua_addr==''){
-			$("input[name='ua_addr']").next().html("주소를 입력해 주세요");
-		    return false;
+		     }
+			 if(ui_pwdchk==''){
+				  //$("input[name='ui_pwdchk']").next().html("비밀번호를 입력해 주세요");
+				  alert("비밀번호 확인란을 입력해 주세요.");
+				  $("input[name='ui_pwdchk']").focus();
+				  return false;
+		     }
+			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
+					$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
+					return false;
+			}
+			  if(ui_name==''){
+				  alert("이름을 입력해 주세요.");
+				  $("input[name='ui_name']").focus();
+				return false;
+			 }
+			  if(ui_email==''){
+				  alert("이메일을 입력해 주세요.");
+				  $("input[name='ui_email']").focus();
+			    return false;
+		    }
+			  if(!email_rule.test(ui_email)){
+			      alert("이메일을 형식에 맞게 입력해주세요.");
+			    return false;
+			  }
+			  
+			  if(ui_phone==''){
+				  alert("전화번호를 입력해 주세요.");
+				  $("input[name='ui_phone']").focus();
+			    return false;
+		    }
+			  if(ua_addr==''){
+				  alert("주소를 입력해 주세요.");
+				  $("input[name='ua_addr']").focus();
+			    return false;
 		}   
   	});	
 });
@@ -126,6 +142,7 @@ var themeObj = {
 		<input type="text" name="ui_name"><span></span><br>
 		이메일<br><!-- 이메일 연동 구현(추가사항) -->
 		<input type="text" name="ui_email"><span></span><br>
+		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
 		전화번호<br>
 		<input type="text" name="ui_phone"><span></span><br>
 		배송받을 주소<br>
