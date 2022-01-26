@@ -44,9 +44,8 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String id) {
 		return mapper.idCheck(id);
 	}
-	// 판매자 회원가입
-	public int restaurantinfoinsert(RestaurantVo vo) {
-		return mapper.infoinsert(vo);
+	public int infoupdate(String r_id) {
+		return mapper.infoupdate(r_id);
 	}
 	// 음식 메뉴 등록
 	public int menuAdd(FoodVo vo) {

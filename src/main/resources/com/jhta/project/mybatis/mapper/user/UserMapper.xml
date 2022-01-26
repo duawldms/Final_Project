@@ -31,6 +31,12 @@
 	<select id="searchId" parameterType="com.jhta.project.vo.user.UserVo" resultType="string">
 		select * from user_information where ui_name=#{ui_name} and ui_phone=#{ui_phone}
 	</select>
+	<select id="searchPwd" parameterType="com.jhta.project.vo.user.UserVo" resultType="com.jhta.project.vo.user.UserVo">
+		select * from user_information where ui_id=#{ui_id} and ui_email=#{ui_email}
+	</select>
+	<update id="updatePwd" parameterType="com.jhta.project.vo.user.UserVo">
+		update user_information  set ui_pwd=#{ui_pwd} where ui_id=#{ui_id} and ui_email=#{ui_email}
+	</update>
 </mapper> 
 
 

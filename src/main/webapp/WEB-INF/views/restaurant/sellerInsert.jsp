@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b89a8c65d42f06fcb2f0dd87d520b67&libraries=services"></script>
 <div>
 	<h1>판매자 가입</h1>
 	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="multipart/form-data" acceptCharset="utf-8">
@@ -26,7 +27,7 @@
 		<span id="cg_nameResult"></span>
 		<br>
 		<div class="restaurant_addr">
-			<input type="text" id="sample6_address" placeholder="주소"> 
+			<input type="text" id="sample6_address" placeholder="주소" value="" readonly="readonly"> 
 			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
 			<br> 
 			<span id="sample6_addressResult"></span> 
@@ -48,8 +49,8 @@
 		<textarea rows="5" cols="40" id="r_info" name="r_info"
 			placeholder="매장 소개" style="resize: none;" onblur="commonCheck(event)"></textarea>
 		<span id="r_infoResult"></span>
-		<input type="hidden" name="r_coordx" id="x">
-		<input type="hidden" name="r_coordy" id="y">
+		<input type="hidden" name="r_coordx" id="r_coordx">
+		<input type="hidden" name="r_coordy" id="r_coordy">
 		<br>
 		<input type="button" value="가입" onclick="sellerInsert()">
 	</form:form>
@@ -85,6 +86,23 @@
 		xhr.send();
 	}
 	// 아이디 중복 체크 end
+	
+	// 주소 좌표 값 구하기
+	function distance() {
+		let addr1 = document.getElementById("sample6_address");
+		// 주소로 좌표를 검색합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		geocoder.addressSearch(addr1.value, function(result, status) {
+		
+			// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				r_coordx.value = result[0].x;
+				r_coordy.value = result[0].y;
+			}
+		});
+	}
+	// 주소 좌표 값 구하기 end
 	
 	// 이미지 미리보기
 	function imageView(e) {
@@ -137,7 +155,7 @@
 		let r_delCost = document.getElementById("r_delCost");
 		let r_img = document.getElementById("r_img");
 		let r_info = document.getElementById("r_info");
-
+		
 		if (r_id.value == '') {
 			document.getElementById("r_idResult").innerText = "아이디를 입력해 주세요.";
 			r_id.focus();
@@ -206,37 +224,8 @@
 			r_id.focuse();
 			return;
 		}
-<<<<<<< HEAD
 
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch(addr1.value, function(result, status) {
-
-		// 정상적으로 검색이 완료됐으면 
-		if (status === kakao.maps.services.Status.OK) {
-
-			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-			// 결과값으로 받은 위치를 마커로 표시합니다
-			var marker = new kakao.maps.Marker({
-				map: map,
-				position: coords
-			});
-
-			// 인포윈도우로 장소에 대한 설명을 표시합니다
-			var infowindow = new kakao.maps.InfoWindow({
-				content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-			});
-			infowindow.open(map, marker);
-
-			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			map.setCenter(coords);
-		} 
-		});    
-
-=======
-		document.getElementById("x").value="37.12345";
-		document.getElementById("y").value="35.12345";
->>>>>>> branch 'master' of https://github.com/HyunwooY/Final_Project.git
+		
 		document.getElementById("restaurantForm").submit();
 	}
 	
@@ -288,6 +277,9 @@
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById("sample6_detailAddress")
 								.focus();
+						setTimeout(() => {
+							distance();
+						}, 1000);
 					}
 				}).open();
 	}

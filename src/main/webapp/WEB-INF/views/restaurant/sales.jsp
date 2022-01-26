@@ -63,7 +63,9 @@
 		<table id="saleslist">
 			<thead>
 				<tr>
-					<th scope="col">일자</th>
+					<th scope="col">일자
+					<input type="date" name="Daily_date" min="1900-01-01" max="2099-2-24"><br>
+					</th>
 					<th scope="col">총매출</th>
 				</tr>
 			</thead>
@@ -72,7 +74,9 @@
 		<table id="saleslist">
 			<thead>
 				<tr>
-					<th scope="col">일자</th>
+					<th scope="col">일자
+					<input type="date" name="Month_date" min="1900-01-01" max="2099-2-24"><br>
+					</th>
 					<th scope="col">총매출</th>
 				</tr>
 			</thead>
@@ -81,7 +85,9 @@
 		<table id="saleslist">
 			<thead>
 				<tr>
-					<th scope="col">일자</th>
+					<th scope="col">일자
+					<input type="date" name="Year_date" min="1900-01-01" max="2099-2-24"><br>
+					</th>
 					<th scope="col">총매출</th>
 				</tr>
 			</thead>

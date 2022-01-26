@@ -353,6 +353,8 @@
 				<div class="elementor-element elementor-element-c200aca elementor-widget elementor-widget-text-editor" data-id="c200aca" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 						<p class="p1">
+												<span><a href="${cp }/loginRestaurant">판매자 로그인</a></span>&nbsp;
+												<span><a href="${cp }/sellerInsert">도로 주소명 테스트</a></span>
 													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
 														class="s1">주</span>) | <span class="s1">TEL</span>: <span
 														class="s1">070-8240-3211~3 FAX: 02-777-5407</span> <br />
