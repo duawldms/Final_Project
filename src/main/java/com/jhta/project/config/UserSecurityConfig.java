@@ -24,16 +24,18 @@ import com.jhta.project.service.security.CustomUserDetailService;
 @EnableWebSecurity
 @Order(1)
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired BasicDataSource dataSource;
+	@Autowired private BasicDataSource dataSource;
+	private LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class); 
- 
+        
 		http.authorizeRequests()
 		.antMatchers("/user/**").access("hasRole('ROLE_USER')")
+		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/**").access("permitAll");
 		//로그인관련 설정
@@ -41,7 +43,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.loginProcessingUrl("/loginuser")
-				.defaultSuccessUrl("/loginsuccess")
+				//.defaultSuccessUrl("/loginsuccess")
+				.successHandler(loginSuccessHandler)
 				.and()
 				.logout()
 				.logoutUrl("/logout")
@@ -57,6 +60,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+//	@Bean
+//	public LoginSuccessHandler loginSuccessHandler() {
+//		return new LoginSuccessHandler();
+//	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());

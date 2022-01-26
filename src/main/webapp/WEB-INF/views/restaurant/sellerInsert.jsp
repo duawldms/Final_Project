@@ -47,6 +47,8 @@
 		<textarea rows="5" cols="40" id="r_info" name="r_info"
 			placeholder="매장 소개" style="resize: none;" onblur="commonCheck(event)"></textarea>
 		<span id="r_infoResult"></span>
+		<input type="hidden" name="r_coordx" id="x">
+		<input type="hidden" name="r_coordy" id="y">
 		<br>
 		<input type="button" value="가입" onclick="sellerInsert()">
 	</form:form>
@@ -189,7 +191,8 @@
 			r_id.focuse();
 			return;
 		}
-
+		document.getElementById("x").value="37.12345";
+		document.getElementById("y").value="35.12345";
 		document.getElementById("restaurantForm").submit();
 	}
 	

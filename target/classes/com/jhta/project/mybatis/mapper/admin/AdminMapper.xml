@@ -22,4 +22,7 @@
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
+	<select id="selectId" parameterType="com.jhta.project.vo.admin.AdminVo">
+		select * from admin where admin_id=#{admin_id} and admin_pwd=#{admin_pwd}
+	</select>
 </mapper>

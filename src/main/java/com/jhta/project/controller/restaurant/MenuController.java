@@ -14,7 +14,7 @@ import com.jhta.project.vo.restaurant.RestaurantVo;
 public class MenuController {
 	@Autowired RestaurantService service;
 	
-	@GetMapping("/menuadd")
+	@GetMapping("/restaurant/menuadd")
 	public String menuadd(Model model, Principal principal) {
 		model.addAttribute("r_id", principal.getName());
 		model.addAttribute("main", "/WEB-INF/views/restaurant/menuAdd.jsp");
