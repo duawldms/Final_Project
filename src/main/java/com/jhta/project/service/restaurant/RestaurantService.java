@@ -43,8 +43,8 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String id) {
 		return mapper.idCheck(id);
 	}
-	public int infoupdate(String r_id) {
-		return mapper.infoupdate(r_id);
+	public void infoUpdate(RestaurantVo vo) {
+		mapper.infoUpdate(vo);
 	}
 
 }

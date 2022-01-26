@@ -43,17 +43,20 @@
 	<table class="restaurantinfo">
 
 		<tr>
-			<td id="col">소개</td>
-			<td id="col">공지</td>
-
+			<td id="col">소개&공지</td>
 		</tr>
+		<c:forEach var="vo" items="${list }">
+			<tr>
+				<td>${vo.r_info }</td>
+			</tr>
+		</c:forEach>
 		<tr>
-			<td colspan="3"><img src="" id="restaurantimg"></td>
+			<td colspan="3" id="img" ><img src="" id="r_img"></td>
 		</tr>
 
 		<tr>
 			<td colspan="4" style="text-align: right;">
-			<a href="" style="text-decoration-line : none; color: #F6416C; position: absolute; left:370px;">이전</a>
+			<a href="${cp }/" style="text-decoration-line : none; color: #F6416C; position: absolute; left:370px;">Home</a>
 			<a href="${cp }/infoupdate" style="text-decoration-line : none; color: #F6416C;">수정</a>			
 			<a href="" style="text-decoration-line : none; color: #F6416C;">삭제</a>
 			</td>

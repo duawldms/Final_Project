@@ -11,9 +11,9 @@ import com.jhta.project.service.restaurant.RestaurantService;
 public class RestaurantInfoController {
 	@Autowired RestaurantService service;
 	
-	@GetMapping("/restaurantinfo")
+	@GetMapping("/restaurant/restaurantinfo")
 	public String RestaurantInfo(Model model) {
 		model.addAttribute("main","/WEB-INF/views/restaurant/restaurantinfo.jsp");
-		return "restaurant/restaurantinfo";
+		return "layout";
 	}
 }
