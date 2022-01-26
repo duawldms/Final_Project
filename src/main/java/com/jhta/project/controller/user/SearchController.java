@@ -20,7 +20,7 @@ public class SearchController {
 	@Autowired private ServletContext sc;
 	@Autowired private SearchService service;
 	
-	@GetMapping("/search")
+	@GetMapping("/restaurant/search")
 	public String goSearch(Model model,Principal principal) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		if(principal!=null) {

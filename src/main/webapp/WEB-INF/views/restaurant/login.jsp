@@ -3,7 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <div>
 	<h1>판매자 로그인</h1>
-	<form:form method="post" action="${cp }/loginRestaurant">
+	<form:form method="post" action="${cp }/loginuser">
 		<div class="login-group">
 			<input type="text" name="username" placeholder="아이디">
 		</div>

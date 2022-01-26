@@ -14,5 +14,4 @@ public class SecurityInitializer extends AbstractSecurityWebApplicationInitializ
 	protected void beforeSpringSecurityFilterChain(ServletContext servletContext) {
 		insertFilters(servletContext, new MultipartFilter());
 	}
-	
 }

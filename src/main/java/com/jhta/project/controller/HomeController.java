@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jhta.project.service.user.CategoryService;
+
 /**
  * Handles requests for the application home page.
  */
@@ -19,7 +21,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
 		
-		return "layout";
+		return "home";
 	}
 	
 }

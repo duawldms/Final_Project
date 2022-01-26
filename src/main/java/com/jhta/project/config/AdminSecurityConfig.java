@@ -15,43 +15,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.jhta.project.service.security.CustomRestaurantDetailService;
 import com.jhta.project.service.security.CustomUserDetailService;
-
 @Configuration
 @EnableWebSecurity
-@Order(2)
-public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
+@Order(3)
+public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired BasicDataSource dataSource;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
-        http.addFilterBefore(filter,CsrfFilter.class);
-        
-        http.authorizeRequests()
-		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
-		.antMatchers("/**").access("permitAll");
-        //레스토랑 로그인 관련 설정
-        http
-		.formLogin()
-		.loginPage("/loginRestaurant")
-		.usernameParameter("username") //수정
-		.passwordParameter("password") // 수정
-		.loginProcessingUrl("/loginRestaurant")
-		.defaultSuccessUrl("/loginRestaurantsuccess")
-		.failureUrl("/loginRestaurant")
+        http.addFilterBefore(filter,CsrfFilter.class); 
+ 
+		http.authorizeRequests()
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
 		
+		http.formLogin().loginPage("/loginAdmin")
+		.usernameParameter("username")
+		.passwordParameter("password")
+		.loginProcessingUrl("/loginAdmin")
+		.defaultSuccessUrl("/loginsuccess")
 		.and()
 		.logout()
 		.logoutUrl("/logout")
 		.logoutSuccessUrl("/");
-        
 	}
 	@Bean
-	public CustomRestaurantDetailService detailService1() {
-		return new CustomRestaurantDetailService();
+	public CustomUserDetailService detailService() {
+		return new CustomUserDetailService();
 	}
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -59,19 +51,10 @@ public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(detailService1()).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 	}
 }
-
-
-
-
-
-
-
-
-
