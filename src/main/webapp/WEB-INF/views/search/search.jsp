@@ -44,6 +44,9 @@
 		<input type="text" class="form-control searchmenu" placeholder="먹고싶은 메뉴, 가게 검색" aria-describedby="button-addon2">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
+	<div class="container">
+		
+	</div>
 </div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

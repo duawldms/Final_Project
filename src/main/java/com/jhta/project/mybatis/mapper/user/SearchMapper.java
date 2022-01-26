@@ -8,7 +8,7 @@ import com.jhta.project.vo.user.UserAddrVo;
 
 public interface SearchMapper {
 	List<UserAddrVo> selectAddr(HashMap<String, Object> map);
-	InSearchRestaurantVo searchRes(HashMap<String, Object> map);
+	List<InSearchRestaurantVo> searchRes(HashMap<String, Object> map);
 	int count(HashMap<String, Object> map);
 	
 }
