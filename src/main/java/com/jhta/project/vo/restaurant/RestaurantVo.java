@@ -21,4 +21,6 @@ public class RestaurantVo {
 	private String r_info;
 	private Date r_regdate;
 	private String cg_name;
+	private double r_coordx;
+	private double r_coordy;
 }

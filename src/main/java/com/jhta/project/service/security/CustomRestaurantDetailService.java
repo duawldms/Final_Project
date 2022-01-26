@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.jhta.project.service.restaurant.RestaurantService;
 
+
 public class CustomRestaurantDetailService implements UserDetailsService {
 	@Autowired private RestaurantService restaurantService;
 	@Override
