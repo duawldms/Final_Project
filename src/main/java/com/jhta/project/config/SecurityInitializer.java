@@ -3,6 +3,7 @@ package com.jhta.project.config;
 import javax.servlet.ServletContext;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.support.MultipartFilter;
 
 
