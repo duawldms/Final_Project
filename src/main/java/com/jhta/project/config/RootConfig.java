@@ -18,7 +18,7 @@ public class RootConfig {
 		BasicDataSource ds=new BasicDataSource();
 		ds.setDriverClassName("oracle.jdbc.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		ds.setUsername("c##finalproject");
+		ds.setUsername("finalproject");
 		ds.setPassword("1234");
 		return ds;
 	}

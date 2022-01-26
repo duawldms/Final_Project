@@ -12,8 +12,13 @@ public class AdminLoginController {
 	@Autowired AdminService service;
 	
 	@GetMapping("/loginAdmin")
-	public String login(Model model) {
+	public String loginForm(Model model) {
 		model.addAttribute("main","/WEB-INF/views/admin/login.jsp");
+		return "layout";
+	}
+	@GetMapping("/loginAdminsuccess")
+	public String login(Model model){
+		model.addAttribute("main","/WEB-INF/views/admin/result.jsp");
 		return "layout";
 	}
 
