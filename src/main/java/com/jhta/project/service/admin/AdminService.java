@@ -8,6 +8,7 @@ import com.jhta.project.mybatis.mapper.admin.AdminMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.admin.AdminVo;
 import com.jhta.project.vo.security.AuthorityVo;
+import com.jhta.project.vo.user.UserVo;
 
 @Service
 public class AdminService {
@@ -27,6 +28,9 @@ public class AdminService {
 	}
 	public int addAuth(AuthorityVo vo) {
 		return mapper.addAuth(vo);
+	}
+	public boolean selectId(AdminVo vo) {
+		return mapper.selectId(vo);
 	}
 }
 
