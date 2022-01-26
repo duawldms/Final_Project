@@ -1,4 +1,4 @@
-package com.jhta.project.vo.admin;
+package com.jhta.project.service.admin;
 
 import java.util.HashMap;
 import java.util.List;
