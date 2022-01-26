@@ -19,20 +19,20 @@ public class CustomUserDetailService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
 		CustomUserDetail userDetail=userService.getAuths(id);
-		return userDetail;
-//		CustomUserDetail restaurantDetail=restaurantService.getAuths(id);
-//		CustomUserDetail adminDetail=adminService.getAuths(id);
-//		if(userDetail!=null) {
-//			System.out.println("a");
-//			return userDetail;
-//		}else if(restaurantDetail!=null) {
-//			System.out.println("b");
-//			return restaurantDetail;
-//		}else if(adminDetail!=null) {
-//			System.out.println("c");
-//			return adminDetail;
-//		}
-//		System.out.println("d");
-//		return null;
+		//return userDetail;
+		CustomUserDetail restaurantDetail=restaurantService.getAuths(id);
+		CustomUserDetail adminDetail=adminService.getAuths(id);
+		if(userDetail!=null) {
+			System.out.println("a");
+			return userDetail;
+		}else if(restaurantDetail!=null) {
+			System.out.println("b");
+			return restaurantDetail;
+		}else if(adminDetail!=null) {
+			System.out.println("c");
+			return adminDetail;
+		}
+		System.out.println("d");
+		return null;
 	}
 }

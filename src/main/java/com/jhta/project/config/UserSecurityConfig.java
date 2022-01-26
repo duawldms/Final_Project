@@ -35,6 +35,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
         
 		http.authorizeRequests()
 		.antMatchers("/user/**").access("hasRole('ROLE_USER')")
+		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/**").access("permitAll");
 		//로그인관련 설정
 		http.formLogin().loginPage("/loginuser")
@@ -58,6 +60,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+//	@Bean
+//	public LoginSuccessHandler loginSuccessHandler() {
+//		return new LoginSuccessHandler();
+//	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());
