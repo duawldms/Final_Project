@@ -9,7 +9,7 @@
 <head>
 <link rel='stylesheet' id='elementor-frontend-css' 
 href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.5.3' type='text/css' media='all' />
-<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css?after">
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css?ver=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/layout.css">

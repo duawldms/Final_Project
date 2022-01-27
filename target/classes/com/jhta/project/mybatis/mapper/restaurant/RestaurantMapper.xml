@@ -33,4 +33,14 @@
 	<insert id="menuAdd" parameterType="com.jhta.project.vo.restaurant.FoodVo">
 		insert into food values(food_seq.nextval, #{food_name}, #{r_id}, #{food_img}, #{food_cost}, #{food_info}, #{food_status})
 	</insert>
+	<!-- 해당 매장 메뉴 불러오기 -->
+	<select id="menuList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
+		select food_num, food_name, food_info, food_img, food_cost
+		from restaurant r, food f
+		where r.r_id = f.r_id and r.r_id = #{r_id}
+	</select>
+	<!-- food_num에 해당되는 음식 불러오기 -->
+	<select id="getFood" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodVo">
+		select * from food where food_num = #{food_num}
+	</select>
 </mapper>

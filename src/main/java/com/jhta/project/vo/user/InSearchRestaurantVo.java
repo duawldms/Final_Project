@@ -23,7 +23,9 @@ public class InSearchRestaurantVo {
 	private String r_info;
 	private Date r_regdate;
 	private String cg_name;
-	private int r_coordx;
-	private int r_coordy;
+	private Double r_coordx;
+	private Double r_coordy;
+	private int r_delmin;
+	private int r_delmax;
 	private int distance;
 }
