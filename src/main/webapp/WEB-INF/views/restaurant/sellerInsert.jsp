@@ -87,23 +87,6 @@
 	}
 	// 아이디 중복 체크 end
 	
-	// 주소 좌표 값 구하기
-	function distance() {
-		let addr1 = document.getElementById("sample6_address");
-		// 주소로 좌표를 검색합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		geocoder.addressSearch(addr1.value, function(result, status) {
-		
-			// 정상적으로 검색이 완료됐으면 
-			if (status === kakao.maps.services.Status.OK) {
-				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-				r_coordx.value = result[0].x;
-				r_coordy.value = result[0].y;
-			}
-		});
-	}
-	// 주소 좌표 값 구하기 end
-	
 	// 이미지 미리보기
 	function imageView(e) {
 		var reader = new FileReader();
@@ -226,7 +209,7 @@
 		}
 
 		
-		document.getElementById("restaurantForm").submit();
+		//document.getElementById("restaurantForm").submit();
 	}
 	
 	// 주소 api
@@ -277,11 +260,22 @@
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById("sample6_detailAddress")
 								.focus();
-						setTimeout(() => {
-							distance();
-						}, 1000);
+						let addr1 = document.getElementById("sample6_address");
+						
+						// 주소로 좌표를 검색합니다
+						var geocoder = new kakao.maps.services.Geocoder();
+						geocoder.addressSearch(addr1.value, function(result, status) {
+						
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+								r_coordx.value = result[0].x;
+								r_coordy.value = result[0].y;
+							}
+						});
 					}
 				}).open();
+		
 	}
 	// 주소 api 끝
 </script>
