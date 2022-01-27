@@ -207,9 +207,8 @@
 			r_id.focuse();
 			return;
 		}
-
 		
-		//document.getElementById("restaurantForm").submit();
+		document.getElementById("restaurantForm").submit();
 	}
 	
 	// 주소 api
