@@ -29,4 +29,8 @@
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
 	</select>
+	<!-- 메뉴 등록 -->
+	<insert id="menuAdd" parameterType="com.jhta.project.vo.restaurant.FoodVo">
+		insert into food values(food_seq.nextval, #{food_name}, #{r_id}, #{food_img}, #{food_cost}, #{food_info}, #{food_status})
+	</insert>
 </mapper>

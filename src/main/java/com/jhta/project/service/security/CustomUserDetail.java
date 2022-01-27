@@ -21,6 +21,7 @@ public class CustomUserDetail implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		ArrayList<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
 		for(AuthorityVo vo: authList) {
+			System.out.println("auth : " + vo);
 			auths.add(new SimpleGrantedAuthority(vo.getAu_authority()));
 		}
 		//사용자 권한을 담은 컬렉션 객체 리턴

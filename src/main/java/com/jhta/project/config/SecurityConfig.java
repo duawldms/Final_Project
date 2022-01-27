@@ -4,8 +4,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,17 +22,15 @@ import com.jhta.project.service.security.CustomUserDetailService;
 //security-config.xml을 대신하는 클래스
 @Configuration
 @EnableWebSecurity
-@Order(1)
-public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired private BasicDataSource dataSource;
-	private LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired BasicDataSource dataSource;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class); 
-        
+ 
 		http.authorizeRequests()
 		.antMatchers("/user/**").access("hasRole('ROLE_USER')")
 		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
@@ -43,8 +41,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.loginProcessingUrl("/loginuser")
-				//.defaultSuccessUrl("/loginsuccess")
-				.successHandler(loginSuccessHandler)
+				.defaultSuccessUrl("/loginsuccess")
 				.and()
 				.logout()
 				.logoutUrl("/logout")
@@ -58,10 +55,6 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-//	@Bean
-//	public LoginSuccessHandler loginSuccessHandler() {
-//		return new LoginSuccessHandler();
-//	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());

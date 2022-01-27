@@ -15,66 +15,57 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.jhta.project.service.security.CustomRestaurantDetailService;
 import com.jhta.project.service.security.CustomUserDetailService;
 
-
-
-//security-config.xml을 대신하는 클래스
 @Configuration
 @EnableWebSecurity
-@Order(1)
-public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired private BasicDataSource dataSource;
-	private LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
+@Order(2)
+public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired BasicDataSource dataSource;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
-        http.addFilterBefore(filter,CsrfFilter.class); 
+        http.addFilterBefore(filter,CsrfFilter.class);
         
-		http.authorizeRequests()
-		.antMatchers("/user/**").access("hasRole('ROLE_USER')")
+        http.authorizeRequests()
 		.antMatchers("/restaurant/**").access("hasRole('ROLE_RESTAURANT')")
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/**").access("permitAll");
-		//로그인관련 설정
-		http.formLogin().loginPage("/loginuser")
-				.usernameParameter("username")
-				.passwordParameter("password")
-				.loginProcessingUrl("/loginuser")
-				//.defaultSuccessUrl("/loginsuccess")
-				.successHandler(loginSuccessHandler)
-				.and()
-				.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/");
+        //레스토랑 로그인 관련 설정
+        http
+		.formLogin()
+		.loginPage("/loginRestaurant")
+		.usernameParameter("username") //수정
+		.passwordParameter("password") // 수정
+		.loginProcessingUrl("/loginRestaurant")
+		.defaultSuccessUrl("/loginRestaurantsuccess")
+		.failureUrl("/loginRestaurant")
+		
+		.and()
+		.logout()
+		.logoutUrl("/logout")
+		.logoutSuccessUrl("/");
+        
 	}
 	@Bean
-	public CustomUserDetailService detailService() {
-		return new CustomUserDetailService();
+	public CustomRestaurantDetailService detailService1() {
+		return new CustomRestaurantDetailService();
 	}
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-//	@Bean
-//	public LoginSuccessHandler loginSuccessHandler() {
-//		return new LoginSuccessHandler();
-//	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(detailService1()).passwordEncoder(passwordEncoder());
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 	}
 }
-
-
-
-
 
 
 
