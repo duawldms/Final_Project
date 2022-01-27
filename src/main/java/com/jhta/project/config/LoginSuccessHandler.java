@@ -38,7 +38,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			}else if(auth.getAuthority().equals("ROLE_RESTAURANT")) {
 				response.sendRedirect(request.getContextPath()+"/loginRestaurantsuccess");
 			}else if(auth.getAuthority().equals("ROLE_ADMIN")) {
-				response.sendRedirect(request.getContextPath()+"/loginsuccess");
+				request.getRequestDispatcher(request.getContextPath()+"/admin/adminpage");
 			}
 		}
 		

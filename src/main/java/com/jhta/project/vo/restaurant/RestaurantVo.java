@@ -23,4 +23,6 @@ public class RestaurantVo {
 	private String cg_name;
 	private double r_coordx;
 	private double r_coordy;
+	private int r_delmin;
+	private int r_delmax;
 }

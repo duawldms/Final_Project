@@ -23,8 +23,8 @@
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
 	<update id="infoUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
-		update restaurant set r_name=#{r_name},r_mincost=#{r_mincost},r_delcost=#{r_delcost},r_img=#{r_img},r_info=#{r_info},cg_name=#{cg_name}
-		where r_id=#{r_id}
+		update restaurant set r_name=#{r_name},r_mincost=#{r_mincost},r_delcost=#{r_delcost},r_img=#{r_img},r_info=#{r_info},
+		cg_name=#{cg_name},r_delmin={r_delmin},r_delmax={r_delmax} where r_id=#{r_id}
 	</update>
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
