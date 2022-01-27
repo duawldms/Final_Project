@@ -13,13 +13,14 @@ public class LoginController {
 	@GetMapping("/loginuser")
 	public String loginForm(Model model) {
 		model.addAttribute("main","/WEB-INF/views/user/login.jsp");
+		model.addAttribute("result","아이디 또는 비밀번호를 확인해 주세요");
 		return "layout";
 	}
 	
 	@GetMapping("/loginsuccess")
 	public String login(Model model){
-		model.addAttribute("main","/WEB-INF/views/user/result.jsp");
-		return "layout";
+		//model.addAttribute("main","/WEB-INF/views/user/result.jsp");
+		return "home";
 	}
 	
 }

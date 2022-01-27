@@ -51,4 +51,10 @@ public class UserService {
 		vo.setUi_pwd(passwordEncoder.encode(vo.getUi_pwd()));
 		return mapper.updatePwd(vo);
 	}
+	public UserVo selectUser(UserVo vo) {
+		return mapper.selectUser(vo);
+	}
+	public UserVo test(String ui_id) {
+		return mapper.test(ui_id);
+	}
 }

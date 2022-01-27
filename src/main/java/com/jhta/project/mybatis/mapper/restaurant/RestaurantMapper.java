@@ -11,8 +11,13 @@ public interface RestaurantMapper {
 	CustomUserDetail getAuths(String r_id);
 	int restaurantInsert(RestaurantVo vo);
 	int addAuth(AuthorityVo vo);
-	RestaurantVo idCheck(String id);
+	RestaurantVo idCheck(String r_id);
 	int menuAdd(FoodVo vo);
 	void infoUpdate(RestaurantVo vo);
+
 	List<RestaurantVo> restaurantinfo(String r_id);
+
+	List<FoodVo> menuList(String r_id);
+	FoodVo getFood(int food_num);
+
 }

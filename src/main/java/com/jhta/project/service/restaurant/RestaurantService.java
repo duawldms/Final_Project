@@ -1,6 +1,5 @@
 package com.jhta.project.service.restaurant;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,8 @@ public class RestaurantService {
 	}
 	
 	// 아이디 중복체크
-	public RestaurantVo idCheck(String id) {
-		return mapper.idCheck(id);
+	public RestaurantVo idCheck(String r_id) {
+		return mapper.idCheck(r_id);
 	}
 	//정보수정
 	public void infoUpdate(RestaurantVo vo) {
@@ -58,6 +57,14 @@ public class RestaurantService {
 	// 음식 메뉴 등록
 	public int menuAdd(FoodVo vo) {
 		return mapper.menuAdd(vo);
+	}
+	// 해당 매장 메뉴 불러오기
+	public List<FoodVo> menuList(String id) {
+		return mapper.menuList(id);
+	}
+	// 음식 사이드 메뉴 추가
+	public FoodVo getFood(int food_num) {
+		return mapper.getFood(food_num);
 	}
 }
 
