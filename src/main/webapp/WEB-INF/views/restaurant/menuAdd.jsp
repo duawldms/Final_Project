@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>메뉴 추가</h1>
-	<form:form method="post" action="${cp }/menuadd" enctype="multipart/form-data" acceptCharset="utf-8">
+	<form:form method="post" action="${cp }/restaurant/menuadd" enctype="multipart/form-data" acceptCharset="utf-8">
 		<input type="text" id="food_name" name="food_name" placeholder="음식 이름">
 		<br>
 		<input type="hidden" id="r_id" name="r_id" value="${requestScope.r_id }">
