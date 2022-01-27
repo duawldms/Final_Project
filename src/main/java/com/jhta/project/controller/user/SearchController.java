@@ -47,7 +47,7 @@ public class SearchController {
 			map.put("startRow", startRow);
 			map.put("endRow", endRow);
 			listvo =service.searchRes(map);
-
+ 
 		}
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
