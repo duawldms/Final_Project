@@ -22,9 +22,7 @@ import com.jhta.project.vo.security.AuthorityVo;
 
 @Configuration
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
-	@Autowired private UserService userService;
-	@Autowired private RestaurantService restaurantService;
-	@Autowired private AdminService adminService;
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
