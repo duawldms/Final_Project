@@ -1,5 +1,8 @@
 package com.jhta.project.service.restaurant;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,8 +47,13 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String id) {
 		return mapper.idCheck(id);
 	}
+	//정보수정
 	public void infoUpdate(RestaurantVo vo) {
 		mapper.infoUpdate(vo);
+	}
+	//공지조회
+	public List<RestaurantVo> restaurantinfo(String r_id) {
+		return mapper.restaurantinfo(r_id);
 	}
 	// 음식 메뉴 등록
 	public int menuAdd(FoodVo vo) {

@@ -37,7 +37,7 @@ public class RestaurantInfoUpdateController {
 		return "layout";
 	}
 
-	@RequestMapping(value="/", method = {RequestMethod.POST})
+	@RequestMapping(value="/restaurant/restaurantinfo", method = {RequestMethod.POST})
 	public String infoUpdate(RestaurantVo vo, MultipartFile file1) throws Exception {
 		System.out.println("test");
 

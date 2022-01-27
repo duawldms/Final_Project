@@ -25,7 +25,7 @@
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
-	border-bottom: 2px solid #00B8A9;
+	border-bottom: 2px solid #7bcfbb;
 }
 #infoupdate textarea {
 	border-collapse: collapse;
@@ -33,7 +33,7 @@
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
-	border-bottom: 2px solid #00B8A9;
+	border-bottom: 2px solid #7bcfbb;
 }
 #statusoption {
 	margin: auto;
@@ -49,16 +49,20 @@
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
-	border-bottom: 2px solid #00B8A9;
+	border-bottom: 2px solid #7bcfbb;
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-	<h1 style="text-align: center; padding-bottom: 50px; color: #00B8A9">공지&소개 등록</h1>
+	<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">공지&소개 등록</h1>
 	<form:form action="${cp }/restaurant/restaurantinfo" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8">
+		작성자아이디<br>
+		<input type="text" name="r_id" value="${vo.num }"><br>
 		<h3 style="color: #F6416C">매장명</h3>
 		<input type="text" name="r_name">
+		<h3 style="color: #F6416C">카테고리</h3>
+		<input type="text" name="cg_name">
 		<h3 style="text-align: center; padding-bottom: 50px; color: #F6416C;">배달예상시간</h3>
 				<input type="number" min="25" max="60" step="5" name="r_delmin" id="r_delmin">분~
 				<input type="number" min="45" max="90" step="5" name="r_delmax" id="r_delmax">분
@@ -81,7 +85,11 @@
 		<h3 style="color: #F6416C">소개&공지사항</h3>
 		<textarea rows="5" cols="30" name="r_info"></textarea><br>
 		<h3 style="color: #F6416C">대표사진</h3>
-		<input type="file" id="r_img" name="file"><br>
+		<input type="file" id="r_img" name="file1"><br>
+		<h3 style="color: #F6416C">최소주문가격</h3>
+		<input type="text" name="r_minCost">
+		<h3 style="color: #F6416C">배달가격</h3>
+		<input type="text" name="r_delCost">
 		<input type="submit" value="등록"><br>
 	</form:form>
 	</div>
