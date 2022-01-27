@@ -1,7 +1,7 @@
 .elementor-919 .elementor-element.elementor-element-70841d41:not(.elementor-motion-effects-element-type-background),
 	.elementor-919 .elementor-element.elementor-element-70841d41>.elementor-motion-effects-container>.elementor-motion-effects-layer
 	{
-	background-color: #000000;
+	background-color: #7bcfbb;<!--여기가 헤더색상--!>
 }
 .elementor-919 .elementor-element.elementor-element-70841d41 {
 	border-style: solid;
@@ -285,7 +285,7 @@ body:not(.rtl) .elementor-919 .elementor-element.elementor-element-676f6ea9 .ele
 .elementor-907 .elementor-element.elementor-element-31bccabf:not(.elementor-motion-effects-element-type-background),
 	.elementor-907 .elementor-element.elementor-element-31bccabf>.elementor-motion-effects-container>.elementor-motion-effects-layer
 	{
-	background-color: #091020;
+	background-color: #7bcfbb;
 }
 
 .elementor-907 .elementor-element.elementor-element-31bccabf {
