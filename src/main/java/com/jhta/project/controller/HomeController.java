@@ -16,11 +16,12 @@ import com.jhta.project.service.user.CategoryService;
 @Controller
 public class HomeController {
 	@Autowired private ServletContext sc;
+	@Autowired CategoryService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
-		
+		model.addAttribute("list", service.Categorylist());
 		return "home";
 	}
 	
