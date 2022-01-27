@@ -7,6 +7,7 @@
 	#up{position:relative;left:220px}
 	.searchplace{width:700px;margin-bottom:100px}
 	.searchbar{width:400px}
+	.restaurant{width:600px;margin:auto}
 </style>    
 
 <div class="container where">
@@ -44,12 +45,13 @@
 		<input type="text" class="form-control searchmenu" placeholder="먹고싶은 메뉴, 가게 검색" aria-describedby="button-addon2">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
-	<div class="container">
+	<div class="container" id="restau">
 		
 	</div>   
 </div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cda1d2e6578e00f2f149b8981a3cb1f&libraries=services"></script>
 <script>
 	function changeAddr(selected){
 		$.ajax({
@@ -57,9 +59,46 @@
 			dataType:"json",
 			success:function(data){
 				$("#place").prop("value",data.vo.ua_addr);
+				let coordx="";
+				let coordy="";
+				var geocoder = new kakao.maps.services.Geocoder();
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(data.vo.ua_addr, function(result, status) {
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				    	 coordx=result[0].x;
+				    	 coordy=result[0].y;
+				    	 $.ajax({
+								url:"${cp}/user/search",
+								data:{
+									pageNum:"${pu.pageNum}",
+									field:"${field}",
+									keyword:"${keyword}",
+									user_coordx:coordx,
+									user_coordy:coordy
+								},
+								dataType:"json",
+								success:function(data){
+									console.log(data); // 데이터 받아오는지 체크
+									let seller="";
+									$("#restau").empty();
+									console.log(data.listvo[0].r_name);
+									for(let i=0;i<data.listvo.length;i++){
+										console.log("i:"+i);
+										seller+="<div class='container restaurant'>";
+										seller+="<h3>"+data.listvo[i].r_name+"</h3>";
+										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"'>";
+										seller+="</div>";
+									}
+									$("#restau").append(seller);
+								}
+							});
+				     }
+				});
 			}
 		});
 	}
+	
 	var themeObj = {
 		   bgColor: "#162525", //바탕 배경색
 		   searchBgColor: "#162525", //검색창 배경색
@@ -72,7 +111,51 @@
 		   outlineColor: "#444444" //테두리 
 		};
 	window.onload = function(){
+		
 		let detail=document.getElementById("placeDetail");
+		$.ajax({
+			url:"${cp}/user/addrDetail?ua_nickname=기본배송지",
+			
+			dataType:"json",
+			success:function(data){
+				$("#place").prop("value",data.vo.ua_addr);
+				let coordx="";
+				let coordy="";
+				var geocoder = new kakao.maps.services.Geocoder();
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(data.vo.ua_addr, function(result, status) {
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				    	 coordx=result[0].x;
+				    	 coordy=result[0].y;
+				    	 $.ajax({
+								url:"${cp}/user/search",
+								data:{
+									pageNum:"${pu.pageNum}",
+									field:"${field}",
+									keyword:"${keyword}",
+									user_coordx:coordx,
+									user_coordy:coordy
+								},
+								dataType:"json",
+								success:function(data){
+									console.log(data);
+									let seller="";
+									console.log(data.listvo[0].r_name);
+									for(let i=0;i<data.listvo.length;i++){
+										console.log("i:"+i);
+										seller+="<div class='container restaurant'>";
+										seller+="<h3>"+data.listvo[i].r_name+"</h3>";
+										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"'>";
+										seller+="</div>";
+									}
+									$("#restau").append(seller);
+								}
+							});
+				     }
+				});
+			}
+		});
 		if(detail!=null){
 			detail.disabled=true;
 			document.getElementById("addr-addon").addEventListener('click',function(){
