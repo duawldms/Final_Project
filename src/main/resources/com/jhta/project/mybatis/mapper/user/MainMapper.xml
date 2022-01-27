@@ -6,5 +6,7 @@
 <insert id="categoryUpload" parameterType="com.jhta.project.vo.user.CategoryVo" >
 insert into category values(#{cg_name},#{cg_photo})
 </insert>
-	
+<select id="list" resultType="com.jhta.project.vo.user.CategoryVo">
+select * from category
+</select>
 </mapper>
