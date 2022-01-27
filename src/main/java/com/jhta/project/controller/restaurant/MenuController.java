@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.jhta.project.service.restaurant.RestaurantService;
-import com.jhta.project.vo.restaurant.RestaurantVo;
 
 @Controller
 public class MenuController {

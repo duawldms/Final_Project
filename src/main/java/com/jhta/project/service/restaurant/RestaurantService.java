@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.project.mybatis.mapper.restaurant.RestaurantMapper;
 import com.jhta.project.service.security.CustomUserDetail;
+import com.jhta.project.vo.restaurant.FoodVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
 
@@ -46,7 +47,10 @@ public class RestaurantService {
 	public void infoUpdate(RestaurantVo vo) {
 		mapper.infoUpdate(vo);
 	}
-
+	// 음식 메뉴 등록
+	public int menuAdd(FoodVo vo) {
+		return mapper.menuAdd(vo);
+	}
 }
 
 

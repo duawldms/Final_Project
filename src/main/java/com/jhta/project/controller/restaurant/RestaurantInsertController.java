@@ -3,6 +3,7 @@ package com.jhta.project.controller.restaurant;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -33,17 +34,22 @@ public class RestaurantInsertController {
 	}
 	
 	@PostMapping("/sellerInsert")
-	public String sellerInsert(@ModelAttribute("dataForm")RestaurantVo vo, MultipartFile file1) throws Exception {
+	public String sellerInsert(RestaurantVo vo, MultipartFile file1) {
 		// multipart/form-data 한글 깨짐 처리 UTF-8 인코딩 코드
-		String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
-		String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
-		String r_addr = new String(StringUtils.cleanPath(vo.getR_addr()).getBytes("8859_1"),"utf-8");
-		String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
-		vo.setR_name(r_name);
-		vo.setCg_name(cg_name);
-		vo.setR_addr(r_addr);
-		vo.setR_info(r_info);
 		
+		try {
+			String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
+			String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
+			String r_addr = new String(StringUtils.cleanPath(vo.getR_addr()).getBytes("8859_1"),"utf-8");
+			String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
+			vo.setCg_name(cg_name);
+			vo.setR_name(r_name);
+			vo.setR_addr(r_addr);
+			vo.setR_info(r_info);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("vo : " + vo);
 		String path = sc.getRealPath("/resources/img");
 		System.out.println("경로 : " + path);
 		String orgFileName = file1.getOriginalFilename();
