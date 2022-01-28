@@ -13,12 +13,13 @@
 		<div class="login-btn">
 			<input type="submit" value="로그인">
 		</div>
+		<div>${requestScope.errMsg }</div>
 		<div>
 			<label>로그인 유지</label>
 			<input type="checkbox">
 		</div>
 		<div>
-			<a href="${cp }/sellerCheck">회원가입</a> / <a href="">아이디 찾기</a>
+			<a href="${cp }/sellerInsert">회원가입</a> / <a href="">아이디 찾기</a>
 		</div>
 	</form:form>
 </div>
