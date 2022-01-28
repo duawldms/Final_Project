@@ -137,7 +137,10 @@
 										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
 									</li>
 									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">회원정보</a></span>
+										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
+									</li>
+									<li>
+									    <span class="elementor-icon-list-text"><a href="${cp }/logout">로그아웃</a></span>
 									</li>
 									</c:otherwise>
 				</c:choose>

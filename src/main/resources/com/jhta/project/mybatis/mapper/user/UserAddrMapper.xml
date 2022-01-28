@@ -9,5 +9,8 @@
 	<select id="checknickname" parameterType="String" resultType="com.jhta.project.vo.user.UserAddrVo">
 		select * from user_addr where ua_nickname=#{ua_nickname}
 	</select>
+	<update id="addrupdate" parameterType="com.jhta.project.vo.user.UserAddrVo">
+		update user_addr set ua_addr=#{ua_addr},ua_name=#{ua_name},ua_phone=#{ua_phone} where ui_id=#{ui_id}
+	</update>
 	
 </mapper>

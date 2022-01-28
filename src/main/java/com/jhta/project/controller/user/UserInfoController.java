@@ -30,20 +30,34 @@ public class UserInfoController {
 	//비밀번호 입력 후 
 	@GetMapping("/userinfo")
 	public String UserInfo(Model model,UserVo vo,String ui_id) {
-		//넘어온 파라미터 비밀번호값을 저장
-	
 		
-		//비밀번호가 맞으면
-		UserVo vo1= service.selectUser(vo);
-		System.out.println(vo1);
-		if(vo1!=null) {
-		model.addAttribute("vo",vo1);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfo.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		/*//넘어온 파라미터 비밀번호값을 저장
+		String pwd=vo.getUi_pwd();
+		String encryptPassword=passwordEncoder.encode(pwd);
+		System.out.println(encryptPassword);
+		vo.setUi_pwd(pwd);
+		if(passwordEncoder.matches(vo.getUi_pwd(), encryptPassword)){
+			UserVo vo1= service.selectUser(vo);
+			System.out.println(vo1);
+			model.addAttribute("vo",vo1);
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfo.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			
 		}else {
-		model.addAttribute("vo","비밀번호가 일치하지 않습니다.");
-		model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheckFalse.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");	
+			model.addAttribute("vo","비밀번호가 일치하지 않습니다.");
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheckFalse.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");	
+		}*/
+		
+		UserVo vo1=service.selectUser(vo);
+		if(vo1!=null) {
+			model.addAttribute("vo",vo1);
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfo.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		}else {
+			model.addAttribute("vo","비밀번호가 일치하지 않습니다.");
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheckFalse.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");	
 		}
 		return "layout";
 	}

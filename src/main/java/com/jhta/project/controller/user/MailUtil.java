@@ -16,11 +16,11 @@ public class MailUtil {
 		//Mail Server 설정
 		String charSet="utf-8";
 		String hostSMTP="smtp.gmail.com";
-		String hostSMTPid=""; //관리자 이메일 아이디
-		String hostSMTPpw=""; //관리자 이메일 비밀번호
+		String hostSMTPid="yeoumjieun@gmail.com"; //관리자 이메일 아이디
+		String hostSMTPpw="Qwe378193919!@"; //관리자 이메일 비밀번호
 		
 		//보내는 사람 
-		String fromEmail=""; //보내는 사람 이메일 
+		String fromEmail="yeoumjieun@gmail.com"; //보내는 사람 이메일 
 		String fromName="배달요기이츠관리자";
 		
 		String subject="배달 요기 이츠 임시 비밀번호 발급입니다.";

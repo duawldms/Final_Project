@@ -16,5 +16,8 @@ public class UserAddrService {
 	public UserAddrVo checknickname(String ua_nickname) {
 		return mapper.checknickname(ua_nickname);
 	}
+	public int addrupdate(UserAddrVo vo) {
+		return mapper.addrupdate(vo);
+	}
 
 }
