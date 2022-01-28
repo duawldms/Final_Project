@@ -14,6 +14,10 @@ public interface RestaurantMapper {
 	RestaurantVo idCheck(String r_id);
 	int menuAdd(FoodVo vo);
 	void infoUpdate(RestaurantVo vo);
+
+	List<RestaurantVo> restaurantinfo(String r_id);
+
 	List<FoodVo> menuList(String r_id);
 	FoodVo getFood(int food_num);
+
 }

@@ -5,19 +5,28 @@
 	.food_list_wrep {
 		width: 70%;
 		height: auto;
+		overflow:hidden;
 		margin: auto;
-		background-color: yellow;
 	}
 	#food_img {
-		width: auto;
+		width: 148px;
 		height: 150px;
+	}
+	
+	.list {
+		width: auto;
+		height: auto;
+		margin-top: 5%;
 	}
 	
 	.food_list {
 		width: 150px;
 		height: 200px;
 		margin-left: 5%;
-		background-color: lime;
+		margin-bottom: 5%;
+		float: left;
+		text-align: center;
+		border: skyblue solid 1px;
 	}
 </style>
 <div class="food_list_wrep">

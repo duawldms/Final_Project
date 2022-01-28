@@ -46,8 +46,13 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String r_id) {
 		return mapper.idCheck(r_id);
 	}
+	//정보수정
 	public void infoUpdate(RestaurantVo vo) {
 		mapper.infoUpdate(vo);
+	}
+	//공지조회
+	public List<RestaurantVo> restaurantinfo(String r_id) {
+		return mapper.restaurantinfo(r_id);
 	}
 	// 음식 메뉴 등록
 	public int menuAdd(FoodVo vo) {

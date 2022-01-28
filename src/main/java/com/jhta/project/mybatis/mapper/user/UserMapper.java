@@ -13,4 +13,6 @@ public interface UserMapper {
 	String searchId(UserVo vo);
 	UserVo searchPwd(UserVo vo);
 	int updatePwd(UserVo vo);
+	UserVo selectUser(UserVo vo);
+	UserVo test(String ui_id);
 }
