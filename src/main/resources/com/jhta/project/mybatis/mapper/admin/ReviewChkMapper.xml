@@ -28,9 +28,11 @@
      	select NVL(count(*),0) cnt from review    
      	 <include refid="search"/>   	
      </select>
+     <!-- 글삭제 -->
      <delete id="delete" parameterType="int">
      	delete from board where re_num=#{re_num}
      </delete>
+     <!-- 글조회 -->
      <select id="detail" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
      	select * from review where re_num=#{re_num}
      </select>

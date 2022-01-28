@@ -16,7 +16,7 @@
 		select * from admin ad, authority a
 		where ad.admin_id=a.au_id and ad.admin_id=#{admin_id}
 	</select>
-	<insert id="adminInsert">
+	<insert id="admininsert" parameterType="com.jhta.project.vo.admin.AdminVo">
 		insert into admin values(#{admin_id}, #{admin_pwd}, #{admin_lv})
 	</insert>
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">

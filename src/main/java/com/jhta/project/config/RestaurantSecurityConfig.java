@@ -18,7 +18,6 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.jhta.project.service.security.CustomRestaurantDetailService;
-import com.jhta.project.service.security.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity

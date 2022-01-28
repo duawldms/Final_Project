@@ -45,7 +45,7 @@ public class SelectAddrController {
 		map.put("user_coordx", user_coordx);
 		int totalRowCount=service.count(map);
 		System.out.println(totalRowCount);
-		PageUtil pu=new PageUtil(pageNum, 5, 10, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);
 		int startRow=pu.getStartRow(); 
 		int endRow=pu.getEndRow();
 		map.put("startRow", startRow);

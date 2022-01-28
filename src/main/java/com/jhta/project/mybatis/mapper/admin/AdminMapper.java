@@ -7,7 +7,7 @@ import com.jhta.project.vo.user.UserVo;
 
 public interface AdminMapper {
 	CustomUserDetail getAuths(String admin_id);
-	int adminInsert(AdminVo vo);
+	int admininsert(AdminVo vo);
 	int addAuth(AuthorityVo vo);
 	boolean selectId(AdminVo vo);
 }

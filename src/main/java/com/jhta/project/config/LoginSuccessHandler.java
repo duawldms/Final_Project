@@ -2,7 +2,6 @@ package com.jhta.project.config;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,12 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import com.jhta.project.service.admin.AdminService;
-import com.jhta.project.service.restaurant.RestaurantService;
-import com.jhta.project.service.security.CustomUserDetail;
-import com.jhta.project.service.user.UserService;
-import com.jhta.project.vo.security.AuthorityVo;
 
 @Configuration
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -39,7 +32,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 				response.sendRedirect(request.getContextPath()+"/loginRestaurantsuccess");
 			}else if(auth.getAuthority().equals("ROLE_ADMIN")) {
 				sc.removeAttribute("securityPath");
-				request.getRequestDispatcher(request.getContextPath()+"/admin/adminpage");
+				response.sendRedirect(request.getContextPath() + "/admin/adminpage" );
 			}
 		}
 		

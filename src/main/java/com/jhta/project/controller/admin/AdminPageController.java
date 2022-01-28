@@ -11,7 +11,7 @@ import com.jhta.project.service.admin.AdminService;
 public class AdminPageController {
 	@Autowired AdminService service;
 	
-	@GetMapping("/adminpage")
+	@GetMapping("/admin/adminpage")
 	public String AdminPage(Model model) {
 		model.addAttribute("main","/WEB-INF/views/admin/adminpage.jsp");
 		return "admin/adminpage";

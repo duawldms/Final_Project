@@ -4,12 +4,11 @@
 	p{text-align:center}
 </style>
 <div class="page-header">
-	<h1>관리자 페이지</h1>
+	<h1><a href="${cp }/admin/adminpage">관리자 페이지</h1>
 </div>
 <ul class="nav nav-pills">
-	<li><a href="/admin/reviewchk">리뷰 관리</a>
-	<li><a href="/admin/badaccount">불량계정 관리</a>
-	<li><a href="/admin/complain">컴플레이션 관리</a>
+	<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a>
+	<li><a href="${cp }/admin/complain/list">컴플레인 관리</a>
 </ul>
 <br>
 <!DOCTYPE html>
@@ -22,11 +21,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
- // $(document).ready(()=>{
- 	// $("#list").click(()=>{
- 	//	 location.href="<c:url value='/list.do'/>";
- 	// });
- // });
   </script>
 </head>
 <body>
