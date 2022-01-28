@@ -16,5 +16,12 @@ public class CategoryService {
 	public List<CategoryVo> Categorylist(){
 		return mapper.list();
 	}
+	public CategoryVo selectOne(String cg_name) {
+		return mapper.selectOne(cg_name);
+	}
+	public int update(CategoryVo vo) {
+		return mapper.update(vo);
+		
+	}
 	
 }

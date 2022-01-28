@@ -17,4 +17,6 @@ public class UserVo {
 	private String ui_phone;
 	private Date ui_regdate;
 	private String ui_state;
+	private String ua_addr;
+	
 }

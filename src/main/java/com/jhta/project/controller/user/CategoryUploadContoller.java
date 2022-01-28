@@ -53,6 +53,6 @@ public class CategoryUploadContoller {
 			System.out.println("오류 : "+ e.getMessage());
 			model.addAttribute("code","fail");
 		}
-		return "home";
+		return "redirect:/";
 	}
 }
