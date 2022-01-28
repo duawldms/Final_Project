@@ -6,17 +6,16 @@
 	.where{padding-top:100px;}
 	#up{position:relative;left:220px}
 	.searchplace{width:700px;margin-bottom:100px}
-	.searchbar{width:400px}
-	.restaurant{width:600px;margin:auto;margin-top:50px;}
+	.searchbar{width:600px}
+	.restaurant{width:600px;margin:auto;margin-top:50px;height:70px}
+	.restaurant img{float:left;margin-right:10px}
 	.resimg{width:100px;height:100px}
 	.paging{position:relative;left:140px;margin-top:30px}
+	#category{width:100px}
 </style>    
 
 <div class="container where">
-	<div id="up">
-		<a href="loginuser">아이디 있으신가요?</a>
-		<h3>어디로 배달해드릴까요?</h3>
-	</div>
+	
 	<sec:authorize access="isAuthenticated()">
 		<div class="input-group container searchplace">
 			<select onchange="changeAddr(this.options[this.selectedIndex].text)">
@@ -35,26 +34,64 @@
 		</div>
 	</sec:authorize>
 	<sec:authorize access="isAnonymous()">
+		<div id="up">
+			<a href="loginuser">아이디 있으신가요?</a>
+			<h3>어디로 배달해드릴까요?</h3>
+		</div>
 		<div class="input-group container searchplace">
 			<input type="text" class="form-control col-6" id="place" placeholder="배달받을 간단한 주소를 입력해주세요!">
-			<input type="text" class="form-control col-4 place" id="placeDetail" aria-describedby="addr-addon">
+			<input type="text" class="form-control col-4 place" id="placeDetail" aria-describedby="addr-addon" >
 			<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button>
 		</div>
 	</sec:authorize>
 </div>
 <div class="container" id="res">
 	<div class="input-group container searchbar">
-		<input type="text" class="form-control searchmenu" placeholder="먹고싶은 메뉴, 가게 검색" aria-describedby="button-addon2" id="keyword">
+		<select class="form-control col-3" id="category">
+		<c:choose>
+			<c:when test="${category==''||category==null }">
+				<option value="all" selected>전체</option>
+				<c:forEach var="cg_name" items="${cglist }">
+					<option value="${cg_name }">${cg_name }</option>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<option value="">전체</option>
+				<c:forEach var="cg_name" items="${cglist }">
+					<c:choose>
+						<c:when test="${category==cg_name }">
+							<option value="${cg_name }" selected>${cg_name }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${cg_name }">${cg_name }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		</select>
+		<input type="text" class="form-control col-8 searchmenu" placeholder="먹고싶은 메뉴, 가게 검색" 
+							aria-describedby="button-addon2" id="keyword" value="${param.keyword }">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
 	<div class="container" id="restau"></div>
 	<div class="container paging" id="paging"></div>   
 </div>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cda1d2e6578e00f2f149b8981a3cb1f&libraries=services"></script>
 <script>
-	function changeAddr(selected){
+	let x="";
+	let y="";
+	$("#button-addon2").click(function(){
+		let keyword=$("#keyword").val();
+		if(keyword!=null||keyword!=''){
+			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+keyword;
+		}else{
+			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+keyword;
+		}
+	});
+	let category="";
+	function changeAddr(selected,keyword){
 		$.ajax({
 			url:"${cp}/user/addrDetail?ua_nickname="+selected,
 			dataType:"json",
@@ -73,7 +110,7 @@
 								url:"${cp}/user/search",
 								data:{
 									pageNum:"${pu.pageNum}",
-									field:"${field}",
+									cg_name:"${param.cg_name}",
 									keyword:"${keyword}",
 									user_coordx:coordx,
 									user_coordy:coordy
@@ -83,17 +120,27 @@
 									console.log(data); // 데이터 받아오는지 체크
 									let seller="";
 									$("#restau").empty();
+									$("#paging").empty();
 									for(let i=0;i<data.listvo.length;i++){
+										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
-										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
-										seller+="</div>";
+										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
+										seller+="<span></span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
+										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
+										seller+="<span style='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>";
+										seller+="</div></a>";
 									}
 									$("#restau").append(seller);
 									let page="";
 									let keyword="";
-										//$("#keyword").val();
+									//$("#keyword").val();
 									console.log("count:"+data.pu.totalPageCount);
+									x=data.user_coordx;
+									y=data.user_coordy;
 									for(let i=1;i<=data.pu.totalPageCount;i++){
 										if(i==1){
 											page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
@@ -117,7 +164,8 @@
 			url:"${cp}/user/search",
 			data:{
 				pageNum:pageNum,
-				//keyword:keyword,
+				keyword:"${param.keyword}",
+				category:"${param.cg_name}",
 				user_coordx:user_coordx,
 				user_coordy:user_coordy
 			},
@@ -128,10 +176,17 @@
 				$("#restau").empty();
 				$("#paging").empty();
 				for(let i=0;i<data.listvo.length;i++){
+					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>";
 					seller+="<div class='container restaurant'>";
-					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
-					seller+="</div>";
+					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
+					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
+					seller+="<span></span><br>"; // 별점 
+					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+					seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
+					seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
+					seller+="<spanstyle='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>";
+					seller+="</div></a>";
 				}
 				$("#restau").append(seller);
 				let page="";
@@ -164,6 +219,7 @@
 		   outlineColor: "#444444" //테두리 
 		};
 	window.onload = function(){
+		category=$("#category").val();
 		
 		let detail=document.getElementById("placeDetail");
 		$.ajax({
@@ -185,8 +241,8 @@
 								url:"${cp}/user/search",
 								data:{
 									pageNum:"${pu.pageNum}",
-									field:"${field}",
-									keyword:"${keyword}",
+									keyword:"${param.keyword}",
+									cg_name:"${param.cg_name}",
 									user_coordx:coordx,
 									user_coordy:coordy
 								},
@@ -194,12 +250,22 @@
 								success:function(data){
 									console.log(data);
 									let seller="";
-
+									$("#restau").empty();
+									$("#paging").empty();
+									x=data.user_coordx;
+									y=data.user_coordy;
 									for(let i=0;i<data.listvo.length;i++){
+										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
-										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
-										seller+="</div>";
+										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
+										seller+="<span></span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
+										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>"
+										seller+="<span style='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>"
+										seller+="</div></a>";
 									}
 									let page="";
 									let keyword="";

@@ -27,5 +27,5 @@ public class InSearchRestaurantVo {
 	private Double r_coordy;
 	private int r_delmin;
 	private int r_delmax;
-	private int distance;
+	private Double distance;
 }

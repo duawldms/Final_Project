@@ -36,13 +36,16 @@ public class SelectAddrController {
 	}
 	@GetMapping(value="/user/search",produces= {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> searchResaurant(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			String field,String keyword,Double user_coordx,Double user_coordy){
+			String field,String keyword,Double user_coordx,Double user_coordy,
+			@RequestParam(value="cg_name",defaultValue = "")String cg_name){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		System.out.println(field+","+keyword+","+user_coordx+","+user_coordy);
 		map.put("field", field);
 		map.put("keyword", keyword);
 		map.put("user_coordy", user_coordy);
 		map.put("user_coordx", user_coordx);
+		map.put("category", cg_name);
+		System.out.println(cg_name);
 		int totalRowCount=service.count(map);
 		System.out.println(totalRowCount);
 		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);

@@ -23,4 +23,15 @@ public class SearchService {
 	public int count(HashMap<String , Object> map) {
 		return mapper.count(map);
 	}
+	public List<String> searchCategory(){
+		return mapper.searchCategory();
+	}
+	public InSearchRestaurantVo searchDetail(String r_id) {
+		return mapper.searchDetail(r_id);
+	}
 }
+
+
+
+
+
