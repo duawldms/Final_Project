@@ -32,8 +32,8 @@
 		<ul>
 			<li><a href="">회원정보수정</a></li>
 			<li><a href="">매장정보수정</a></li>
-			<li><a href="">음식등록</a></li>
-			<li><a href="">음식수정</a></li>
+			<li><a href="${cp }/restaurant/menuadd">음식등록</a></li>
+			<li><a href="${cp }/restaurant/foodList">음식수정</a></li>
 			<li><a href="">음식옵션</a></li>
 			<li><a href="">리뷰관리</a></li>
 			<li><a href="">매출현황</a></li>

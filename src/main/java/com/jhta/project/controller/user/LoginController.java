@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import com.jhta.project.service.user.UserService;
 
 @Controller
@@ -14,6 +16,12 @@ public class LoginController {
 	public String loginForm(Model model) {
 		model.addAttribute("main","/WEB-INF/views/user/login.jsp");
 		model.addAttribute("result","아이디 또는 비밀번호를 확인해 주세요");
+		return "layout";
+	}
+	
+	@PostMapping("/loginuser")
+	public String loginFail(Model model) {
+		model.addAttribute("main","/WEB-INF/views/user/login.jsp");
 		return "layout";
 	}
 	

@@ -12,17 +12,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.jhta.project.service.security.CustomRestaurantDetailService;
-import com.jhta.project.service.security.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
 @Order(2)
 public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired BasicDataSource dataSource;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -40,8 +42,8 @@ public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
 		.usernameParameter("username") //수정
 		.passwordParameter("password") // 수정
 		.loginProcessingUrl("/loginRestaurant")
-		.defaultSuccessUrl("/loginRestaurantsuccess")
-		.failureUrl("/loginRestaurant")
+		.successHandler(successHandler())
+		.failureHandler(failureHandler())
 		
 		.and()
 		.logout()
@@ -56,6 +58,14 @@ public class RestaurantSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+		return new LoginSuccessHandler();
+	}
+	@Bean
+	public AuthenticationFailureHandler failureHandler() {
+		return new LoginFailHandler();
 	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

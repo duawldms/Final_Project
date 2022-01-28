@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -25,7 +27,7 @@ import com.jhta.project.service.security.CustomUserDetailService;
 @Order(1)
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired private BasicDataSource dataSource;
-	private LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -39,12 +41,14 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/**").access("permitAll");
 		//로그인관련 설정
-		http.formLogin().loginPage("/loginuser")
+		http.formLogin()
+				.loginPage("/loginuser")
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.loginProcessingUrl("/loginuser")
-				//.defaultSuccessUrl("/loginsuccess")
-				.successHandler(loginSuccessHandler)
+				.defaultSuccessUrl("/loginsuccess")
+				.successHandler(successHandler())
+				.failureHandler(failureHandler())
 				.and()
 				.logout()
 				.logoutUrl("/logout")
@@ -58,10 +62,14 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-//	@Bean
-//	public LoginSuccessHandler loginSuccessHandler() {
-//		return new LoginSuccessHandler();
-//	}
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+		return new LoginSuccessHandler();
+	}
+	@Bean
+	public AuthenticationFailureHandler failureHandler() {
+		return new LoginFailHandler();
+	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(detailService()).passwordEncoder(passwordEncoder());
