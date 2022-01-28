@@ -8,8 +8,8 @@
 		<result property="password" column="admin_pwd"/>
 		<result property="enabled" column="admin_lv"/>
 		<collection property="authList" ofType="com.jhta.project.vo.security.AuthorityVo">
-			<result property="userid" column="au_id"/>
-			<result property="authority" column="au_authority"/>
+			<result property="au_id" column="au_id"/>
+			<result property="au_authority" column="au_authority"/>
 		</collection>
 	</resultMap>
 	<select id="getAuths" parameterType="string" resultMap="userDetail">

@@ -8,7 +8,6 @@ import com.jhta.project.mybatis.mapper.admin.AdminMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.admin.AdminVo;
 import com.jhta.project.vo.security.AuthorityVo;
-import com.jhta.project.vo.user.UserVo;
 
 @Service
 public class AdminService {
@@ -21,7 +20,7 @@ public class AdminService {
 	public int adminInsert(AdminVo vo) {
 		String admin_pwd=vo.getAdmin_pwd();
 		vo.setAdmin_pwd(passwordEncoder.encode(admin_pwd));
-		mapper.adminInsert(vo);
+		mapper.admininsert(vo);
 		AuthorityVo auth=new AuthorityVo(vo.getAdmin_id(),"ROLE_ADMIN");
 		mapper.addAuth(auth);
 		return 1;

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 
-<form:form method="post" action="${cp }/insertuser">
+<form:form method="post" action="${cp }/insertadmin">
 	<h2>기본정보</h2>
 		아이디<br>
 		<input type="text" name="admin_id" id="admin_id"><br>

@@ -24,6 +24,7 @@ import com.jhta.project.service.security.CustomUserDetailService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired BasicDataSource dataSource;
+	@Autowired private LoginSuccessHandler loginSuccessHandler;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -41,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.loginProcessingUrl("/loginuser")
-				.defaultSuccessUrl("/loginsuccess")
+				//.defaultSuccessUrl("/loginsuccess")
+				.successHandler(loginSuccessHandler)
 				.and()
 				.logout()
 				.logoutUrl("/logout")

@@ -24,6 +24,7 @@ public class InsertAdminController {
 	@PostMapping("/insertadmin")
 	public String UserInsert(AdminVo vo,Model model,HttpServletRequest req,HttpServletResponse resp) {
 		try {
+			service.adminInsert(vo);
 			model.addAttribute("result","회원가입 완료!");
 			model.addAttribute("main","/WEB-INF/views/admin/result.jsp");
 		}catch(Exception e){

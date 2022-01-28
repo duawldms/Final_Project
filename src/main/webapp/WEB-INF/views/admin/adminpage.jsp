@@ -49,9 +49,8 @@
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
         <ul>
-			<li><a href="/admin/reviewchk">리뷰 관리</a></li>
-            <li><a href="/admin/badaccount">불량계정 관리</a></li>
-            <li><a href="/admin/complain">컴플레이션 관리</a></li>
+			<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a></li>
+            <li><a href="${cp }/admin/complain/list">컴플레이션 관리</a></li>
 		</ul>
         </div>
       </div>
