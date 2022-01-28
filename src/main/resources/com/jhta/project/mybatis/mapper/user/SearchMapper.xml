@@ -4,8 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhta.project.mybatis.mapper.user.SearchMapper">
 	<sql id="searchfield">
-		<if test="field!=null and field!=''">
-			where ${field} like '%'||#{keyword}||'%' 
+		<if test="keyword!=null and keyword!=''">
+			where r_name like '%'||#{keyword}||'%' or  cg_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="category!=null and category!=''">
+			where cg_category=#{category}
 		</if>
 	</sql>
 	<sql id="orderby">
@@ -24,7 +27,7 @@
 			select a.*,rownum rnum from 
 			(select * from 
 				(
-					select r.*,(select calc_distance(#{user_coordy},#{user_coordx},r.r_coordx,r.r_coordy) distance from dual) distance
+					select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
 					from restaurant r 
 				) <![CDATA[where distance<3]]> <include refid="orderby"/>) a 
 				<include refid="searchfield"/>
@@ -34,7 +37,7 @@
 	<select id="count" parameterType="hashmap" resultType="int">
 		select NVL(count(r_id),0) from 
 		(
-			select r.*,(select calc_distance(#{user_coordy},#{user_coordx},r.r_coordx,r.r_coordy) distance from dual) distance
+			select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
 			from restaurant r 
 		) <![CDATA[where distance<3]]>
 		
