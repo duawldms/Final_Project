@@ -26,6 +26,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		System.out.println("권한리스트:"+auths);
 		for(GrantedAuthority auth:auths) {
 			if(auth.getAuthority().equals("ROLE_USER")) {
+				sc.removeAttribute("securityPath");
 				response.sendRedirect(request.getContextPath()+"/loginsuccess");
 			}else if(auth.getAuthority().equals("ROLE_RESTAURANT")) {
 				sc.removeAttribute("securityPath");
