@@ -13,10 +13,10 @@ public class SearchDetailController {
 	@Autowired private SearchService service;
 	
 	@GetMapping("/searchDetail")
-	public String searchDetail(String r_id,Model model) {
+	public String searchDetail(String r_id,Double distance,Model model) {
 		InSearchRestaurantVo rvo=service.searchDetail(r_id);
 		model.addAttribute("rvo",rvo);
-		
+		model.addAttribute("distance",distance);
 		model.addAttribute("main","/WEB-INF/views/search/searchDetail.jsp");
 		return "layout";
 	}

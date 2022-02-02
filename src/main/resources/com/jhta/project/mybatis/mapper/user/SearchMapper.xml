@@ -13,6 +13,13 @@
 			</when>
 		</choose>
 	</sql>
+	<!-- 
+	<sql id="searchDetail">
+		<if test="r_id!=null and r_id==''">
+			and r_id=#{r_id}
+		</if>
+	</sql>
+	 -->
 	<sql id="orderby">
 		<if test="orderby=='true'">
 			order by distance 

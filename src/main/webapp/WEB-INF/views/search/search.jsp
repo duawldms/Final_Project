@@ -122,7 +122,7 @@
 									$("#restau").empty();
 									$("#paging").empty();
 									for(let i=0;i<data.listvo.length;i++){
-										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>"
+										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
@@ -176,7 +176,7 @@
 				$("#restau").empty();
 				$("#paging").empty();
 				for(let i=0;i<data.listvo.length;i++){
-					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>";
+					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
 					seller+="<div class='container restaurant'>";
 					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
@@ -255,7 +255,7 @@
 									x=data.user_coordx;
 									y=data.user_coordy;
 									for(let i=0;i<data.listvo.length;i++){
-										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"' style='text-decoration:none;color:black'>"
+										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
