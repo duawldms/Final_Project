@@ -1,6 +1,7 @@
 package com.jhta.project.service.restaurant;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jhta.project.mybatis.mapper.restaurant.RestaurantMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.MainSideVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
 
@@ -62,9 +64,23 @@ public class RestaurantService {
 	public List<FoodVo> menuList(String id) {
 		return mapper.menuList(id);
 	}
+	// 해당 매장 카테고리 불러오기
+	public List<FoodVo> catrgoryList(String id) {
+		return mapper.catrgoryList(id);
+	}
+	// 대표 음식 사이드 메뉴 추가
+	public void MainSideAdd(MainSideVo vo) {
+		mapper.MainSideAdd(vo);
+	}
+	
 	// 음식 사이드 메뉴 추가
 	public FoodVo getFood(int food_num) {
 		return mapper.getFood(food_num);
+	}
+	
+	// 음식 검색
+	public List<FoodVo> foodSearch(Map<String, String> map) {
+		return mapper.foodSearch(map);
 	}
 }
 

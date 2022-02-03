@@ -27,6 +27,7 @@ import com.jhta.project.service.security.CustomUserDetailService;
 @Order(1)
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired private BasicDataSource dataSource;
+	@Autowired private CustomUserDetailService customUserDetailService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -50,9 +51,18 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 				.successHandler(successHandler())
 				.failureHandler(failureHandler())
 				.and()
+				// 쿠키 관련 설정
+				.rememberMe()
+				.key("remember-me")
+				.rememberMeParameter("remember-me")
+				// 쿠기 유지 기간
+				.tokenValiditySeconds(86400 * 7)
+				.userDetailsService(customUserDetailService)
+				.and()
 				.logout()
 				.logoutUrl("/logout")
-				.logoutSuccessUrl("/");
+				.logoutSuccessUrl("/")
+				.deleteCookies("JSESSIONID", "remember-me");
 	}
 	@Bean
 	public CustomUserDetailService detailService() {

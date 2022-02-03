@@ -6,9 +6,13 @@
 	<form:form>
 		<img alt="음식 메뉴" id="food_img" style="width: 200px; height: 200px;" src="../resources/img/${requestScope.vo.food_img }">
 		<br>
-		<input type="text" name="fo_name" placeholder="사이드 음식명">
+		<label>음식명</label>
 		<br>
-		<input type="text" name="fo_cost" placeholder="사이드 음식 가격">
+		<input type="text" name="fo_name" placeholder="예)사이즈 = 중, 면 추가">
+		<br>
+		<label>가격</label>
+		<br>
+		<input type="text" name="fo_cost" placeholder="음식 가격">
 		<input type="hidden" name="food_num" value="${requestScope.vo.food_num }">
 		<br>
 		<input type="button" value="등록" id="" onclick="sideAdd()">

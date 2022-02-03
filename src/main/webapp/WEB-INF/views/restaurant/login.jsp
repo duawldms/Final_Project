@@ -16,7 +16,7 @@
 		<div>${requestScope.errMsg }</div>
 		<div>
 			<label>로그인 유지</label>
-			<input type="checkbox">
+			<input type="checkbox" name="remember-me" id="rememberMe">
 		</div>
 		<div>
 			<a href="${cp }/sellerInsert">회원가입</a> / <a href="">아이디 찾기</a>
