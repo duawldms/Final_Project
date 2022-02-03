@@ -1,10 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	h1{text-align:center}
-    ul {width: 360px; margin-left: auto; margin-right: auto; }
+    ul {width: 230px; margin-left: auto; margin-right: auto; }
 	p{text-align:center}
+
 </style>
 <div class="page-header">
-	<h1><a href="${cp }/admin/adminpage">관리자 페이지</h1>
+	<h1><a href="${cp }/admin/adminpage">관리자 페이지</a></h1>
 </div>
 <ul class="nav nav-pills">
 	<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a>
@@ -37,7 +41,8 @@
 		    <textarea class="form-control" rows="3" name="contents" readonly="readonly">${vo.re_content}</textarea>
 		  </div>
 		  
-		  <button id="list" class="btn btn-info">List</button>
+		  <button id="list" class="btn btn-info"><a href="${cp }/admin/reviewchk/list">목록</a></button>
+		  <button id="delete" class="btn btn-danger"><a href="${cp }/reviewchk/delete?re_num=${vo.re_num }">삭제</a></button>
     </div>
     <div class="panel-footer"></div>
   </div>

@@ -24,11 +24,6 @@ public class ReviewChkService {
 	}
 	public ReviewVo detail(int re_num) {
 		return mapper.detail(re_num);
-	}
-	public ReviewVo prev(int re_num) {
-		return mapper.prev(re_num);
-	}
-	public ReviewVo next(int re_num) {
-		return mapper.next(re_num);
+	
 	}
 }

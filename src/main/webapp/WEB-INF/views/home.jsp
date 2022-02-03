@@ -169,7 +169,10 @@
 										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
 									</li>
 									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">회원정보</a></span>
+										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
+									</li>
+									<li>
+									    <span class="elementor-icon-list-text"><a href="${cp }/logout">로그아웃</a></span>
 									</li>
 									</c:otherwise>
 				</c:choose> --%>
@@ -231,7 +234,9 @@
          	<c:forEach var="vo" items="${list}">
                 <div class="card">
                     <div class="img">
-                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="">
+                     <a href="${cp}/category/modify?cg_name=${vo.cg_name}">
+                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="" style="border: 1px solid #7bcfbb;">
+                     </a>
                     </div>
                     <div class="text">
                         <h2>${vo.cg_name}</h2>
@@ -352,6 +357,7 @@
 				<div class="elementor-widget-container">
 						<p class="p1">
 												<span><a href="${cp }/loginRestaurant">판매자 로그인</a></span>&nbsp;
+												<span><a href="${cp }/loginAdmin">관리자 로그인</a></span>&nbsp;
 												<span><a href="${cp }/sellerInsert">도로 주소명 테스트</a></span>
 													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
 														class="s1">주</span>) | <span class="s1">TEL</span>: <span

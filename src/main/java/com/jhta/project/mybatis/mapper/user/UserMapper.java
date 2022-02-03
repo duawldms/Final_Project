@@ -8,11 +8,12 @@ public interface UserMapper {
 	CustomUserDetail getAuths(String ui_id);
 	int userinsert(UserVo vo);
 	int addAuth(AuthorityVo vo);
-	UserVo checkid(String ui_id);
+	String checkid(String ui_id);
 	boolean selectId(UserVo vo);
 	String searchId(UserVo vo);
 	UserVo searchPwd(UserVo vo);
 	int updatePwd(UserVo vo);
 	UserVo selectUser(UserVo vo);
 	UserVo test(String ui_id);
+	int userupdate(UserVo vo);
 }

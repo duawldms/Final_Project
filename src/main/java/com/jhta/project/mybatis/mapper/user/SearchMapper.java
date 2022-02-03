@@ -10,5 +10,6 @@ public interface SearchMapper {
 	List<UserAddrVo> selectAddr(HashMap<String, Object> map);
 	List<InSearchRestaurantVo> searchRes(HashMap<String, Object> map);
 	int count(HashMap<String, Object> map);
-	
+	List<String> searchCategory();
+	InSearchRestaurantVo searchDetail(String r_id);
 }

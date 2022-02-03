@@ -32,12 +32,15 @@ public class ReviewChkListController {
 		int endRow=pu.getEndRow();//끝행번호
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-	    List<ReviewVo> list=service.selectList(map);    
+	    List<ReviewVo> list=service.selectList(map);   
+	    
+	    System.out.println("list:"+ list);
 	    model.addAttribute("field",field);
 	    model.addAttribute("keyword", keyword);
 	    model.addAttribute("list", list);
 	    model.addAttribute("pu", pu);
-		return "list";
+	    model.addAttribute("main","/WEB-INF/views/admin/reviewchk/list.jsp");
+		return "admin/reviewchk/list";
 	}
 }
 

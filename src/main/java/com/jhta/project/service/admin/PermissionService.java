@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.project.mybatis.mapper.admin.PermissionMapper;
 import com.jhta.project.vo.restaurant.RestaurantVo;
-
 @Service
 public class PermissionService {
 	@Autowired private PermissionMapper mapper;
@@ -18,5 +17,8 @@ public class PermissionService {
 	}
 	public int update(RestaurantVo vo) {
 		return mapper.update(vo);
+	}
+	public RestaurantVo detail(String r_id) {
+		return mapper.detail(r_id);
 	}
 }

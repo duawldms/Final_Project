@@ -34,18 +34,23 @@
     <table class="table table-striped">
     <thead>
       <tr>
-        <th>번호</th>
-        <th>주문번호</th>
-        <th>등록일</th>
+        <th>아이디</th>
+        <th>가게명</th>
+        <th>가게주소</th>
+        <th>가게정보</th>
+        <th>승인<th>
       </tr>
     </thead>
     <tbody>
+    <c:forEach var="vo" items="${list }">
       <tr>
-        <td>${vo.re_num}</td>
-        <td><a href="${cp }/admin/reviewchk/detail?num=${vo.re_num}">${vo.or_num}</a></td>
-        <td>${vo.re_regdate}</td>
-        <td><button type="button" value="승인" class="btn btn-primary" onclick="deleteFn(${vo.re_num})">승인</button></td>
+        <td>${vo.r_id}</td>
+        <td>${vo.r_name }</td>
+        <td>${vo.r_addr }</td>
+        <td>${vo.r_info }</td>
+        <td><button id="permission" value="승인" class="btn btn-primary"><a href="${cp }/permission/update?r_id=${vo.r_id}">승인</a></button></td>
       </tr>
+      </c:forEach>
     </tbody>
   </table>
 </div>
