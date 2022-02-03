@@ -36,7 +36,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 				response.sendRedirect(request.getContextPath() + "/admin/adminpage" );
 			}
 		}
-		
 
 //		CustomUserDetail userDetail=userService.getAuths(username);
 //		CustomUserDetail restaurantDetail=restaurantService.getAuths(username);

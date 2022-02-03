@@ -32,9 +32,9 @@
 		<ul>
 			<li><a href="">회원정보수정</a></li>
 			<li><a href="">매장정보수정</a></li>
-			<li><a href="${cp }/restaurant/menuadd">음식등록</a></li>
-			<li><a href="${cp }/restaurant/foodList">음식수정</a></li>
-			<li><a href="">음식옵션</a></li>
+			<li><a href="${cp }/restaurant/menuadd">음식 등록</a></li>
+			<li><a href="${cp }/restaurant/foodEdit">음식 수정 및 삭제</a></li>
+			<li><a href="${cp }/restaurant/foodList">사이드 음식 추가</a></li>
 			<li><a href="">리뷰관리</a></li>
 			<li><a href="">매출현황</a></li>
 		</ul>

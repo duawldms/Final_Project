@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* 사이드 메뉴 추가, 수정, 삭제 */
+.food_category_wrep {
+		width: 90%;
+		height: auto;
+		overflow:hidden;
+		margin: auto;
+	}
+	#food_img {
+		width: 148px;
+		height: 150px;
+	}
+	
+	.category_list {
+		width: auto;
+		height: auto;
+		margin-top: 5%;
+	}
+	
+	.food_category {
+		width: 200px;
+		height: 200px;
+		margin-left: 5%;
+		margin-bottom: 5%;
+		float: left;
+		text-align: center;
+		border: skyblue solid 1px;
+	}
+	
+	/* 사이드 메뉴 개별 등록 */
+	.food_list_wrep {
+		width: 70%;
+		height: auto;
+		overflow:hidden;
+		margin: auto;
+	}
+	#food_img {
+		width: 148px;
+		height: 150px;
+	}
+	
+	.list {
+		width: auto;
+		height: auto;
+		margin-top: 5%;
+	}
+	
+	.food_list {
+		width: 150px;
+		height: 200px;
+		margin-left: 5%;
+		margin-bottom: 5%;
+		float: left;
+		text-align: center;
+		border: skyblue solid 1px;
+	}
+	
+	.side_search {
+		text-align: center;
+	}
+	
+	.food_edit {
+		width: 150px;
+		height: 230px;
+		margin-left: 5%;
+		margin-bottom: 5%;
+		float: left;
+		text-align: center;
+		border: skyblue solid 1px;
+	} 
+/* 사이드 메뉴 추가, 수정, 삭제 끝*/

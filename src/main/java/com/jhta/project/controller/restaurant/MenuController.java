@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.project.service.restaurant.RestaurantService;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.MainSideVo;
 
 @Controller
 public class MenuController {
@@ -33,14 +34,16 @@ public class MenuController {
 		model.addAttribute("main", "/WEB-INF/views/restaurant/menuAdd.jsp");
 		return "layout";
 	}
-	
+	// 메뉴 등록
 	@PostMapping("/restaurant/menuadd")
 	public String menuAdd(FoodVo vo, Model model, MultipartFile file1) {
 		try {
 			String food_name = new String(StringUtils.cleanPath(vo.getFood_name()).getBytes("8859_1"),"utf-8");
 			String food_info = new String(StringUtils.cleanPath(vo.getFood_info()).getBytes("8859_1"),"utf-8");
+			String food_category = new String(StringUtils.cleanPath(vo.getFood_category()).getBytes("8859_1"),"utf-8");
 			vo.setFood_name(food_name);
 			vo.setFood_info(food_info);
+			vo.setFood_category(food_category);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -65,27 +68,45 @@ public class MenuController {
 		model.addAttribute("main", "/WEB-INF/views/restaurant/foodList.jsp");
 		return "redirect:rayout";
 	}
-	
+	// 등록한 음식 목록 호출
 	@GetMapping("/restaurant/foodList")
-	public String foodList(Model model, Principal principal) {
+	public String categoryList(Model model, Principal principal) {
 		List<FoodVo> menuList = service.menuList(principal.getName());
-		menuList.forEach(a -> System.out.print(a));
-//		String imgPath = sc.getRealPath("/resources/img");
-//		String path = imgPath.replace("\\", "/");
-//		model.addAttribute("imgPath", path);
+		List<FoodVo> categoryList = service.catrgoryList(principal.getName());
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("main", "/WEB-INF/views/restaurant/foodList.jsp");
 		return "layout";
 	}
 	
-	@GetMapping("/restaurant/optionAdd")
+	@GetMapping("/restaurant/mainOptionAdd")
+	public String mainOptionAddForm(Model model, String food_category) {
+		model.addAttribute("food_category", food_category);
+		return "restaurant/mainOptionAdd";
+	}
+	// 메인 사이드 메뉴 추가
+	@PostMapping("/restaurant/mainOptionAdd")
+	public void mainOptionAdd(MainSideVo vo, Principal principal) {
+		vo.setR_id(principal.getName());
+		System.out.println("메인 사이드 : " + vo);
+		service.MainSideAdd(vo);
+	}
+	// 사이드 메뉴 추가
+	@GetMapping("/restaurant/sideOptionAdd")
 	public String optionAdd(int food_num, Model model) {
 		FoodVo vo = service.getFood(food_num);
 		model.addAttribute("vo", vo);
-		model.addAttribute("main", "/WEB-INF/views/restaurant/optionAdd.jsp");
+//		model.addAttribute("main", "/WEB-INF/views/restaurant/optionAdd.jsp");
+		return "restaurant/sideOptionAdd";
+	}
+	@GetMapping("/restaurant/foodEdit")
+	public String foodEdit(Model model, Principal principal) {
+		List<FoodVo> menuList = service.menuList(principal.getName());
+		List<FoodVo> categoryList = service.catrgoryList(principal.getName());
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("menuList", menuList);
+		model.addAttribute("main", "/WEB-INF/views/restaurant/foodEdit.jsp");
 		return "layout";
 	}
-	
-	
 	
 }
