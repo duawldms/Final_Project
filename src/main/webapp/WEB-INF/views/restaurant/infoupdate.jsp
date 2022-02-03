@@ -56,7 +56,7 @@
 <body>
 <div class="wrap">
 	<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">공지&소개 등록</h1>
-	<form:form action="${cp }/restaurant/restaurantinfo" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8">
+	<form:form action="${cp }/restaurant/restaurantinfo?r_id=${vo.r_id}" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8">
 		작성자아이디<br>
 		<input type="text" name="r_id" value="${vo.num }"><br>
 		<h3 style="color: #F6416C">매장명</h3>

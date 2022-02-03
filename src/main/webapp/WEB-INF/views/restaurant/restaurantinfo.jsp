@@ -42,7 +42,7 @@
 
 
 <div class="wrap">
-	<form:form action="${cp }/restaurant/restaurantinfo" method="get" id="restaurantinfo" enctype="multipart/form-data" acceptCharset="utf-8">
+	<form:form action="${cp }/restaurant/restaurantinfo?r_id=${vo.r_id}" method="get" id="restaurantinfo" enctype="multipart/form-data" acceptCharset="utf-8">
 		<table class="restaurantinfo">
 		<c:forEach items="${list }" var="vo">
 			<tr>
