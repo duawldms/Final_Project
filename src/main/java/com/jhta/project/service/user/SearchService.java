@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.project.mybatis.mapper.user.SearchMapper;
+import com.jhta.project.vo.restaurant.FoodVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
@@ -28,6 +29,9 @@ public class SearchService {
 	}
 	public InSearchRestaurantVo searchDetail(String r_id) {
 		return mapper.searchDetail(r_id);
+	}
+	public List<FoodVo> foodlist(String r_id) {
+		return mapper.foodlist(r_id);
 	}
 }
 
