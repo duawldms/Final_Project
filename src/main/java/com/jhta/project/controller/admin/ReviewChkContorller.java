@@ -11,10 +11,10 @@ import com.jhta.project.service.admin.ReviewChkService;
 public class ReviewChkContorller {
 	@Autowired ReviewChkService service;
 	
-	@GetMapping("/admin/reviewchk/list")
+	@GetMapping("/reviewchk/list")
 	public String ReviewChk(Model model) {
-		model.addAttribute("main","/WEB-INF/views/admin/reviewchk.jsp");
-		return "admin/reviewchk/list";
+		model.addAttribute("main","/WEB-INF/views/admin/reviewchk/list.jsp");
+		return "/reviewchk/list";
 	}
 
 }

@@ -6,19 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.jhta.project.service.admin.PermissionService;
-import com.jhta.project.vo.restaurant.RestaurantVo;
-
 
 @Controller
-public class PermissionUpdateController {
-	@Autowired private PermissionService service;
+public class PermissionController {
+	@Autowired PermissionService service;
 	
-	@GetMapping("/permission/update")
-	public String update(Model model,String r_id ) {
-		RestaurantVo vo=service.detail(r_id);
-		model.addAttribute("vo",vo);
-		return "admin/permission/list";
-		
+	@GetMapping("permission/list")
+	public String Permission(Model model) {
+		model.addAttribute("main","/WEB-INF/views/admin/permission/list.jsp");
+		return "permission/list";
 	}
 
 }

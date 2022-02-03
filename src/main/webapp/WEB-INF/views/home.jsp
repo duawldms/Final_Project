@@ -320,6 +320,7 @@
 				<div class="elementor-widget-container">
 						<p class="p1">
 												<span><a href="${cp }/loginRestaurant">판매자 로그인</a></span>&nbsp;
+												<span><a href="${cp }/loginAdmin">관리자 로그인</a></span>&nbsp;
 												<span><a href="${cp }/sellerInsert">도로 주소명 테스트</a></span>
 													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
 														class="s1">주</span>) | <span class="s1">TEL</span>: <span

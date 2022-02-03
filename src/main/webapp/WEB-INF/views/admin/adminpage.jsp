@@ -50,7 +50,7 @@
         <div class="panel-body">
         <ul>
 			<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a></li>
-            <li><a href="${cp }/admin/complain/list">컴플레이션 관리</a></li>
+            <li><a href="${cp }/admin/complain/list">컴플레인 관리</a></li>
 		</ul>
         </div>
       </div>
@@ -64,8 +64,8 @@
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
         <ul>
-			<li><a href="/admin/permission">신규판매자 가입승인 관리</a></li>
-            <li><a href="/admin/discount">매출우수매장 수수료감면 관리</a></li>
+			<li><a href="${cp }/admin/permission/list">신규판매자 가입승인 관리</a></li>
+            <li><a href="${cp }/admin/discount/list">매출우수매장 수수료감면 관리</a></li>
 		</ul>
         </div>
       </div>

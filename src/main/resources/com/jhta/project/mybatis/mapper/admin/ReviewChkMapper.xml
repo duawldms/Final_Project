@@ -18,7 +18,7 @@
 		   from (
 		      select * from review      
 		      <include refid="search"/>
-		      order by num desc
+		      order by re_num desc
 		    )b
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
@@ -36,41 +36,4 @@
      <select id="detail" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
      	select * from review where re_num=#{re_num}
      </select>
-   
-     <!-- 이전글 
-     
-        select * from
-		(
-		    select * from board where num<66 order by num desc
-		) where rownum=1;	
-		
-		select * from board where num=(
-		    select max(num) from board where num<66
-		);
-     -->
-     <select id="prev" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
-     <![CDATA[
-     	select * from
-		(
-		    select * from review where re_num<#{re_num} order by num desc
-		) where rownum=1
-	  ]]>
-     </select>
-     <!-- 다음글  
-		select * from
-		(
-		select * from board where num>66 order by num asc
-		) where rownum=1;
-		
-		select * from board where num=(
-		    select min(num) from board where num>66
-		);
-     -->
-       <select id="next" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
-         <![CDATA[
-       		select * from review where num=(
-		   		 select min(num) from board where re_num>#{re_num}
-			)
-		  ]]>
-       </select>
  </mapper>

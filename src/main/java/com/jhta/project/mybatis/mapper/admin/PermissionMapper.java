@@ -8,5 +8,6 @@ import com.jhta.project.vo.restaurant.RestaurantVo;
 public interface PermissionMapper {
 	List<RestaurantVo> list(HashMap<String,Object> map);
 	int update(RestaurantVo vo);
+	RestaurantVo detail(String r_id);
 }
 
