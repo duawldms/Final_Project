@@ -102,28 +102,6 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						</form:form>
 					</li>
 				</sec:authorize>
-							<c:choose>
-				<c:when test="${empty sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/loginuser">로그인</a></span>
-									</li>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-									</li>
-									</c:when>
-									<c:otherwise>
-									<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-									</li>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
-									</li>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage">My Page</a></span>
-									</li>
-									</c:otherwise>
-				</c:choose>
 						</ul>
 				</div>
 				</div>
