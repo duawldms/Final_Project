@@ -10,7 +10,18 @@
 <script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-var themeObj = {
+
+$(function(){
+	var addr="${vo.ua_addr}"; 
+	var afteraddr=addr.split(',');  
+	var afteraddr1=afteraddr[0];
+	var afteraddr2=afteraddr[1];  
+	console.log(("${vo.ua_addr}".split(','))[0]);   
+	console.log(afteraddr2);   
+	$("input[id='ua_addr1']").attr('value',afteraddr1);    
+	$("input[id='ua_addr2']").attr('value',afteraddr2);   
+});
+var themeObj = { 
 		   bgColor: "#162525", //바탕 배경색
 		   searchBgColor: "#162525", //검색창 배경색
 		   contentBgColor: "#162525", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
@@ -23,13 +34,13 @@ var themeObj = {
 		document.getElementById("addr-addon").addEventListener('click',function(){
 			new daum.Postcode({
 		        oncomplete: function(data) {
-		    	   	document.getElementById("ua_addr").value = data.address; // 주소 넣기
-		        	document.getElementById("ua_addr").placeholder = "상세주소를 입력하세요";
-		        	document.getElementById("ua_addr").focus();
+		    	   	document.getElementsByName("ua_addr")[0].value = data.address; // 주소 넣기
+		        	document.getElementsByName("ua_addr")[1].placeholder = "상세주소를 입력하세요";
+		        	document.getElementsByName("ua_addr")[0].focus();
 		        },
 		        theme:themeObj
 			 }).open({
-				q:document.getElementById("ua_addr").value
+				q:document.getElemetnsByName("ua_addr").value
 			 });
 		});
 	   
@@ -42,7 +53,7 @@ var themeObj = {
 		let ui_name=$("input[name='ui_name']").val();
 		let ui_email=$("input[name='ui_email']").val();
 	    let ui_phone=$("input[name='ui_phone']").val();
-		let ua_addr=$("input[name='ua_addr']").val();    
+		//let ua_addr=$("input[name='ua_addr']").val();    
 		
 		 var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			
@@ -82,11 +93,14 @@ var themeObj = {
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
+			  /*
 			  if(ua_addr==''){
-				  alert("주소를 입력해 주세요.");
-				  $("input[name='ua_addr']").focus();
-			    return false;
-		}   
+			  alert("주소를 입력해 주세요.");
+			  $("input[name='ua_addr']").focus();
+		    return false;
+	         }   
+		*/
+			  
   	});	
 });
 </script>
@@ -107,12 +121,12 @@ var themeObj = {
 		<input type="text" name="ui_email" value="${vo.ui_email }"><span></span><br>
 		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
 		전화번호<br>
-		<input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span><br>  
+		<input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span><br>       
 		배송받을 주소<br>
-		<input type="text" class="form-control col-6" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" value="${vo.ua_addr }">
-		<input type="text" class="form-control col-4 place" id="ua_addr" name="ua_addr" aria-describedby="addr-addon">
-		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br> 
-		<input type="submit" value="수정">
-		</form:form>
+		<input type="text" class="form-control col-6" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!">
+		<input type="text" class="form-control col-4 place" id="ua_addr2" name="ua_addr" aria-describedby="addr-addon">     
+		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br>   
+		<input type="submit" value="수정">  
+		</form:form> 
 </body>
 </html>

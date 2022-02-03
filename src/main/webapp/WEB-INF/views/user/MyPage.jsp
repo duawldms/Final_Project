@@ -9,7 +9,7 @@
 	<style type="text/css">
 	div#mypagelayout{height:900px;}
 	div#sidepage{float:left;width:330px;height:900px;}  
-	
+	ul#list{list-style:none;}
 	
 	</style>
 	<script type="text/javascript">
@@ -26,14 +26,15 @@
 			<h4>${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.</h4>
 		</div>
 		<!-- 회원등급? -->
-		<ul>
-			<li><a href="${cp }/userdelivery?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></a>배달내역</li>
-			<li><a href="${cp }/userreview?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></a>리뷰내역</li>
-			<li><a href="${cp }/userinfocheck?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">기본정보</a></li><!--기본정보 안에 회원탈퇴하기 기능 추가하기 -->
+		<ul id="list">
+			<li><a href="${cp }/userdelivery?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">배달내역</a></li>
+			<li><a href="${cp }/userreview?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">리뷰내역</a></li>
+			<li><a href="${cp }/userinfocheck?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">기본정보</a></li>
+			<li><a href="${cp }/userdelete?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">회원탈퇴하기</a></li>
 		</ul>
 	</div>
 	<div id="mypagemain">
-				<jsp:include page="${requestScope.mypagemain }" />
+		<jsp:include page="${requestScope.mypagemain }"/>
 	</div>
 </div>
 </body>

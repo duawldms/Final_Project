@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="resultbox">
- 안녕하세요 ${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님<br>
+ 안녕하세요 <br>
  배달요기이츠 회원이 되어주셔서 감사합니다!<br>
 <p></p>
  <a href="${cp}/loginuser">로그인</a> | <a href="${cp}/">주문하러가기</a> | <a href="${cp}/">홈으로</a>
