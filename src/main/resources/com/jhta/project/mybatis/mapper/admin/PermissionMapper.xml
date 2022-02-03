@@ -3,14 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.jhta.project.mybatis.mapper.admin.PermissionMapper">
-     <select id="list" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
-		select * from restaurant where r_state=1
+    <select id="list" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+     	select * from
+		(
+		   select b.*,rownum rnum
+		   from (
+		      select * from restaurant where r_state=1    
+		      order by r_id desc
+		    )b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+     </select>
+     <select id="count" resultType="int"  parameterType="hashmap">
+     	select NVL(count(*),0) cnt from review      	
      </select>
      <update id="update" parameterType="string">
      	update restaurant set r_state=2
      	where r_id=#{r_id}
      </update>
-     <select id="detail" parameterType="int" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+     <select id="detail" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
      	select * from restaurant where r_id=#{r_id}
      </select>
   </mapper>

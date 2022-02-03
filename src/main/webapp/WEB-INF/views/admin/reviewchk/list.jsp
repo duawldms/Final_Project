@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	h1{text-align:center}
-    ul {width: 600px; margin-left: auto; margin-right: auto; }
+    ul {width: 210px; margin-left: auto; margin-right: auto; }
 	p{text-align:center}
 
 </style>
@@ -49,7 +49,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div class="text-center">
 	<c:forEach var= "i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==param.pageNum }">
@@ -61,7 +61,8 @@
 		</c:choose>
 	</c:forEach>
 </div>
-<div>
+<br>
+<div class="text-center">
 	<form method="post" action="${cp }/admin/reviewchk/list">
 		<select name="field">
 			<option value="title" <c:if test="${field=='or_num'}">selected</c:if> >주문번호</option>

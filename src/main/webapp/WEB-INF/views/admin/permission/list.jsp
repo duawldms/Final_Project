@@ -4,7 +4,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <style>
 	h1{text-align:center}
-    ul {width: 260px; margin-left: auto; margin-right: auto; }
+    ul {width: 430px; margin-left: auto; margin-right: auto; }
 	p{text-align:center}
 
 </style>
@@ -15,6 +15,7 @@
 	<li><a href="${cp }/admin/permission/list">신규판매자 가입승인 관리</a>
 	<li><a href="${cp }/admin/discount/list">매출우수매장 수수료감면 관리</a>
 </ul>
+<br>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,12 +49,25 @@
         <td>${vo.r_name }</td>
         <td>${vo.r_addr }</td>
         <td>${vo.r_info }</td>
-        <td><button id="permission" value="승인" class="btn btn-primary"><a href="${cp }/permission/update?r_id=${vo.r_id}">승인</a></button></td>
+        <td><a href="${cp }/permission/update?r_id=${vo.r_id}"><input type="button" value="승인" class="btn btn-primary"></a></td>
       </tr>
       </c:forEach>
     </tbody>
   </table>
 </div>
+<div class="text-center">
+	<c:forEach var= "i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+		<c:choose>
+			<c:when test="${i==param.pageNum }">
+				<a href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style='color:blue'>${i }</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style='color:gray'>${i }</span></a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+</div>
+<br>
 <p>쿠팡요기이츠 관리자페이지 입니다</p>
 </body>
 </html>
