@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>카테고리수정</title>
 <script type="text/javascript">
 	function imageView(e) {
 		var reader = new FileReader();
@@ -17,12 +12,9 @@
 		reader.readAsDataURL(e.target.files[0]);
 	}
 </script>
-</head>
-<body>
-	
 	<form:form method="post" action="${cp }/category/modify" enctype="multipart/form-data" acceptCharset="utf-8" >
 		카데고리명<br>
-		<input type="text" name="cg_name" id="cg_name" value="${vo.cg_name}">
+		<input type="text" name="cg_name" id="cg_name" value="${vo.cg_name}" >
 		<br>
 		카테고리이미지<br>
 		<img src="${cp }/resources/img/${vo.cg_photo}"><br>
@@ -31,6 +23,3 @@
 		<img style="width: 200px; height: 200px; display: none;" id="cg_photo">
 		<input type="submit" value="수정완료">
 		</form:form>
-	
-</body>
-</html>
