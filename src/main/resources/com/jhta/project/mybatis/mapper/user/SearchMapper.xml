@@ -4,13 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhta.project.mybatis.mapper.user.SearchMapper">
 	<sql id="searchfield">
-		<if test="keyword!=null and keyword!=''">
-			where r_name like '%'||#{keyword}||'%' or  cg_name like '%'||#{keyword}||'%'
-		</if>
-		<if test="category!=null and category!=''">
-			where cg_category=#{category}
+		<choose>
+			<when test="keyword!=null and keyword!=''">
+				and(r_name like '%'||#{keyword}||'%' or  cg_name like '%'||#{keyword}||'%')
+			</when>
+			<when test="category!=null and category!=''">
+				and cg_name=#{category}
+			</when>
+		</choose>
+	</sql>
+	<!-- 
+	<sql id="searchDetail">
+		<if test="r_id!=null and r_id==''">
+			and r_id=#{r_id}
 		</if>
 	</sql>
+	 -->
 	<sql id="orderby">
 		<if test="orderby=='true'">
 			order by distance 
@@ -29,8 +38,7 @@
 				(
 					select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
 					from restaurant r 
-				) <![CDATA[where distance<3]]> <include refid="orderby"/>) a 
-				<include refid="searchfield"/>
+				) <![CDATA[where distance<3]]> <include refid="searchfield"/> <include refid="orderby"/>) a 
 		) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 		
 	</select>
@@ -39,8 +47,20 @@
 		(
 			select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
 			from restaurant r 
-		) <![CDATA[where distance<3]]>
+		) <![CDATA[where distance<3]]> <include refid="searchfield"/>
 		
+	</select>
+	<select id="searchCategory" resultType="string">
+		select cg_name from category
+	</select>
+	<select id="searchDetail" parameterType="string" resultType="com.jhta.project.vo.user.InSearchRestaurantVo">
+		select * from restaurant where r_id=#{r_id}
+	</select>
+	<select id="foodlist" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
+		select * from food where r_id=#{r_id}
+	</select>
+	<select id="foodOptionlist" parameterType="int">
+		select * from food_options where food_num=#{food_num}
 	</select>
 </mapper> 
 

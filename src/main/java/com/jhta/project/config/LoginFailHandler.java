@@ -28,7 +28,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 //		DisabledException : 계정 비활성화
 //		LockedException : 계정잠김
 		String errMsg = null;
-		
+
 		if (exception instanceof BadCredentialsException 
 				|| exception instanceof InternalAuthenticationServiceException) {
 			errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
@@ -39,5 +39,6 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 		System.out.println("실패 경로 : " + (String)sc.getAttribute("securityPath"));
 		request.setAttribute("errMsg", errMsg);
 		request.getRequestDispatcher((String)sc.getAttribute("securityPath")).forward(request, response);
+
 	}
 }

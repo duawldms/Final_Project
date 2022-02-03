@@ -137,7 +137,10 @@
 										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
 									</li>
 									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">회원정보</a></span>
+										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
+									</li>
+									<li>
+									    <span class="elementor-icon-list-text"><a href="${cp }/logout">로그아웃</a></span>
 									</li>
 									</c:otherwise>
 				</c:choose>
@@ -199,7 +202,9 @@
          	<c:forEach var="vo" items="${list}">
                 <div class="card">
                     <div class="img">
-                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="">
+                     <a href="${cp}/category/modify?cg_name=${vo.cg_name}">
+                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="" style="border: 1px solid #7bcfbb;">
+                     </a>
                     </div>
                     <div class="text">
                         <h2>${vo.cg_name}</h2>

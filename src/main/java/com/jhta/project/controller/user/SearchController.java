@@ -24,8 +24,9 @@ public class SearchController {
 	@Autowired private SearchService service;
 	
 	@GetMapping("/search")
-	public String goSearch(Model model,
-			Principal principal) {
+	public String goSearch(Model model,Principal principal,
+			@RequestParam(value="cg_name",defaultValue = "")String cg_name,
+			@RequestParam(value="keyword",defaultValue = "")String keyword) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		if(principal!=null) {
 			String ui_id=principal.getName();
@@ -33,6 +34,8 @@ public class SearchController {
 			List<UserAddrVo> list=service.selectAddr(map);
 			model.addAttribute("list",list);
 		}
+		model.addAttribute("category",cg_name);
+		model.addAttribute("cglist",service.searchCategory());
 		model.addAttribute("main","/WEB-INF/views/search/search.jsp");
 		return "layout";
 	}
