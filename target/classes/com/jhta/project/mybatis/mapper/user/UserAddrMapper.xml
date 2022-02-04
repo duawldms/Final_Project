@@ -12,5 +12,20 @@
 	<update id="addrupdate" parameterType="com.jhta.project.vo.user.UserAddrVo">
 		update user_addr set ua_addr=#{ua_addr},ua_name=#{ua_name},ua_phone=#{ua_phone} where ui_id=#{ui_id}
 	</update>
-	
+	<!-- 회원 배송지 관리하기 -->
+	<select id="useraddrselectAll" parameterType="string" resultType="com.jhta.project.vo.user.UserAddrVo">
+		select * from user_addr where ui_id=#{ui_id}
+	</select>
+	<delete id="useraddrdelete" parameterType="int">
+		delete user_addr where ua_num=#{ua_num}
+	</delete>
+	<update id="useraddrupdate" parameterType="com.jhta.project.vo.user.UserAddrVo">
+		update user_addr set ua_addr=#{ua_addr},ua_name=#{ua_name},ua_phone=#{ua_phone},ua_nickname=#{ua_nickname} where ua_num=#{ua_num}
+	</update>
+	<insert id="useraddrinsert" parameterType="com.jhta.project.vo.user.UserAddrVo">
+		insert into user_addr values(user_addr_seq.nextval,#{ui_id},#{ua_nickname},#{ua_addr},#{ua_name},#{ua_phone})
+	</insert>
+	<select id="useraddrselect" parameterType="com.jhta.project.vo.user.UserAddrVo" resultType="com.jhta.project.vo.user.UserAddrVo">
+		select * from user_addr where ua_num=#{ua_num} and ui_id=#{ui_id}
+	</select>
 </mapper>
