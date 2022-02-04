@@ -45,7 +45,7 @@
 	</update>
 	<!-- 기본정보만 불러오기 -->
 	<select id="selectUser" parameterType="string" resultType="com.jhta.project.vo.user.UserVo">
-		select * from user_information u,user_addr a where u.ui_id=a.ui_id and u.ui_id=#{ui_id} <!--and ui_pwd=#{ui_pwd}  -->
+		select * from user_information u,user_addr a where u.ui_id=a.ui_id and u.ui_id=#{ui_id} and a.ua_nickname='기본배송지'<!--and ui_pwd=#{ui_pwd}  -->
 	</select>
 	<!-- 기본정보 업데이트하기 -->
 	<update id="userupdate" parameterType="com.jhta.project.vo.user.UserVo">
