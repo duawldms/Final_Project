@@ -11,14 +11,22 @@
 		<c:forEach var="vo" items="${requestScope.menuList }">
 		 	<%-- <div class="food_list" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/optionAdd?food_num=${vo.food_num}'"> --%>
 		 	<div class="food_edit">
-				<img alt="음식 메뉴" id="food_img" src="../resources/img/${vo.food_img }">
-				<br>
-				<b>${vo.food_name }</b>
-				<br>
-				<b>${vo.food_cost }원</b>
-				<br>
-				<a href="">수정</a>
-				<a href="">삭제</a>
+		 		<div class="food_info">
+					<img alt="음식 메뉴" id="food_img" src="../resources/img/${vo.food_img }">
+					<br>
+					<b>${vo.food_name }</b>
+					<br>
+					<b>${vo.food_cost }원</b>
+		 		</div>
+				<div class="food_modify">
+					<a href="">수정</a>
+				</div>
+				<div>
+					<a href="">옵션 수정</a>
+				</div>
+				<div>
+					<a href="">삭제</a>
+				</div>
 			</div>
 		</c:forEach>
 	</div>

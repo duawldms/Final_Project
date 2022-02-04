@@ -10,22 +10,6 @@
 <body>
 	<h1>메뉴 추가</h1>
 	<form:form method="post" action="${cp }/restaurant/menuadd" enctype="multipart/form-data" acceptCharset="utf-8">
-		<select name="food_category" id="food_category">
-			<option value="default">카테고리</option>
-			<option>1인분</option>
-			<option>프랜차이즈</option>
-			<option>치킨</option>
-			<option>피자/양식</option>
-			<option>중국집</option>
-			<option>한식</option>
-			<option>일식/돈까스</option>
-			<option>족발/보쌈</option>
-			<option>야식</option>
-			<option>분식</option>
-			<option>카페/디저트</option>
-			<option>편의점/마트</option>
-		</select>
-		<br>
 		<input type="text" id="food_name" name="food_name" placeholder="음식 이름">
 		<br>
 		<input type="hidden" id="r_id" name="r_id" value="${requestScope.r_id }">

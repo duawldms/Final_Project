@@ -2,20 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
-<h1>대표 음식 사이드 메뉴 등록</h1>
-<div class="food_category_wrep">
-	<div class="category_list">
-		<c:forEach var="vo" items="${requestScope.categoryList }">
-		 	<%-- <div class="food_category" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/mainOptionAdd?food_category=${vo.food_category}'"> --%>
-		 	<div class="food_category" style="cursor: pointer;" onclick="mainPopup('${vo.food_category}')">
-				<img id="category_img" src="../resources/img/">
-				<br>
-				<b>${vo.food_category }</b>
-			</div>
-		</c:forEach>
-	</div>
-</div>
-<h1>음식 개별 사이드 메뉴 등록</h1>
+<h1 style="text-align: center;">사이드 메뉴 등록</h1>
 <div class="food_list_wrep">
 	<div class="side_search">
 		<input type="text" id="food_search" name="food_search" placeholder="음식명 검색">
@@ -23,8 +10,8 @@
 	</div>
 	<div class="list">
 		<c:forEach var="vo" items="${requestScope.menuList }">
-		 	<%-- <div class="food_list" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/optionAdd?food_num=${vo.food_num}'"> --%>
-		 	<div class="food_list" style="cursor: pointer;" onclick="sidePopup('${vo.food_num}')">
+		 	<div class="food_list" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/optionAdd?food_num=${vo.food_num}'">
+		 	<%-- <div class="food_list" style="cursor: pointer;" onclick="sidePopup('${vo.food_num}')"> --%>
 				<img alt="음식 메뉴" id="food_img" src="../resources/img/${vo.food_img }">
 				<br>
 				<b>${vo.food_name }</b>
@@ -35,19 +22,12 @@
 	</div>
 </div>
 <script>
-	function mainPopup(category) {
-		var url = "${cp}/restaurant/mainOptionAdd?food_category=" + category;
-		var name = "mainSiedAdd";
-		var option = "width = 300, height = 200, top = 300, left = 800";
-		window.open(url, name, option);
-	}
-	
-	function sidePopup(food_num) {
+	/* function sidePopup(food_num) {
 		var url = "${cp}/restaurant/sideOptionAdd?food_num=" + food_num;
 		var name = "sideAdd";
 		var option = "width = 300, height = 500, top = 300, left = 800";
 		window.open(url, name, option);
-	}
+	} */
 	
 	function foodSearch() {
 		var xhr = null;
