@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 <style type="text/css">
  	#box{
  	position:center;
@@ -64,15 +64,6 @@
     }
 </style>
 <script type="text/javascript">
-
-$(function(){
-	var addr="${vo.ua_addr}"; 
-	var afteraddr=addr.split(',');  
-	var afteraddr1=afteraddr[0];
-	var afteraddr2=afteraddr[1];   
-	$("input[id='ua_addr1']").attr('value',afteraddr1);    
-	$("input[id='ua_addr2']").attr('value',afteraddr2);   
-});
 var themeObj = { 
 		   bgColor: "#162525", //바탕 배경색
 		   searchBgColor: "#162525", //검색창 배경색
@@ -95,93 +86,69 @@ $(function(){
 			q:document.getElementById("ua_addr1").value
 		 });
 	});
-	   
+	$(function(){
+			var addr="${vo.ua_addr}"; 
+			var afteraddr=addr.split(',');  
+			var afteraddr1=afteraddr[0];
+			var afteraddr2=afteraddr[1];   
+			$("input[id='ua_addr1']").attr('value',afteraddr1);    
+			$("input[id='ua_addr2']").attr('value',afteraddr2);   
+		});
 		
   	$("form").submit(function(){
-  		let idChk=$("input[name='idChk']").val();
-  		let ui_id=$("input[name='ui_id']").val();
-  		let ui_pwd=$("input[name='ui_pwd']").val();
-		let ui_pwdchk=$("input[name='ui_pwdchk']").val();
-		let ui_name=$("input[name='ui_name']").val();
-		let ui_email=$("input[name='ui_email']").val();
-	    let ui_phone=$("input[name='ui_phone']").val();
-		//let ua_addr=$("input[name='ua_addr']").val();    
-		
-		 var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			
-			 if(ui_pwd==''){
-				  //$("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
-				  alert("비밀번호를 입력해 주세요.");
-				  $("input[name='ui_pwd']").focus();
-				 return false;
-		     }
-			 if(ui_pwdchk==''){
-				  //$("input[name='ui_pwdchk']").next().html("비밀번호를 입력해 주세요");
-				  alert("비밀번호 확인란을 입력해 주세요.");
-				  $("input[name='ui_pwdchk']").focus();
-				  return false;
-		     }
-			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
-					$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
-					return false;
-			}
+		let ua_name=$("input[name='ua_name']").val();
+	    let ua_phone=$("input[name='ua_phone']").val();
+	    let ua_addr=$("input[id='ua_addr1']").val();
+	    let ua_addrdetail=$("input[id='ua_addr2']").val();
+	    let ua_nickname=$("input[name='ua_nickname']").val();
+		    if(ua_nickname==''){
+				  alert("배송지 명칭을 입력해 주세요.");
+				  $("input[name='ua_nickname']").focus();
+				return false;
+			 }
+	    
 			  if(ui_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
 				return false;
 			 }
-			  if(ui_email==''){
-				  alert("이메일을 입력해 주세요.");
-				  $("input[name='ui_email']").focus();
-			    return false;
-		    }
-			  if(!email_rule.test(ui_email)){
-			      alert("이메일을 형식에 맞게 입력해주세요.");
-			    return false;
-			  }
-			  
 			  if(ui_phone==''){
 				  alert("전화번호를 입력해 주세요.");
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
-			  /*
-			  if(ua_addr==''){
-			  alert("주소를 입력해 주세요.");
-			  $("input[name='ua_addr']").focus();
-		    return false;
-	         }   
-		*/
+			  if(ui_addr==''){
+				  alert("주소를 입력해 주세요");
+				  $("input[id='ui_addr1']").focus();
+			    return false;
+		    }
+			  if(ui_addrdetail==''){
+				  alert("상세주소를 입력해 주세요");
+				  $("input[id='ui_addrdetail']").focus();
+			    return false;
+		    }
 			  
   	});	
 });
 </script>
 <div id="box">
-<form:form method="post" action="${cp }/userupdate" id="form">
-<h2>기본정보</h2>
+<form:form method="post" action="${cp }/useraddrupdate" id="form">
+<h2>배송지 수정</h2>
 <table  id="inserttable"> 
-	<tr>
-		<td  class="col1">아이디</td>
-		<td class="col2">
-		<input type="text" name="ui_id" id="ui_id" value="${vo.ui_id }" readonly="readonly">
-		<input type="hidden" name="ui_pwd" value="${vo.ui_pwd }">
-		<input type="hidden" name="ui_pwdchk" value="${vo.ui_pwd }">
-		</td>
+    <tr>
+		<td class="col1">배송지 명칭</td>
+		<td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }"></td>
 	</tr>
 	<tr>
-		<td class="col1">이름</td>
-		<td class="col2"><input type="text" name="ui_name" value="${vo.ui_name }"><span></span></td>
-	</tr>
-	<tr>
-		<td class="col1">이메일</td>
-		<td class="col2">
-		<input type="text" name="ui_email" value="${vo.ui_email }">
-		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span>
-		</td>
+		<td class="col1">배송받을 분</td>
+		<td class="col2"><input type="text" name="ua_name" value="${vo.ua_name }"></td>
 	</tr>
 	<tr>
 		<td class="col1">전화번호</td>
-		<td class="col2"><input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span></td>
+		<td class="col2"><input type="text" name="ua_phone" value="${vo.ua_phone }">
+		<input type="hidden" name="ua_num" value="${vo.ua_num }">
+		<input type="hidden" name="ui_id" value="${vo.ui_id }">
+		</td>
 	</tr>
     <tr>
 	    <td class="col1">배송받을 주소</td>
@@ -191,13 +158,7 @@ $(function(){
 		<input type="text"  id="ua_addr2" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
 		</td>
     </tr>  
-    <tr>
-		<td class="col1">비밀번호</td>
-		<td class="col2">   
-		<a href="${cp }/changepwd?ui_id=${vo.ui_id}">비밀번호 변경하기</a>
-		</td>
-	</tr>
 </table><br><br>   
 <input type="submit" value="수정" class="btn3">
 </form:form> 
-</div>		
+</div>	
