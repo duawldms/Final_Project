@@ -117,5 +117,5 @@ var themeObj = {
 		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br>   
 		<input type="submit" value="수정">  
 		</form:form> 
-	    <a href="${cp }/changepwd?ui_id=${vo.ui_name}$ui_pwd=${vo.ui_pwd }">비밀번호 변경하기</a>
+	    <a href="${cp }/changepwd?ui_id=${vo.ui_id}">비밀번호 변경하기</a>
 		

@@ -30,8 +30,9 @@ public class LoginController {
 	
 	@GetMapping("/loginsuccess")
 	public String login(Model model){
-		//model.addAttribute("main","/WEB-INF/views/user/result.jsp");
-		return "home";
+		model.addAttribute("result","로그인되었습니다.");
+		model.addAttribute("main","/WEB-INF/views/user/result.jsp");
+		return "layout";
 	}
 	
 }
