@@ -154,7 +154,6 @@
 			success:function(data){
 				if(data.result=='success'){
 					alert('주문표에 추가되었습니다!');
-					
 				}else{
 					alert("오류가 발생하였습니다");
 				}
@@ -168,9 +167,7 @@
 		for(let i=0;i<foodcost.length;i++){
 			foodcost[i].innerHTML=(parseInt(foodcost[i].innerHTML).toLocaleString('ko-KR')+"원");
 		}
-		
-		
-	})
+	});
 	
 	function openModal(status,food_num){
 		$.ajax({
