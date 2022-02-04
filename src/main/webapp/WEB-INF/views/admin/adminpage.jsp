@@ -60,7 +60,7 @@
         <div class="panel-body">
         <ul>
 			<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a></li>
-            <li><a href="${cp }/admin/complain/list">컴플레인 관리</a></li>
+            <li><a href="${cp }/admin/refund/list">환불 관리</a></li>
 		</ul>
         </div>
       </div>
