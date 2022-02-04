@@ -1,19 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
-
-<!DOCTYPE html> 
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
- 
-
-
-
+ 	#box{
+ 	
+ 	text-align:center;
+ 	position:center;
+ 	padding:55px;          
+ 	margin:10px; 
+ 	
+ 	}  
+ 	#useridbtn #chkpwd #insert{    
+ 	
+ 	width: 100px;
+ 	height: 30px;        
+	color: #7bcfbb;
+	background-color: white;  
+	border-radius: 4px;
+	border-color: #7bcfbb;
+	font-size: 12px;       
+	cursor: pointer;  
+ 	
+ 	}
 </style>
-<script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 var themeObj = {
@@ -81,19 +90,17 @@ var themeObj = {
 			  		return false;
 		  	}
 			 if(ui_pwd==''){
-				  //$("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
 				  alert("비밀번호를 입력해 주세요.");
 				  $("input[name='ui_pwd']").focus();
 				 return false;
 		     }
 			 if(ui_pwdchk==''){
-				  //$("input[name='ui_pwdchk']").next().html("비밀번호를 입력해 주세요");
 				  alert("비밀번호 확인란을 입력해 주세요.");
 				  $("input[name='ui_pwdchk']").focus();
 				  return false;
 		     }
 			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
-					$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
+				 alert("비밀번호를 올바르게 입력해주세요");
 					return false;
 			}
 			  if(ui_name==''){
@@ -124,34 +131,32 @@ var themeObj = {
   	});	
 });
 </script>
-</head>
-<body>
-	<form:form method="post" action="${cp }/insertuser">
-	<h2>기본정보</h2>
+<div id="box">
+	<form:form method="post" action="${cp }/insertuser">      
+	<h2>배달요기이츠 회원가입</h2>
 		아이디<br>
-		<input type="text" name="ui_id" id="ui_id"><br>
-		<input type="hidden" id="idChk" value="N" name="idChk">
-		<input type="button" value="아이디 검사" id="useridbtn" name="useridbtn">
+		<input type="text" name="ui_id" id="ui_id"><br>   
+		<input type="button" value="중복검사" id="useridbtn" name="useridbtn"><br> 
+		<input type="hidden" id="idChk" value="N" name="idChk">      
 		<span id="idresult"></span>
 		<br>
 		비밀번호<br>
 		<input type="password" name="ui_pwd"><span></span><br>
 		비밀번호 확인<br>
-		<input type="password" name="ui_pwdchk"><span></span><br>
+		<input type="password" name="ui_pwdchk"><span id="chkpwd"></span><br>
 		이름<br>
 		<input type="text" name="ui_name"><span></span><br>
 		이메일<br><!-- 이메일 연동 구현(추가사항) -->
 		<input type="text" name="ui_email"><span></span><br>
-		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
+		<span style="color:red;">비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
 		전화번호<br>
 		<input type="text" name="ui_phone"><span></span><br>
 		배송받을 주소<br>
-		<input type="text" class="form-control col-6" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!">
-		<input type="text" class="form-control col-4 place" id="ua_addr" name="ua_addr" aria-describedby="addr-addon">
-		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br> 
+		<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; "><br>  
+		<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;  "> 
+		<button  type="button" id="addr-addon">검색</button><br> 
+		선호하는 음식<br>
 		
-		<input type="submit" value="가입">
+		<input type="submit" value="가입" id="insert">
 	</form:form>
-
-</body>
-</html>
+</div>

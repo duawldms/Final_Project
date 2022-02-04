@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 ${result }
-</body>
-</html>
+<a href="${cp}/">주문하러가기</a> | <a href="${cp}/">홈으로</a>

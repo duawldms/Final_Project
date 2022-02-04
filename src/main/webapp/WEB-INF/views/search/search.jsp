@@ -131,7 +131,7 @@
 										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
-										seller+="<span style='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>";
+										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
 										seller+="</div></a>";
 									}
 									$("#restau").append(seller);
@@ -185,7 +185,7 @@
 					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
 					seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 					seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
-					seller+="<spanstyle='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>";
+					seller+="<spanstyle='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
 					seller+="</div></a>";
 				}
 				$("#restau").append(seller);
@@ -264,7 +264,7 @@
 										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>"
-										seller+="<span style='font-size:0.9em'>배달요금 "+data.listvo[i].r_delCost+"원</span>"
+										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>"
 										seller+="</div></a>";
 									}
 									let page="";

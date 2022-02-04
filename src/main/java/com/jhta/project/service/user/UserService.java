@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.jhta.project.mybatis.mapper.user.UserMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.security.AuthorityVo;
+import com.jhta.project.vo.user.FavoritesVo;
 import com.jhta.project.vo.user.UserVo;
 
 @Service
@@ -28,6 +29,9 @@ public class UserService {
 		auth.setAu_authority("ROLE_USER");
 		mapper.addAuth(auth);
 		return 1;
+	}
+	public int favoritesinsert(FavoritesVo vo) {
+		return mapper.favoritesinsert(vo);
 	}
 	public int addAuth(AuthorityVo vo) {
 		return mapper.addAuth(vo);
@@ -51,8 +55,8 @@ public class UserService {
 		vo.setUi_pwd(passwordEncoder.encode(vo.getUi_pwd()));
 		return mapper.updatePwd(vo);
 	}
-	public UserVo selectUser(UserVo vo) {
-		return mapper.selectUser(vo);
+	public UserVo selectUser(String ui_id) {
+		return mapper.selectUser(ui_id);
 	}
 	public UserVo test(String ui_id) {
 		return mapper.test(ui_id);
@@ -61,5 +65,11 @@ public class UserService {
 		String ui_pwd=vo.getUi_pwd();
 		vo.setUi_pwd(passwordEncoder.encode(ui_pwd));
 		return mapper.userupdate(vo);
+	}
+	public int userdelete(UserVo vo) {
+		return mapper.userdelete(vo);
+	}
+	public int userpwdupdate(UserVo vo) {
+		return mapper.userpwdupdate(vo);
 	}
 }
