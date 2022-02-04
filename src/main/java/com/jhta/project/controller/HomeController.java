@@ -21,8 +21,9 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
+		model.addAttribute("main","/WEB-INF/views/home.jsp");
 		model.addAttribute("list", service.Categorylist());
-		return "home";
+		return "layout";
 	}
 	
 }

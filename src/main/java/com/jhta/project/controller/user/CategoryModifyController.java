@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,10 @@ public class CategoryModifyController {
 		return "layout";
 	}
 	@PostMapping("/category/modify")
-	public String categoryModify(CategoryVo vo, MultipartFile file1, Model model) {
+	public String categoryModify(String cg_name, MultipartFile file1, Model model)  throws Exception{
+		String cgname=new String(StringUtils.cleanPath(cg_name).getBytes("8859_1"),"utf-8");
+		System.out.println("네임" +cgname);
+		CategoryVo vo=service.selectOne(cgname);
 		try {
 			if(!file1.isEmpty()) {
 				String path = sc.getRealPath("/resources/img");
@@ -39,13 +43,12 @@ public class CategoryModifyController {
 				FileCopyUtils.copy(is, fos);
 				is.close();
 				fos.close();
-				service.selectOne(saveFileName);
-				File f=new File(path +"\\" + saveFileName);
+				File f=new File(path +"\\" + vo.getCg_photo());
 				f.delete();
-				CategoryVo vo1= new CategoryVo(vo.getCg_name(),vo.getCg_photo());
+				CategoryVo vo1= new CategoryVo(vo.getCg_name(),saveFileName);
 				service.update(vo1);
 			}else {
-				CategoryVo vo1= new CategoryVo(vo.getCg_name(),vo.getCg_photo());
+				CategoryVo vo1= new CategoryVo(cgname,vo.getCg_photo());
 				service.update(vo1);
 			}
 			model.addAttribute("code","success");
