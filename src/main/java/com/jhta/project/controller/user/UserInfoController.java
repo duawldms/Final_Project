@@ -27,13 +27,13 @@ public class UserInfoController {
 	}
 	//비밀번호 확인 창으로 넘어가기 
 	@GetMapping("/userinfocheck")
-		public String UserInfoCheckForm(Model model,String ui_id,Authentication auth) {
+		public String UserInfoCheckForm(Model model,String ui_id) {
 		model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheck.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";		
 	}
 	@GetMapping("/userinfo")
-	public String postPrevModify(Authentication auth,@RequestParam("ui_pwd")String pw,RedirectAttributes rttr,String ui_id,Model model) {
+	public String postPrevModify(Authentication auth,@RequestParam("ui_pwd")String pw,String ui_id,Model model) {
 		String userpwd=service.test(ui_id).getUi_pwd();
 		UserVo vo1=service.selectUser(ui_id);
 		if(passwordEncoder.matches(pw, userpwd)) {

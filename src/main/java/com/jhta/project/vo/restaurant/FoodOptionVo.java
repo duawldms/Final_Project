@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class MainSideVo {
-	private int mo_num;
-	private String r_id;
-	private String mo_category;
-	private String mo_name;
-	private int mo_cost;
+public class FoodOptionVo {
+	private int fo_num;
+	private int food_num;
+	private String fo_name;
+	private int fo_cost;
+	private String fo_category;
 }

@@ -155,6 +155,7 @@ var themeObj = {
 		<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; "><br>  
 		<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;  "> 
 		<button  type="button" id="addr-addon">검색</button><br> 
+		선호하는 음식<br>
 		
 		<input type="submit" value="가입" id="insert">
 	</form:form>
