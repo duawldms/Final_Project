@@ -2,6 +2,9 @@ package com.jhta.project.vo.user;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +19,9 @@ public class InSearchRestaurantVo {
 	private String r_pwd;
 	private String r_name;
 	private String r_addr;
+	@NumberFormat(style=Style.NUMBER)
 	private int r_minCost;
+	@NumberFormat(style=Style.NUMBER)
 	private int r_delCost;
 	private String r_img;
 	private int r_state;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.project.mybatis.mapper.user.SearchMapper;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.user.FoodOptionsVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
@@ -32,6 +33,9 @@ public class SearchService {
 	}
 	public List<FoodVo> foodlist(String r_id) {
 		return mapper.foodlist(r_id);
+	}
+	public List<FoodOptionsVo> foodOptionslist(int food_num){
+		return mapper.foodOptionslist(food_num);
 	}
 }
 
