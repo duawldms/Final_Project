@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
+<style type="text/css">
+
+#searchbox {
+	text-align: center;
+	border: 4px solid #7bcfbb;
+	width: 400px;
+	margin: auto;
+	margin-top:200px;
+	margin-bottom:200px;  
+	padding: 35px;               
+}
+#btn { 
+	width: 100px;
+ 	height: 30px;        
+	color: #7bcfbb;
+	background-color: white;  
+	border-radius: 4px;
+	border-color: #7bcfbb;
+	font-size: 12px;       
+	cursor: pointer;
+}
+</style>
 <script type="text/javascript">
 	$(function(){
 		$("#btn").click(function(){
@@ -27,17 +43,15 @@
 		});
 	});
 });
-</script>
-</head>
-<body>
+</script>  
+<div id="searchbox">
 <form action="${cp}/finduserpwd" method="post">
-	<h2>임시 비밀번호 발급</h2>
+	<h2>임시 비밀번호 발급</h2><br>    
 	아이디<br>
 	<input type="text" name="ui_id"><br>
 	이메일<br>
-	<input type="email" name="ui_email"><br>
-	<input type="button" value="임시비밀번호 발급" id="btn"><br> 
+	<input type="email" name="ui_email"><br><br>
+	<input type="button" value="비밀번호 발급" id="btn"><br><br>  
 	<a href="${cp }/loginuser">로그인</a> | <a href="${cp }/insertuser">회원가입</a>  
 </form>
-</body>
-</html>
+</div>

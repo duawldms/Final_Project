@@ -2,12 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8"> 
-<title>Insert title here</title>
-<script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
@@ -104,20 +98,15 @@ var themeObj = {
   	});	
 });
 </script>
-</head>
-<body>
 <form:form method="post" action="${cp }/userupdate">
 <h2>기본정보</h2>
 		아이디<br>
 		<input type="text" name="ui_id" id="ui_id" value="${vo.ui_id }" readonly="readonly"><br>
-		<br>  
-		비밀번호<br>
-		<input type="password" name="ui_pwd" value="${vo.ui_pwd }"><span></span><br>
-		비밀번호 확인<br>
-		<input type="password" name="ui_pwdchk" value="${vo.ui_pwd }"><span></span><br> 
+		<input type="hidden" name="ui_pwd" value="${vo.ui_pwd }"><span></span>
+		<input type="hidden" name="ui_pwdchk" value="${vo.ui_pwd }"><span></span>
 		이름<br>
 		<input type="text" name="ui_name" value="${vo.ui_name }"><span></span><br>
-		이메일<br><!-- 이메일 연동 구현(추가사항) -->
+		이메일<br>
 		<input type="text" name="ui_email" value="${vo.ui_email }"><span></span><br>
 		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
 		전화번호<br>
@@ -128,5 +117,5 @@ var themeObj = {
 		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br>   
 		<input type="submit" value="수정">  
 		</form:form> 
-</body>
-</html>
+	    <a href="${cp }/changepwd?ui_id=${vo.ui_name}$ui_pwd=${vo.ui_pwd }">비밀번호 변경하기</a>
+		

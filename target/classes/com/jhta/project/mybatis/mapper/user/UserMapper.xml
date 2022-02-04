@@ -44,12 +44,16 @@
 		update user_information  set ui_pwd=#{ui_pwd} where ui_id=#{ui_id} and ui_email=#{ui_email}
 	</update>
 	<!-- 기본정보만 불러오기 -->
-	<select id="selectUser" parameterType="com.jhta.project.vo.user.UserVo" resultType="com.jhta.project.vo.user.UserVo">
+	<select id="selectUser" parameterType="string" resultType="com.jhta.project.vo.user.UserVo">
 		select * from user_information u,user_addr a where u.ui_id=a.ui_id and u.ui_id=#{ui_id} <!--and ui_pwd=#{ui_pwd}  -->
 	</select>
 	<!-- 기본정보 업데이트하기 -->
 	<update id="userupdate" parameterType="com.jhta.project.vo.user.UserVo">
-		update user_information set ui_pwd=#{ui_pwd}, ui_email=#{ui_email}, ui_phone=#{ui_phone}, ui_name=#{ui_name} where ui_id=#{ui_id}
+		update user_information set ui_email=#{ui_email}, ui_phone=#{ui_phone}, ui_name=#{ui_name} where ui_id=#{ui_id}
+	</update>
+	<!-- 회원 탈퇴하기 -->
+	<update id="userdelete" parameterType="com.jhta.project.vo.user.UserVo">
+		update user_information set ui_state=2 where ui_id=#{ui_id} 
 	</update>
 	<!-- 내가 쓴 리뷰 불러오기 -->
 	
@@ -57,7 +61,6 @@
 	
 	
 	<!-- 내가 문의한 내역?(추가기능) -->
-	
 	
 	<!-- 지은 test -->
 	<select id="test" parameterType="string" resultType="com.jhta.project.vo.user.UserVo">
