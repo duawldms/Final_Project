@@ -15,5 +15,4 @@ public class FoodVo {
 	private int food_cost;
 	private String food_info;
 	private int food_status;
-	private String food_category;
 }

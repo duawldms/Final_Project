@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.jhta.project.service.security.CustomUserDetail;
+import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
-import com.jhta.project.vo.restaurant.MainSideVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
 
@@ -19,7 +19,6 @@ public interface RestaurantMapper {
 	List<RestaurantVo> restaurantinfo(String r_id);
 	List<FoodVo> menuList(String r_id);
 	FoodVo getFood(int food_num);
-	List<FoodVo> catrgoryList(String r_id);
-	void MainSideAdd(MainSideVo vo);
 	List<FoodVo> foodSearch(Map<String, String> map);
+	int sideAdd(FoodOptionVo vo);
 }

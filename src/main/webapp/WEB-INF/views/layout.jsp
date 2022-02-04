@@ -86,8 +86,19 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
+						<span class="elementor-icon-list-text"><a href="javascript:showcart()">주문표</a></span>
 					</li>
+					<script>
+						function showcart(){
+							$.ajax({
+								url:"${cp}/showcart",
+								dataType:"json",
+								success:function(data){
+									
+								}
+							});
+						}
+					</script>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
 					</li>
@@ -128,8 +139,9 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 		<main id="content" class="neve-main" role="main">
 
 			<div id="main">
+				<jsp:include page="${requestScope.cartlist }"/>
 				<jsp:include page="${requestScope.main }" />
-
+				
 			</div>
 
 		</main>

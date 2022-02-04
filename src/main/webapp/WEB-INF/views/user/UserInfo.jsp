@@ -3,6 +3,66 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style type="text/css">
+ 	#box{
+ 	position:center;
+ 	padding:45px;                   
+ 	margin:100px; 
+ 	} 
+ 	#form{
+ 	margin:auto;
+ 	text-align: center;  
+ 	position:center;      
+ 	} 
+ 	
+ 	#inserttable
+ 	{
+ 	height: 300px;
+    width: 900px;
+    border-top: 3px solid black;
+    margin-right: auto;
+    margin-left: auto;
+ 	
+ 	}
+ 	td
+ 	{
+    border-bottom: 1px dotted black;
+    }
+    .col1 {
+    background-color: #7bcfbb;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2  em;  
+    }   
+ 
+    .col2 {
+    text-align: left;
+    padding: 5px;
+    }
+     .useridbtn {    
+    height: 25px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-color: black;
+    }
+   .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    } 
+    .num{
+    color: red;
+    }
+</style>
 <script type="text/javascript">
 
 $(function(){
@@ -98,24 +158,48 @@ var themeObj = {
   	});	
 });
 </script>
-<form:form method="post" action="${cp }/userupdate">
+<div id="box">
+<form:form method="post" action="${cp }/userupdate" id="form">
 <h2>기본정보</h2>
-		아이디<br>
-		<input type="text" name="ui_id" id="ui_id" value="${vo.ui_id }" readonly="readonly"><br>
-		<input type="hidden" name="ui_pwd" value="${vo.ui_pwd }"><span></span>
-		<input type="hidden" name="ui_pwdchk" value="${vo.ui_pwd }"><span></span>
-		이름<br>
-		<input type="text" name="ui_name" value="${vo.ui_name }"><span></span><br>
-		이메일<br>
-		<input type="text" name="ui_email" value="${vo.ui_email }"><span></span><br>
-		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
-		전화번호<br>
-		<input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span><br>       
-		배송받을 주소<br>
-		<input type="text" class="form-control col-6" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!">
-		<input type="text" class="form-control col-4 place" id="ua_addr2" name="ua_addr" aria-describedby="addr-addon">     
-		<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button><br>   
-		<input type="submit" value="수정">  
-		</form:form> 
-	    <a href="${cp }/changepwd?ui_id=${vo.ui_name}$ui_pwd=${vo.ui_pwd }">비밀번호 변경하기</a>
-		
+<table  id="inserttable"> 
+	<tr>
+		<td  class="col1">아이디</td>
+		<td class="col2">
+		<input type="text" name="ui_id" id="ui_id" value="${vo.ui_id }" readonly="readonly">
+		<input type="hidden" name="ui_pwd" value="${vo.ui_pwd }">
+		<input type="hidden" name="ui_pwdchk" value="${vo.ui_pwd }">
+		</td>
+	</tr>
+	<tr>
+		<td class="col1">이름</td>
+		<td class="col2"><input type="text" name="ui_name" value="${vo.ui_name }"><span></span></td>
+	</tr>
+	<tr>
+		<td class="col1">이메일</td>
+		<td class="col2">
+		<input type="text" name="ui_email" value="${vo.ui_email }">
+		<span>비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="col1">전화번호</td>
+		<td class="col2"><input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span></td>
+	</tr>
+    <tr>
+	    <td class="col1">배송받을 주소</td>
+		<td class="col2">
+		<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
+		<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
+		<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
+		</td>
+    </tr>  
+    <tr>
+		<td class="col1">비밀번호</td>
+		<td class="col2">   
+		<a href="${cp }/changepwd?ui_id=${vo.ui_id}">비밀번호 변경하기</a>
+		</td>
+	</tr>
+</table><br><br>   
+<input type="submit" value="수정" class="btn3">
+</form:form> 
+</div>		

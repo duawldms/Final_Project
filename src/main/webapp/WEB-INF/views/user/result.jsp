@@ -3,16 +3,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	#resultbox{width:400px;height:200px;border: solid 1px;align-items: center;border: solid 3px;border-color: #7bcfbb;
-	           margin:10px;display: inline-block;text-align: center;}  
 
+	#resultbox{
+	text-align: center;
+	border: 4px solid #7bcfbb;
+	width: 400px;
+	margin: auto;
+	margin-top:200px;
+	margin-bottom:200px;  
+	padding: 35px;  
+	height:300px;   
+	font-size: 25px;                 
+	}     
+	 .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    } 
+     .btn4 {
+    color:#F6416C;  
+    height: 35px;
+    width: 150px;
+    background-color: white;   
+    border: 2px solid #F6416C;
+    }
+    .btn4:hover { 
+    background-color: #F6416C;       
+    color: black;
+    border: 2px solid white;
+    } 
+	
 </style>
-
 <div id="resultbox">
- 안녕하세요 <br>
- 배달요기이츠 회원이 되어주셔서 감사합니다!<br>
+${result }
 <p></p>
- <a href="${cp}/loginuser">로그인</a> | <a href="${cp}/">주문하러가기</a> | <a href="${cp}/">홈으로</a>
+ <a href="${cp}/loginuser" class="btn3">로그인</a>    <a href="${cp}/" class="btn4">주문하러가기</a> 
 </div>
 
 

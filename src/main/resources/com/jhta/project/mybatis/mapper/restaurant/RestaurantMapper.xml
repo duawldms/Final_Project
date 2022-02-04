@@ -35,24 +35,18 @@
 	</select>
 	<!-- 메뉴 등록 -->
 	<insert id="menuAdd" parameterType="com.jhta.project.vo.restaurant.FoodVo">
-		insert into food values(food_seq.nextval, #{food_name}, #{r_id}, #{food_img}, #{food_cost}, #{food_info}, #{food_status}, #{food_category})
+		insert into food values(food_seq.nextval, #{food_name}, #{r_id}, #{food_img}, #{food_cost}, #{food_info}, #{food_status})
+	</insert>
+	<!-- 사이드 메뉴 추가 -->
+	<insert id="sideAdd" parameterType="com.jhta.project.vo.restaurant.FoodOptionVo">
+		insert into food_options values(food_options_seq.nextval, #{food_num}, #{fo_name}, #{fo_cost}, #{fo_category})
 	</insert>
 	<!-- 해당 매장 메뉴 불러오기 -->
 	<select id="menuList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
-		select food_num, food_name, food_info, food_img, food_cost, food_category
+		select food_num, food_name, food_info, food_img, food_cost
 		from restaurant r, food f
 		where r.r_id = f.r_id and r.r_id = #{r_id}
 	</select>
-	<!-- 해당 매장 음식 카테고리 불러오기 -->
-	<select id="catrgoryList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
-		select distinct food_category
-		from restaurant r, food f
-		where r.r_id = f.r_id and not food_category is null and r.r_id = #{r_id}
-	</select>
-	<!-- 대표 음식 사이드 메뉴 등록 -->
-	<insert id="MainSideAdd" parameterType="com.jhta.project.vo.restaurant.MainSideVo">
-		insert into main_options values(main_options_seq.nextval, #{r_id}, #{mo_category}, #{mo_name}, #{mo_cost})
-	</insert>
 	<!-- food_num에 해당되는 음식 불러오기 -->
 	<select id="getFood" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodVo">
 		select * from food where food_num = #{food_num}

@@ -12,16 +12,18 @@
 	margin-bottom:200px;  
 	padding: 35px;  
 }
-#searchbtn { 
-	width: 80px;
-	height: 30px;        
-	color: #7bcfbb;
-	background-color: white;  
-	border-radius: 4px;
-	border-color: #7bcfbb;
-	font-size: 20px;
-	cursor: pointer;
-}
+  .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    }   
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -52,9 +54,10 @@
 		이름<br>
 		<input type="text" name="ui_name"><br>
 		핸드폰 번호<br>
-		<input type="text" name="ui_phone"><br><br>  
-		<input type="button" value="조회" id="searchbtn"><br><br>  
-		<span id="result"></span>
+		<input type="text" name="ui_phone"><br><br>   
+		<input type="button" value="조회" id="searchbtn" class="btn3"><br><br>  
+		<span id="result"></span> 
 		<span></span>	
 	</form>
+			<a href="${cp }/loginuser">로그인</a> | <a href="${cp }/insertuser">회원가입</a>  
 </div>
