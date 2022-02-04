@@ -10,18 +10,54 @@
  	margin:10px; 
  	
  	}  
- 	#useridbtn #chkpwd #insert{    
  	
- 	width: 100px;
- 	height: 30px;        
-	color: #7bcfbb;
-	background-color: white;  
-	border-radius: 4px;
-	border-color: #7bcfbb;
-	font-size: 12px;       
-	cursor: pointer;  
+ 	#inserttable
+ 	{
+ 	height: 300px;
+    width: 900px;
+    border-top: 3px solid black;
+    margin-right: auto;
+    margin-left: auto;
  	
  	}
+ 	td
+ 	{
+    border-bottom: 1px dotted black;
+    }
+    .col1 {
+    background-color: #7bcfbb;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2  em;  
+    }   
+ 
+    .col2 {
+    text-align: left;
+    padding: 5px;
+    }
+     .useridbtn {    
+    height: 25px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-color: black;
+    }
+   .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    } 
+    .num{
+    color: red;
+    }
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -94,15 +130,23 @@ var themeObj = {
 				  $("input[name='ui_pwd']").focus();
 				 return false;
 		     }
+			 if(ui_pwd.length < 5 || ui_pwd.length > 10) {
+		          alert('비밀번호는 5 ~ 10자 사이로 입력하세요.');
+		      	  $("input[name='ui_pwd']").focus();
+		          return false;
+		      }
 			 if(ui_pwdchk==''){
 				  alert("비밀번호 확인란을 입력해 주세요.");
 				  $("input[name='ui_pwdchk']").focus();
 				  return false;
 		     }
-			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
-				 alert("비밀번호를 올바르게 입력해주세요");
-					return false;
-			}
+			 if(ui_pwd != ui_pwdchk){
+				 $("input[name='ui_pwdchk']").next().html("비밀번호가 일치하지 않습니다.");
+				 return false;
+			 }
+			 if(ui_pwd==ui_pwdchk){
+				 $("input[name='ui_pwdchk']").next().html("");
+			 }
 			  if(ui_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
@@ -127,36 +171,62 @@ var themeObj = {
 				  alert("주소를 입력해 주세요.");
 				  $("input[name='ua_addr']").focus();
 			    return false;
-		}   
+		    }
+
   	});	
 });
 </script>
 <div id="box">
 	<form:form method="post" action="${cp }/insertuser">      
-	<h2>배달요기이츠 회원가입</h2>
-		아이디<br>
-		<input type="text" name="ui_id" id="ui_id"><br>   
-		<input type="button" value="중복검사" id="useridbtn" name="useridbtn"><br> 
-		<input type="hidden" id="idChk" value="N" name="idChk">      
-		<span id="idresult"></span>
-		<br>
-		비밀번호<br>
-		<input type="password" name="ui_pwd"><span></span><br>
-		비밀번호 확인<br>
-		<input type="password" name="ui_pwdchk"><span id="chkpwd"></span><br>
-		이름<br>
-		<input type="text" name="ui_name"><span></span><br>
-		이메일<br><!-- 이메일 연동 구현(추가사항) -->
-		<input type="text" name="ui_email"><span></span><br>
-		<span style="color:red;">비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span><br>
-		전화번호<br>
-		<input type="text" name="ui_phone"><span></span><br>
-		배송받을 주소<br>
-		<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; "><br>  
-		<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;  "> 
-		<button  type="button" id="addr-addon">검색</button><br> 
-		선호하는 음식<br>
-		
-		<input type="submit" value="가입" id="insert">
+	<h2>배달요기이츠 회원가입</h2><br><br>
+	<table id="inserttable">
+		<tr>
+			<td class="col1">아이디</td>
+			<td class="col2"><input type="text" name="ui_id" id="ui_id">
+			<input type="button" value="중복검사" id="useridbtn" name="useridbtn" class="useridbtn">
+			<input type="hidden" id="idChk" value="N" name="idChk">  
+			<span id="idresult"></span>  
+			</td>
+		</tr>
+		<tr>
+			<td class="col1">비밀번호</td>
+			<td class="col2">
+			<input type="password" name="ui_pwd"><span></span><br>
+			※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
+            5 ~ 10자리</span>로 입력이 가능합니다.
+			</td>
+		</tr>
+		<tr>
+			<td class="col1">비밀번호확인</td>
+			<td class="col2">
+			<input type="password" name="ui_pwdchk"><span id="chkpwd" style="color:blue;"></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="col1">이름</td>
+			<td class="col2"><input type="text" name="ui_name"></td>
+		</tr>
+		<tr>
+			<td class="col1">이메일</td>
+			<td class="col2">
+			<input type="text" name="ui_email"><br>
+			<span style="color:red;">비밀번호 발급 및 개인정보 확인을 위해 정확한 이메일을 입력 해 주세요</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="col1">전화번호</td>
+			<td class="col2"><input type="text" name="ui_phone"></td>
+		</tr>
+		<tr>
+			<td class="col1">배송받을 주소</td>
+			<td class="col2">
+			<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
+			<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
+			<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
+			
+			</td>
+		</tr>
+	</table><br><br>   
+		<input type="submit" value="가입" id="insert" class="btn3">
 	</form:form>
 </div>
