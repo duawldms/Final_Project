@@ -10,17 +10,19 @@
 	margin-top:200px;
 	margin-bottom:200px;  
 	padding: 35px;               
-}
-#btn { 
-	width: 100px;
- 	height: 30px;        
-	color: #7bcfbb;
-	background-color: white;  
-	border-radius: 4px;
-	border-color: #7bcfbb;
-	font-size: 12px;       
-	cursor: pointer;
-}
+} 
+   .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    } 
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -51,7 +53,7 @@
 	<input type="text" name="ui_id"><br>
 	이메일<br>
 	<input type="email" name="ui_email"><br><br>
-	<input type="button" value="비밀번호 발급" id="btn"><br><br>  
+	<input type="button" value="비밀번호 발급" id="btn" class="btn3"><br><br>   
 	<a href="${cp }/loginuser">로그인</a> | <a href="${cp }/insertuser">회원가입</a>  
 </form>
 </div>
