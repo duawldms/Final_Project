@@ -13,7 +13,8 @@ public interface UserMapper {
 	String searchId(UserVo vo);
 	UserVo searchPwd(UserVo vo);
 	int updatePwd(UserVo vo);
-	UserVo selectUser(UserVo vo);
+	UserVo selectUser(String ui_id);
 	UserVo test(String ui_id);
 	int userupdate(UserVo vo);
+	int userdelete(UserVo vo);
 }

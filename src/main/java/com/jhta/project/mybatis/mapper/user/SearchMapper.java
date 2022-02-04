@@ -3,6 +3,8 @@ package com.jhta.project.mybatis.mapper.user;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.user.FoodOptionsVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
@@ -12,4 +14,6 @@ public interface SearchMapper {
 	int count(HashMap<String, Object> map);
 	List<String> searchCategory();
 	InSearchRestaurantVo searchDetail(String r_id);
+	List<FoodVo> foodlist(String r_id);
+	List<FoodOptionsVo> foodOptionslist(int food_num);
 }

@@ -3,19 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>배달요기이츠</title>
-<head>
-	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 <link rel="stylesheet" href="${cp }/resources/css/list.css">
-
-
 <link rel='stylesheet' id='elementor-frontend-css'  href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.5.3' type='text/css' media='all' />
 <style id='elementor-frontend-inline-css' type='text/css'>
 .elementor-kit-31{--e-global-color-primary:#6EC1E4;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.elementor-widget:not(:last-child){margin-bottom:20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}}
@@ -61,137 +52,7 @@
 <link rel='stylesheet' id='rocket-font-css'  href='//cdn.jsdelivr.net/font-notosans-kr/1.0.0-v1004/NotoSansKR-2350.css?ver=5.8.2' type='text/css' media='all' />
 <link rel='stylesheet' id='rocket-font-css-css'  href='https://www.coupangeats.com/wp-content/plugins/rocket-font/assets/css/www-coupangeats-com_rocketfont.min.css?ver=1635306426' type='text/css' media='all' />
 
-
-<body>
-<body  class="home page-template page-template-elementor_header_footer page page-id-308 wp-custom-logo ehf-header ehf-footer ehf-template-neve ehf-stylesheet-neve  nv-blog-grid nv-sidebar-full-width menu_sidebar_slide_left elementor-default elementor-template-full-width elementor-kit-31 elementor-page elementor-page-308" id="neve_body"  >
 <div class="wrapper">
-	<header class="header" role="banner" next-page-hide>
-		
-				
-			
-					<div data-elementor-type="wp-post" data-elementor-id="919" class="elementor elementor-919" data-elementor-settings="[]">
-							<div class="elementor-section-wrap">
-							<section class="elementor-section elementor-top-section elementor-element elementor-element-70841d41 elementor-section-stretched elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="70841d41" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-11e3cfa" data-id="11e3cfa" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-5143ba2 hfe-menu-item-center hfe-menu-item-center hfe-submenu-icon-arrow hfe-link-redirect-child elementor-widget elementor-widget-navigation-menu" data-id="5143ba2" data-element_type="widget" data-settings="{&quot;hamburger_align_mobile&quot;:&quot;right&quot;,&quot;hamburger_menu_align&quot;:&quot;center&quot;,&quot;hamburger_menu_align_mobile&quot;:&quot;center&quot;,&quot;width_flyout_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:100,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;close_flyout_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;hamburger_align&quot;:&quot;center&quot;,&quot;width_flyout_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:300,&quot;sizes&quot;:[]},&quot;width_flyout_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_flyout_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;padding_flyout_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_flyout_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_top_space&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_top_space_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_top_space_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;close_flyout_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;close_flyout_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
-				<div class="elementor-widget-container">
-						<div class="hfe-nav-menu__toggle elementor-clickable hfe-flyout-trigger" tabindex="0">
-					
-				</div>
-			<div class="hfe-flyout-wrapper" >
-				<div class="hfe-flyout-overlay elementor-clickable"></div>
-				<div class="hfe-flyout-container">
-					<div id="hfe-flyout-content-id-5143ba2" class="hfe-side hfe-flyout-left hfe-flyout-open" data-layout="left" data-flyout-type="normal">
-						<div class="hfe-flyout-content push">						
-							<nav ><ul id="menu-1-5143ba2" class="hfe-nav-menu"><li id="menu-item-938" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home parent hfe-creative-menu"><a href="https://www.coupangeats.com" class = "hfe-menu-item">Korean</a></li>
-<li id="menu-item-939" class="menu-item menu-item-type-custom menu-item-object-custom parent hfe-creative-menu"><a href="https://www.coupangeats.com/en" class = "hfe-menu-item">English</a></li>
-</ul></nav>
-							<div class="elementor-clickable hfe-flyout-close" tabindex="0">
-								<i aria-hidden="true" tabindex="0" class="far fa-window-close"></i>							</div>
-						</div>
-					</div>
-				</div>
-			</div>				
-					</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-77a26d79" data-id="77a26d79" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-792c50bd elementor-widget elementor-widget-site-logo" data-id="792c50bd" data-element_type="widget" data-settings="{&quot;width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:163,&quot;sizes&quot;:[]},&quot;caption_space&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;align_mobile&quot;:&quot;center&quot;,&quot;width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1000,&quot;sizes&quot;:[]},&quot;align_tablet&quot;:&quot;center&quot;,&quot;width_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:94,&quot;sizes&quot;:[]},&quot;space_mobile&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:100,&quot;sizes&quot;:[]},&quot;image_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;0&quot;,&quot;right&quot;:&quot;0&quot;,&quot;bottom&quot;:&quot;0&quot;,&quot;left&quot;:&quot;0&quot;,&quot;isLinked&quot;:true},&quot;caption_space_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;align&quot;:&quot;center&quot;,&quot;space&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;space_tablet&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;image_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_padding_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;caption_space_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="site-logo.default">
-				<div class="elementor-widget-container">
-					<div class="hfe-site-logo">
-													<a data-elementor-open-lightbox=""  class='elementor-clickable' href="https://www.coupangeats.com">
-							<div class="hfe-site-logo-set">           
-				<div class="hfe-site-logo-container">
-					<img class="hfe-site-logo-img elementor-animation-"  src="https://www.coupangeats.com/wp-content/uploads/2021/10/white-solid-300x52.png" alt="white solid"/>
-				</div>
-			</div>
-							</a>
-						</div>  
-					</div>
-				</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-33b3b070" data-id="33b3b070" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-676f6ea9 elementor-icon-list--layout-inline elementor-list-item-link-inline elementor-align-right elementor-mobile-align-center elementor-widget elementor-widget-icon-list" data-id="676f6ea9" data-element_type="widget" data-widget_type="icon-list.default">
-				<div class="elementor-widget-container">
-			<style>/*! elementor - v3.5.3 - 28-12-2021 */
-.elementor-widget.elementor-icon-list--layout-inline .elementor-widget-container{overflow:hidden}.elementor-widget .elementor-icon-list-items.elementor-inline-items{margin-right:-8px;margin-left:-8px}.elementor-widget .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item{margin-right:8px;margin-left:8px}.elementor-widget .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:after{width:auto;left:auto;right:auto;position:relative;height:100%;border-top:0;border-bottom:0;border-right:0;border-left-width:1px;border-style:solid;right:-8px}.elementor-widget .elementor-icon-list-items{list-style-type:none;margin:0;padding:0}.elementor-widget .elementor-icon-list-item{margin:0;padding:0;position:relative}.elementor-widget .elementor-icon-list-item:after{position:absolute;bottom:0;width:100%}.elementor-widget .elementor-icon-list-item,.elementor-widget .elementor-icon-list-item a{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:inherit}.elementor-widget .elementor-icon-list-icon+.elementor-icon-list-text{-ms-flex-item-align:center;align-self:center;padding-left:5px}.elementor-widget .elementor-icon-list-icon{display:-webkit-box;display:-ms-flexbox;display:flex}.elementor-widget .elementor-icon-list-icon svg{width:var(--e-icon-list-icon-size,1em);height:var(--e-icon-list-icon-size,1em)}.elementor-widget .elementor-icon-list-icon i{width:1.25em;font-size:var(--e-icon-list-icon-size)}.elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon{text-align:var(--e-icon-list-icon-align)}.elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon svg{margin:var(--e-icon-list-icon-margin,0 calc(var(--e-icon-list-icon-size, 1em) * .25) 0 0)}.elementor-widget.elementor-list-item-link-full_width a{width:100%}.elementor-widget.elementor-align-center .elementor-icon-list-item,.elementor-widget.elementor-align-center .elementor-icon-list-item a{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.elementor-widget.elementor-align-center .elementor-icon-list-item:after{margin:auto}.elementor-widget.elementor-align-center .elementor-inline-items{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.elementor-widget.elementor-align-left .elementor-icon-list-item,.elementor-widget.elementor-align-left .elementor-icon-list-item a{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:left}.elementor-widget.elementor-align-left .elementor-inline-items{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.elementor-widget.elementor-align-right .elementor-icon-list-item,.elementor-widget.elementor-align-right .elementor-icon-list-item a{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right}.elementor-widget.elementor-align-right .elementor-icon-list-items{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.elementor-widget:not(.elementor-align-right) .elementor-icon-list-item:after{left:0}.elementor-widget:not(.elementor-align-left) .elementor-icon-list-item:after{right:0}@media (max-width:1024px){.elementor-widget.elementor-tablet-align-center .elementor-icon-list-item,.elementor-widget.elementor-tablet-align-center .elementor-icon-list-item a,.elementor-widget.elementor-tablet-align-center .elementor-icon-list-items{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.elementor-widget.elementor-tablet-align-center .elementor-icon-list-item:after{margin:auto}.elementor-widget.elementor-tablet-align-left .elementor-icon-list-items{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.elementor-widget.elementor-tablet-align-left .elementor-icon-list-item,.elementor-widget.elementor-tablet-align-left .elementor-icon-list-item a{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:left}.elementor-widget.elementor-tablet-align-right .elementor-icon-list-items{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.elementor-widget.elementor-tablet-align-right .elementor-icon-list-item,.elementor-widget.elementor-tablet-align-right .elementor-icon-list-item a{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right}.elementor-widget:not(.elementor-tablet-align-right) .elementor-icon-list-item:after{left:0}.elementor-widget:not(.elementor-tablet-align-left) .elementor-icon-list-item:after{right:0}}@media (max-width:767px){.elementor-widget.elementor-mobile-align-center .elementor-icon-list-item,.elementor-widget.elementor-mobile-align-center .elementor-icon-list-item a,.elementor-widget.elementor-mobile-align-center .elementor-icon-list-items{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.elementor-widget.elementor-mobile-align-center .elementor-icon-list-item:after{margin:auto}.elementor-widget.elementor-mobile-align-left .elementor-icon-list-items{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.elementor-widget.elementor-mobile-align-left .elementor-icon-list-item,.elementor-widget.elementor-mobile-align-left .elementor-icon-list-item a{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:left}.elementor-widget.elementor-mobile-align-right .elementor-icon-list-items{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.elementor-widget.elementor-mobile-align-right .elementor-icon-list-item,.elementor-widget.elementor-mobile-align-right .elementor-icon-list-item a{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right}.elementor-widget:not(.elementor-mobile-align-right) .elementor-icon-list-item:after{left:0}.elementor-widget:not(.elementor-mobile-align-left) .elementor-icon-list-item:after{right:0}}</style>		<ul class="elementor-icon-list-items elementor-inline-items">
-							<sec:authorize access="isAnonymous()">
-						<li class="elementor-icon-list-item elementor-inline-item">
-							<span class="elementor-icon-list-text"><a href="${cp }/loginuser">로그인</a></span>
-						</li>
-						<li class="elementor-icon-list-item elementor-inline-item">
-							<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-						</li>
-				</sec:authorize>
-				<sec:authorize access="hasRole('ROLE_USER')">
-					<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-					</li>
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
-					</li>
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('user_logout').submit();">로그아웃</a></span>
-						<form:form id="user_logout" method="post" action="${cp }/logout">
-						</form:form>
-					</li>
-				</sec:authorize>
-				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/usermypage">회원정보</a></span>
-					</li>
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage">My Page</a></span>
-					</li>
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('restaurant_logout').submit();">로그아웃</a></span>
-						<form:form id="restaurant_logout" method="post" action="${cp }/logout">
-						</form:form>
-					</li>
-				</sec:authorize>
-							<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
-									</li>
-				<%-- 			<c:choose>
-				<c:when test="${empty sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/loginuser">로그인</a></span>
-									</li>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-									</li>
-									</c:when>
-									<c:otherwise>
-									<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
-									</li>
-									<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
-									</li>
-									<li>
-									    <span class="elementor-icon-list-text"><a href="${cp }/logout">로그아웃</a></span>
-									</li>
-									</c:otherwise>
-				</c:choose> --%>
-						</ul>
-				</div>
-				</div>
-					</div>
-		</div>
-							</div>
-		</section>
-						</div>
-					</div>
-				</header>
-	<main id="content" class="neve-main" role="main">
 		<div data-elementor-type="wp-page" data-elementor-id="308" class="elementor elementor-308" data-elementor-settings="[]">
 							<div class="elementor-section-wrap">
 							<section class="elementor-section elementor-top-section elementor-element elementor-element-72b50422 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="72b50422" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;video&quot;,&quot;background_video_link&quot;:&quot;https:\/\/youtu.be\/hfWZ1DlLnqU&quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;,&quot;background_privacy_mode&quot;:&quot;yes&quot;}">
@@ -332,71 +193,15 @@
 		</div>
 							</div>
 		</section>
-		
-			
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-63aa062 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="63aa062" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-no">
-				
-							</div>
-		</section>
-				
 						</div>
 					</div>
 		
-</main><!--/.neve-main-->
-		<footer itemtype="https://schema.org/WPFooter" itemscope="itemscope" id="colophon" role="contentinfo">
-			<div class='footer-width-fixer'>		<div data-elementor-type="wp-post" data-elementor-id="907" class="elementor elementor-907" data-elementor-settings="[]">
-							<div class="elementor-section-wrap">
-							<section class="elementor-section elementor-top-section elementor-element elementor-element-31bccabf elementor-section-stretched footer elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="31bccabf" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-narrow">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-627f15bb" data-id="627f15bb" data-element_type="column">
-			<div class="elementor-widget-wrap elementor-element-populated">
-								<div class="elementor-element elementor-element-47ed8eb1 elementor-shape-rounded elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons" data-id="47ed8eb1" data-element_type="widget" data-widget_type="social-icons.default">
-				<div class="elementor-widget-container">
-			<style>/*! elementor - v3.5.3 - 28-12-2021 */
-.elementor-widget-social-icons.elementor-grid-0 .elementor-widget-container,.elementor-widget-social-icons.elementor-grid-mobile-0 .elementor-widget-container,.elementor-widget-social-icons.elementor-grid-tablet-0 .elementor-widget-container{line-height:1;font-size:0}.elementor-widget-social-icons:not(.elementor-grid-0):not(.elementor-grid-tablet-0):not(.elementor-grid-mobile-0) .elementor-grid{display:inline-grid}.elementor-widget-social-icons .elementor-grid{grid-column-gap:var(--grid-column-gap,5px);grid-row-gap:var(--grid-row-gap,5px);grid-template-columns:var(--grid-template-columns);-webkit-box-pack:var(--justify-content,center);-ms-flex-pack:var(--justify-content,center);justify-content:var(--justify-content,center);justify-items:var(--justify-content,center)}.elementor-icon.elementor-social-icon{font-size:var(--icon-size,25px);line-height:var(--icon-size,25px);width:calc(var(--icon-size, 25px) + (2 * var(--icon-padding, .5em)));height:calc(var(--icon-size, 25px) + (2 * var(--icon-padding, .5em)))}.elementor-social-icon{--e-social-icon-icon-color:#fff;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;background-color:#818a91;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center;cursor:pointer}.elementor-social-icon i{color:var(--e-social-icon-icon-color)}.elementor-social-icon svg{fill:var(--e-social-icon-icon-color)}.elementor-social-icon:last-child{margin:0}.elementor-social-icon:hover{opacity:.9;color:#fff}.elementor-social-icon-android{background-color:#a4c639}.elementor-social-icon-apple{background-color:#999}.elementor-social-icon-behance{background-color:#1769ff}.elementor-social-icon-bitbucket{background-color:#205081}.elementor-social-icon-codepen{background-color:#000}.elementor-social-icon-delicious{background-color:#39f}.elementor-social-icon-deviantart{background-color:#05cc47}.elementor-social-icon-digg{background-color:#005be2}.elementor-social-icon-dribbble{background-color:#ea4c89}.elementor-social-icon-elementor{background-color:#d30c5c}.elementor-social-icon-envelope{background-color:#ea4335}.elementor-social-icon-facebook,.elementor-social-icon-facebook-f{background-color:#3b5998}.elementor-social-icon-flickr{background-color:#0063dc}.elementor-social-icon-foursquare{background-color:#2d5be3}.elementor-social-icon-free-code-camp,.elementor-social-icon-freecodecamp{background-color:#006400}.elementor-social-icon-github{background-color:#333}.elementor-social-icon-gitlab{background-color:#e24329}.elementor-social-icon-globe{background-color:#818a91}.elementor-social-icon-google-plus,.elementor-social-icon-google-plus-g{background-color:#dd4b39}.elementor-social-icon-houzz{background-color:#7ac142}.elementor-social-icon-instagram{background-color:#262626}.elementor-social-icon-jsfiddle{background-color:#487aa2}.elementor-social-icon-link{background-color:#818a91}.elementor-social-icon-linkedin,.elementor-social-icon-linkedin-in{background-color:#0077b5}.elementor-social-icon-medium{background-color:#00ab6b}.elementor-social-icon-meetup{background-color:#ec1c40}.elementor-social-icon-mixcloud{background-color:#273a4b}.elementor-social-icon-odnoklassniki{background-color:#f4731c}.elementor-social-icon-pinterest{background-color:#bd081c}.elementor-social-icon-product-hunt{background-color:#da552f}.elementor-social-icon-reddit{background-color:#ff4500}.elementor-social-icon-rss{background-color:#f26522}.elementor-social-icon-shopping-cart{background-color:#4caf50}.elementor-social-icon-skype{background-color:#00aff0}.elementor-social-icon-slideshare{background-color:#0077b5}.elementor-social-icon-snapchat{background-color:#fffc00}.elementor-social-icon-soundcloud{background-color:#f80}.elementor-social-icon-spotify{background-color:#2ebd59}.elementor-social-icon-stack-overflow{background-color:#fe7a15}.elementor-social-icon-steam{background-color:#00adee}.elementor-social-icon-stumbleupon{background-color:#eb4924}.elementor-social-icon-telegram{background-color:#2ca5e0}.elementor-social-icon-thumb-tack{background-color:#1aa1d8}.elementor-social-icon-tripadvisor{background-color:#589442}.elementor-social-icon-tumblr{background-color:#35465c}.elementor-social-icon-twitch{background-color:#6441a5}.elementor-social-icon-twitter{background-color:#1da1f2}.elementor-social-icon-viber{background-color:#665cac}.elementor-social-icon-vimeo{background-color:#1ab7ea}.elementor-social-icon-vk{background-color:#45668e}.elementor-social-icon-weibo{background-color:#dd2430}.elementor-social-icon-weixin{background-color:#31a918}.elementor-social-icon-whatsapp{background-color:#25d366}.elementor-social-icon-wordpress{background-color:#21759b}.elementor-social-icon-xing{background-color:#026466}.elementor-social-icon-yelp{background-color:#af0606}.elementor-social-icon-youtube{background-color:#cd201f}.elementor-social-icon-500px{background-color:#0099e5}.elementor-shape-rounded .elementor-icon.elementor-social-icon{-webkit-border-radius:10%;border-radius:10%}.elementor-shape-circle .elementor-icon.elementor-social-icon{-webkit-border-radius:50%;border-radius:50%}</style>		<div class="elementor-social-icons-wrapper elementor-grid">		
-					</div>
-				</div>
-				</div>
-				<div class="elementor-element elementor-element-c200aca elementor-widget elementor-widget-text-editor" data-id="c200aca" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-						<p class="p1">
-												<span><a href="${cp }/loginRestaurant">판매자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/loginAdmin">관리자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/sellerInsert">도로 주소명 테스트</a></span>
-													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
-														class="s1">주</span>) | <span class="s1">TEL</span>: <span
-														class="s1">070-8240-3211~3 FAX: 02-777-5407</span> <br />
-													<span class="s1">사업자</span> <span class="s1">등록번호</span>: 104-81-59383
-													| <span class="s1">통신판매업신고</span>:  중구 065325 <span class="s1">중앙HTA㈜</span>
-													<span class="s1"></span><br />
-													<span class="s1">서울특별시</span> <span class="s1">종로구</span> <span
-														class="s1">율곡로10길 105 다이망 </span> 4F(봉익동 10-1 디아망 4F)
-												</p>	</div>
-				</div>
-					</div>
-		</div>
-							</div>
-		</section>
-						</div>
-					</div>
-		</div>		</footer>
-	
+
 </div><!--/.wrapper-->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DQ4T5X"
 height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) --><link rel='stylesheet' id='e-animations-css'  href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.5.3' type='text/css' media='all' />
-<script type='text/javascript' id='neve-script-js-extra'>
-/* <![CDATA[ */
-var NeveProperties = {"ajaxurl":"https:\/\/www.coupangeats.com\/wp-admin\/admin-ajax.php","nonce":"185aeed7e7","isRTL":"","isCustomize":""};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-content/themes/neve/assets/js/build/modern/frontend.js?ver=3.0.3' id='neve-script-js' async></script>
-<script type='text/javascript' id='neve-script-js-after'>
-!function(){"use strict";const e="data-neve-theme",t="neve_user_theme";function r(){let n="light",r=localStorage.getItem(t);"dark"===r&&(n="dark"),"light"===r&&(n="light"),document.documentElement.setAttribute(e,n)}r();const a=document.getElementById("neve_body");function n(n){if(n.srcElement&&(n.srcElement.matches("a.palette-icon-wrapper")||n.srcElement.parentElement&&n.srcElement.parentElement.matches("a.palette-icon-wrapper")||n.srcElement.parentElement&&n.srcElement.parentElement.parentElement.matches("a.palette-icon-wrapper")||n.srcElement.parentElement&&n.srcElement.parentElement.parentElement.parentElement.matches("a.palette-icon-wrapper"))){if(n.preventDefault(),"dark"===document.documentElement.getAttribute(e))return localStorage.setItem(t,"light"),void document.documentElement.setAttribute(e,"light");localStorage.setItem(t,"dark"),document.documentElement.setAttribute(e,"dark")}}a&&a.addEventListener("click",n,!1);}();
-</script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/comment-reply.min.js?ver=5.8.2' id='comment-reply-js'></script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
@@ -404,26 +209,8 @@ var NeveProperties = {"ajaxurl":"https:\/\/www.coupangeats.com\/wp-admin\/admin-
 <script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=1.6.7' id='hfe-frontend-js-js'></script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.5.3' id='elementor-webpack-runtime-js'></script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.5.3' id='elementor-frontend-modules-js'></script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2' id='elementor-waypoints-js'></script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js'></script>
 <script type='text/javascript' id='elementor-frontend-js-before'>
 var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"\ud398\uc774\uc2a4\ubd81 \uacf5\uc720","shareOnTwitter":"\ud2b8\uc704\ud130 \uacf5\uc720","pinIt":"\uace0\uc815\ud558\uae30","download":"Download","downloadImage":"\uc774\ubbf8\uc9c0 \ub2e4\uc6b4\ub85c\ub4dc","fullscreen":"\uc804\uccb4\ud654\uba74","zoom":"\uc90c","share":"\uacf5\uc720","playVideo":"\ube44\ub514\uc624 \uc7ac\uc0dd","previous":"\uc774\uc804","next":"\ub2e4\uc74c","close":"\ub2eb\uae30"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"\ubaa8\ubc14\uc77c","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"\ud0dc\ube14\ub9bf","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.5.3","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"a11y_improvements":true,"e_import_export":true,"e_hidden_wordpress_widgets":true,"landing-pages":true,"elements-color-picker":true,"favorite-widgets":true,"admin-top-bar":true},"urls":{"assets":"https:\/\/www.coupangeats.com\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":308,"title":"%EC%BF%A0%ED%8C%A1%EC%9D%B4%EC%B8%A0%20%E2%80%93%20%EB%A7%9B%EC%9E%88%EB%8A%94%20%EC%9D%8C%EC%8B%9D%EC%9D%84%20%EB%B9%A0%EB%A5%B4%EA%B3%A0%20%ED%8E%B8%ED%95%98%EA%B2%8C","excerpt":"","featuredImage":"https:\/\/www.coupangeats.com\/wp-content\/uploads\/2021\/09\/favicon@2x.png"}};
 </script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.5.3' id='elementor-frontend-js'></script>
 <script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/events-tracker-for-elementor/frontend/js/app.js?ver=1634091792' id='events_tracker_for_elementor_app-js'></script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
-<script type='text/javascript' id='wp-util-js-extra'>
-/* <![CDATA[ */
-var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-includes/js/wp-util.min.js?ver=5.8.2' id='wp-util-js'></script>
-<script type='text/javascript' id='wpforms-elementor-js-extra'>
-/* <![CDATA[ */
-var wpformsElementorVars = {"captcha_provider":"recaptcha","recaptcha_type":"v2"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.coupangeats.com/wp-content/plugins/wpforms-lite/assets/js/integrations/elementor/frontend.min.js?ver=1.7.1.2' id='wpforms-elementor-js'></script>
-<noscript><img src="https://www.coupangeats.com/akam/11/pixel_454ea10e?a=dD1lNTdmMjBiYmMzNWI2YTcyNTNmYmZkZDEwMmFkNjI2NzU4NmIyOTllJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
-</body>
-</html>

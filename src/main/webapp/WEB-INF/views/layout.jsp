@@ -13,6 +13,9 @@
 href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.5.3' type='text/css' media='all' />
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/common.css?ver=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/layout.css">
 <link rel='stylesheet' id='rocket-font-css'
@@ -107,6 +110,9 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						</form:form>
 					</li>
 				</sec:authorize>
+				<li class="elementor-icon-list-item elementor-inline-item">
+										<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
+									</li>
 						</ul>
 				</div>
 				</div>

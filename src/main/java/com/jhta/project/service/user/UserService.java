@@ -51,8 +51,8 @@ public class UserService {
 		vo.setUi_pwd(passwordEncoder.encode(vo.getUi_pwd()));
 		return mapper.updatePwd(vo);
 	}
-	public UserVo selectUser(UserVo vo) {
-		return mapper.selectUser(vo);
+	public UserVo selectUser(String ui_id) {
+		return mapper.selectUser(ui_id);
 	}
 	public UserVo test(String ui_id) {
 		return mapper.test(ui_id);
@@ -61,5 +61,8 @@ public class UserService {
 		String ui_pwd=vo.getUi_pwd();
 		vo.setUi_pwd(passwordEncoder.encode(ui_pwd));
 		return mapper.userupdate(vo);
+	}
+	public int userdelete(UserVo vo) {
+		return mapper.userdelete(vo);
 	}
 }

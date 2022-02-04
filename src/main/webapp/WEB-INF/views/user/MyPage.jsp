@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="/project/resources/js/jquery-3.6.0.js"></script>
 	<style type="text/css">
 	div#mypagelayout{height:900px;}
 	div#sidepage{float:left;width:330px;height:900px;}  
@@ -17,8 +11,7 @@
 	
 	
 	</script>
-</head>
-<body>
+
 <div id="mypagelayout">
 	<div id="sidepage">
 		<div>
@@ -37,5 +30,3 @@
 		<jsp:include page="${requestScope.mypagemain }"/>
 	</div>
 </div>
-</body>
-</html>

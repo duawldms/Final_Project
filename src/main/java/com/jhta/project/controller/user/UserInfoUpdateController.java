@@ -25,9 +25,6 @@ public class UserInfoUpdateController {
 		vo1.setUa_phone(vo.getUi_phone());
 		if(n>0) {
 			addrservice.addrupdate(vo1);
-			System.out.println(vo);
-			System.out.println(vo1);
-			
 			model.addAttribute("result","회원정보가 업데이트 되었습니다.");
 			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");

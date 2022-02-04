@@ -59,8 +59,8 @@
 	<select id="foodlist" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
 		select * from food where r_id=#{r_id}
 	</select>
-	<select id="foodOptionlist" parameterType="int">
-		select * from food_options where food_num=#{food_num}
+	<select id="foodOptionslist" parameterType="int" resultType="com.jhta.project.vo.user.FoodOptionsVo">
+		select * from food_options where food_num=#{food_num} order by fo_category
 	</select>
 </mapper> 
 
