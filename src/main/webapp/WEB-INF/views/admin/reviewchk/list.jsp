@@ -53,7 +53,7 @@
       <tr>
         <td>${vo.re_num}</td>
         <td><a href="${cp }/reviewchk/detail?re_num=${vo.re_num}">${vo.or_num}</a></td>
-        <td>${vo.re_regdate}</td>
+        <td><fmt:formatDate pattern="yyyy-MM-dd " value="${vo.re_regdate}"/></td>
         <td><a href="${cp }/reviewchk/delete?re_num=${vo.re_num }"><input type="button" value="삭제" class="btn btn-warning"></a></td>
       </tr>
       </c:forEach>
@@ -74,13 +74,13 @@
 </div>
 <br>
 <div class="text-center">
-	<form method="post" action="${cp }/admin/reviewchk/list">
+	<form:form method="post" action="${cp }/admin/reviewchk/list">
 		<select name="field">
-			<option value="title" <c:if test="${field=='or_num'}">selected</c:if> >주문번호</option>
+			<option value="or_num" <c:if test="${field=='or_num'}">selected</c:if> >주문번호</option>
 		</select>
 		<input type="text" name="keyword" value="${keyword }">
 		<input type="submit" value="검색">
-	</form>
+	</form:form>
 </div>
 <p>쿠팡요기이츠 관리자페이지 입니다</p>
 </body>

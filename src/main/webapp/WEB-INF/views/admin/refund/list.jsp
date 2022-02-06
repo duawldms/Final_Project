@@ -60,8 +60,7 @@
         <td>${vo.or_request}</td>
         <td>${vo.or_status}</td>
         <td>${vo.or_totalcost}</td>
-        <td>${vo.regdate}</td>
-        <!-- <fmt:formatDate value="${vo.regdate}" var="regdate" pattern="yyyy-MM-dd"/> -->
+        <td><fmt:formatDate pattern="yyyy-MM-dd " value="${vo.or_regdate}"/></td>
         <td><a href="${cp }/refund/delete?or_num=${vo.or_num }"><input type="button" value="취소" class="btn btn-warning"></a></td>
         <td><a href="${cp }/refund/send"><input type="button" value="문자" class="btn btn-success"></a></td>
       </tr>
@@ -83,14 +82,14 @@
 </div>
 <br>
 <div class="text-center">
-	<form method="post" action="${cp }/admin/refund/list">
+	<form:form method="post" action="${cp }/admin/refund/list">
 		<select name="field">
 			<option value="or_num" <c:if test="${field=='or_num'}">selected</c:if> >주문번호</option>
 			<option value="ui_id" <c:if test="${field=='ui_id'}">selected</c:if> >주문자 아이디</option>
 		</select>
 		<input type="text" name="keyword" value="${keyword }">
 		<input type="submit" value="검색">
-	</form>
+	</form:form>
 </div>
 <p>쿠팡요기이츠 관리자페이지 입니다</p>
 </body>

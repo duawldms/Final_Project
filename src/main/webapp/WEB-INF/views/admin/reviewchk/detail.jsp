@@ -53,7 +53,6 @@
 		  </div>
 		  
 		  <button id="list" class="btn btn-info"><a href="${cp }/admin/reviewchk/list">목록</a></button>
-		  <button id="delete" class="btn btn-danger"><a href="${cp }/reviewchk/delete?re_num=${vo.re_num }">삭제</a></button>
     </div>
     <div class="panel-footer"></div>
   </div>

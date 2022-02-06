@@ -1,50 +1,46 @@
-//package com.jhta.project.controller.admin;
-//package com.jhta.project.controller.admin;
-//
-//import java.util.HashMap;
-//
-//import javax.servlet.http.HttpServletRequest;
-//
-//import org.json.simple.JSONObject;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//import net.nurigo.java_sdk.Coolsms;
-//
-//public class RefundMessageController {
-//	@RequestMapping(value = "/sendSms.do")
-//	public String sendSms(HttpServletRequest request) throws Exception {
-//
-//	  String api_key = "NCSDOIP2TMUWJ7OW";
-//	  String api_secret = "VBJAYBKDHRMMLAAJMT61GZQ7BLDC6PZT";
-//	  Coolsms coolsms = new Coolsms(api_key, api_secret);
-//
-//	  HashMap<String, String> set = new HashMap<String, String>();
-//	  set.put("to", "01026516696"); // 수신번호
-//
-//	  set.put("from", (String)request.getParameter("from")); // 발신번호
-//	  set.put("text", (String)request.getParameter("text")); // 문자내용
-//	  set.put("type", "sms"); // 문자 타입
-//
-//	  System.out.println(set);
-//
-//////	  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-////
-////	  if ((boolean)result.get("status") == true) {
-////	    // 메시지 보내기 성공 및 전송결과 출력
-////	    System.out.println("성공");
-////	    System.out.println(result.get("group_id")); // 그룹아이디
-////	    System.out.println(result.get("result_code")); // 결과코드
-////	    System.out.println(result.get("result_message")); // 결과 메시지
-////	    System.out.println(result.get("success_count")); // 메시지아이디
-////	    System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
-////	  } else {
-////	    // 메시지 보내기 실패
-////	    System.out.println("실패");
-////	    System.out.println(result.get("code")); // REST API 에러코드
-////	    System.out.println(result.get("message")); // 에러메시지
-////	  }
-////
-////	  return "redirect:main.do";
-////	}
-////
-////}
+package com.jhta.project.controller.admin;
+
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+
+// API 키입력과 API SECRET 키 입력 내번호 부분만 수정해주면 정상으로 작동합니다
+
+@Controller
+public class RefundMessageController {
+	@RequestMapping(value = "/refund/sendSms.do")
+	public String sendSms(HttpServletRequest request) throws Exception {
+
+	  String api_key = "API 키 입력";
+	  String api_secret = "API SECRET 키 입력";
+	  Message coolsms = new Message(api_key, api_secret);
+
+	  HashMap<String, String> set = new HashMap<String, String>();
+	  set.put("to", "내번호"); // 수신번호
+
+	  set.put("from", (String)request.getParameter("from")); // 발신번호
+	  set.put("text", (String)request.getParameter("text")); // 문자내용
+	  set.put("type", "sms"); // 문자 타입
+	  set.put("app_version", "test app 1.2"); 
+
+	  System.out.println(set);
+	  try {
+	  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	  System.out.println(result.toString());
+    } catch (CoolsmsException e) {
+      System.out.println(e.getMessage());
+      System.out.println(e.getCode());
+    }
+
+	  return "admin/aminpage";
+	}
+
+}
