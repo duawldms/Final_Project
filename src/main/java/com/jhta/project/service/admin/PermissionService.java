@@ -15,10 +15,14 @@ public class PermissionService {
 	public List<RestaurantVo> selectList(HashMap<String,Object> map){
 		return mapper.list(map);
 	}
+	public int getCount(HashMap<String,Object> map) {
+		return mapper.count(map);
+	}
 	public int update(RestaurantVo vo) {
 		return mapper.update(vo);
 	}
 	public RestaurantVo detail(String r_id) {
 		return mapper.detail(r_id);
 	}
+	
 }

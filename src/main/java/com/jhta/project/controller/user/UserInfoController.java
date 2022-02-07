@@ -32,7 +32,7 @@ public class UserInfoController {
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";		
 	}
-	@GetMapping("/userinfo")
+	@PostMapping("/userinfo")
 	public String postPrevModify(Authentication auth,@RequestParam("ui_pwd")String pw,String ui_id,Model model) {
 		String userpwd=service.test(ui_id).getUi_pwd();
 		UserVo vo1=service.selectUser(ui_id);

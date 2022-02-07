@@ -1,5 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style type="text/css">
 
+	#resultbox{
+	text-align: center;
+	border: 4px solid #7bcfbb;
+	width: 400px;
+	margin: auto;
+	margin-top:200px;
+	margin-bottom:200px;  
+	padding: 35px;  
+	height:300px;   
+	font-size: 25px;                 
+	}     
+	 .btn3 {
+    color:white; 
+    height: 35px;
+    width: 150px;
+    background-color: #F6416C;   
+    border: 2px solid white;
+    }
+    .btn3:hover { 
+    background-color: white;
+    color: black;
+    border: 2px solid #F6416C;
+    } 
+	  .btn4 {
+    color:#F6416C;  
+    height: 35px;
+    width: 150px;
+    background-color: white;   
+    border: 2px solid #F6416C;
+    }
+    .btn4:hover { 
+    background-color: #F6416C;       
+    color: black;
+    border: 2px solid white;
+    } 
+</style>
+<div id="resultbox">
 ${result }
-<a href="${cp}/">주문하러가기</a> | <a href="${cp}/">홈으로</a>
+<a href="${cp}/" class="btn3">주문하러가기</a> | <a href="${cp}/" class="btn4">홈으로</a>
+</div>

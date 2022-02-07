@@ -39,7 +39,7 @@
 		<!-- 별점 -->
 	</div>
 	<div class="container divmain">
-		<table>
+		<table style="border-bottom:0.5px solid black;width:1100px">
 			<tr height="28px">
 				<td width="120px">결제방법</td>
 				<td>바로결제, 현장결제(카드/현금)</td>
@@ -80,7 +80,7 @@
 						<span>${fvo.food_info }</span><br> <span class="foodcost">${fvo.food_cost }</span>
 					</div>
 				</a>
-				<div class="modal fade" id="modal${status.index }">
+				<div class="modal fade" id="modal${status.index }" tabindex="-1" role="dialog">
 					<div class="modal-dialog modal-dialog-centered" >
 						<div class="modal-content">
 							<!-- Modal Header -->
@@ -107,7 +107,8 @@
 							<!-- Modal footer -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-outline-success goOrder">바로주문</button>
-								<button type="button" class="btn btn-outline-success addCart" onclick="javascript:gocart(${status.index})">주문표에 추가</button>
+								<button type="button" class="btn btn-outline-success addCart" 
+										onclick="javascript:gocart(${status.index},${fvo.food_num })" >주문표에 추가</button>
 								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">창닫기</button>
 							</div>
 						</div>
@@ -118,25 +119,44 @@
 	</div>
 </div>
 <script>
-	function gocart(index){
+	let count=0;
+	function gocart(index,foodnum){
+		let necoptions=[];
 		let checkbox=[];
+		let optionscnt=[];
 		$("input[name='options"+index+"']:checked").each(function(i){
-			checkbox.push($(this).val());
+			if($(this).prop('class')=='nec'){
+				necoptions.push($(this).val());
+			}else{
+				checkbox.push($(this).val());
+			}
+			optionscnt.push($("#cnt"+$(this).prop('id').substring(5)).val());
 		});
+		let nec=[];
+		$("input[class='nec']:checked").each(function(i){
+			nec.push($(this).val());
+		});
+		if(nec.length<count){
+			alert('필수항목을 선택해주세요');
+			return;
+		}
+		
 		$.ajax({
 			url:'${cp}/user/gocart',
 			type:'get',
 			dataType:'json',
 			data:{
-				checkbox:checkbox
+				checkbox:checkbox,
+				necoptions:necoptions,
+				optionscnt:optionscnt,
+				foodnum:foodnum
 			},
 			success:function(data){
 				if(data.result=='success'){
-					alert('success')
+					alert('주문표에 추가되었습니다!');
 				}else{
-					alert('fail')
+					alert("오류가 발생하였습니다");
 				}
-				
 			}
 		});
 	}
@@ -146,11 +166,8 @@
 		let foodcost=$(".foodcost");
 		for(let i=0;i<foodcost.length;i++){
 			foodcost[i].innerHTML=(parseInt(foodcost[i].innerHTML).toLocaleString('ko-KR')+"원");
-			
 		}
-		
-		
-	})
+	});
 	
 	function openModal(status,food_num){
 		$.ajax({
@@ -165,20 +182,26 @@
 				for(let i=0;i<data.folist.length;i++){
 					if(i==0){
 						divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
+						if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
 					}else if(data.folist[i-1].fo_category!=data.folist[i].fo_category){
 						divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
+						if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
 					}
 					if(data.folist[i].fo_category.indexOf('필수')!=-1){
 						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+i+"' class='nec' onclick='checknes(this)' value='"+data.folist[i].fo_name+
-									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
+						divoptions+="<input type='checkbox' name='options"+status+"' class='nec' onclick='checknes(this)' value='"+data.folist[i].fo_num+
+									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";		
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
 						divoptions+="<span style='float:right'>"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
 					}else{
 						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+i+"' value='"+data.folist[i].fo_name+
+						divoptions+="<input type='checkbox' name='options"+status+"' id='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
 									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
+						divoptions+="&nbsp<input type='hidden' value='x'  id='cntplus"+i+"' readonly"+
+									" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
+						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' id='cnt"+i+"' value='1' min='1' max='5'"+
+									"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
 						divoptions+="<span style='float:right'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
@@ -187,6 +210,15 @@
 				$(".modalBody").append(divoptions);
 			}
 		});
+	}
+	function optioncount(i){
+		if($("#nomal"+i).prop('checked')){
+			$("#cnt"+i).prop('type','number');
+			$("#cntplus"+i).prop('type','text');
+		}else{
+			$("#cnt"+i).prop('type','hidden');
+			$("#cntplus"+i).prop('type','hidden');
+		}
 	}
 	function checknes(element){
 		const checkboxes=$(".nec");

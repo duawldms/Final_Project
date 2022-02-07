@@ -1,5 +1,7 @@
 package com.jhta.project.service.user;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.jhta.project.mybatis.mapper.user.UserMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.security.AuthorityVo;
 import com.jhta.project.vo.user.FavoritesVo;
+import com.jhta.project.vo.user.OrdersVo;
 import com.jhta.project.vo.user.UserVo;
 
 @Service
@@ -72,4 +75,13 @@ public class UserService {
 	public int userpwdupdate(UserVo vo) {
 		return mapper.userpwdupdate(vo);
 	}
+	//배달관련사항 시작
+	public ArrayList<OrdersVo> userdelivery(String ui_id) {
+		return mapper.userdelivery(ui_id);
+	}
+	public OrdersVo deliverydetail(int or_num) {
+		return mapper.deliverydetail(or_num);
+	}
+	//리뷰관련사항 시작
+
 }

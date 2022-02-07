@@ -17,6 +17,7 @@ public class ReviewChkDetailController {
 		ReviewVo vo=service.detail(re_num);
 		String re_content=vo.getRe_content().replaceAll("\n","<br>");
 		vo.setRe_content(re_content);
+		model.addAttribute("vo",vo);
 		return "admin/reviewchk/detail";
 	}
 

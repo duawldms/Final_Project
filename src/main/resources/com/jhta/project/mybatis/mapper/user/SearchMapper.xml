@@ -62,6 +62,21 @@
 	<select id="foodOptionslist" parameterType="int" resultType="com.jhta.project.vo.user.FoodOptionsVo">
 		select * from food_options where food_num=#{food_num} order by fo_category
 	</select>
+	<insert id="insertcart" parameterType="com.jhta.project.vo.user.CartVo">
+		insert into cart values(cart_seq.nextval,#{ui_id},#{food_num})
+	</insert>
+	<select id="getcartseq" resultType="int">
+		select max(cart_num) from cart
+	</select>
+	<insert id="insertcartdetail" parameterType="com.jhta.project.vo.user.CartDetailVo">
+		insert into cart_detail values(cart_detail_seq.nextval,#{cart_num},#{fo_num},#{cd_count})
+	</insert>
+	<delete id="deletecd">
+		delete from cart_detail;
+	</delete>
+	<delete id="deletecart">
+		delete from cart;
+	</delete>
 </mapper> 
 
 

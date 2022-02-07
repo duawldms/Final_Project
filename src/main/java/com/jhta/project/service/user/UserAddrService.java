@@ -1,5 +1,7 @@
 package com.jhta.project.service.user;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,19 @@ public class UserAddrService {
 	public int addrupdate(UserAddrVo vo) {
 		return mapper.addrupdate(vo);
 	}
-
+	public ArrayList<UserAddrVo> useraddrselectAll(String ui_id) {
+		return mapper.useraddrselectAll(ui_id);
+	}
+	public int useraddrdelete(int ua_num) {
+		return mapper.useraddrdelete(ua_num);
+	}
+	public int useraddrupdate(UserAddrVo vo) {
+		return mapper.useraddrupdate(vo);
+	}
+	public int useraddrinsert(UserAddrVo vo) {
+		return mapper.useraddrinsert(vo);
+	}
+	public UserAddrVo useraddrselect(UserAddrVo vo) {
+		return mapper.useraddrselect(vo);
+	}
 }

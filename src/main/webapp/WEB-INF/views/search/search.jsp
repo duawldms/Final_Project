@@ -101,7 +101,14 @@
 				let coordy="";
 				var geocoder = new kakao.maps.services.Geocoder();
 				// 주소로 좌표를 검색합니다
-				geocoder.addressSearch(data.vo.ua_addr, function(result, status) {
+				let comma=(data.vo.ua_addr).indexOf(',');
+				let address="";
+				if(comma!=-1){
+					address=(data.vo.ua_addr).substring(0,comma);
+				}else{
+					address=data.vo.ua_addr;
+				}
+				geocoder.addressSearch(address, function(result, status) {
 				    // 정상적으로 검색이 완료됐으면 
 				     if (status === kakao.maps.services.Status.OK) {
 				    	 coordx=result[0].x;
@@ -232,7 +239,14 @@
 				let coordy="";
 				var geocoder = new kakao.maps.services.Geocoder();
 				// 주소로 좌표를 검색합니다
-				geocoder.addressSearch(data.vo.ua_addr, function(result, status) {
+				let comma=(data.vo.ua_addr).indexOf(',');
+				let address="";
+				if(comma!=-1){
+					address=(data.vo.ua_addr).substring(0,comma);
+				}else{
+					address=data.vo.ua_addr;
+				}
+				geocoder.addressSearch(address, function(result, status) {
 				    // 정상적으로 검색이 완료됐으면 
 				     if (status === kakao.maps.services.Status.OK) {
 				    	 coordx=result[0].x;
@@ -304,6 +318,5 @@
 				 });
 			});
 		}
-		
 	}
 </script>

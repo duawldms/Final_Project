@@ -1,8 +1,11 @@
 package com.jhta.project.mybatis.mapper.user;
 
+import java.util.ArrayList;
+
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.security.AuthorityVo;
 import com.jhta.project.vo.user.FavoritesVo;
+import com.jhta.project.vo.user.OrdersVo;
 import com.jhta.project.vo.user.UserVo;
 
 public interface UserMapper {
@@ -20,4 +23,6 @@ public interface UserMapper {
 	int userdelete(UserVo vo);
 	int userpwdupdate(UserVo vo);
 	int favoritesinsert(FavoritesVo vo);
+	ArrayList<OrdersVo> userdelivery(String ui_id);
+	OrdersVo deliverydetail(int or_num);
 }

@@ -20,6 +20,15 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.5</version>
 		</dependency>
+		
+		<!-- 메세지수신 추가 -admin -->
+			 <dependency>
+	    <groupId>net.nurigo</groupId>
+	    <artifactId>javaSDK</artifactId>
+	    <version>2.2</version>
+	  </dependency>
+  
+  
 		<!-- ///////////// -->
 	
 		<!-- 파일업로드 -->
@@ -35,6 +44,7 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.11.0</version>
 		</dependency>
+		
 		
 		<!-- jackson(ajax) -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
