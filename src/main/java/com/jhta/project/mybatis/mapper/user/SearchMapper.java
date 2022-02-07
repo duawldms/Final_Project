@@ -21,4 +21,12 @@ public interface SearchMapper {
 	int insertcart(CartVo vo);
 	int insertcartdetail(CartDetailVo vo);
 	int getcartseq();
+	List<CartVo> selectcart(String ui_id);
+	List<CartDetailVo> selectcd(int cart_num);
+	int deletecart(String ui_id);
+	int deletecd(int cart_num);
+	Double getdistance(HashMap<String, Object> map);
+	String getCartRid(String ui_id);
+	String getFoodRid(int food_num);
+	
 }
