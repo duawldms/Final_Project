@@ -148,8 +148,6 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</div>
 			</div>
 		</header>
-
-
 		<main id="content" class="neve-main" role="main">
 
 			<div id="main">

@@ -93,7 +93,6 @@
         <div class="container">
             <div class="title">
                 <h1>음식 카테고리</h1>
-
             </div>
             
             <div class="item_list">
