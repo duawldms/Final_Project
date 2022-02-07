@@ -22,12 +22,12 @@
 	</div>
 </div>
 <script>
-	/* function sidePopup(food_num) {
+	function sidePopup(food_num) {
 		var url = "${cp}/restaurant/sideOptionAdd?food_num=" + food_num;
 		var name = "sideAdd";
 		var option = "width = 300, height = 500, top = 300, left = 800";
 		window.open(url, name, option);
-	} */
+	}
 	
 	function foodSearch() {
 		var xhr = null;
