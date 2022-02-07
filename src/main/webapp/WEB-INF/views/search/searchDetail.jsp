@@ -7,14 +7,14 @@
 	width: 1100px;
 	height: 900px
 }
-
+<%-- 
 #cropping {
 	width: 1100px;
 	height: 200px;
 	overflow: hidden;
 	margin-bottom: 10px
 }
-
+--%>
 .title {
 	margin-bottom: 10px
 }
@@ -26,11 +26,46 @@
 .foodOptions{
 	height:30px;
 }
-
+#cartlist{
+	position:absolute;
+	top:68px;
+	left:1170px;
+	width:350px;
+	height:400px;
+	border:1px solid black;
+	background-color:#7bcfbb;
+}
+#cartTitle{
+	width:100%;
+	height:40px;
+	border-bottom:1px solid black;
+	text-align:center
+}
+#cartTitle h3{color:white}
+#cartMain{
+	width:100%;
+	height:360px;
+	background-color:white;
+	border-bottom:1px solid black;
+}
 </style>
 <div class="container">
+<!-- 
 	<div id="cropping">
 		<img src="${cp }/resources/img/${rvo.r_img}" id="mainImg">
+	</div>
+ -->
+	<div id="cartlist">
+		<div id="cartTitle">
+			<h3>주문표</h3>
+		</div>
+		<div id="cartMain">
+			<c:forEach var="cvo" items="${clist }">
+				<div id="num${cvo.food_num }">
+					
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	<div class="container title">
 		<h2>${ rvo.r_name}</h2>
@@ -39,7 +74,7 @@
 		<!-- 별점 -->
 	</div>
 	<div class="container divmain">
-		<table style="border-bottom:0.5px solid black;width:1100px">
+		<table style="border-bottom:0.5px solid black;width:750px">
 			<tr height="28px">
 				<td width="120px">결제방법</td>
 				<td>바로결제, 현장결제(카드/현금)</td>
@@ -99,8 +134,9 @@
 							<!-- Modal body -->
 							<div class="modal-body">
 								<form:form id="forms${status.index }" method="post" action="${cp }/user/gocart">
+									<input type="hidden" name="food_num" value="${fvo.food_num }">
 									<div class="modalBody">
-										<input type="hidden" name="food_num" value="${fvo.food_num }">
+										
 									</div>
 								</form:form>
 							</div>
@@ -120,7 +156,7 @@
 </div>
 <script>
 	let count=0;
-	function gocart(index,foodnum){
+	function gocart(index,foodnum,delcheck){
 		let necoptions=[];
 		let checkbox=[];
 		let optionscnt=[];
@@ -149,13 +185,18 @@
 				checkbox:checkbox,
 				necoptions:necoptions,
 				optionscnt:optionscnt,
-				foodnum:foodnum
+				foodnum:foodnum,
+				delcheck:delcheck
 			},
 			success:function(data){
 				if(data.result=='success'){
 					alert('주문표에 추가되었습니다!');
-				}else{
-					alert("오류가 발생하였습니다");
+				}else if(data.result=='check'){
+					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
+						gocart(index,foodnum,'delete');
+					}else{
+						alert('no');
+					}
 				}
 			}
 		});
@@ -169,6 +210,8 @@
 		}
 	});
 	
+	
+	
 	function openModal(status,food_num){
 		$.ajax({
 			url:"${cp}/user/search/foodOptions",
@@ -179,6 +222,7 @@
 			success:function(data){
 				let divoptions="";
 				$(".modalBody").empty();
+				count=0;
 				for(let i=0;i<data.folist.length;i++){
 					if(i==0){
 						divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
@@ -190,26 +234,31 @@
 					if(data.folist[i].fo_category.indexOf('필수')!=-1){
 						divoptions+="<div class='foodOptions' style='clear:both'>";
 						divoptions+="<input type='checkbox' name='options"+status+"' class='nec' onclick='checknes(this)' value='"+data.folist[i].fo_num+
-									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";		
+									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
-						divoptions+="<span style='float:right'>"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
+						divoptions+="<span style='float:right'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
 					}else{
 						divoptions+="<div class='foodOptions' style='clear:both'>";
 						divoptions+="<input type='checkbox' name='options"+status+"' id='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
 									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
-						divoptions+="&nbsp<input type='hidden' value='x'  id='cntplus"+i+"' readonly"+
+						divoptions+="&nbsp<input type='hidden' value='x' id='cntplus"+i+"' readonly"+
 									" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
-						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' id='cnt"+i+"' value='1' min='1' max='5'"+
+						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' id='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
 									"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
-						divoptions+="<span style='float:right'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
+						divoptions+="<span style='float:right' id='opcost"+i+"'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
 					}
 				}
 				$(".modalBody").append(divoptions);
 			}
 		});
+	}
+	function changecnt(index,cost){
+		let cnt=$("#cnt"+index).val();
+		let cng=(cnt*cost).toLocaleString('ko-KR');
+		$('#opcost'+index).html("+"+cng+"원");
 	}
 	function optioncount(i){
 		if($("#nomal"+i).prop('checked')){

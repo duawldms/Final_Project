@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -88,15 +89,26 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="javascript:showcart()">주문표</a></span>
 					</li>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cda1d2e6578e00f2f149b8981a3cb1f&libraries=services"></script>
 					<script>
+						$(function(){
+							let cart="${param.cart}";
+							if(cart=='empty'){
+								alert('주문표에 있는 메뉴가 없습니다.');
+							}
+						});
 						function showcart(){
-							$.ajax({
-								url:"${cp}/showcart",
-								dataType:"json",
-								success:function(data){
-									
-								}
-							});
+							let checkcart="${detail}";
+							let coordx="";
+							let coordy="";
+							if(checkcart=='' || checkcart==null){
+								checkcart='none';
+							}
+							if(checkcart=='true'){
+								$("#cartlist").toggle();
+							}else{
+								location.href="${cp}/searchDetail";
+							}
 						}
 					</script>
 					<li class="elementor-icon-list-item elementor-inline-item">
@@ -139,9 +151,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 		<main id="content" class="neve-main" role="main">
 
 			<div id="main">
-				<jsp:include page="${requestScope.cartlist }"/>
 				<jsp:include page="${requestScope.main }" />
-				
 			</div>
 
 		</main>
