@@ -43,13 +43,19 @@
 	</insert>
 	<!-- 해당 매장 메뉴 불러오기 -->
 	<select id="menuList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
-		select food_num, food_name, food_info, food_img, food_cost
+		select food_num, food_name, food_info, food_img, food_cost, food_status
 		from restaurant r, food f
 		where r.r_id = f.r_id and r.r_id = #{r_id}
 	</select>
-	<!-- food_num에 해당되는 음식 불러오기 -->
+	<!-- food_num에 해당되는 메뉴 불러오기 -->
 	<select id="getFood" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodVo">
 		select * from food where food_num = #{food_num}
+	</select>
+	<!-- fo_num에 해당되는 사이드 메뉴 불어오기 -->
+	<select id="getOption" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodOptionVo">
+		select * 
+		from food_options
+		where fo_num = #{fo_num}
 	</select>
 	<!-- 등록한 음식 검색 -->
 	<select id="foodSearch" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.FoodVo">
@@ -57,4 +63,61 @@
 		from food
 		where food_name like '%' || #{food_search} || '%' and r_id = #{r_id}
 	</select>
+	<!-- 메뉴 수정 -->
+	<update id="foodUpdate" parameterType="com.jhta.project.vo.restaurant.FoodVo">
+		update food
+		set 
+		food_name = #{food_name},
+		<if test="food_img != null">
+			food_img = #{food_img},
+		</if>
+		food_cost = #{food_cost},
+		food_info = #{food_info}
+		where
+		food_num = #{food_num}
+	</update>
+	<!-- 사이드 메뉴 수정 -->
+	<update id="optionUpdate" parameterType="com.jhta.project.vo.restaurant.FoodOptionVo">
+		update food_options
+		set
+		fo_name = #{fo_name},
+		fo_cost = #{fo_cost}
+		where
+		fo_num = #{fo_num}
+	</update>
+	<!-- 메뉴 삭제 -->
+	<delete id="foodDelete" parameterType="int">
+		begin
+			delete food_options
+			where food_num = #{food_num};
+			delete food
+			where food_num = #{food_num};
+		end;
+	</delete>
+	<!-- 사이드 메뉴 삭제 -->
+	<delete id="optionDelete" parameterType="int">
+		delete food_options
+		where fo_num = #{fo_num}
+	</delete>
+	<!-- 사이드 메뉴 불러오기 -->
+	<select id="optionSelect" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodOptionVo">
+		select *
+		from food_options
+		where food_num = #{food_num}
+		order by fo_category
+	</select>
+	<!-- 메뉴 품절 처리 -->
+	<update id="SoldOut" parameterType="hashMap">
+		update food
+		set
+		<choose>
+			<when test="food_status == 0">
+				food_status = 1
+			</when>
+			<otherwise>
+				food_status = 0
+			</otherwise>
+		</choose>
+		where food_num = #{food_num}
+	</update>
 </mapper>

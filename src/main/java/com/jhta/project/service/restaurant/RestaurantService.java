@@ -77,6 +77,34 @@ public class RestaurantService {
 	public List<FoodVo> foodSearch(Map<String, String> map) {
 		return mapper.foodSearch(map);
 	}
+	
+	// 메뉴 수정
+	public int foodUpdate(FoodVo vo) {
+		return mapper.foodUpdate(vo);
+	}
+	// 메뉴 삭제
+	public int foodDelete(int food_num) {
+		return mapper.foodDelete(food_num);
+	}
+	// 사이드 메뉴 삭제
+	public int optionDelete(int fo_num) {
+		return mapper.optionDelete(fo_num);
+	}
+	// 사이드 메뉴 불러오기
+	public List<FoodOptionVo> optionSelect(int food_num) {
+		return mapper.optionSelect(food_num);
+	}
+	public FoodOptionVo getOption(int fo_num) {
+		return mapper.getOption(fo_num);
+	}
+	// 사이드 메뉴 수정
+	public int optionUpdate(FoodOptionVo vo) {
+		return mapper.optionUpdate(vo);
+	}
+	// 메뉴 품절 처리
+	public int SoldOut(Map<String, Object> map) {
+		return mapper.SoldOut(map);
+	}
 }
 
 

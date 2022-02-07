@@ -4,6 +4,10 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,25 +25,38 @@ public class SelectAddrController {
 	
 	@GetMapping(value="/user/addrDetail", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> addrDetail(Principal principal,String ua_nickname,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,String field,String keyword){
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		System.out.println(principal.getName()+","+ua_nickname);
 		map.put("ui_id", principal.getName());
 		map.put("ua_nickname", ua_nickname);
 		List<UserAddrVo> list=service.selectAddr(map);
-		UserAddrVo vo=list.get(0);
-//		
+		UserAddrVo vo=list.get(0);		
 		map.put("vo", vo);
-		System.out.println(vo);
 		
 		return map;
 	}
 	@GetMapping(value="/user/search",produces= {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> searchResaurant(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			String field,String keyword,Double user_coordx,Double user_coordy,
-			@RequestParam(value="cg_name",defaultValue = "")String cg_name){
+			@RequestParam(value="cg_name",defaultValue = "")String cg_name,HttpServletResponse resp){
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		System.out.println(field+","+keyword+","+user_coordx+","+user_coordy);
+		Cookie delx=new Cookie("tmpcoordx",user_coordx.toString());
+		delx.setPath("/");
+		delx.setMaxAge(0);
+		resp.addCookie(delx);
+		Cookie dely=new Cookie("tmpcoordy",user_coordy.toString());
+		dely.setPath("/");
+		dely.setMaxAge(0);
+		resp.addCookie(dely);
+		Cookie crtx=new Cookie("tmpcoordx",user_coordx.toString());
+		crtx.setPath("/");
+		crtx.setMaxAge(60*60*24);
+		resp.addCookie(crtx);
+		Cookie crty=new Cookie("tmpcoordy",user_coordy.toString());
+		crty.setPath("/");
+		crty.setMaxAge(60*60*24);
+		resp.addCookie(crty);
 		map.put("field", field);
 		map.put("keyword", keyword);
 		map.put("user_coordy", user_coordy);
@@ -47,7 +64,7 @@ public class SelectAddrController {
 		map.put("category", cg_name);
 		System.out.println(cg_name);
 		int totalRowCount=service.count(map);
-		System.out.println(totalRowCount);
+		//System.out.println(totalRowCount);
 		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);
 		int startRow=pu.getStartRow(); 
 		int endRow=pu.getEndRow();
@@ -58,7 +75,7 @@ public class SelectAddrController {
 		map.put("keyword",keyword);
 		map.put("pu",pu);
 		map.put("listvo",listvo);
-		System.out.println(field+","+keyword+","+pu+","+listvo);
+		//System.out.println(field+","+keyword+","+pu+","+listvo);
 		return map;
 	}
 	

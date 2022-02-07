@@ -62,6 +62,11 @@
 	<select id="foodOptionslist" parameterType="int" resultType="com.jhta.project.vo.user.FoodOptionsVo">
 		select * from food_options where food_num=#{food_num} order by fo_category
 	</select>
+	<!-- 매장 거리계산 -->
+	<select id="getdistance" parameterType="hashmap" resultType="Double">
+		select calc_distance(#{user_coordx},#{user_coordy},#{r_coordx},#{r_coordy}) distance from dual
+	</select> 
+	<!-- 카트 추가 -->
 	<insert id="insertcart" parameterType="com.jhta.project.vo.user.CartVo">
 		insert into cart values(cart_seq.nextval,#{ui_id},#{food_num})
 	</insert>
@@ -71,12 +76,28 @@
 	<insert id="insertcartdetail" parameterType="com.jhta.project.vo.user.CartDetailVo">
 		insert into cart_detail values(cart_detail_seq.nextval,#{cart_num},#{fo_num},#{cd_count})
 	</insert>
-	<delete id="deletecd">
-		delete from cart_detail;
+	<delete id="deletecd" parameterType="int">
+		delete from cart_detail where cart_num=#{cart_num}
 	</delete>
-	<delete id="deletecart">
-		delete from cart;
+	<delete id="deletecart" parameterType="String">
+		delete from cart where ui_id=#{ui_id}
 	</delete>
+	<!-- 카트리스트 이동용 -->
+	<select id="selectcart" parameterType="string" resultType="com.jhta.project.vo.user.CartVo">
+		select * from cart where ui_id=#{ui_id}
+	</select>
+	<select id="selectcd" parameterType="int" resultType="com.jhta.project.vo.user.CartDetailVo">
+		select * from cart_detail where cart_num=#{cart_num}
+	</select>
+	<!-- 주문표에서 r_id 찾기 -->
+	<select id="getCartRid" parameterType="string" resultType="String">
+		select f.r_id from cart c, food f where c.food_num=f.food_num and c.ui_id=#{ui_id}
+	</select>
+	<!-- foodNum으로 r_id 찾기 -->
+	<select id="getFoodRid" parameterType="int" resultType="String">
+		select r_id from food where food_num=#{food_num} 
+	</select>
+	
 </mapper> 
 
 

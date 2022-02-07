@@ -48,6 +48,27 @@ public class SearchService {
 	public int getcartseq() {
 		return mapper.getcartseq();
 	}
+	public String getCartRid(String ui_id) {
+		return mapper.getCartRid(ui_id);
+	}
+	public Double getdistance(HashMap<String, Object> map) {
+		return mapper.getdistance(map);
+	}
+	public String getFoodRid(int food_num) {
+		return mapper.getFoodRid(food_num);
+	}
+	public List<CartVo> selectcart(String ui_id){
+		return mapper.selectcart(ui_id);
+	}
+	public List<CartDetailVo> selectcd(int cart_num){
+		return mapper.selectcd(cart_num);
+	}
+	public int deletecart(String ui_id) {
+		return mapper.deletecart(ui_id);
+	}
+	public int deletecd(int cart_num) {
+		return mapper.deletecd(cart_num);
+	}
 }
 
 
