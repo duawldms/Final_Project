@@ -150,6 +150,6 @@ var themeObj = {
 		</td>
     </tr>  
 </table><br><br>   
-<input type="submit" value="수정" class="btn3">
+<input type="submit" value="추가하기" class="btn3">
 </form:form> 
 </div>	
