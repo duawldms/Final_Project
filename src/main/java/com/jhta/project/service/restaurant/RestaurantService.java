@@ -113,10 +113,6 @@ public class RestaurantService {
 	public int SoldOut(Map<String, Object> map) {
 		return mapper.SoldOut(map);
 	}
-	// 판매자 비밀번호 확인
-	public RestaurantVo sellerPwdCheck(Map<String, String> map) {
-		return mapper.sellerPwdCheck(map);
-	}
 	public List<OrderListVo> selectSalesDay(HttpServletRequest req,String r_id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("s_date", req.getParameter("s_date"));
@@ -133,6 +129,7 @@ public class RestaurantService {
 			return mapper.selectSalesYear(map);
 		}
 	}
+	
 }
 
 

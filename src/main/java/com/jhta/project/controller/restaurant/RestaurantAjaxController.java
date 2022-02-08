@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import com.jhta.project.vo.restaurant.RestaurantVo;
 @RestController
 public class RestaurantAjaxController {
 	@Autowired RestaurantService service;
+	@Autowired private PasswordEncoder passwordEncoder;
 	
 	@GetMapping(value = "/restaurantIdCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, String> idCheck(String id) {
@@ -44,15 +46,11 @@ public class RestaurantAjaxController {
 	}
 	
 	// 판매자 비밀번호 체크
-	@PostMapping(value = "/restaurant/sellerPwdCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Map<String, String> sellerPwdCheck(String r_pwd, Principal principal) {
-		System.out.println("r_pwd : " + r_pwd + ", r_id : " + principal.getName());
+	@PostMapping(value = "/sellerPwdCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public Map<String, String> sellerPwdCheck(String r_pwd, Principal principal) {
 		Map<String, String> map = new HashMap<String, String>();
-		Map<String, String> seller = new HashMap<String, String>();
-		seller.put("r_pwd", r_pwd);
-		seller.put("r_id", principal.getName());
-		RestaurantVo vo = service.sellerPwdCheck(seller);
-		if (vo != null) {
+		RestaurantVo vo = service.idCheck(principal.getName());
+		if (passwordEncoder.matches(r_pwd, vo.getR_pwd())) {
 			map.put("result", "success");
 		} else {
 			map.put("result", "fail");

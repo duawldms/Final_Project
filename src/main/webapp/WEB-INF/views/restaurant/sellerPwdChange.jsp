@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- ajax 통신을 위한 meta tag -->
 <meta id="_csrf" content="${_csrf.token}">
 <meta id="_csrf_header" content="${_csrf.headerName}">
-<style type="text/css">
-   .pwd_check_wrap {
+<style>
+	.pwd_change_wrap {
 		border: 4px solid #7bcfbb;
 	    width: 425px;
 	    margin: auto;
-	    /* height: 300px; */
-	    padding: 50px;
-	    padding-top: 50px;
+	    padding: 10px 20px 10px 20px;
 	    margin-top: 200px;
 	    margin-bottom: 200px;      
    } 
    
    .check_btn_div {
    		text-align: center;
+   		padding: 10px;
    }
    
    #pwd_check_btn {
@@ -42,28 +41,39 @@
     	color: skyblue;
     }
     
-    .pwd_check_title {
+    .pwd_change_title {
     	text-align: center;
+    	padding: 10px;
+    }
+    
+    input[type=password] {
+    	float: right;
+    }
+    
+    .pwd_change_center {
+    	width: 320px;
+    	margin: auto;
     }
 </style>
-<script type="text/javascript">
-	
-</script>
-
-<div class="pwd_check_wrap"> 
-	<div class="pwd_check_title">
-		<h3>비밀번호 확인</h3>
-	</div>
-	<p style="text-align: center;">
-	   <b id="r_id">${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}</b>님의 회원정보를 안전하게 보호하기 위해
-	   비밀번호를 한번 더 확인해 주세요.
-	</p>
-	<label>비밀번호</label>
-	<input type="password" name="r_pwd" id="r_pwd" class="pwd_input">
-	<div id="pwd_err"></div>
-	<div class="check_btn_div">
-		<input type="button" value="확인" id="pwd_check_btn" onclick="pwdCheck()">
-	</div>
+<div class="pwd_change_wrap">
+	<form:form method="post" id="pwd_change_form" action="${cp }/restaurant/pwdChange">
+		<div class="pwd_change_title">
+			<h4>비밀번호 변경</h4>
+		</div>
+		<div class="pwd_change_center">
+			<label>현재 비밀번호</label>
+			<input type="password">
+			<br>
+			<label>새 비밀번호</label>
+			<input type="password" name="">
+			<br>
+			<label>새 비밀번호 확인</label>
+			<input type="password">
+		</div>
+		<div class="check_btn_div">
+			<input type="button" id="pwd_check_btn" value="비밀번호 변경" onclick="pwdCheck()">
+		</div>
+	</form:form>
 </div>
 <script>
 	var xhr = null;
@@ -80,7 +90,7 @@
 				let json = JSON.parse(data);
 				
 				if (json.result == 'success') {
-					location.href="${cp}/restaurant/pwdChange";
+					document.getElementById("pwd_change_form").submit();
 				} else {
 					let pwd_err = document.getElementById("pwd_err");
 					pwd_err.innerText = "비밀번호가 틀렸습니다.";					

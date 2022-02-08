@@ -132,8 +132,16 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li class="elementor-icon-list-item elementor-inline-item">
-										<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
-									</li>
+						<span class="elementor-icon-list-text"><a href="${cp }/admin/adminpage">관리자페이지</a></span>
+					</li>
+				<li class="elementor-icon-list-item elementor-inline-item">
+						<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
+				</li>
+						<li class="elementor-icon-list-item elementor-inline-item">
+						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('admin_logout').submit();">로그아웃</a></span>
+						<form:form id="admin_logout" method="post" action="${cp }/logout">
+						</form:form>
+					</li>
 				</sec:authorize>
 						</ul>
 				</div>
