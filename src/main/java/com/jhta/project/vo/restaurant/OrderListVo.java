@@ -19,4 +19,7 @@ public class OrderListVo {
 	private String ua_nickname;//주문지정보
 	private Date or_regdate;//주문날짜
 	private int or_totalcost;//주문총가격
+	private String sales_day;//일일
+	private String sales_month;//월별
+	private String sales_year;//년도별
 }

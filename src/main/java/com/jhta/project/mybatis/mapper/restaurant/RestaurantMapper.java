@@ -6,6 +6,7 @@ import java.util.Map;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
 
@@ -29,4 +30,8 @@ public interface RestaurantMapper {
 	int optionUpdate(FoodOptionVo vo);
 	int SoldOut(Map<String, Object> map);
 	int sellerUpdate(RestaurantVo vo);
+	List<RestaurantVo> selectChart(String r_id);
+	List<OrderListVo> selectSalesDay(Map<String, Object> map);
+	List<OrderListVo> selectSalesMonth(Map<String, Object> map);
+	List<OrderListVo> selectSalesYear(Map<String, Object> map);
 }

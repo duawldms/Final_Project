@@ -25,4 +25,7 @@
 	<select id="selectId" parameterType="com.jhta.project.vo.admin.AdminVo">
 		select * from admin where admin_id=#{admin_id} and admin_pwd=#{admin_pwd}
 	</select>
+	<select id="selectadmin"  parameterType="String" resultType="int">
+		select admin_lv from admin where admin_id=#{admin_id}
+	</select>
 </mapper>
