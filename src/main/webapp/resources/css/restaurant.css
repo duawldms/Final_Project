@@ -41,7 +41,7 @@
 		margin-bottom: 5%;
 		float: left;
 		text-align: center;
-		border: skyblue solid 1px;
+		border: #7bcfbb solid 1px;
 	}
 	
 	.name_cost {
@@ -60,7 +60,7 @@
 	    margin-bottom: 5%;
 	    float: left;
 	    text-align: center;
-	    border: skyblue solid 1px;
+	    border: #7bcfbb solid 1px;
 	} 
 /* 사이드 메뉴 추가, 수정, 삭제 끝*/
 

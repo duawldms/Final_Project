@@ -17,8 +17,32 @@
 		where r.r_id=a.au_id and r.r_id=#{r_id}
 	</select>
 	<insert id="restaurantInsert" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
-		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name},#{r_coordx},#{r_coordy},#{r_delmin},#{r_delmax})
+		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name},#{r_coordx},#{r_coordy},#{r_delmin},#{r_delmax},#{r_email})
 	</insert>
+	<!-- 판매자 비밀번호 확인 -->
+	<select id="sellerPwdCheck" parameterType="hashMap" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+		select * 
+		from restaurant
+		where r_id = #{r_id} and r_pwd = #{r_pwd}
+	</select>
+	<!-- 판매자 정보 수정 -->
+	<update id="sellerUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
+		update restaurant
+		set
+		r_name = #{r_name},
+		cg_name = #{cg_name},
+		r_addr = #{r_addr},
+		r_minCost = #{r_minCost},
+		r_delCost = #{r_delCost},
+		<if test="r_img != null">
+			r_img = #{r_img},
+		</if>
+		r_info = #{r_info},
+		r_coordx = #{r_coordx},
+		r_coordy = #{r_coordy}
+		where
+		r_id = #{r_id}
+	</update>
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>

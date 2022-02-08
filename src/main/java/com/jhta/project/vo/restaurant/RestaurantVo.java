@@ -25,4 +25,5 @@ public class RestaurantVo {
 	private double r_coordy;
 	private int r_delmin;
 	private int r_delmax;
+	private String r_email;
 }

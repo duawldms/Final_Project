@@ -30,7 +30,8 @@
 	</div>
 	<div id="saller1">
 		<ul>
-			<li><a href="">회원정보수정</a></li>
+			<li><a href="${cp }/restaurant/sellerUpdate">회원정보 수정</a></li>
+			<li><a href="${cp }/restaurant/sellerPwdCheck">비밀번호 변경</a></li>
 			<li><a href="${cp }/restaurant/infoupdate">매장정보수정</a></li>
 			<li><a href="${cp }/restaurant/menuadd">음식 등록</a></li>
 			<li><a href="${cp }/restaurant/foodEdit">음식 수정 및 삭제</a></li>

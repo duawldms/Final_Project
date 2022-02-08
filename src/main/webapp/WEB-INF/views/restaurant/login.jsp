@@ -25,6 +25,19 @@
 		cursor: pointer;
 	}
 	
+	#login_btn {
+	    color:white; 
+	    height: 35px;
+	    width: 150px;
+	    background-color: #F6416C;   
+	    border: 2px solid white;
+    }
+    #login_btn:hover { 
+	    background-color: white;
+	    color: black;
+	    border: 2px solid #F6416C;
+    }
+	
 	label {
 		margin-top: 0.5rem;
 	}

@@ -28,4 +28,6 @@ public interface RestaurantMapper {
 	FoodOptionVo getOption(int fo_num);
 	int optionUpdate(FoodOptionVo vo);
 	int SoldOut(Map<String, Object> map);
+	int sellerUpdate(RestaurantVo vo);
+	RestaurantVo sellerPwdCheck(Map<String, String> map);
 }

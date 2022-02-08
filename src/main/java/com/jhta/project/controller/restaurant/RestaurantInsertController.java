@@ -54,7 +54,7 @@ public class RestaurantInsertController {
 		System.out.println("경로 : " + path);
 		String orgFileName = file1.getOriginalFilename();
 		String saveFileName = UUID.randomUUID() + "_" + orgFileName;
-		if (file1 != null) {
+		if (!file1.isEmpty()) {
 			vo.setR_img(saveFileName);
 		}
 		service.addRestaurant(vo);

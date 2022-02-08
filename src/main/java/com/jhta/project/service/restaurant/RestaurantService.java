@@ -48,6 +48,10 @@ public class RestaurantService {
 	public RestaurantVo idCheck(String r_id) {
 		return mapper.idCheck(r_id);
 	}
+	// 판매자 회원 정보 수정
+	public int sellerUpdate(RestaurantVo vo) {
+		return mapper.sellerUpdate(vo);
+	}
 	//정보수정
 	public void infoUpdate(RestaurantVo vo) {
 		mapper.infoUpdate(vo);
@@ -104,6 +108,10 @@ public class RestaurantService {
 	// 메뉴 품절 처리
 	public int SoldOut(Map<String, Object> map) {
 		return mapper.SoldOut(map);
+	}
+	// 판매자 비밀번호 확인
+	public RestaurantVo sellerPwdCheck(Map<String, String> map) {
+		return mapper.sellerPwdCheck(map);
 	}
 }
 

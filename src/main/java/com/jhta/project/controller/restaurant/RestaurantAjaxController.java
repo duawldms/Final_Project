@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jhta.project.service.restaurant.RestaurantService;
@@ -40,4 +42,22 @@ public class RestaurantAjaxController {
 		List<FoodVo> list = service.foodSearch(map);
 		return list;
 	}
+	
+	// 판매자 비밀번호 체크
+	@PostMapping(value = "/restaurant/sellerPwdCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Map<String, String> sellerPwdCheck(String r_pwd, Principal principal) {
+		System.out.println("r_pwd : " + r_pwd + ", r_id : " + principal.getName());
+		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> seller = new HashMap<String, String>();
+		seller.put("r_pwd", r_pwd);
+		seller.put("r_id", principal.getName());
+		RestaurantVo vo = service.sellerPwdCheck(seller);
+		if (vo != null) {
+			map.put("result", "success");
+		} else {
+			map.put("result", "fail");
+		}
+		return map;
+	}
+	
 }

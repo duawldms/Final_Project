@@ -1,165 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b89a8c65d42f06fcb2f0dd87d520b67&libraries=services"></script>
-<style>
-	#box {
-	 	position:center;
-	 	padding:55px;          
-	 	margin:10px; 
- 	}  
- 	
- 	#inserttable {
-	 	height: 300px;
-	    width: 900px;
-	    border-top: 3px solid black;
-	    margin-right: auto;
-	    margin-left: auto;
- 	}
- 	
- 	td {
-    	border-bottom: 1px dotted black;
-    }
-    
-    .col1 {
-	    background-color: #7bcfbb;
-	    padding: 10px;
-	    text-align: center;
-	    font-weight: bold;
-	    font-size: 1.2  em;  
-    }   
- 
-    .col2 {
-	    text-align: left;
-	    padding: 5px;
-    }
-     .useridbtn {    
-	    height: 25px;
-	    width: 80px;
-	    color: white;
-	    background-color: black;
-	    border-color: black;
-    }
-    
-   .btn3 {
-	    color:white; 
-	    height: 35px;
-	    width: 150px;
-	    background-color: #F6416C;   
-	    border: 2px solid white;
-    }
-    
-    .btn3:hover { 
-	    background-color: white;
-	    color: black;
-	    border: 2px solid #F6416C;
-    } 
-    
-    .num{
-    	color: red;
-    }
-</style>
-<div id="box">
-	<h1>판매자 가입</h1>
-	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="multipart/form-data" acceptCharset="utf-8">
-		<label>아이디</label>
-		<br>
-		<input type="text" id="r_id" name="r_id" onblur="idCheck()">
-		<span id="r_idResult"></span>
-		<br>
-		<label>이메일</label>
-		<br>
-		<input type="text" id="r_email" name="r_email">
-		<br>
-		<label>비밀번호</label>
-		<br>
-		<input type="password" id="r_pwd" name="r_pwd" onblur="commonCheck(event)">
-		<span id="r_pwdResult"></span>
-		<br>
-		<label>비밀번호 확인</label>
-		<br>
-		<input type="password" id="r_pwd_check" name="r_pwd_check" onblur="pwdCheck()">
-		<span id="r_pwd_checkResult"></span>
-		<br>
+<c:set var="req" value="${requestScope }"/>
+<div>
+	<h1>판매자 정보 수정</h1>
+	<form:form method="post" id="sellerUpdateForm" action="${cp }/restaurant/sellerUpdate" enctype="multipart/form-data" acceptCharset="utf-8">
 		<label>매장명</label>
 		<br>
-		<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)">
+		<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)" value="${req.vo.r_name }">
 		<span id="r_nameResult"></span>
 		<br>
 		<label>카테고리</label>
 		<br>
 		<input type="text" id="cg_name" name="cg_name" placeholder="예)족발/보쌈"
-			onblur="commonCheck(event)">
+			 onblur="commonCheck(event)" value="${req.vo.cg_name }">
 		<span id="cg_nameResult"></span>
 		<br>
 		<label>주소</label>
 		<div class="restaurant_addr">
-			<input type="text" id="sample6_address" value="" readonly="readonly"> 
+			<input type="text" id="sample6_address" readonly="readonly" value="${req.addr1 }"> 
 			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
 			<br> 
 			<span id="sample6_addressResult"></span> 
-			<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)">
+			<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)" value="${req.addr2 }">
 			<input type="hidden" id="r_addr" name="r_addr"> 
 			<span id="sample6_detailAddressResult"></span>
 		</div>
 		<label>최소 주문금액</label>
 		<br>
-		<input type="text" id="r_minCost" name="r_minCost" onblur="commonCheck(event)">
+		<input type="text" id="r_minCost" name="r_minCost" value="${req.vo.r_minCost}" onblur="commonCheck(event)">
 		<span id="r_minCostResult"></span>
 		<br>
 		<label>배달비</label>
 		<br>
-		<input type="text" id="r_delCost" name="r_delCost" onblur="commonCheck(event)">
+		<input type="text" id="r_delCost" name="r_delCost" value="${req.vo.r_delCost}" onblur="commonCheck(event)">
 		<span id="r_delCostResult"></span>
 		<br>
 		<label>이미지 등록</label>
 		<br>
 		<input type="file" id="r_img" name="file1" onchange="imageView(event)">
 		<br>
-		<img style="width: 200px; height: 200px; display: none;" id="food_img" src="">
+		<img style="width: 200px; height: 200px;" id="food_img" src="../resources/img/${req.vo.r_img }">
+		<br>
 		<label>매장 정보</label>
 		<br>
-		<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)"></textarea>
+		<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)">${req.vo.r_info }</textarea>
 		<span id="r_infoResult"></span>
-		<input type="hidden" name="r_coordx" id="r_coordx">
-		<input type="hidden" name="r_coordy" id="r_coordy">
+		<input type="hidden" name="r_coordx" id="r_coordx" value="${req.vo.r_coordx }">
+		<input type="hidden" name="r_coordy" id="r_coordy" value="${req.vo.r_coordy }">
 		<br>
-		<input type="button" value="가입" onclick="sellerInsert()">
+		<input type="button" value="수정" onclick="sellerUpdate()">
 	</form:form>
 </div>
 <script>
-	var xhr = null;
-	var idCheckFlag = false;
-	// 아이디 중복 체크
-	function idCheck() {
-		let r_id = document.getElementById("r_id");
-		let idCheckResult = document.getElementById("r_idResult");
-		if (r_id.value == '') {
-			idCheckResult.innerText = "아이디를 입력해 주세요.";
-			return;
-		}
-		let url = "${cp}/restaurantIdCheck?id=" + r_id.value;
-		xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				let data = xhr.responseText;
-				let json = JSON.parse(data);
-
-				if (json.result == 'success') {
-					idCheckResult.innerText = "사용 가능한 아이디입니다.";
-					idCheckFlag = true;
-				} else {
-					idCheckResult.innerText = "이미 사용중인 아이디입니다.";
-					idCheckFlag = false;
-				}
-			}
-		}
-		xhr.open('get', url, true);
-		xhr.send();
-	}
-	// 아이디 중복 체크 end
-	
 	// 이미지 미리보기
 	function imageView(e) {
 		var reader = new FileReader();
@@ -167,7 +63,6 @@
 		reader.onload = function(e) {
 			let food_img = document.getElementById("food_img");
 			food_img.src = e.target.result;
-			food_img.style.display = 'block';
 		}
 		// readAsDataURL 파일을 데이터 URL로 만들기
 		reader.readAsDataURL(e.target.files[0]);
@@ -184,25 +79,7 @@
 	}
 	// 모든 span 값 초기화 end
 
-	// 비밀번호 확인
-	function pwdCheck() {
-		let r_pwd = document.getElementById("r_pwd");
-		let r_pwd_check = document.getElementById("r_pwd_check");
-		let pwdCheckResult = document.getElementById("r_pwd_checkResult");
-		if (r_pwd.value != r_pwd_check.value) {
-			pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다."
-		} else if (r_pwd.value != '' && r_pwd_check.value != ''
-				&& r_pwd.value === r_pwd_check.value) {
-			pwdCheckResult.innerText = "두 비밀번호가 일치합니다.";
-		}
-	}
-	// 비밀번호 확인 end
-
-	// 가입
-	function sellerInsert() {
-		let r_id = document.getElementById("r_id");
-		let r_pwd = document.getElementById("r_pwd");
-		let r_pwd_check = document.getElementById("r_pwd_check");
+	function sellerUpdate() {
 		let r_name = document.getElementById("r_name");
 		let cg_name = document.getElementById("cg_name");
 		let addr1 = document.getElementById("sample6_address");
@@ -212,21 +89,6 @@
 		let r_img = document.getElementById("r_img");
 		let r_info = document.getElementById("r_info");
 		
-		if (r_id.value == '') {
-			document.getElementById("r_idResult").innerText = "아이디를 입력해 주세요.";
-			r_id.focus();
-			return;
-		}
-		if (r_pwd.value == '') {
-			document.getElementById("r_pwdResult").innerText = "비밀번호를 입력해 주세요.";
-			r_pwd.focus();
-			return;
-		}
-		if (r_pwd_check.value == '') {
-			document.getElementById("r_pwd_checkResult").innerText = "비밀번호를 확인해 주세요.";
-			r_pwd_check.focus();
-			return;
-		}
 		if (r_name.value == '') {
 			document.getElementById("r_nameResult").innerText = "매장명을 입력해 주세요.";
 			r_name.focus();
@@ -270,18 +132,8 @@
 			r_info.focus();
 			return;
 		}
-		if (r_pwd.value != r_pwd_check.value) {
-			alert("비밀번호를 확인해주세요.");
-			r_pwd.focuse();
-			return;
-		}
-		if (idCheckFlag == false) {
-			alert("아이디를 확인해주세요.");
-			r_id.focuse();
-			return;
-		}
 		
-		document.getElementById("restaurantForm").submit();
+		document.getElementById("sellerUpdateForm").submit();
 	}
 	
 	// 주소 api
