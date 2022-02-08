@@ -29,6 +29,16 @@ h1 {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function doOpenCheck(chk) {
+		var obj = document.getElementsByName("admin_lv");
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i] != chk) {
+				obj[i].checked = false;
+			}
+		}
+	}
+</script>
 </head>
 <div class="elementor-widget-container">
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -43,9 +53,10 @@ h1 {
 <body>
 	<form:form method="post" action="${cp }/insertadmin">
 		<div class="contatiner">
-			<h2>하위관리자생성</h2>
+			<h2>관리자생성관리</h2>
+			<br>
 			<div class="panel panel-default">
-				<div class="panel-heading">하위관리자생성</div>
+				<div class="panel-heading">관리자생성관리</div>
 				<div class="panel-body">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="id">아이디:</label>
@@ -64,46 +75,17 @@ h1 {
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="pass">관리자 LV:</label>
 						<div class="col-sm-10">
-							<label><input type="checkbox" name="admin_lv" value="1">1</label>
-							<label><input type="checkbox" name="admin_lv" value="2">2</label>
+							<label><input type="checkbox" name="admin_lv" value="1"
+								onclick="doOpenCheck(this);">1</label> <label><input
+								type="checkbox" name="admin_lv" value="2"
+								onclick="doOpenCheck(this);">2</label>
 						</div>
 					</div>
-
+				</div>
+				<div class="panel-footer" >
+				<input type="button" value="메인" onclick="location.href='${cp }/admin/adminpage'" class='btn btn-primary'/>
+					<input type="submit" value="생성" class="btn btn-success />
 				</div>
 			</div>
 		</div>
-
 	</form:form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!--<form:form method="post" action="${cp }/insertadmin">
-	<h2>기본정보</h2>
-		아이디<br>
-	<input type="text" name="admin_id" id="admin_id">
-	<br>
-		비밀번호<br>
-	<input type="password" name="admin_pwd">
-	<span></span>
-	<br>
-	<label><input type="checkbox" name="admin_lv" value="1">레벨1</label>
-	<label><input type="checkbox" name="admin_lv" value="2">레벨2</label>
-	<span></span>
-	<br>
-	<input type="submit" value="가입">
-</form:form>--!>

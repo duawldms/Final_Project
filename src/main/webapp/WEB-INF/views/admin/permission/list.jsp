@@ -85,7 +85,7 @@ p {
 						<td>${vo.r_addr }</td>
 						<td>${vo.r_info }</td>
 						<td><a href="${cp }/permission/update?r_id=${vo.r_id}"><input
-								type="button" value="승인" class="btn btn-primary"></a></td>
+								type="button" value="승인" class="btn btn-info></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

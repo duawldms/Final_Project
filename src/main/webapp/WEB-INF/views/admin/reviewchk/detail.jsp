@@ -75,7 +75,7 @@ p {
 						readonly="readonly">${vo.re_content}</textarea>
 				</div>
 
-				<button id="list" class="btn btn-info">
+				<button id="list" class="btn btn-primary">
 					<a href="${cp }/admin/reviewchk/list">목록</a>
 				</button>
 			</div>
