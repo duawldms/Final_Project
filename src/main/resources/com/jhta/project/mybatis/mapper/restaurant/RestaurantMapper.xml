@@ -144,4 +144,29 @@
 		</choose>
 		where food_num = #{food_num}
 	</update>
+	<select id="selectChart" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+		select r_minCost,r_delCost from restaurant where r_id=#{r_id}
+	</select>
+	
+	<select id="selectSalesDay" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.OrderListVo">
+		select TO_CHAR(or_regdate, 'YY/MM/DD') as sales_day, sum(or_totalcost) or_totalcost
+		from orders o inner join orders_detail d on o.or_num = d.or_num inner join food f on d.food_num = f.food_num 
+		where f.r_id = #{r_id} and or_regdate between #{s_date} and #{e_date}
+		GROUP BY to_char(or_regdate, 'YY/MM/DD') 
+		order by sales_day
+	</select>
+	<select id="selectSalesMonth" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.OrderListVo">
+		select TO_CHAR(or_regdate, 'YY/MM') as sales_month, sum(or_totalcost) or_totalcost
+		from orders o inner join orders_detail d on o.or_num = d.or_num inner join food f on d.food_num = f.food_num 
+		where f.r_id = #{r_id} and or_regdate between #{s_date} and #{e_date}
+		GROUP BY to_char(or_regdate, 'YY/MM') 
+		order by sales_month
+	</select>
+	<select id="selectSalesYear" parameterType="hashmap" resultType="com.jhta.project.vo.restaurant.OrderListVo">
+		select TO_CHAR(or_regdate, 'YY') as sales_year, sum(or_totalcost) or_totalcost
+		from orders o inner join orders_detail d on o.or_num = d.or_num inner join food f on d.food_num = f.food_num 
+		where f.r_id = #{r_id} and or_regdate between #{s_date} and #{e_date}
+		GROUP BY to_char(or_regdate, 'YY') 
+		order by sales_year
+	</select>
 </mapper>

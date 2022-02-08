@@ -1,7 +1,10 @@
 package com.jhta.project.service.restaurant;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +14,7 @@ import com.jhta.project.mybatis.mapper.restaurant.RestaurantMapper;
 import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
 
@@ -112,6 +116,22 @@ public class RestaurantService {
 	// 판매자 비밀번호 확인
 	public RestaurantVo sellerPwdCheck(Map<String, String> map) {
 		return mapper.sellerPwdCheck(map);
+	}
+	public List<OrderListVo> selectSalesDay(HttpServletRequest req,String r_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("s_date", req.getParameter("s_date"));
+		map.put("e_date", req.getParameter("e_date"));
+		map.put("r_id", r_id);
+		System.out.println(map);
+		String gbn = req.getParameter("gbn");
+		if(gbn.equals("day")) {
+			return mapper.selectSalesDay(map);
+			
+		}else if(gbn.equals("month")){
+			return mapper.selectSalesMonth(map);				
+		}else {
+			return mapper.selectSalesYear(map);
+		}
 	}
 }
 
