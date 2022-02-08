@@ -77,9 +77,9 @@ var themeObj = {
 		document.getElementById("addr-addon").addEventListener('click',function(){
 			new daum.Postcode({
 		        oncomplete: function(data) {
-		    	   	document.getElementById("ua_addr").value = data.address; // 주소 넣기
-		        	document.getElementById("ua_addr").placeholder = "상세주소를 입력하세요";
-		        	document.getElementById("ua_addr").focus();
+		    	   	document.getElementById("ua_addr1").value = data.address; // 주소 넣기
+		        	document.getElementById("ua_addr2").placeholder = "상세주소를 입력하세요";
+		        	document.getElementById("ua_addr1").focus();
 		        },
 		        theme:themeObj
 			 }).open({
@@ -99,22 +99,22 @@ var themeObj = {
 				  $("input[name='ua_nickname']").focus();
 				return false;
 			 }
-			  if(ui_name==''){
+			  if(ua_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
 				return false;
 			 }
-			  if(ui_phone==''){
+			  if(ua_phone==''){
 				  alert("전화번호를 입력해 주세요.");
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
-			  if(ui_addr==''){
+			  if(ua_addr==''){
 				  alert("주소를 입력해 주세요");
 				  $("input[id='ui_addr1']").focus();
 			    return false;
 		    }
-			  if(ui_addrdetail==''){
+			  if(ua_addrdetail==''){
 				  alert("상세주소를 입력해 주세요");
 				  $("input[id='ui_addrdetail']").focus();
 			    return false;
@@ -144,9 +144,9 @@ var themeObj = {
     <tr>
 	    <td class="col1">배송받을 주소</td>
 		<td class="col2">
-		<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
+		<input type="text" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
 		<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
-		<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
+		<input type="text"  id="ua_addr2" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
 		</td>
     </tr>  
 </table><br><br>   

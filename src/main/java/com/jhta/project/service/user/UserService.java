@@ -1,6 +1,8 @@
 package com.jhta.project.service.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -81,6 +83,18 @@ public class UserService {
 	}
 	public OrdersVo deliverydetail(int or_num) {
 		return mapper.deliverydetail(or_num);
+	}
+	public ArrayList<OrdersVo> selectstatus(String ui_id){
+		return mapper.selectstatus(ui_id);
+	}
+	public int statusupdate(OrdersVo vo) {
+		return mapper.statusupdate(vo);
+	}
+	public List<OrdersVo> deliverylist(HashMap<String, Object> map){
+		return mapper.deliverylist(map);
+	}
+	public int deliverycount(HashMap<String, Object> map) {
+		return mapper.deliverycount(map);
 	}
 	//리뷰관련사항 시작
 

@@ -17,8 +17,8 @@
  	
  	#inserttable
  	{
- 	height: 200px;       
-    width: 10 00px;
+ 	height: 150px;          
+    width: 1000px;        
     border-top: 3px solid black;
     margin-right: auto;
     margin-left: auto;
@@ -67,18 +67,20 @@
 <h2>배달 내역</h2><br><br>    
 <table  id="inserttable"> 
 	<tr>
-	   <th  class="col1">배달 상태</th>
-	   <th  class="col1">가게</th>
-	   <th  class="col1">배달음식</th>
-	   <th  class="col1">총 가격</th>  
-	   <th  class="col1">주문날짜</th>
-	   <th  class="col1">상세내역</th>
-	   <th  class="col1">배달내역삭제</th>
-	</tr>     
 	
-	<c:forEach var="vo" items="${vo }" > 
+	   <th  class="col1">가게</th>
+	   <th  class="col1">주문상태</th>
+	   <th  class="col1">주문일시</th>
+	   <th  class="col1">도착예상시간</th>
+	   <th  class="col1">음식명</th>
+	   <th  class="col1">옵션</th>
+	   <th  class="col1">총가격</th>  
+	   <th  class="col1">요청사항</th>
+	   <th  class="col1">주문내역삭제</th>
+	</tr>
 	<tr>
-	<c:choose>
+		<td class="col2">${vo.r_name }</td>                
+		<c:choose>
 		<c:when test="${vo.or_status eq '1'}">
 		 <td class="col2">주문완료</td>  
 		</c:when>
@@ -90,47 +92,19 @@
 		</c:when>
 		<c:when test="${vo.or_status eq '4'}">
 		 <td class="col2">배달완료</td>  
-		</c:when>
+		</c:when>   
 	</c:choose>
-	<!-- 가게 메뉴 페이지로 연결될 수 있게 수정하기 -->
-		<td class="col2">${vo.r_img} ${vo.r_name }</td>                
-		<td class="col2">${vo.food_name }</td>
-		<td class="col2">${vo.or_totalcost }</td>  
-		<td class="col2">${vo.or_regdate }</td>  
-		<td class="col2"><a href="${cp }/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
+        <td class="col2">${vo.or_regdate }</td>
+	    <td class="col2">${vo.or_deltime }</td>
+		<td class="col2">${vo.food_name }(${vo.food_cost }원) </td>
+		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
+		<td class="col2">${vo.or_totalcost }원</td>     
+		<td class="col2">${vo.or_request }</td>  
 		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
 	</tr> 
-	</c:forEach>
-</table><br>   
-<div>
-	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-		<c:choose>
-			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${fidel}&keyword=${keyword}">
-				<span style='color:blue'>${i}</span>
-				</a>
-			</c:when>
-			<c:otherwise>
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${fidel}&keyword=${keyword}">
-				<span style='color:red'>${i}</span>
-				</a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</div>  
-<!-- 검색 -->
-<div>
-	<form:form method="post" action="${cp }/userdelivery">
-		<select name="field">
-			<option value="title"<c:if test="${ field=='r_name'}">selected</c:if>>가게이름</option>
-			<option value="title"<c:if test="${ field=='food_name'}">selected</c:if>>메뉴</option>
-		</select>
-			<input type="text" name="keyword" value="${keyword }">
-			<input type="submit" value="검색"><br> 
-			<a href="${cp }/userdelivery">전체목록 보기</a>  
-	</form:form>
-</div>
+</table>
 </div>	
 <script type="text/javascript">
-  
+
+
 </script>

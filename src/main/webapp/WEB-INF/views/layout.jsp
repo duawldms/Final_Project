@@ -112,18 +112,15 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						}
 					</script>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/usermypage">My Page</a></span>
+						<span class="elementor-icon-list-text"><a href="${cp }/user/usermypage">My Page</a></span>
 					</li>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('user_logout').submit();">로그아웃</a></span>
 						<form:form id="user_logout" method="post" action="${cp }/logout">
 						</form:form>
-					</li>
+					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
-					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/usermypage">회원정보</a></span>
-					</li>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage">My Page</a></span>
 					</li>

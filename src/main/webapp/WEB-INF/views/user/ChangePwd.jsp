@@ -112,6 +112,5 @@
 </table><br><br>   
  <input type="hidden" name="ui_id" value="${ui_id }">
  <input type="submit" value="변경하기" id="btn" class="btn3">
- <input type="button" value="취소" id="btn2" class="btn4">   
 </form:form>
 </div>

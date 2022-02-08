@@ -72,7 +72,6 @@ public class UserMyPageAddrController {
 		if(n>0) {
 			ArrayList<UserAddrVo> vo1=service.useraddrselectAll(vo.getUi_id());
 			model.addAttribute("vo",vo1);
-			System.out.println(vo1);
 			model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}else {

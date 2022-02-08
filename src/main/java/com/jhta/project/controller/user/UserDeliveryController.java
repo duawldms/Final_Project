@@ -1,11 +1,15 @@
 package com.jhta.project.controller.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jhta.project.service.user.UserService;
 import com.jhta.project.vo.user.OrdersVo;
@@ -14,19 +18,55 @@ import com.jhta.project.vo.user.OrdersVo;
 public class UserDeliveryController {
 	@Autowired UserService service;
 	
-	@GetMapping("/userdelivery")
-	public String deliverydetail(String ui_id,Model model) {
+	@RequestMapping("/userdelivery")
+	public String deliverydetail(String ui_id,Model model,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			String field,String keyword) {
+		//페이징 처리
+		HashMap<String,Object>map=new HashMap<String,Object>();
+		map.put("field", field);
+		map.put("keyword",keyword);
+		map.put("ui_id",ui_id);
+		int totalRowCount=service.deliverycount(map);
+		System.out.println(totalRowCount);
+		System.out.println("//////////////////////");
+		PageUtil pu=new PageUtil(pageNum,5,5,totalRowCount);
+		int startRow=pu.getStartRow();
+		int endRow=pu.getEndRow();
+		map.put("startRow",startRow);
+		map.put("endRow", endRow);
+		map.put("ui_id",ui_id);
+		List<OrdersVo>list1=service.deliverylist(map);
+		System.out.println(list1);
+		System.out.println("333333333333333333333333");
+		model.addAttribute("field",field);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("list1",list1);
+		model.addAttribute("pu",pu);
+		
+		//배달내역
 		ArrayList<OrdersVo> list = service.userdelivery(ui_id);
 		model.addAttribute("vo",list);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";	
 	}
-	@GetMapping("/deliverydelete")
-	public String deliverydelete(int or_num,Model model,String ui_id) {
+	@GetMapping("/deliveryupdate")
+	public String deliverydelete(int or_num,Model model,String ui_id,OrdersVo vo) {
+		service.statusupdate(vo);
 		ArrayList<OrdersVo> list = service.userdelivery(ui_id);
+		model.addAttribute("vo",list);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";	
+	}
+	@GetMapping("/deliverydetail")
+	public String deliverydetail(int or_num,Model model,String ui_id) {
+		OrdersVo vo=service.deliverydetail(or_num);
+		System.out.println(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		return "layout";
 	}
 }
