@@ -31,6 +31,9 @@ public class AdminService {
 	public boolean selectId(AdminVo vo) {
 		return mapper.selectId(vo);
 	}
+	public int selectadmin(String admin_id) {
+		return mapper.selectadmin(admin_id);
+	}
 }
 
 
