@@ -25,15 +25,21 @@ public class SelectAddrController {
 	
 	@GetMapping(value="/user/addrDetail", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> addrDetail(Principal principal,String ua_nickname,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum){
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,HttpServletResponse resp){
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		System.out.println(principal.getName()+","+ua_nickname);
 		map.put("ui_id", principal.getName());
 		map.put("ua_nickname", ua_nickname);
+		Cookie dua=new Cookie("ua_nickname","");
+		dua.setPath("/");
+		dua.setMaxAge(0);
+		resp.addCookie(dua);
+		Cookie cua=new Cookie("ua_nickname",ua_nickname);
+		cua.setPath("/");
+		cua.setMaxAge(60*60*24);
+		resp.addCookie(cua);
 		List<UserAddrVo> list=service.selectAddr(map);
 		UserAddrVo vo=list.get(0);		
 		map.put("vo", vo);
-		
 		return map;
 	}
 	@GetMapping(value="/user/search",produces= {MediaType.APPLICATION_JSON_VALUE})
