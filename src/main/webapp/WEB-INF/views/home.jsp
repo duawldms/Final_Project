@@ -93,20 +93,24 @@
         <div class="container">
             <div class="title">
                 <h1>음식 카테고리</h1>
-
             </div>
             
             <div class="item_list">
          	<c:forEach var="vo" items="${list}">
                 <div class="card">
                     <div class="img">
-                     <a href="${cp}/category/modify?cg_name=${vo.cg_name}">
                         <img src="${cp }/resources/img/${vo.cg_photo}" alt="" style="border: 1px solid #7bcfbb;">
-                     </a>
                     </div>
                     <div class="text">
                         <h2>${vo.cg_name}</h2>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a href="${cp}/category/modify?cg_name=${vo.cg_name}" class="modify_btn_a">
+					<input type="button" value="카테고리수정" class="modify_btn_a"></a>
+					<a href="${cp}/category/delete?cg_name=${vo.cg_name}" class="modify_btn_a">
+								<input type="button" value="카테고리삭제" class="modify_btn_a"></a>
+					</sec:authorize>
                     </div>
+                  
                 </div>
                 </c:forEach>
             </div>

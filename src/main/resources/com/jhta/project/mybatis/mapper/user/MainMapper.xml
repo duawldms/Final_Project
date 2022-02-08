@@ -19,4 +19,7 @@ update category set cg_name=#{cg_name}
 </if>
 where cg_name=#{cg_name}
 </update>
+<delete id="delete" parameterType="int">
+delete from category where cg_name=#{cg_name}
+</delete>
 </mapper>

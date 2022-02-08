@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<div>
 	<h1>메뉴 추가</h1>
 	<form:form method="post" action="${cp }/restaurant/menuadd" enctype="multipart/form-data" acceptCharset="utf-8">
 		<input type="text" id="food_name" name="food_name" placeholder="음식 이름">
@@ -37,5 +31,4 @@
 			reader.readAsDataURL(e.target.files[0]);
 		}
 	</script>
-</body>
-</html>
+</div>

@@ -21,4 +21,11 @@ public interface RestaurantMapper {
 	FoodVo getFood(int food_num);
 	List<FoodVo> foodSearch(Map<String, String> map);
 	int sideAdd(FoodOptionVo vo);
+	int foodUpdate(FoodVo vo);
+	int foodDelete(int food_num);
+	List<FoodOptionVo> optionSelect(int food_num);
+	int optionDelete(int fo_num);
+	FoodOptionVo getOption(int fo_num);
+	int optionUpdate(FoodOptionVo vo);
+	int SoldOut(Map<String, Object> map);
 }

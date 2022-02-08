@@ -11,6 +11,7 @@ public interface MainMapper {
 	List<CategoryVo> list();
 	CategoryVo selectOne(String cg_name);
 	int update(CategoryVo vo);
+	int delete(String cg_name);
 	
 	
 }

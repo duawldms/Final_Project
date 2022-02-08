@@ -130,9 +130,11 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						</form:form>
 					</li>
 				</sec:authorize>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li class="elementor-icon-list-item elementor-inline-item">
 										<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
 									</li>
+				</sec:authorize>
 						</ul>
 				</div>
 				</div>
@@ -143,8 +145,6 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</div>
 			</div>
 		</header>
-
-
 		<main id="content" class="neve-main" role="main">
 
 			<div id="main">
