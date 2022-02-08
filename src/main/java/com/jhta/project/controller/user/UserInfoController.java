@@ -20,7 +20,7 @@ public class UserInfoController {
 	@Autowired UserService service;
 	@Autowired private PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/usermypage")
+	@GetMapping("/user/usermypage")
 	public String UserPage(Model model){
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";

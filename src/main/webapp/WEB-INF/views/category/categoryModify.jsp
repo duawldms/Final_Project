@@ -14,7 +14,7 @@
 </script>
 	<form:form method="post" action="${cp }/category/modify" enctype="multipart/form-data" acceptCharset="utf-8" >
 		카데고리명<br>
-		<input type="text" name="cg_name" id="cg_name" value="${vo.cg_name}" >
+		<input type="text" name="cg_name" id="cg_name" value="${vo.cg_name}" readonly="readonly" >
 		<br>
 		카테고리이미지<br>
 		<img src="${cp }/resources/img/${vo.cg_photo}"><br>
@@ -22,4 +22,4 @@
 		<input type="file" name="file1" id="file1" onchange="imageView(event)"><br><br>
 		<img style="width: 200px; height: 200px; display: none;" id="cg_photo">
 		<input type="submit" value="수정완료">
-		</form:form>
+	</form:form>

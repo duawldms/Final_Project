@@ -21,6 +21,9 @@ public class OrdersVo {
 	//order_detail
 	private int od_num;
 	private int food_num;
+	private String fo_name;
+	private int fo_cost;
+	private int oo_count;
 	
 	//food
 	private String food_name;

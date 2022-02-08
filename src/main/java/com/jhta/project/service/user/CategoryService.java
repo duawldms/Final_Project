@@ -23,5 +23,10 @@ public class CategoryService {
 		return mapper.update(vo);
 		
 	}
+	public int delete(String cg_name) {
+		return mapper.delete(cg_name);
+		
+	}
+	
 	
 }

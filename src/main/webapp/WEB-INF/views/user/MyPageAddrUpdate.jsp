@@ -96,7 +96,7 @@ $(function(){
 		});
 		
   	$("form").submit(function(){
-		let ua_name=$("input[name='ua_name']").val();
+  		let ua_name=$("input[name='ua_name']").val();
 	    let ua_phone=$("input[name='ua_phone']").val();
 	    let ua_addr=$("input[id='ua_addr1']").val();
 	    let ua_addrdetail=$("input[id='ua_addr2']").val();
@@ -106,23 +106,22 @@ $(function(){
 				  $("input[name='ua_nickname']").focus();
 				return false;
 			 }
-	    
-			  if(ui_name==''){
+			  if(ua_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
 				return false;
 			 }
-			  if(ui_phone==''){
+			  if(ua_phone==''){
 				  alert("전화번호를 입력해 주세요.");
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
-			  if(ui_addr==''){
+			  if(ua_addr==''){
 				  alert("주소를 입력해 주세요");
 				  $("input[id='ui_addr1']").focus();
 			    return false;
 		    }
-			  if(ui_addrdetail==''){
+			  if(ua_addrdetail==''){
 				  alert("상세주소를 입력해 주세요");
 				  $("input[id='ui_addrdetail']").focus();
 			    return false;

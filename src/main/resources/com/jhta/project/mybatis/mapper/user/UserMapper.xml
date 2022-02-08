@@ -68,30 +68,52 @@
 	<!-- 내가 주문한 내역 불러오기 -->
 	<select id="userdelivery" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
 	select * from orders o,orders_detail d,food f, restaurant r where o.or_num=d.or_num and 
-	o.ui_id=#{ui_id} and d.food_num=f.food_num and f.r_id=r.r_id
-    order by o.or_regdate desc, o.or_status desc
+	o.ui_id=#{ui_id} and d.food_num=f.food_num and f.r_id=r.r_id and <![CDATA[ o.or_status>='1' and o.or_status<='4']]>
+    order by o.or_regdate desc, o.or_status desc    
+	</select> 
+	<update id="statusupdate" parameterType="com.jhta.project.vo.user.OrdersVo">
+		update orders set or_status='5' where ui_id=#{ui_id} and or_num=#{or_num}
+	</update>
+	<!-- 배달 상태값 받아오기 위한 쿼리 -->
+	<select id="selectstatus" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
+		select or_status from orders where ui_id=#{ui_id}
 	</select>
-	
-	<delete id="deleteoption" parameterType="int">
-	delete from orders_option p
-      where exists(
-        select 1
-          from orders_detail d
-            where p.od_num=d.od_num
-              and p.od_num=#{od_num}
-       )
-	</delete>
-	
 	<select id="deliverydetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
-		select * from orders o,orders_detail d where o.or_num=d.or_num and o.or_num=#{or_num}
+		select * from  orders o,food f,orders_detail d,orders_option p,restaurant r,food_options fo where o.or_num=d.or_num and d.od_num=p.od_num and f.r_id=r.r_id and
+f.food_num=d.food_num and d.food_num=fo.food_num and o.or_num=#{or_num}
 	</select>
-	<!-- /////////////////////////////////////// -->
-	<!-- 내가 쓴 리뷰 불러오기 -->
-	
-	
-	
-	
-	
+	<sql id="searchdelivery">
+		<if test="field!=null and field!=''">
+			and ${field} like '%' || #{keyword} || '%'
+		</if>
+	</sql>
+	<sql id="selectdeliverylist">
+	   select * from orders o,orders_detail d,food f, restaurant r where o.or_num=d.or_num 
+			 	and d.food_num=f.food_num and f.r_id=r.r_id and o.ui_id='${ui_id}'
+			 	<![CDATA[  and o.or_status>='1' and o.or_status<='4']]>
+	</sql>
+	<sql id="selectdeliverycount">
+	    orders o,orders_detail d,food f, restaurant r where o.or_num=d.or_num 
+			 	and d.food_num=f.food_num and f.r_id=r.r_id and o.ui_id='${ui_id}'
+			 	<![CDATA[ and o.or_status>='1' and o.or_status<='4']]>
+	</sql>
+	<select id="deliverylist" parameterType="hashmap" resultType="com.jhta.project.vo.user.OrdersVo">
+		select * from 
+		(
+			select a.*,rownum rnum
+			 from(
+			 	<include refid="selectdeliverylist"/>
+			 	<include refid="searchdelivery"/>
+			 	 order by o.or_regdate desc, o.or_status desc
+			 )a
+		)
+		<![CDATA[where rnum>=${startRow} and rnum<=${endRow} ]]>
+	</select>
+	<select id="deliverycount" resultType="int" parameterType="hashmap">
+		select NVL(count(*),0) cnt from  
+		        <include refid="selectdeliverycount"/>
+	             <include refid="searchdelivery"/> 
+	</select>	
 	<!-- 선호분류 인서트 -->
 	<insert id="favoritesinsert" parameterType="com.jhta.project.vo.user.FavoritesVo">
 		insert into favorites values(#{fa_num},#{ui_id},#{r_id})
