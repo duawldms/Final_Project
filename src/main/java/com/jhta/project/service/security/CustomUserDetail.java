@@ -15,7 +15,7 @@ import com.jhta.project.vo.security.AuthorityVo;
 public class CustomUserDetail implements UserDetails {
 	private String userid;
 	private String password;
-	private String enabled;
+	private int enabled;
 	private List<AuthorityVo> authList;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,6 +55,6 @@ public class CustomUserDetail implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return enabled == 1 ? true : false;
 	}
 }

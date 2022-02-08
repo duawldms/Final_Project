@@ -109,10 +109,6 @@ public class RestaurantService {
 	public int SoldOut(Map<String, Object> map) {
 		return mapper.SoldOut(map);
 	}
-	// 판매자 비밀번호 확인
-	public RestaurantVo sellerPwdCheck(Map<String, String> map) {
-		return mapper.sellerPwdCheck(map);
-	}
 }
 
 

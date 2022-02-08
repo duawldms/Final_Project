@@ -6,7 +6,7 @@
 	<resultMap type="com.jhta.project.service.security.CustomUserDetail" id="userDetail">
 		<id property="userid" column="r_id"/>
 		<result property="password" column="r_pwd"/>
-		<result property="enabled" column="r_state"/>
+		<result property="enabled" column="enabled"/>
 		<collection property="authList" ofType="com.jhta.project.vo.security.AuthorityVo">
 			<result property="au_id" column="au_id"/>
 			<result property="au_authority" column="au_authority"/>
@@ -19,12 +19,6 @@
 	<insert id="restaurantInsert" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name},#{r_coordx},#{r_coordy},#{r_delmin},#{r_delmax},#{r_email})
 	</insert>
-	<!-- 판매자 비밀번호 확인 -->
-	<select id="sellerPwdCheck" parameterType="hashMap" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
-		select * 
-		from restaurant
-		where r_id = #{r_id} and r_pwd = #{r_pwd}
-	</select>
 	<!-- 판매자 정보 수정 -->
 	<update id="sellerUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		update restaurant
