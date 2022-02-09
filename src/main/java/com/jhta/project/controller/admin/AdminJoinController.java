@@ -1,7 +1,5 @@
 package com.jhta.project.controller.admin;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.jhta.project.service.admin.AdminService;
 import com.jhta.project.vo.admin.AdminVo;
-import com.jhta.project.vo.user.UserAddrVo;
-import com.jhta.project.vo.user.UserVo;
+
 
 @Controller
 public class AdminJoinController {

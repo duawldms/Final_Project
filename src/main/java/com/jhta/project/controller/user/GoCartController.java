@@ -53,11 +53,11 @@ public class GoCartController {
 			service.insertcart(cvo);
 			int seq=service.getcartseq();
 			for(String s:nec) {
-				CartDetailVo cdvo=new CartDetailVo(0,seq,Integer.parseInt(s),1);
+				CartDetailVo cdvo=new CartDetailVo(0,seq,Integer.parseInt(s),1,null,0,null);
 				service.insertcartdetail(cdvo);
 			}
 			for(int i=0;i<checkbox.size();i++) {
-				CartDetailVo cdvo=new CartDetailVo(0, seq, Integer.parseInt(checkbox.get(i)), Integer.parseInt(optionscnt.get(i)));
+				CartDetailVo cdvo=new CartDetailVo(0, seq, Integer.parseInt(checkbox.get(i)), Integer.parseInt(optionscnt.get(i)),null,0,null);
 				service.insertcartdetail(cdvo);
 			}
 			Cookie[] cookies=req.getCookies();

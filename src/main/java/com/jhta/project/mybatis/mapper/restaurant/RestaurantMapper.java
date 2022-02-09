@@ -30,7 +30,6 @@ public interface RestaurantMapper {
 	int optionUpdate(FoodOptionVo vo);
 	int SoldOut(Map<String, Object> map);
 	int sellerUpdate(RestaurantVo vo);
-	RestaurantVo sellerPwdCheck(Map<String, String> map);
 	List<RestaurantVo> selectChart(String r_id);
 	List<OrderListVo> selectSalesDay(Map<String, Object> map);
 	List<OrderListVo> selectSalesMonth(Map<String, Object> map);

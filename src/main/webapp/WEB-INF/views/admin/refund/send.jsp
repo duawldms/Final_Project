@@ -33,9 +33,7 @@
 						<label>입력할 메세지</label>
 						<td><textarea class="form-control" rows="3" name="text"></textarea>
 					</div>
-					<button id="list" class="btn btn-info">
-						<a href="${cp }/admin/refund/list">목록</a>
-					</button>
+					<input type="button" value="목록" onclick="location.href='${cp }/admin/refund/list'" class='btn btn-primary'/>
 					<input type="button" onclick="sendSMS('sendSms')" value="전송"
 						class="btn btn-success" />
 				</form:form>
