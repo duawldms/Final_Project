@@ -57,6 +57,8 @@
 	display:inline-block;
 	border-bottom:1px solid gray;
 	padding-top:5px;
+	padding-left:10px;
+	padding-right:10px;
 }
 .cartimg{
 	width: 70px;
