@@ -22,7 +22,7 @@ public class GoOrderController {
 	@Autowired private SearchService service;
 	
 	@GetMapping("/user/order")
-	public String goOrder(Model model,HttpServletRequest req, HttpServletResponse resp,Principal principal) throws IOException {
+	public String goOrder(Model model,HttpServletRequest req, HttpServletResponse resp,Principal principal,int delcost) throws IOException {
 		Cookie[] cookies=req.getCookies();
 		String coordx="";
 		String coordy="";
@@ -35,6 +35,7 @@ public class GoOrderController {
 		}
 		String r_id=service.getCartRid(principal.getName());
 		List<CartFoodVo> cflist=service.selectFood(principal.getName());
+		model.addAttribute("delcost",delcost);
 		model.addAttribute("cflist",cflist);
 		model.addAttribute("r_id",r_id);
 		model.addAttribute("coordx",coordx);

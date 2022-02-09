@@ -96,6 +96,8 @@ public class UserService {
 	public int deliverycount(HashMap<String, Object> map) {
 		return mapper.deliverycount(map);
 	}
-	//리뷰관련사항 시작
+	public ArrayList<OrdersVo> optiondetail(int or_num){
+		return mapper.optiondetail(or_num);
+	}
 
 }

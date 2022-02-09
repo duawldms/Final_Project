@@ -32,4 +32,5 @@ public interface UserMapper {
 	int statusupdate(OrdersVo vo);
 	List<OrdersVo> deliverylist(HashMap<String, Object> map);
 	int deliverycount(HashMap<String, Object> map);
+	ArrayList<OrdersVo> optiondetail(int or_num);
 }

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jhta.project.service.user.SearchService;
 import com.jhta.project.vo.user.CartDetailVo;
 import com.jhta.project.vo.user.CartVo;
+import com.jhta.project.vo.user.InSearchOrdersVo;
+import com.jhta.project.vo.user.OrdersDetailVo;
+import com.jhta.project.vo.user.OrdersOptionVo;
 
 @RestController
 public class PurchaseSuccessController {
@@ -23,18 +26,31 @@ public class PurchaseSuccessController {
 			int or_totalcost,String or_paymethod){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		List<CartVo> cartlist=service.selectcart(principal.getName());
-		if(cartlist.size()>0) {
-			int or_num=service.incOrseq();
-			
-			for(int i=0;i<cartlist.size();i++) {
-				CartVo cvo=cartlist.get(i);
-				
-				List<CartDetailVo> cdlist=service.selectcd(cvo.getCart_num());
-				for(int j=0;j<cdlist.size();j++) {
-					CartDetailVo cdvo=cdlist.get(j);
-					
+		try {
+			if(cartlist.size()>0) {
+				int or_num=service.incOrseq();
+				InSearchOrdersVo orvo=new InSearchOrdersVo(or_num, principal.getName(),
+						or_request, null, 0, or_totalcost, addr, or_paymethod);
+				service.insertOrders(orvo);
+				for(int i=0;i<cartlist.size();i++) {
+					CartVo cvo=cartlist.get(i);
+					int od_num=service.incOdseq();
+					OrdersDetailVo odvo=new OrdersDetailVo(od_num, or_num, cvo.getFood_num());
+					service.insertOD(odvo);
+					List<CartDetailVo> cdlist=service.selectcd(cvo.getCart_num());
+					for(int j=0;j<cdlist.size();j++) {
+						CartDetailVo cdvo=cdlist.get(j);
+						OrdersOptionVo oovo=new OrdersOptionVo(0, od_num, cdvo.getFo_num(), cdvo.getCd_count());
+						service.insertOO(oovo);
+						service.deletecd(cdvo.getCart_num());
+					}
+					service.deletecart(principal.getName());
 				}
+				map.put("or_num", or_num);
 			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			map.put("result", "fail");
 		}
 		map.put("result", "success");
 		map.put("cartlist", cartlist);
