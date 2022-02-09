@@ -78,6 +78,7 @@
 	   <th  class="col1">요청사항</th>
 	   <th  class="col1">주문내역삭제</th>
 	</tr>
+	<c:forEach var="vo" items="${vo }"  > 
 	<tr>
 		<td class="col2">${vo.r_name }</td>                
 		<c:choose>
@@ -93,15 +94,24 @@
 		<c:when test="${vo.or_status eq '4'}">
 		 <td class="col2">배달완료</td>  
 		</c:when>   
-	</c:choose>
+	    </c:choose>
         <td class="col2">${vo.or_regdate }</td>
 	    <td class="col2">${vo.or_deltime }</td>
 		<td class="col2">${vo.food_name }(${vo.food_cost }원) </td>
+		<!-- 
+		<c:choose>
+		<c:when test="${empty vo.fo_name}"></c:when>      
+		<td class="col2"> X </td>   
+		<c:when test="${!empty vo.fo_name}"></c:when>
+		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
+		</c:choose>
+		 -->
 		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
 		<td class="col2">${vo.or_totalcost }원</td>     
 		<td class="col2">${vo.or_request }</td>  
 		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
 	</tr> 
+	</c:forEach>
 </table>
 </div>	
 <script type="text/javascript">
