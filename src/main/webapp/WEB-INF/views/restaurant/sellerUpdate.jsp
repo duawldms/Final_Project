@@ -4,55 +4,81 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b89a8c65d42f06fcb2f0dd87d520b67&libraries=services"></script>
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
 <c:set var="req" value="${requestScope }"/>
 <div>
-	<h1>판매자 정보 수정</h1>
+	<div class="seller_update_title">
+		<h3>판매자 정보 수정</h3>
+	</div>
 	<form:form method="post" id="sellerUpdateForm" action="${cp }/restaurant/sellerUpdate" enctype="multipart/form-data" acceptCharset="utf-8">
-		<label>매장명</label>
-		<br>
-		<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)" value="${req.vo.r_name }">
-		<span id="r_nameResult"></span>
-		<br>
-		<label>카테고리</label>
-		<br>
-		<input type="text" id="cg_name" name="cg_name" placeholder="예)족발/보쌈"
-			 onblur="commonCheck(event)" value="${req.vo.cg_name }">
-		<span id="cg_nameResult"></span>
-		<br>
-		<label>주소</label>
-		<div class="restaurant_addr">
-			<input type="text" id="sample6_address" readonly="readonly" value="${req.addr1 }"> 
-			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
-			<br> 
-			<span id="sample6_addressResult"></span> 
-			<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)" value="${req.addr2 }">
-			<input type="hidden" id="r_addr" name="r_addr"> 
-			<span id="sample6_detailAddressResult"></span>
-		</div>
-		<label>최소 주문금액</label>
-		<br>
-		<input type="text" id="r_minCost" name="r_minCost" value="${req.vo.r_minCost}" onblur="commonCheck(event)">
-		<span id="r_minCostResult"></span>
-		<br>
-		<label>배달비</label>
-		<br>
-		<input type="text" id="r_delCost" name="r_delCost" value="${req.vo.r_delCost}" onblur="commonCheck(event)">
-		<span id="r_delCostResult"></span>
-		<br>
-		<label>이미지 등록</label>
-		<br>
-		<input type="file" id="r_img" name="file1" onchange="imageView(event)">
-		<br>
-		<img style="width: 200px; height: 200px;" id="food_img" src="../resources/img/${req.vo.r_img }">
-		<br>
-		<label>매장 정보</label>
-		<br>
-		<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)">${req.vo.r_info }</textarea>
-		<span id="r_infoResult"></span>
+		<table class="update_table">
+			<tr style="border-top: 3px solid #49505796;">
+				<td class="update_td1">매장명</td>
+				<td class="update_td2">
+					<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)" value="${req.vo.r_name }">
+					<span id="r_nameResult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="update_td1">카테고리</td>
+				<td class="update_td2">
+					<input type="text" id="cg_name" name="cg_name" placeholder="예)족발/보쌈"
+						 onblur="commonCheck(event)" value="${req.vo.cg_name }">
+					<span id="cg_nameResult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="update_td1">주소</td>
+				<td class="update_td2">
+					<div class="restaurant_addr">
+						<div class="sample6_address_div">
+							<input type="text" id="sample6_address" readonly="readonly" value="${req.addr1 }"> 
+							<input type="button" id="addr_btn_2" onclick="sample6_execDaumPostcode()" value="주소 검색">
+							<span id="sample6_addressResult"></span> 
+						</div>
+						<div class="sample6_detailAddress_div">
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)" value="${req.addr2 }">
+							<input type="hidden" id="r_addr" name="r_addr"> 
+							<span id="sample6_detailAddressResult"></span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="update_td1">최소 주문금액</td>
+				<td class="update_td2">
+					<input type="text" id="r_minCost" name="r_minCost" value="${req.vo.r_minCost}" onblur="commonCheck(event)">
+					<span id="r_minCostResult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="update_td1">배달비</td>
+				<td class="update_td2">
+					<input type="text" id="r_delCost" name="r_delCost" value="${req.vo.r_delCost}" onblur="commonCheck(event)">
+					<span id="r_delCostResult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="update_td1">이미지 등록</td>
+				<td class="update_td2">
+					<input type="file" id="r_img" name="file1" onchange="imageView(event)">
+					<br>
+					<img style="width: 200px; height: 200px; margin-top: 5px;" id="food_img" src="../resources/img/${req.vo.r_img }">
+				</td>
+			</tr>
+			<tr style="border-bottom: 3px solid #49505796;">
+				<td class="update_td1">매장 정보</td>
+				<td class="update_td2">
+					<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)">${req.vo.r_info }</textarea>
+					<span id="r_infoResult"></span>
+				</td>
+			</tr>
+		</table>
 		<input type="hidden" name="r_coordx" id="r_coordx" value="${req.vo.r_coordx }">
 		<input type="hidden" name="r_coordy" id="r_coordy" value="${req.vo.r_coordy }">
-		<br>
-		<input type="button" value="수정" onclick="sellerUpdate()">
+		<div class="seller_update_btn_div">
+			<input type="button" class="btn3" id="seller_update_btn" value="수정" onclick="sellerUpdate()">
+		</div>
 	</form:form>
 </div>
 <script>

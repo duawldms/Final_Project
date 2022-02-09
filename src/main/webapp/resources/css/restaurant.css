@@ -1,4 +1,185 @@
 @charset "UTF-8";
+/* 회원가입 폼 */
+.seller_insert_wrap {
+	 	position:center;
+	 	padding:35px;          
+	 	margin:10px; 
+ 	}  
+ 	
+ 	#inserttable {
+	 	height: 300px;
+	    width: 900px;
+	    border-top: 3px solid black;
+	    margin-right: auto;
+	    margin-left: auto;
+ 	}
+ 	
+ 	td {
+    	border-bottom: 1px dotted black;
+    }
+    
+    .col1 {
+	    background-color: #7bcfbb;
+	    padding: 10px;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size: 1.2  em;  
+    }   
+ 
+    .col2 {
+	    text-align: left;
+	    padding: 5px;
+    }
+    #addr_btn {    
+	    height: 28px;
+	    width: 80px;
+	    color: white;
+	    background-color: black;
+	    border-color: black;
+    }
+    
+   .btn3 {
+	    color:white; 
+	    height: 35px;
+	    width: 150px;
+	    background-color: #F6416C;   
+	    border: 2px solid white;
+    }
+    
+    .btn3:hover { 
+	    background-color: white;
+	    color: black;
+	    border: 2px solid #F6416C;
+    }
+    
+    .btn3_div {
+    	text-align: center;
+    	padding-top: 35px;
+    }
+    
+    .num{
+    	color: red;
+    }
+    
+    #sample6_address {
+    	width: 350px;
+    }
+    
+    .sample6_address_div {
+    	padding-bottom: 5px;
+    }
+    
+    #sample6_detailAddress {
+    	width: 434px;
+    }
+    
+    .seller_insert_title {
+    	padding-bottom: 20px;
+    	text-align: center;
+    }
+    
+    .seller_insert_table {
+    	margin: auto;
+    }
+/* 회원가입 폼 end */
+
+/* 판매자 정보 수정 */
+	.seller_update_title {
+		text-align: center;
+	}
+	
+	.seller_update_title h3 {
+		padding: 10px;
+	}
+	
+	.update_table {
+		margin: auto;
+	}
+
+	.update_td1 {
+		background-color: #F2F2F2;
+		text-align: center;
+		padding: 10px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.update_td2 {
+		padding: 5px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.seller_update_btn_div {
+		text-align: center;
+		padding: 15px;
+	}
+	
+	#addr_btn_2 {
+		height: 28px;
+	    width: 80px;
+	    color: white;
+	    font-weight: bold;
+	    background-color: #adb5bd;
+	    border-color: #adb5bd;
+	}
+	
+	#seller_update_btn {
+		width: 50px;
+		width: 130px;
+    	height: 35px;
+	}
+/* 판매자 정보 수정 end*/
+
+/* 메뉴 추가 */
+	.menuadd_wrap {
+		padding: 50px;
+	    border: 3px solid #7bcfbb;
+	    margin: auto;
+	    width: 600px;
+	    margin-bottom: 50px;
+	    margin-top: 50px;
+	    padding: 50px;
+	}
+	
+	.menuadd_title {
+		text-align: center;
+	}
+	
+	.menuadd_title h3 {
+		padding: 10px;
+	}
+	
+	.menuadd_table {
+		margin: auto;
+	}
+
+	.menuadd_td1 {
+		background-color: #F2F2F2;
+		text-align: center;
+		padding: 10px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.menuadd_td2 {
+		padding: 5px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.menuadd_btn_div {
+		text-align: center;
+		padding: 25px;
+	}
+	
+	#menuadd_btn {
+		width: 50px;
+		width: 130px;
+    	height: 35px;
+	}
+/* 메뉴 추가 end */
+
 /* 사이드 메뉴 추가, 수정, 삭제 */
 	.food_edit_title {
 		text-align: center;
