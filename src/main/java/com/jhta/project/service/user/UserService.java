@@ -81,7 +81,7 @@ public class UserService {
 	public ArrayList<OrdersVo> userdelivery(String ui_id) {
 		return mapper.userdelivery(ui_id);
 	}
-	public OrdersVo deliverydetail(int or_num) {
+	public ArrayList<OrdersVo> deliverydetail(int or_num) {
 		return mapper.deliverydetail(or_num);
 	}
 	public ArrayList<OrdersVo> selectstatus(String ui_id){

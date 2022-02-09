@@ -28,8 +28,6 @@ public class UserDeliveryController {
 		map.put("keyword",keyword);
 		map.put("ui_id",ui_id);
 		int totalRowCount=service.deliverycount(map);
-		System.out.println(totalRowCount);
-		System.out.println("//////////////////////");
 		PageUtil pu=new PageUtil(pageNum,5,5,totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow();
@@ -37,8 +35,7 @@ public class UserDeliveryController {
 		map.put("endRow", endRow);
 		map.put("ui_id",ui_id);
 		List<OrdersVo>list1=service.deliverylist(map);
-		System.out.println(list1);
-		System.out.println("333333333333333333333333");
+		model.addAttribute("ui_id",ui_id);
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("list1",list1);
@@ -62,9 +59,9 @@ public class UserDeliveryController {
 	}
 	@GetMapping("/deliverydetail")
 	public String deliverydetail(int or_num,Model model,String ui_id) {
-		OrdersVo vo=service.deliverydetail(or_num);
-		System.out.println(vo);
-		model.addAttribute("vo",vo);
+		ArrayList<OrdersVo> list=service.deliverydetail(or_num);
+		System.out.println(list);
+		model.addAttribute("vo",list);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";

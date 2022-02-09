@@ -223,7 +223,6 @@ var themeObj = {
 			<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
 			<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
 			<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
-			
 			</td>
 		</tr>
 	</table><br><br>   
