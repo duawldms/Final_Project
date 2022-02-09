@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,7 @@ import com.jhta.project.service.user.SearchService;
 import com.jhta.project.vo.restaurant.FoodVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.user.CartDetailVo;
+import com.jhta.project.vo.user.CartFoodVo;
 import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
 
@@ -48,8 +50,24 @@ public class SearchDetailController {
 				}
 			}
 			if(r_id==null||r_id.equals("")) {
-				model.addAttribute("cart","empty");
-				return "redirect:/"+req.getHeader("REFERER").substring(req.getHeader("REFERER").lastIndexOf("project/")+8);
+				if(req.getHeader("REFERER").substring(req.getHeader("REFERER").lastIndexOf("project/")+8).equals("searchDetail")) {
+					r_id=(String)req.getSession().getAttribute("r_id");
+					req.getSession().removeAttribute("r_id");
+					InSearchRestaurantVo resvo=service.searchDetail(r_id);
+					HashMap<String, Object> map=new HashMap<String, Object>();
+					map.put("user_coordx", coordx);
+					map.put("user_coordy", coordy);
+					map.put("r_coordx", resvo.getR_coordx());
+					map.put("r_coordy", resvo.getR_coordy());
+					distance=service.getdistance(map);
+					return "redirect:/searchDetail?r_id="+r_id+"&distance="+distance;
+				}else {
+					if(req.getSession().getAttribute("r_id")!=null) {
+						req.getSession().removeAttribute("r_id");
+					}
+					model.addAttribute("cart","empty");
+					return "redirect:/"+req.getHeader("REFERER").substring(req.getHeader("REFERER").lastIndexOf("project/")+8);
+				}
 			}
 			InSearchRestaurantVo resvo=service.searchDetail(r_id);
 			HashMap<String, Object> map=new HashMap<String, Object>();
@@ -58,16 +76,12 @@ public class SearchDetailController {
 			map.put("r_coordx", resvo.getR_coordx());
 			map.put("r_coordy", resvo.getR_coordy());
 			distance=service.getdistance(map);
+			req.getSession().setAttribute("r_id", r_id);
 		}
 		InSearchRestaurantVo rvo=service.searchDetail(r_id);
 		List<FoodVo> flist=service.foodlist(r_id);
-		List<CartVo> clist=service.selectcart(principal.getName());
-		List<CartDetailVo> cdlist=null;
-		for(CartVo cart:clist) {
-			cdlist=service.selectcd(cart.getCart_num());
-		}
-		model.addAttribute("clist",clist);
-		System.out.println(clist);
+		List<CartFoodVo> cflist=service.selectFood(principal.getName());
+		model.addAttribute("cflist",cflist);
 		model.addAttribute("rvo",rvo);
 		model.addAttribute("distance",distance);
 		model.addAttribute("flist",flist);

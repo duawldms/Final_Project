@@ -122,8 +122,9 @@ public class RestaurantInfoUpdateController {
 		return "layout";
 	}
 	
-	@PostMapping("/restaurant/sellerPwdCheck")
-	public String pwdCheck(Model model, String r_pwd, Principal principal) {
+	@GetMapping("/restaurant/pwdChange")
+	public String pwdCheck(Model model, Principal principal) {
+		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdChange.jsp");
 		return "layout";
 	}
 }

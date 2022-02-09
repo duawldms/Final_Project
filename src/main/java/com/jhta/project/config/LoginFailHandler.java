@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -32,6 +33,8 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 		if (exception instanceof BadCredentialsException 
 				|| exception instanceof InternalAuthenticationServiceException) {
 			errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
+		} else if (exception instanceof DisabledException) {
+			errMsg = "이미 탈퇴한 계정입니다.";
 		} else {
 			errMsg = "관리자에게 문의하세요.";
 		}
