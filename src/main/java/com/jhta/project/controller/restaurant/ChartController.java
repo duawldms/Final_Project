@@ -53,6 +53,6 @@ public class ChartController {
 		//System.out.println(list.size());
 		
 		return map; 
-		
+		 
 	}
 }
