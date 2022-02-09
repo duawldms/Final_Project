@@ -33,4 +33,6 @@ public class InSearchRestaurantVo {
 	private int r_delmin;
 	private int r_delmax;
 	private Double distance;
+	private Double hit;
+	private int re_num;
 }

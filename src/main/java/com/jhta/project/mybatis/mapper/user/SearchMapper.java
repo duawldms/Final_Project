@@ -41,6 +41,7 @@ public interface SearchMapper {
 	int insertOrders(InSearchOrdersVo vo);
 	int insertOD(OrdersDetailVo vo);
 	int insertOO(OrdersOptionVo vo);
+	Double findhit(String r_id);
 }
 
 

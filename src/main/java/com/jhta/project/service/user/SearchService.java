@@ -100,6 +100,9 @@ public class SearchService {
 	public int insertOO(OrdersOptionVo vo) {
 		return mapper.insertOO(vo);
 	}
+	public Double findhit(String r_id) {
+		return mapper.findhit(r_id);
+	}
 }
 
 
