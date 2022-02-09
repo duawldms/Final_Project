@@ -78,7 +78,6 @@
 	   <th  class="col1">요청사항</th>
 	   <th  class="col1">주문내역삭제</th>
 	</tr>
-	<c:forEach var="vo" items="${vo }"  > 
 	<tr>
 		<td class="col2">${vo.r_name }</td>                
 		<c:choose>
@@ -98,15 +97,34 @@
         <td class="col2">${vo.or_regdate }</td>
 	    <td class="col2">${vo.or_deltime }</td>
 		<td class="col2">${vo.food_name }(${vo.food_cost }원) </td>
-		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
+		<td class="col2"><span id="option"></span> </td>   
 		<td class="col2">${vo.or_totalcost }원</td>     
 		<td class="col2">${vo.or_request }</td>  
 		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
 	</tr> 
-	</c:forEach>
 </table>
 </div>	
 <script type="text/javascript">
-
+	$(function(){
+		let or_num="${vo.or_num}";
+		$.ajax({
+			url:'/project/user/deliveryoptiondetail',   
+			data:{'or_num':or_num},
+			dataType:'json',
+			success:function(data){ 
+				let result="";   
+				if(data!=null){    
+					console.log(data);  
+					for(let i=0;i<data.list.length;i++){            
+						result+=data.list[i].fo_name + "(" + data.list[i].fo_cost + "원)" + "<br>";       
+					}
+					$("#option").html(result);
+					console.log(result);
+				}else{
+					$("#option").html('X');
+				}
+			}
+		});
+	});
 
 </script>

@@ -27,9 +27,10 @@ public interface UserMapper {
 	int userpwdupdate(UserVo vo);
 	int favoritesinsert(FavoritesVo vo);
 	ArrayList<OrdersVo> userdelivery(String ui_id);
-	ArrayList<OrdersVo> deliverydetail(int or_num);
+	OrdersVo deliverydetail(int or_num);
 	ArrayList<OrdersVo> selectstatus(String ui_id);
 	int statusupdate(OrdersVo vo);
 	List<OrdersVo> deliverylist(HashMap<String, Object> map);
 	int deliverycount(HashMap<String, Object> map);
+	ArrayList<OrdersVo> optiondetail(int or_num);
 }
