@@ -166,8 +166,8 @@ public class MenuController {
 	public String optionUpdateForm(int fo_num, Model model) {
 		FoodOptionVo vo = service.getOption(fo_num);
 		model.addAttribute("vo", vo);
-		model.addAttribute("main", "/WEB-INF/views/restaurant/optionUpdate.jsp");
-		return "layout";
+		//model.addAttribute("main", "/WEB-INF/views/restaurant/optionUpdate.jsp");
+		return "restaurant/optionUpdate";
 	}
 	
 	@PostMapping("/restaurant/optionUpdate")

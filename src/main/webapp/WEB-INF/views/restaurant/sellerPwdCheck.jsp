@@ -45,6 +45,11 @@
     .pwd_check_title {
     	text-align: center;
     }
+    
+    #pwd_err {
+    	text-align: center;
+    	color: red;
+    }
 </style>
 <script type="text/javascript">
 	
@@ -83,7 +88,7 @@
 					location.href="${cp}/restaurant/pwdChange";
 				} else {
 					let pwd_err = document.getElementById("pwd_err");
-					pwd_err.innerText = "비밀번호가 틀렸습니다.";					
+					pwd_err.innerText = "비밀번호가 일치하지 않습니다.";					
 				}
 			}
 		}
