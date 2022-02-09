@@ -107,6 +107,16 @@
                                   and fo.fo_num=p.fo_num
 			                      and o.or_num=#{or_num}
 	</select>
+	<!-- 디테일 메인 들고오는 쿼리 -->
+	<select id="optiondetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
+      select fo.fo_name,fo.fo_cost,p.oo_count 
+      from  orders o,food f,orders_detail d,orders_option p,food_options fo
+			                      where o.or_num=d.or_num 
+			                      and d.od_num=p.od_num 
+			                      and f.food_num=d.food_num  
+                                  and fo.fo_num=p.fo_num
+			                      and o.or_num=#{or_num}
+	</select>
 	<sql id="searchdelivery">
 		<if test="field!=null and field!=''">
 			and ${field} like '%' || #{keyword} || '%'

@@ -7,7 +7,8 @@
  	position:center;
  	padding:45px;                   
  	margin:100px; 
- 	text-align: center;       
+ 	text-align: center;     
+ 	padding-bottom:150px;        
  	} 
  	#form{
  	margin:auto;
