@@ -49,8 +49,8 @@ public class ChartController {
  
 		
 		map.put("list",list);
-		System.out.println(list);
-		System.out.println(list.size());
+		//System.out.println(list);
+		//System.out.println(list.size());
 		
 		return map; 
 		
