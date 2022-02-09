@@ -74,11 +74,14 @@ p {
 					<textarea class="form-control" rows="3" name="contents"
 						readonly="readonly">${vo.re_content}</textarea>
 				</div>
-
-				<button id="list" class="btn btn-primary">
-					<a href="${cp }/admin/reviewchk/list">목록</a>
-				</button>
-			</div>
+				<div class="form-group">
+				<!-- <label>사진</label>
+					<textarea class="form-control" rows="6" name="photo"
+						readonly="readonly">${vo.rp_photo}</textarea>-->	
+					<img alt="사진" src="${cp }/resources/img/${rp_photo}" >
+				</div>
+					<input type="button" value="목록" onclick="location.href='${cp }/admin/reviewchk/list'" class='btn btn-primary'/>
+				</div>
 			<div class="panel-footer"></div>
 		</div>
 	</div>

@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style>
+	#main{padding-bottom:70px}
 	.where{padding-top:100px;}
 	#up{position:relative;left:220px}
 	.searchplace{width:700px;margin-bottom:100px}
@@ -10,8 +11,9 @@
 	.restaurant{width:600px;margin:auto;margin-top:50px;height:70px}
 	.restaurant img{float:left;margin-right:10px}
 	.resimg{width:100px;height:100px}
-	.paging{position:relative;left:140px;margin-top:30px}
+	.paging{position:relative;margin:auto;top:60px}
 	#category{width:100px}
+	.star{position:relative;top:-2px}
 </style>    
 
 <div class="container where">
@@ -129,13 +131,19 @@
 									$("#restau").empty();
 									$("#paging").empty();
 									for(let i=0;i<data.listvo.length;i++){
+										let star=+Math.round(data.listvo[i].hit*10)/10;
+										let starcount="("+data.listvo[i].re_num+")";
+										if(star==0){
+											star='아직 리뷰가 없어요';
+											starcount=""
+										}
 										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-										seller+="<span></span><br>" // 별점 
-										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+										seller+="<span>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
 										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
@@ -148,17 +156,19 @@
 									console.log("count:"+data.pu.totalPageCount);
 									x=data.user_coordx;
 									y=data.user_coordy;
+									page+="<nav aria-label='Page navigation'><ul class='pagination'>"
 									for(let i=1;i<=data.pu.totalPageCount;i++){
 										if(i==1){
-											page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-													+i+"</span></a>&nbsp";
+											page+="<li class='page-item active' aria-current='page'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+													+i+"</span></a></li>";
 										}else{
-											page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-													+i+"</span></a>&nbsp";
+											page+="<li class='page-item'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+													+i+"</span></a></li>";
 										}
-										console.log("page:"+keyword);
-										$("#paging").append(page);
 									}
+									page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+									+"Prev</span></a></li></ul></nav>";
+									$("#paging").append(page);
 								}
 							});
 				     }
@@ -183,16 +193,22 @@
 				$("#restau").empty();
 				$("#paging").empty();
 				for(let i=0;i<data.listvo.length;i++){
+					let star=+Math.round(data.listvo[i].hit*10)/10;
+					let starcount="("+data.listvo[i].re_num+")";
+					if(star==0){
+						star='아직 리뷰가 없어요';
+						starcount="";
+					}
 					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
 					seller+="<div class='container restaurant'>";
 					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-					seller+="<span></span><br>"; // 별점 
-					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+					seller+="<span>"+star+"&nbsp"+starcount+"</span><br>"; // 별점 
+					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 					seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 					seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
-					seller+="<spanstyle='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
+					seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
 					seller+="</div></a>";
 				}
 				$("#restau").append(seller);
@@ -200,17 +216,25 @@
 				let keyword="";
 					//$("#keyword").val();
 				console.log("count:"+data.pu.totalPageCount);
-				for(let i=1;i<=data.pu.totalPageCount;i++){
-					if(pageNum==i){
-						page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-						+i+"</span></a>&nbsp";
-					}else{
-						page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-						+i+"</span></a>&nbsp";
-					}
-					console.log("page:"+page);
-					$("#paging").append(page);
+				page+="<nav aria-label='Page navigation'><ul class='pagination'>";
+				if(pageNum!=1){
+					page+="<li class='page-item'><a class='page-link' href='javascript:paging("+(pageNum-1)+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+					+"Prev</span></a><li>";
 				}
+				for(let i=1;i<=data.pu.totalPageCount;i++){
+					if(i==pageNum){
+						page+="<li class='page-item active' aria-current='page'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+								+i+"</span></a></li>";
+					}else{
+						page+="<li class='page-item'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+								+i+"</span></a></li>";
+					}
+				}
+				if(pageNum!=data.pu.totalPageCount){
+					page+="<li class='page-item'><a class='page-link' href='javascript:paging("+(pageNum+1)+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+					+"Prev</span></a></li></ul></nav>";
+				}
+				$("#paging").append(page);
 			}
 		});
 	}
@@ -269,13 +293,19 @@
 									x=data.user_coordx;
 									y=data.user_coordy;
 									for(let i=0;i<data.listvo.length;i++){
+										let star=+Math.round(data.listvo[i].hit*10)/10;
+										let starcount="("+data.listvo[i].re_num+")";
+										if(star==0){
+											star='아직 리뷰가 없어요';
+											starcount="";
+										}
 										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-										seller+="<span></span><br>" // 별점 
-										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+										seller+="<span class='star'>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>"
 										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>"
@@ -285,17 +315,19 @@
 									let keyword="";
 										//$("#keyword").val();
 									$("#restau").append(seller);
+									page+="<nav aria-label='Page navigation example'><ul class='pagination'>"
 									for(let i=1;i<=data.pu.totalPageCount;i++){
 										if(i==1){
-											page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-													+i+"</span></a>&nbsp";
+											page+="<li class='page-item active' aria-current='page'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+													+i+"</span></a></li>";
 										}else{
-											page="<a href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-													+i+"</span></a>&nbsp";
+											page+="<li class='page-item'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+													+i+"</span></a></li>";
 										}
-										console.log("page:"+page);
-										$("#paging").append(page);
 									}
+									page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+									+"Prev</span></a></li></ul></nav>";
+									$("#paging").append(page);
 								}
 							});
 				     }

@@ -104,7 +104,7 @@
 		<td class="col2">${vo.food_name }</td>
 		<td class="col2">${vo.or_totalcost }</td>  
 		<td class="col2">${vo.or_regdate }</td>    
-		<td class="col2"><a href="${cp }/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
+		<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
 		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
 	</tr> 
 	</c:forEach>

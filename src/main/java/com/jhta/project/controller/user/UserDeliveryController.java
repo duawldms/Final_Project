@@ -1,5 +1,6 @@
 package com.jhta.project.controller.user;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +51,8 @@ public class UserDeliveryController {
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";	
-	}
-	@GetMapping("/deliveryupdate")
+	} 
+	@GetMapping("/deliveryupdate")  
 	public String deliverydelete(int or_num,Model model,String ui_id,OrdersVo vo) {
 		service.statusupdate(vo);
 		ArrayList<OrdersVo> list = service.userdelivery(ui_id);
@@ -60,7 +61,7 @@ public class UserDeliveryController {
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";	
 	}
-	@GetMapping("/deliverydetail")
+	@GetMapping("/user/deliverydetail")
 	public String deliverydetail(int or_num,Model model,String ui_id) {
 		OrdersVo vo=service.deliverydetail(or_num);
 		model.addAttribute("vo",vo);

@@ -42,43 +42,49 @@
 <title>permission list</title>
 </head>
 <body>
-<div class="container">
-    <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>아이디</th>
-        <th>가게명</th>
-        <th>가게주소</th>
-        <th>가게정보</th>
-        <th>승인<th>
-      </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="vo" items="${list }">
-      <tr>
-        <td>${vo.r_id}</td>
-        <td>${vo.r_name }</td>
-        <td>${vo.r_addr }</td>
-        <td>${vo.r_info }</td>
-        <td><a href="${cp }/permission/update?r_id=${vo.r_id}"><input type="button" value="승인" class="btn btn-primary"></a></td>
-      </tr>
-      </c:forEach>
-    </tbody>
-  </table>
-</div>
-<div class="text-center">
-	<c:forEach var= "i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-		<c:choose>
-			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style='color:blue'>${i }</span></a>
-			</c:when>
-			<c:otherwise>
-				<a href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span style='color:gray'>${i }</span></a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</div>
-<br>
-<p>쿠팡요기이츠 관리자페이지 입니다</p>
+	<div class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>가게명</th>
+					<th>가게주소</th>
+					<th>가게정보</th>
+					<th>승인</th>
+					<th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="vo" items="${list }">
+					<tr>
+						<td>${vo.r_id}</td>
+						<td>${vo.r_name }</td>
+						<td>${vo.r_addr }</td>
+						<td>${vo.r_info }</td>
+						<td><a href="${cp }/permission/update?r_id=${vo.r_id}"><input
+								type="button" value="승인" class="btn btn-info></a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<div class="text-center">
+		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+			<c:choose>
+				<c:when test="${i==param.pageNum }">
+					<a
+						href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						style='color: blue'>${i }</span></a>
+				</c:when>
+				<c:otherwise>
+					<a
+						href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						style='color: gray'>${i }</span></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</div>
+	<br>
+	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
 </body>
 </html>

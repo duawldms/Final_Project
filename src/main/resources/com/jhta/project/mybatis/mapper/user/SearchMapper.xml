@@ -6,7 +6,7 @@
 	<sql id="searchfield">
 		<choose>
 			<when test="keyword!=null and keyword!=''">
-				and(r_name like '%'||#{keyword}||'%' or  cg_name like '%'||#{keyword}||'%')
+				and(res_name like '%'||#{keyword}||'%' or  res.cg_name like '%'||#{keyword}||'%')
 			</when>
 			<when test="category!=null and category!=''">
 				and cg_name=#{category}
@@ -21,9 +21,14 @@
 	</sql>
 	 -->
 	<sql id="orderby">
-		<if test="orderby=='true'">
-			order by distance 
-		</if>
+		<choose>
+			<when test="orderby=='distance'">
+				order by res.distance 
+			</when>
+			<when test="orderby=='hit'">
+				order by a.hitavg
+			</when>
+		</choose>
 	</sql>
 	<select id="selectAddr" parameterType="hashmap" resultType="com.jhta.project.vo.user.UserAddrVo">
 		select * from user_addr where ui_id=#{ui_id}
@@ -33,13 +38,20 @@
 	</select>
 	<select id="searchRes" parameterType="hashmap" resultType="com.jhta.project.vo.user.InSearchRestaurantVo">
 		select * from (
-			select a.*,rownum rnum from 
-			(select * from 
+			select sr.*,rownum rnum from 
 				(
-					select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
-					from restaurant r 
-				) <![CDATA[where distance<3]]> <include refid="searchfield"/> <include refid="orderby"/>) a 
-		) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+				select res.*,nvl(a.hitavg,0) hit,a.re_num re_num from(
+				            select * from 
+				            (
+				                select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
+				                from restaurant r 
+				            ) <![CDATA[where distance<3]]>) res,
+				(select rid,avg(hit) hitavg, count(re_num) re_num from (
+				select r.r_id rid,re.re_hit hit,re.re_num
+				from restaurant r, review re, orders_detail o,food f
+				where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num)
+				group by rid) a <![CDATA[where res.r_id=a.rid(+)]]> <include refid="searchfield"/> <include refid="orderby"/>) sr
+				) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="count" parameterType="hashmap" resultType="int">
 		select NVL(count(r_id),0) from 
@@ -48,6 +60,12 @@
 			from restaurant r 
 		) <![CDATA[where distance<3]]> <include refid="searchfield"/>
 		
+	</select>
+	<select id="findhit" parameterType="string" resultType="Double">
+		select nvl(avg(hit),0) hit from (
+			select re.re_hit hit
+			from restaurant r, review re, orders_detail o,food f
+			where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num and r.r_id=#{r_id})
 	</select>
 	<select id="searchCategory" resultType="string">
 		select cg_name from category
@@ -132,6 +150,14 @@
 	<insert id="insertOO" parameterType="com.jhta.project.vo.user.OrdersOptionVo">
 		insert into orders_option values(orders_option_seq.nextval,#{od_num},#{fo_num},#{oo_count})
 	</insert>
+	<!-- 매장별 리뷰 개수 조회 -->
+	<select id="countreview" parameterType="string" resultType="int">
+		select count(re.re_num) count
+		from restaurant r, review re, orders_detail o,food f
+		where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num 
+		and r.r_id=#{r_id}
+	</select>
+	<!-- 매장별 리뷰 조회 -->
 </mapper> 
 
 
