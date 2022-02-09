@@ -51,7 +51,7 @@ public class UserDeliveryController {
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";	
-	}
+	} 
 	@GetMapping("/deliveryupdate") 
 	public String deliverydelete(int or_num,Model model,String ui_id,OrdersVo vo) {
 		service.statusupdate(vo);
