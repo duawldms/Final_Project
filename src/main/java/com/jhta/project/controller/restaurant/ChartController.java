@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.jhta.project.service.restaurant.RestaurantService;
 import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
@@ -49,10 +48,10 @@ public class ChartController {
  
 		
 		map.put("list",list);
-		System.out.println(list);
-		System.out.println(list.size());
+		//System.out.println(list);
+		//System.out.println(list.size());
 		
 		return map; 
-		
+		 
 	}
 }

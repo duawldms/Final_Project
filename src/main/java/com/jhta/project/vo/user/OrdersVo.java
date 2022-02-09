@@ -38,4 +38,7 @@ public class OrdersVo {
 	private int r_delcost; //배달비
 	private String r_img;//가게 사진
 	
+	//category
+	private String cg_name;
+	
 }

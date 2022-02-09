@@ -3,119 +3,129 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b89a8c65d42f06fcb2f0dd87d520b67&libraries=services"></script>
-<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
-<div class="seller_insert_wrap">
-	<div class="seller_insert_title">
-		<h3>배달요기이츠 판매자 회원가입</h3>
-	</div>
+<style>
+	#box {
+	 	position:center;
+	 	padding:55px;          
+	 	margin:10px; 
+ 	}  
+ 	
+ 	#inserttable {
+	 	height: 300px;
+	    width: 900px;
+	    border-top: 3px solid black;
+	    margin-right: auto;
+	    margin-left: auto;
+ 	}
+ 	
+ 	td {
+    	border-bottom: 1px dotted black;
+    }
+    
+    .col1 {
+	    background-color: #7bcfbb;
+	    padding: 10px;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size: 1.2  em;  
+    }   
+ 
+    .col2 {
+	    text-align: left;
+	    padding: 5px;
+    }
+     .useridbtn {    
+	    height: 25px;
+	    width: 80px;
+	    color: white;
+	    background-color: black;
+	    border-color: black;
+    }
+    
+   .btn3 {
+	    color:white; 
+	    height: 35px;
+	    width: 150px;
+	    background-color: #F6416C;   
+	    border: 2px solid white;
+    }
+    
+    .btn3:hover { 
+	    background-color: white;
+	    color: black;
+	    border: 2px solid #F6416C;
+    } 
+    
+    .num{
+    	color: red;
+    }
+</style>
+<div id="box">
+	<h1>판매자 가입</h1>
 	<form:form method="post" id="restaurantForm" action="${cp }/sellerInsert" enctype="multipart/form-data" acceptCharset="utf-8">
-		<table class="seller_insert_table">	
-			<tr style="border-top: 3px solid black;">
-				<td class="col1">아이디</td>
-				<td class="col2">
-					<input type="text" id="r_id" name="r_id" onblur="idCheck()">
-					<span id="r_idResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">이메일</td>
-				<td class="col2">
-					<input type="text" id="r_email" name="r_email">
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">비밀번호</td>
-				<td class="col2">
-					<input type="password" id="r_pwd" name="r_pwd" onblur="commonCheck(event)">
-					<span id="r_pwdResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">비밀번호 확인</td>
-				<td class="col2">
-					<input type="password" id="r_pwd_check" name="r_pwd_check" onblur="pwdCheck()">
-					<span id="r_pwd_checkResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">매장명</td>
-				<td class="col2">
-					<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)">
-					<span id="r_nameResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">카테고리</td>
-				<td class="col2">
-					<select id="cg_name" name="cg_name" onblur="commonCheck(event)">
-						<option>-카테고리 선택-</option>
-						<option>1인분 주문</option>
-						<option>프랜차이즈</option>
-						<option>치킨</option>
-						<option>피자/양식</option>
-						<option>중국집</option>
-						<option>한식</option>
-						<option>일식/돈까스</option>
-						<option>족발/보쌈</option>
-						<option>야식</option>
-						<option>분식</option>
-						<option>카페/디저트</option>
-						<option>편의점/마트</option>
-					</select>
-					<span id="cg_nameResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">주소</td>
-				<td class="col2">
-					<div class="restaurant_addr">
-						<div class="sample6_address_div">
-							<input type="text" id="sample6_address" value="" readonly="readonly"> 
-							<input type="button" id="addr_btn" onclick="sample6_execDaumPostcode()" value="주소 검색">
-							<span id="sample6_addressResult"></span> 
-						</div>
-						<div class="sample6_detailAddress_div">
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)">
-							<input type="hidden" id="r_addr" name="r_addr"> 
-							<span id="sample6_detailAddressResult"></span>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">최소 주문금액</td>
-				<td class="col2">
-					<input type="text" id="r_minCost" name="r_minCost" onblur="commonCheck(event)">
-					<span id="r_minCostResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">배달비</td>
-				<td class="col2">
-					<input type="text" id="r_delCost" name="r_delCost" onblur="commonCheck(event)">
-					<span id="r_delCostResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">이미지 등록</td>
-				<td class="col2">
-					<input type="file" id="r_img" name="file1" onchange="imageView(event)">
-					<img style="width: 200px; height: 200px; display: none; margin-top: 5px;" id="food_img" src="">
-				</td>
-			</tr>
-			<tr style="border-bottom: 3px solid black">
-				<td class="col1">매장 정보</td>
-				<td class="col2">
-					<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)"></textarea>
-					<span id="r_infoResult"></span>
-				</td>
-			</tr>
-		</table>
+		<label>아이디</label>
+		<br>
+		<input type="text" id="r_id" name="r_id" onblur="idCheck()">
+		<span id="r_idResult"></span>
+		<br>
+		<label>이메일</label>
+		<br>
+		<input type="text" id="r_email" name="r_email">
+		<br>
+		<label>비밀번호</label>
+		<br>
+		<input type="password" id="r_pwd" name="r_pwd" onblur="commonCheck(event)">
+		<span id="r_pwdResult"></span>
+		<br>
+		<label>비밀번호 확인</label>
+		<br>
+		<input type="password" id="r_pwd_check" name="r_pwd_check" onblur="pwdCheck()">
+		<span id="r_pwd_checkResult"></span>
+		<br>
+		<label>매장명</label>
+		<br>
+		<input type="text" id="r_name" name="r_name" onblur="commonCheck(event)">
+		<span id="r_nameResult"></span>
+		<br>
+		<label>카테고리</label>
+		<br>
+		<input type="text" id="cg_name" name="cg_name" placeholder="예)족발/보쌈"
+			onblur="commonCheck(event)">
+		<span id="cg_nameResult"></span>
+		<br>
+		<label>주소</label>
+		<div class="restaurant_addr">
+			<input type="text" id="sample6_address" value="" readonly="readonly"> 
+			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색">
+			<br> 
+			<span id="sample6_addressResult"></span> 
+			<input type="text" id="sample6_detailAddress" placeholder="상세주소" onblur="commonCheck(event)">
+			<input type="hidden" id="r_addr" name="r_addr"> 
+			<span id="sample6_detailAddressResult"></span>
+		</div>
+		<label>최소 주문금액</label>
+		<br>
+		<input type="text" id="r_minCost" name="r_minCost" onblur="commonCheck(event)">
+		<span id="r_minCostResult"></span>
+		<br>
+		<label>배달비</label>
+		<br>
+		<input type="text" id="r_delCost" name="r_delCost" onblur="commonCheck(event)">
+		<span id="r_delCostResult"></span>
+		<br>
+		<label>이미지 등록</label>
+		<br>
+		<input type="file" id="r_img" name="file1" onchange="imageView(event)">
+		<br>
+		<img style="width: 200px; height: 200px; display: none;" id="food_img" src="">
+		<label>매장 정보</label>
+		<br>
+		<textarea rows="5" cols="40" id="r_info" name="r_info" style="resize: none;" onblur="commonCheck(event)"></textarea>
+		<span id="r_infoResult"></span>
 		<input type="hidden" name="r_coordx" id="r_coordx">
 		<input type="hidden" name="r_coordy" id="r_coordy">
-		<div class="btn3_div">
-			<input type="button" value="가입" class="btn3" onclick="sellerInsert()">
-		</div>
+		<br>
+		<input type="button" value="가입" onclick="sellerInsert()">
 	</form:form>
 </div>
 <script>
@@ -222,10 +232,8 @@
 			r_name.focus();
 			return;
 		}
-
-
-		if (cg_name.options[cg_name.selectedIndex].text == '-카테고리 선택-') {
-			document.getElementById("cg_nameResult").innerText = "카테고리를 선택해 주세요.";
+		if (cg_name.value == '') {
+			document.getElementById("cg_nameResult").innerText = "카테고리를 입력해 주세요.";
 			cg_name.focus();
 			return;
 		}

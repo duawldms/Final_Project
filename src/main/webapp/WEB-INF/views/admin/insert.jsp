@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-<c:set var="cp" value="${pageContext.request.contextPath}" />
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <style>
-* {
-	font-size: 16px;
-	font-family: conslas, sans-serif;
-}
-
 h1 {
 	text-align: center;
 }
@@ -85,7 +75,7 @@ h1 {
 				</div>
 				<div class="panel-footer" >
 				<input type="button" value="메인" onclick="location.href='${cp }/admin/adminpage'" class='btn btn-primary'/>
-					<input type="submit" value="생성"  id="insert" class="btn btn-success"/>
+					<input type="submit" value="생성"  class="btn btn-success"/>
 				</div>
 			</div>
 	</div>

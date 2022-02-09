@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CartDetailVo {
-	private int cd_num;
-	private int cart_num;
+public class OrdersOptionVo {
+	private int oo_num;
+	private int od_num;
 	private int fo_num;
-	private int cd_count;
-	private String fo_name;
-	private int fo_cost;
-	private String fo_category;
+	private int oo_count;
+	
 }

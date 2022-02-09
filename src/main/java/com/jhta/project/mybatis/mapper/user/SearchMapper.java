@@ -5,9 +5,13 @@ import java.util.List;
 
 import com.jhta.project.vo.restaurant.FoodVo;
 import com.jhta.project.vo.user.CartDetailVo;
+import com.jhta.project.vo.user.CartFoodVo;
 import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
+import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.OrdersDetailVo;
+import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
 public interface SearchMapper {
@@ -22,11 +26,29 @@ public interface SearchMapper {
 	int insertcartdetail(CartDetailVo vo);
 	int getcartseq();
 	List<CartVo> selectcart(String ui_id);
+	CartVo selectcartnum(int cart_num);
 	List<CartDetailVo> selectcd(int cart_num);
 	int deletecart(String ui_id);
+	int delcartnum(int cart_num);
 	int deletecd(int cart_num);
 	Double getdistance(HashMap<String, Object> map);
 	String getCartRid(String ui_id);
 	String getFoodRid(int food_num);
-	
+	List<CartFoodVo> selectFood(String ui_id); 
+	int incOrseq();
+	int incOdseq();
+	int incOoseq();
+	int insertOrders(InSearchOrdersVo vo);
+	int insertOD(OrdersDetailVo vo);
+	int insertOO(OrdersOptionVo vo);
 }
+
+
+
+
+
+
+
+
+
+

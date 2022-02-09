@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 import com.jhta.project.mybatis.mapper.user.SearchMapper;
 import com.jhta.project.vo.restaurant.FoodVo;
 import com.jhta.project.vo.user.CartDetailVo;
+import com.jhta.project.vo.user.CartFoodVo;
 import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
+import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.OrdersDetailVo;
+import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
 @Service
@@ -57,6 +61,9 @@ public class SearchService {
 	public String getFoodRid(int food_num) {
 		return mapper.getFoodRid(food_num);
 	}
+	public CartVo selectcartnum(int cart_num) {
+		return mapper.selectcartnum(cart_num);
+	}
 	public List<CartVo> selectcart(String ui_id){
 		return mapper.selectcart(ui_id);
 	}
@@ -69,7 +76,40 @@ public class SearchService {
 	public int deletecd(int cart_num) {
 		return mapper.deletecd(cart_num);
 	}
+	public List<CartFoodVo> selectFood(String ui_id){
+		return mapper.selectFood(ui_id);
+	}
+	public int delcartnum(int cart_num) {
+		return mapper.delcartnum(cart_num);
+	}
+	public int incOrseq() {
+		return mapper.incOrseq();
+	}
+	public int incOdseq() {
+		return mapper.incOdseq();
+	}
+	public int incOoseq() {
+		return mapper.incOoseq();
+	}
+	public int insertOrders(InSearchOrdersVo vo) {
+		return mapper.insertOrders(vo);
+	}
+	public int insertOD(OrdersDetailVo vo) {
+		return mapper.insertOD(vo);
+	}
+	public int insertOO(OrdersOptionVo vo) {
+		return mapper.insertOO(vo);
+	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

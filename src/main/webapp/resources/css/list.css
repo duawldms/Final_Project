@@ -45,9 +45,9 @@
 }
 
 .list_intro .container .list_intro_right button{
-    background: white;
+    background: #7bcfbb;
     color:black;
-    border:2px solid black; 
+    border:2px solid white; 
     border-radius:5px; 
     padding:5px 15px;
     font-size:14px;
@@ -57,7 +57,7 @@
 .list_intro .container .list_intro_right button:hover{
     transition: .5s ease;
     border:2px solid white;
-    background: black;
+    background: white;
     color:white;
 }
 
@@ -96,7 +96,7 @@
 .serv_list .container .item_list .card{
     border: 1px solid #eee; /* 테두리를 1px 실선의 #eee 색상으로 */
     border-radius: 5px; /* 모서리를 5px 만큼 둥글게 */
-    height: 350px;
+    height: 300px;
     width: 250px;
     padding: 5px;
     margin-bottom: 10px;

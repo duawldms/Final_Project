@@ -10,21 +10,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.jhta.project.vo.security.AuthorityVo;
 
-
 //사용자 인증에 대한 정보를 갖는 클래스
 public class CustomUserDetail implements UserDetails {
 	private String userid;
 	private String password;
-	private String enabled;
+	private int enabled;
 	private List<AuthorityVo> authList;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		ArrayList<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
-		for(AuthorityVo vo: authList) {
+		ArrayList<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
+		for (AuthorityVo vo : authList) {
 			System.out.println("auth : " + vo);
 			auths.add(new SimpleGrantedAuthority(vo.getAu_authority()));
 		}
-		//사용자 권한을 담은 컬렉션 객체 리턴
+		// 사용자 권한을 담은 컬렉션 객체 리턴
 		return auths;
 	}
 
@@ -55,6 +55,18 @@ public class CustomUserDetail implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		switch (enabled) {
+		case 0:
+			return false;
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			return true;
+		case 5:
+			return false;
+		default:
+			return false;
+		}
 	}
 }

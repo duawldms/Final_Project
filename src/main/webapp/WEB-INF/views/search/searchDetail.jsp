@@ -3,6 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
+#main{
+	padding-top:20px;
+}
 #mainImg {
 	width: 1100px;
 	height: 900px
@@ -28,10 +31,10 @@
 }
 #cartlist{
 	position:absolute;
-	top:68px;
+	top:88px;
 	left:1170px;
-	width:350px;
-	height:400px;
+	width:375px;
+	height:422px;
 	border:1px solid black;
 	background-color:#7bcfbb;
 }
@@ -44,9 +47,51 @@
 #cartTitle h3{color:white}
 #cartMain{
 	width:100%;
-	height:360px;
+	height:320px;
 	background-color:white;
-	border-bottom:1px solid black;
+	padding-top:5px;
+	overflow:auto;
+}
+.cart{
+	width:100%;
+	display:inline-block;
+	border-bottom:1px solid gray;
+	padding-top:5px;
+}
+.cartimg{
+	width: 70px;
+	height:100%;
+	float: left;
+	display:inline-block;
+}
+.cartsub{
+	width:260px;
+	height:100%;
+	float:right;
+	padding-left:10px
+}
+.total{
+	width:340px;
+	height:20px;
+	display:inline-block;
+	padding-left:10px;
+	margin-bottom:10px;
+}
+.delimg{
+	width:20px;
+	height:20px;
+}
+.cartOptions{
+	font-size:0.8em;
+}
+.cartbtn{
+	width:100%;
+	text-align:center;
+	position:relative;
+	background-color:white;
+}
+#incartdelcost{
+	font-size:0.9em;
 }
 </style>
 <div class="container">
@@ -60,11 +105,30 @@
 			<h3>주문표</h3>
 		</div>
 		<div id="cartMain">
-			<c:forEach var="cvo" items="${clist }">
-				<div id="num${cvo.food_num }">
-					
+			<c:forEach var="cvo" items="${cflist }">
+				<div class="cart" >
+					<div class="cartimg">
+						<img src="${cp }/resources/img/${food_img}" 
+							style='width: 70px; height: 60px; float: left;display:inline-block;'>
+					</div>
+					<div class="cartsub">
+					<span>${cvo.food_name }</span>
+					<div id="options${cvo.cart_num }" class="cartOptions"></div>
+					<span style="display:none" class="cartnum">${cvo.cart_num }</span>
+					<span style="display:none" class="cost${cvo.cart_num }">${cvo.food_cost }</span>
+					</div>
+					<div id="total${cvo.cart_num }" class="total"></div>
 				</div>
 			</c:forEach>
+		</div>
+		<div class="d-grid gap-2 col-12 mx-auto cartbtn">
+			<div id="incartdelcost">
+				<c:if test="${rvo.r_delCost!=0 }">
+					배달요금 ${rvo.r_delCost }원 별도
+				</c:if>
+			</div>
+			<div class="costtotal" style="display:inline;margin-right:15px"></div>
+			<button type="button" class="btn text-white goOrder" style="background-color:#7bcfbb">주문하기</button>
 		</div>
 	</div>
 	<div class="container title">
@@ -155,6 +219,9 @@
 	</div>
 </div>
 <script>
+	$(".goOrder").click(function(){
+		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
+	});
 	let count=0;
 	function gocart(index,foodnum,delcheck){
 		let necoptions=[];
@@ -191,6 +258,7 @@
 			success:function(data){
 				if(data.result=='success'){
 					alert('주문표에 추가되었습니다!');
+					location.reload(true);
 				}else if(data.result=='check'){
 					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
 						gocart(index,foodnum,'delete');
@@ -201,6 +269,30 @@
 			}
 		});
 	}
+	
+	function del(cartnum){
+		$.ajax({
+			url:"${cp}/user/cartdelete",
+			data:{
+				cartnum:cartnum
+			},
+			dataType:"json",
+			success:function(data){
+				if(data.result=='success'){
+					location.reload(true);
+				}else if(data.result=='fail'){
+					console.log(data.result)
+				}else if(data.result=='none'){
+					if("${param.cart}"=="empty"){
+						location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
+					}else{
+						location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
+					}
+				}
+			}
+		});
+	}
+	
 	$(function(){
 		$("#mincost").html(parseInt($("#mincost").html()).toLocaleString('ko-KR')+"원");
 		$("#delcost").html(parseInt($("#delcost").html()).toLocaleString('ko-KR')+"원");
@@ -208,10 +300,67 @@
 		for(let i=0;i<foodcost.length;i++){
 			foodcost[i].innerHTML=(parseInt(foodcost[i].innerHTML).toLocaleString('ko-KR')+"원");
 		}
+		let cartnum=$(".cartnum")
+		let total=0;
+		cartnum.each(function(j){
+			let num=$(this).html();
+			$.ajax({
+				url:"${cp}/user/cartdetail",
+				data:{
+					cartnum:num
+				},
+				dataType:"json",
+				success:function(data){
+					let options="";
+					let cdlist=data.detail
+					let totalcost=0;
+					for(let i=0;i<data.detail.length;i++){
+						if(i==0){
+							if(cdlist[i].fo_category.indexOf('필수')!=-1){
+								options+="<span>"+cdlist[i].fo_category+":"+cdlist[i].fo_name+"(+"+cdlist[i].fo_cost+"원)";
+								totalcost+=parseInt(cdlist[i].fo_cost);
+							}else{
+								options+="<span>"+cdlist[i].fo_category+":"+cdlist[i].fo_name+"x"+cdlist[i].cd_count+"(+"+
+										(cdlist[i].cd_count*cdlist[i].fo_cost).toLocaleString('ko-KR')+"원)";
+								totalcost+=parseInt(cdlist[i].cd_count*cdlist[i].fo_cost);
+							}
+						}else{
+							if(cdlist[i].fo_category.indexOf('필수')!=-1){
+								if(cdlist[i-1].fo_category==cdlist[i].fo_category){
+									options+="/"+cdlist[i].fo_name+"(+"+cdlist[i].fo_cost+"원)";
+									totalcost+=parseInt(cdlist[i].fo_cost);
+								}else{
+									options+="<br>"+cdlist[i].fo_category+":"+cdlist[i].fo_name+"(+"+cdlist[i].fo_cost+"원)";
+									totalcost+=parseInt(cdlist[i].fo_cost);
+								}
+							}else{
+								if(cdlist[i-1].fo_category==cdlist[i].fo_category){
+									options+="/"+cdlist[i].fo_name+"x"+cdlist[i].cd_count+"(+"+
+									(cdlist[i].cd_count*cdlist[i].fo_cost).toLocaleString('ko-KR')+"원)";
+									totalcost+=parseInt(cdlist[i].cd_count*cdlist[i].fo_cost);
+								}else{
+									options+="<br>"+cdlist[i].fo_category+":"+cdlist[i].fo_name+"x"+cdlist[i].cd_count+"(+"+
+									(cdlist[i].cd_count*cdlist[i].fo_cost).toLocaleString('ko-KR')+"원)";
+									totalcost+=parseInt(cdlist[i].cd_count*cdlist[i].fo_cost);
+								}
+							}
+						}
+						options+="</span>";
+						$("#options"+num).html(options);
+						
+					}
+					let indivdel="<a href='javascript:del("+num+")'><img src='${cp}/resources/img/deleteimg.png' class='delimg'></a>&nbsp&nbsp";
+					indivdel+=(parseInt($(".cost"+num).html())+totalcost).toLocaleString('ko-KR')+"원";
+					total+=parseInt($(".cost"+num).html())+totalcost;
+					$(".costtotal").html("<span>합계 : "+(total.toLocaleString('ko-KR'))+"원</span>");
+					$("#total"+num).html(indivdel);
+				}
+			});
+			
+		});
 	});
 	
-	
-	
+
 	function openModal(status,food_num){
 		$.ajax({
 			url:"${cp}/user/search/foodOptions",

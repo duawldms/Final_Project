@@ -19,12 +19,6 @@
 	<insert id="restaurantInsert" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name},#{r_coordx},#{r_coordy},#{r_delmin},#{r_delmax},#{r_email})
 	</insert>
-	<!-- 판매자 비밀번호 확인 -->
-	<select id="sellerPwdCheck" parameterType="hashMap" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
-		select * 
-		from restaurant
-		where r_id = #{r_id} and r_pwd = #{r_pwd}
-	</select>
 	<!-- 판매자 정보 수정 -->
 	<update id="sellerUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		update restaurant

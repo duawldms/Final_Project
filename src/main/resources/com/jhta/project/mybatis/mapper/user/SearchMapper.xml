@@ -40,7 +40,6 @@
 					from restaurant r 
 				) <![CDATA[where distance<3]]> <include refid="searchfield"/> <include refid="orderby"/>) a 
 		) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-		
 	</select>
 	<select id="count" parameterType="hashmap" resultType="int">
 		select NVL(count(r_id),0) from 
@@ -82,22 +81,57 @@
 	<delete id="deletecart" parameterType="String">
 		delete from cart where ui_id=#{ui_id}
 	</delete>
+	<delete id="delcartnum" parameterType="int">
+		delete from cart where cart_num=#{cart_num}
+	</delete>
 	<!-- 카트리스트 이동용 -->
 	<select id="selectcart" parameterType="string" resultType="com.jhta.project.vo.user.CartVo">
 		select * from cart where ui_id=#{ui_id}
 	</select>
+	<select id="selectcartnum" parameterType="int" resultType="com.jhta.project.vo.user.CartVo">
+		select * from cart where cart_num=#{cart_num}
+	</select>
 	<select id="selectcd" parameterType="int" resultType="com.jhta.project.vo.user.CartDetailVo">
-		select * from cart_detail where cart_num=#{cart_num}
+		select * from cart_detail cd,food_options fo
+		where cd.fo_num=fo.fo_num and cart_num=#{cart_num} 
+		order by (case when fo_category like '%필수%' then 1 else 2 end)
+	</select>
+	<select id="selectFood" parameterType="string" resultType="com.jhta.project.vo.user.CartFoodVo">
+		select * from cart c,food f
+		where c.food_num=f.food_num and c.ui_id=#{ui_id}
 	</select>
 	<!-- 주문표에서 r_id 찾기 -->
 	<select id="getCartRid" parameterType="string" resultType="String">
-		select f.r_id from cart c, food f where c.food_num=f.food_num and c.ui_id=#{ui_id}
+		select distinct f.r_id from cart c, food f where c.food_num=f.food_num and c.ui_id=#{ui_id}
 	</select>
 	<!-- foodNum으로 r_id 찾기 -->
 	<select id="getFoodRid" parameterType="int" resultType="String">
 		select r_id from food where food_num=#{food_num} 
 	</select>
-	
+	<!-- 주소로 해당 배송정보 얻어오기 -->
+	<select id="getUserData" parameterType="hashmap" resultType="com.jhta.project.vo.user.UserAddrVo">
+		select * from user_addr where ua_addr like '%'||#{ua_addr}||'%' and ui_id=#{ui_id}
+	</select>
+	<!-- Orders 포함 하위테이블 insert용 seq생성 -->
+	<select id="incOrseq" resultType="int">
+		select orders_seq.nextval or_num from dual
+	</select>
+	<select id="incOdseq" resultType="int">
+		select orders_detail_seq.nextval from dual
+	</select>
+	<select id="incOoseq" resultType="int">
+		select orders_option_seq.nextval from dual
+	</select>
+	<!-- Orders포함 하위테이블 insert -->
+	<insert id="insertOrders" parameterType="com.jhta.project.vo.user.InSearchOrdersVo">
+		insert into orders values(#{or_num},#{ui_id},#{or_request},sysdate,null,1,#{or_totalcost},#{or_addr},#{or_paymethod})
+	</insert>
+	<insert id="insertOD" parameterType="com.jhta.project.vo.user.OrdersDetailVo">
+		insert into orders_detail values(#{od_num},#{or_num},#{food_num})
+	</insert>
+	<insert id="insertOO" parameterType="com.jhta.project.vo.user.OrdersOptionVo">
+		insert into orders_option values(orders_option_seq.nextval,#{od_num},#{fo_num},#{oo_count})
+	</insert>
 </mapper> 
 
 
