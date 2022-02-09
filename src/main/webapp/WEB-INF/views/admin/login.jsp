@@ -43,7 +43,6 @@
 		<br>
 		<input type="submit" value="로그인">
 		<br>
-		<!-- <a href="${cp }/insertadmin">회원가입하기</a> -->
 		<br>
 	</form:form>
 </div>

@@ -75,11 +75,11 @@ p {
 						readonly="readonly">${vo.re_content}</textarea>
 				</div>
 				<div class="form-group">
-					<label>사진</label>
+				<!-- <label>사진</label>
 					<textarea class="form-control" rows="6" name="photo"
-						readonly="readonly">${vo.rp_photo}</textarea>
+						readonly="readonly">${vo.rp_photo}</textarea>-->	
+					<img alt="사진" src="${cp }/resources/img/${rp_photo}" >
 				</div>
-				<img alt="음식 메뉴" id="food_img" src="../resources/img/${vo.rp_photo}">
 					<input type="button" value="목록" onclick="location.href='${cp }/admin/reviewchk/list'" class='btn btn-primary'/>
 				</div>
 			<div class="panel-footer"></div>
