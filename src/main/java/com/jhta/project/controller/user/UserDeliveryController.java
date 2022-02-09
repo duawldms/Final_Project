@@ -5,14 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.project.service.user.UserService;
 import com.jhta.project.vo.user.OrdersVo;
+import com.jhta.project.vo.user.UserVo;
 
 @Controller
 public class UserDeliveryController {
@@ -59,11 +62,22 @@ public class UserDeliveryController {
 	}
 	@GetMapping("/deliverydetail")
 	public String deliverydetail(int or_num,Model model,String ui_id) {
-		ArrayList<OrdersVo> list=service.deliverydetail(or_num);
-		System.out.println(list);
-		model.addAttribute("vo",list);
+		OrdersVo vo=service.deliverydetail(or_num);
+		model.addAttribute("vo",vo);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";
+	}
+	@GetMapping(value="/user/deliveryoptiondetail",produces= {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String,Object> detail(int or_num,Model model){
+		ArrayList<OrdersVo> list=service.optiondetail(or_num);
+		System.out.println(list);
+		HashMap<String,Object>map=new HashMap<String,Object>();
+		if(list!=null) {
+			map.put("list", list);
+		}else {
+			map.put("list", null);
+		}
+		return map;
 	}
 }
