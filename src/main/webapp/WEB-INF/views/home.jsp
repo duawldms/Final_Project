@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-<link rel="stylesheet" href="${cp }/resources/css/list.css">
+<link rel="stylesheet" href="${cp }/resources/css/list.css?ver=1">
 <link rel='stylesheet' id='elementor-frontend-css'  href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.5.3' type='text/css' media='all' />
 <style id='elementor-frontend-inline-css' type='text/css'>
 .elementor-kit-31{--e-global-color-primary:#6EC1E4;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.elementor-widget:not(:last-child){margin-bottom:20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}}
@@ -94,24 +94,41 @@
             <div class="title">
                 <h1>음식 카테고리</h1>
             </div>
-            
             <div class="item_list">
-         	<c:forEach var="vo" items="${list}">
-                <div class="card">
-                    <div class="img">
-                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="" style="border: 1px solid #7bcfbb;">
-                    </div>
-                    <div class="text">
-                        <h2>${vo.cg_name}</h2>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a href="${cp}/category/modify?cg_name=${vo.cg_name}" class="modify_btn_a">
-					<input type="button" value="카테고리수정" class="modify_btn_a"></a>
-					<a href="${cp}/category/delete?cg_name=${vo.cg_name}" class="modify_btn_a">
-					<input type="button" value="카테고리삭제" class="modify_btn_a"></a>
-					</sec:authorize>
-                    </div>
-                </div>
-                </c:forEach>
+	            	<div class="card">
+	                    <div class="img">
+	                    <a href="${cp }/search">
+	                        <img src="${cp }/resources/img/foodall.png" alt="" style="border: 1px solid #7bcfbb;">
+                        </a>
+	                    </div>
+	                    <div class="text">
+	                        <h2>전체보기</h2>
+	                    </div>
+	                </div>
+	         	<c:forEach var="vo" items="${list}">
+		                <div class="card">
+		                    <div class="img">
+		                    <a href="${cp }/search?cg_name=${vo.cg_name}">
+		                        <img src="${cp }/resources/img/${vo.cg_photo}" alt="" style="border: 1px solid #7bcfbb;">
+	                        </a>
+		                    </div>
+		                    <div class="text">
+		                        <h2 style="margin-bottom:10px">${vo.cg_name}</h2>
+			                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+									<button type="button" class="btn-light" onclick="javascript:modify()">카테고리수정</button>
+									<button type="button" class="btn-light" onclick="javascript:cadelete()">카테고리삭제</button>
+									<script>
+										function modify(){
+											location.href="${cp}/category/modify?cg_name=${vo.cg_name}";
+										}
+										function cadelete(){
+											location.href="${cp}/category/delete?cg_name=${vo.cg_name}";
+										}
+									</script>
+								</sec:authorize>
+		                    </div>
+		                </div>
+	            </c:forEach>
             </div>
         </div>
     </section>
