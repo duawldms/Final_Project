@@ -98,14 +98,6 @@
         <td class="col2">${vo.or_regdate }</td>
 	    <td class="col2">${vo.or_deltime }</td>
 		<td class="col2">${vo.food_name }(${vo.food_cost }원) </td>
-		<!-- 
-		<c:choose>
-		<c:when test="${empty vo.fo_name}"></c:when>      
-		<td class="col2"> X </td>   
-		<c:when test="${!empty vo.fo_name}"></c:when>
-		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
-		</c:choose>
-		 -->
 		<td class="col2">${vo.fo_name }(${vo.fo_cost }원) </td>   
 		<td class="col2">${vo.or_totalcost }원</td>     
 		<td class="col2">${vo.or_request }</td>  

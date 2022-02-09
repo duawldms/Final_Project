@@ -53,7 +53,7 @@
 	</update>
 	<!-- 회원 탈퇴하기 -->
 	<update id="userdelete" parameterType="com.jhta.project.vo.user.UserVo">
-		update user_information set ui_state=2 where ui_id=#{ui_id} 
+		update user_information set ui_state=5 where ui_id=#{ui_id} 
 	</update>
 	<!-- 회원 비밀번호 변경 -->
 	<update id="userpwdupdate" parameterType="com.jhta.project.vo.user.UserVo">
@@ -79,8 +79,8 @@
 		select or_status from orders where ui_id=#{ui_id}
 	</select>
 	<select id="deliverydetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
-		select * from  orders o,food f,orders_detail d,orders_option p,restaurant r,food_options fo where o.or_num=d.or_num and d.od_num=p.od_num and f.r_id=r.r_id and
-         f.food_num=d.food_num and d.food_num=fo.food_num and o.or_num=#{or_num}
+		select * from  orders o,food f,orders_detail d,orders_option p,restaurant r where o.or_num=d.or_num and d.od_num=p.od_num and f.r_id=r.r_id and
+         f.food_num=d.food_num  and o.or_num=#{or_num}
 	</select>
 	<sql id="searchdelivery">
 		<if test="field!=null and field!=''">
