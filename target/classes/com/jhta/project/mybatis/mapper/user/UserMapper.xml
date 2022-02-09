@@ -94,6 +94,7 @@
 			 	<![CDATA[  and o.or_status>='1' and o.or_status<='5']]>
 	</sql>
 	<sql id="selectdeliverycount">
+	
 	    orders o,orders_detail d,food f, restaurant r where o.or_num=d.or_num 
 			 	and d.food_num=f.food_num and f.r_id=r.r_id and o.ui_id='${ui_id}'
 			 	<![CDATA[ and o.or_status>='1' and o.or_status<='5']]>
