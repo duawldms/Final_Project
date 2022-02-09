@@ -12,7 +12,10 @@ import com.jhta.project.vo.user.CartDetailVo;
 import com.jhta.project.vo.user.CartFoodVo;
 import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
+import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.OrdersDetailVo;
+import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
 @Service
@@ -82,7 +85,31 @@ public class SearchService {
 	public int incOrseq() {
 		return mapper.incOrseq();
 	}
+	public int incOdseq() {
+		return mapper.incOdseq();
+	}
+	public int incOoseq() {
+		return mapper.incOoseq();
+	}
+	public int insertOrders(InSearchOrdersVo vo) {
+		return mapper.insertOrders(vo);
+	}
+	public int insertOD(OrdersDetailVo vo) {
+		return mapper.insertOD(vo);
+	}
+	public int insertOO(OrdersOptionVo vo) {
+		return mapper.insertOO(vo);
+	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

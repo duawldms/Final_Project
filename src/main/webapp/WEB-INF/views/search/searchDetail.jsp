@@ -33,8 +33,8 @@
 	position:absolute;
 	top:88px;
 	left:1170px;
-	width:352px;
-	height:400px;
+	width:375px;
+	height:422px;
 	border:1px solid black;
 	background-color:#7bcfbb;
 }
@@ -90,7 +90,9 @@
 	position:relative;
 	background-color:white;
 }
-
+#incartdelcost{
+	font-size:0.9em;
+}
 </style>
 <div class="container">
 <!-- 
@@ -120,6 +122,11 @@
 			</c:forEach>
 		</div>
 		<div class="d-grid gap-2 col-12 mx-auto cartbtn">
+			<div id="incartdelcost">
+				<c:if test="${rvo.r_delCost!=0 }">
+					배달요금 ${rvo.r_delCost }원 별도
+				</c:if>
+			</div>
 			<div class="costtotal" style="display:inline;margin-right:15px"></div>
 			<button type="button" class="btn text-white goOrder" style="background-color:#7bcfbb">주문하기</button>
 		</div>
@@ -213,7 +220,7 @@
 </div>
 <script>
 	$(".goOrder").click(function(){
-		location.href='${cp}/user/order';
+		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 	});
 	let count=0;
 	function gocart(index,foodnum,delcheck){

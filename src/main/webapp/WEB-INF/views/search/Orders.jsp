@@ -5,7 +5,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
 	#main{
-		padding-top:20px
+		padding-top:20px;
+		padding-bottom:20px
 	}
 	#purchaseAc{
 		width:850px;
@@ -35,7 +36,7 @@
 		border-right:1px solid black;
 		border-left:1px solid black;
 	}
-	.costtotal{
+	.costtotalbox{
 		width:100%;
 		border-right:1px solid black;
 		border-left:1px solid black;
@@ -179,8 +180,22 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="costtotal" style="text-align:center;"></div>
+	<div class="costtotalbox" style="text-align:center;">
+		<div style="font-size:0.9em">
+			<c:choose>
+				<c:when test="${delcost!=0 }">
+					<span>배달료 +${delcost }원</span>
+				</c:when>
+				<c:otherwise>
+					<span>배달료 무료</span>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<div class="costtotal">
+		</div>
+	</div>
 	<div class="d-grid gap-2 col-12 mx-auto cartbtn">
+		
 		<button type="button" class="btn text-white" id="orderNow" style="background-color:#7bcfbb">결제하기</button>
 	</div>
 </div>
@@ -285,7 +300,7 @@
 					$.ajax({
 						url:"${cp}/user/purchase",
 						data:{
-							addr:$("#uamain").val()+", "+$("#uadetail"),
+							addr:$("#uamain").val()+", "+$("#uadetail").val(),
 							or_request:$("#or_request").html(),
 							or_totalcost:$("#purcost").val(),
 							or_paymethod:paymethod
@@ -293,13 +308,17 @@
 						dataType:"json",
 						success:function(data){
 							if(data.result=='success'){
-								console.log(data.cartlist);
+								alert('성공적으로 결제되었습니다.');
+								location.href="${cp}/user/purchase/success";
+							}else{
+								alert('결제는 성공적으로 되었으나, 데이터입력에 실패하였습니다.');
+								//location.reload(true);
 							}
 						}
 					});
 				}else{
+					alert('결제 중 오류가 발생하였습니다.');
 					console.log(rep.error_msg);
-					console.log(rep.merchant_uid);
 				}
 			});
 		}
@@ -409,8 +428,8 @@
 					}
 					let indivdel=(parseInt($(".cost"+num).html())+totalcost).toLocaleString('ko-KR')+"원";
 					total+=parseInt($(".cost"+num).html())+totalcost;
-					$(".costtotal").html("<input type='hidden' value='"+total+"' id='purcost'><span>합계 : "+
-							(total.toLocaleString('ko-KR'))+"원</span>");
+					$(".costtotal").html("<input type='hidden' value='"+(total+${delcost})+"' id='purcost'><span>합계 : "+
+							((total+${delcost}).toLocaleString('ko-KR'))+"원</span>");
 					$("#total"+num).html(indivdel);
 				}
 			});
