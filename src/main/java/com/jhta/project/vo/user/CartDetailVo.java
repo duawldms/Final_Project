@@ -12,4 +12,7 @@ public class CartDetailVo {
 	private int cart_num;
 	private int fo_num;
 	private int cd_count;
+	private String fo_name;
+	private int fo_cost;
+	private String fo_category;
 }
