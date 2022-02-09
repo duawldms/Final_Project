@@ -44,7 +44,7 @@ public class PurchaseSuccessController {
 						service.insertOO(oovo);
 						service.deletecd(cdvo.getCart_num());
 					}
-					service.deletecart(principal.getName());
+					service.delcartnum(cvo.getCart_num());
 				}
 				map.put("or_num", or_num);
 			}
