@@ -17,5 +17,6 @@ public class OrdersVo {
 	private Date or_deltime;
 	private int or_status;
 	private int or_totalcost;
+	private String or_paymethod;
 
 }

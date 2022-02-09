@@ -112,6 +112,6 @@ p {
 			<input type="submit" value="검색">
 		</form:form>
 	</div>
-	<p>쿠팡요기이츠 관리자페이지 입니다</p>
+	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
 </body>
 </html>

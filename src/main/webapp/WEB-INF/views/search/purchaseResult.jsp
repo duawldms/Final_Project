@@ -17,13 +17,13 @@
 	<span>접수되면 알림으로 알려드릴게요</span><br><br>
 	<span>주문상황은 언제든 주문내역에서 확인하실 수 있습니다</span><br>
 	<div>
-		<button type="button" class="btn">주문내역 확인하기</button>
+		<button type="button" class="btn" onclick="javascript:goOrderDetail()">주문내역 확인하기</button>
 		<button type="button" class="btn" onclick="javascript:gohome()">홈으로 이동하기</button>
 	</div>
 </div>
 <script>
 	function goOrderDetail(){
-		location.href="${cp}/delivertydetail?or_num=${or_num}";
+		location.href="${cp}/user/deliverydetail?or_num=${or_num}";
 	}
 	function gohome(){
 		location.href="${cp}/";
