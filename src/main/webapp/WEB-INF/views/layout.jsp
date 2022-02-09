@@ -21,6 +21,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/layout.css">
 <link rel='stylesheet' id='rocket-font-css'
 	href='//cdn.jsdelivr.net/font-notosans-kr/1.0.0-v1004/NotoSansKR-2350.css?ver=5.8.2' type='text/css' media='all' />
+	
 <body>
 <body class="home page-template page-template-elementor_header_footer page page-id-308 wp-custom-logo ehf-header ehf-footer ehf-template-neve ehf-stylesheet-neve  nv-blog-grid nv-sidebar-full-width menu_sidebar_slide_left elementor-default elementor-template-full-width elementor-kit-31 elementor-page elementor-page-308"
 	id="neve_body">
@@ -77,17 +78,14 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				<!-- 권한이 없는 사용자 처리 -->
 				<sec:authorize access="isAnonymous()">
 						<li class="elementor-icon-list-item elementor-inline-item">
-							<span class="elementor-icon-list-text"><a href="${cp }/loginuser">로그인</a></span>
-						</li>
-						<li class="elementor-icon-list-item elementor-inline-item">
-							<span class="elementor-icon-list-text"><a href="${cp }/joinuser">주문표</a></span>
+							<span class="elementor-icon-list-text"><a href="${cp }/loginuser" style="color:white;text-decoration:none;">로그인</a></span>
 						</li>
 				</sec:authorize>
 				<!-- 권한이 있는 사용자 처리 -->
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="javascript:showcart()">주문표</a></span>
+						<span class="elementor-icon-list-text"><a href="javascript:showcart()" style="color:white;text-decoration:none;">주문표</a></span>
 					</li>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cda1d2e6578e00f2f149b8981a3cb1f&libraries=services"></script>
 					<script>
@@ -112,33 +110,33 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						}
 					</script>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/user/usermypage">My Page</a></span>
+						<span class="elementor-icon-list-text"><a href="${cp }/user/usermypage" style="color:white;text-decoration:none;">My Page</a></span>
 					</li>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('user_logout').submit();">로그아웃</a></span>
+						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('user_logout').submit();" style="color:white;text-decoration:none;">로그아웃</a></span>
 						<form:form id="user_logout" method="post" action="${cp }/logout">
 						</form:form>
 					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage">My Page</a></span>
+						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage" style="color:white;text-decoration:none;">My Page</a></span>
 					</li>
 					<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('restaurant_logout').submit();">로그아웃</a></span>
+						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('restaurant_logout').submit();" style="color:white;text-decoration:none;">로그아웃</a></span>
 						<form:form id="restaurant_logout" method="post" action="${cp }/logout">
 						</form:form>
 					</li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/admin/adminpage">관리자페이지</a></span>
+						<span class="elementor-icon-list-text"><a href="${cp }/admin/adminpage" style="color:white;text-decoration:none;">관리자페이지</a></span>
 					</li>
 				<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="${cp }/category/upload">카테고리등록</a></span>
+						<span class="elementor-icon-list-text"><a href="${cp }/category/upload" style="color:white;text-decoration:none;">카테고리등록</a></span>
 				</li>
 						<li class="elementor-icon-list-item elementor-inline-item">
-						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('admin_logout').submit();">로그아웃</a></span>
+						<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('admin_logout').submit();" style="color:white;text-decoration:none;">로그아웃</a></span>
 						<form:form id="admin_logout" method="post" action="${cp }/logout">
 						</form:form>
 					</li>
@@ -185,9 +183,9 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 											data-widget_type="text-editor.default">
 											<div class="elementor-widget-container">
 												<p class="p1">
-												<span><a href="${cp }/loginRestaurant">판매자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/loginAdmin">관리자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/sellerInsert">도로 주소명 테스트</a></span>
+												<span><a href="${cp }/loginRestaurant" style="color:white;text-decoration:none;">판매자 로그인</a></span>&nbsp;
+												<span><a href="${cp }/loginAdmin" style="color:white;text-decoration:none;">관리자 로그인</a></span>&nbsp;
+												<span><a href="${cp }/sellerInsert" style="color:white;text-decoration:none;">도로 주소명 테스트</a></span>
 													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
 														class="s1">주</span>) | <span class="s1">TEL</span>: <span
 														class="s1">070-8240-3211~3 FAX: 02-777-5407</span> <br />

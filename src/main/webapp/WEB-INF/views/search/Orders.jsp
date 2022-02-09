@@ -309,7 +309,7 @@
 						success:function(data){
 							if(data.result=='success'){
 								alert('성공적으로 결제되었습니다.');
-								location.href="${cp}/user/purchase/success";
+								location.href="${cp}/user/purchase/success?or_num="+data.or_num;
 							}else{
 								alert('결제는 성공적으로 되었으나, 데이터입력에 실패하였습니다.');
 								//location.reload(true);

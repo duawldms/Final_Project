@@ -46,6 +46,7 @@ public class PurchaseSuccessController {
 					}
 					service.deletecart(principal.getName());
 				}
+				map.put("or_num", or_num);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
