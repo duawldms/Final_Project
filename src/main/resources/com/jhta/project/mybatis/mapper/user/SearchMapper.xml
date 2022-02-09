@@ -40,7 +40,6 @@
 					from restaurant r 
 				) <![CDATA[where distance<3]]> <include refid="searchfield"/> <include refid="orderby"/>) a 
 		) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
-		
 	</select>
 	<select id="count" parameterType="hashmap" resultType="int">
 		select NVL(count(r_id),0) from 
@@ -113,9 +112,26 @@
 	<select id="getUserData" parameterType="hashmap" resultType="com.jhta.project.vo.user.UserAddrVo">
 		select * from user_addr where ua_addr like '%'||#{ua_addr}||'%' and ui_id=#{ui_id}
 	</select>
+	<!-- Orders 포함 하위테이블 insert용 seq생성 -->
 	<select id="incOrseq" resultType="int">
-		select order_seq.nextval or_num from dual
+		select orders_seq.nextval or_num from dual
 	</select>
+	<select id="incOdseq" resultType="int">
+		select orders_detail_seq.nextval from dual
+	</select>
+	<select id="incOoseq" resultType="int">
+		select orders_option_seq.nextval from dual
+	</select>
+	<!-- Orders포함 하위테이블 insert -->
+	<insert id="insertOrders" parameterType="com.jhta.project.vo.user.InSearchOrdersVo">
+		insert into orders values(#{or_num},#{ui_id},#{or_request},sysdate,null,1,#{or_totalcost},#{or_addr},#{or_paymethod})
+	</insert>
+	<insert id="insertOD" parameterType="com.jhta.project.vo.user.OrdersDetailVo">
+		insert into orders_detail values(#{od_num},#{or_num},#{food_num})
+	</insert>
+	<insert id="insertOO" parameterType="com.jhta.project.vo.user.OrdersOptionVo">
+		insert into orders_option values(orders_option_seq.nextval,#{od_num},#{fo_num},#{oo_count})
+	</insert>
 </mapper> 
 
 

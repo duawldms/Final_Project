@@ -8,7 +8,10 @@ import com.jhta.project.vo.user.CartDetailVo;
 import com.jhta.project.vo.user.CartFoodVo;
 import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
+import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.OrdersDetailVo;
+import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
 
 public interface SearchMapper {
@@ -33,4 +36,19 @@ public interface SearchMapper {
 	String getFoodRid(int food_num);
 	List<CartFoodVo> selectFood(String ui_id); 
 	int incOrseq();
+	int incOdseq();
+	int incOoseq();
+	int insertOrders(InSearchOrdersVo vo);
+	int insertOD(OrdersDetailVo vo);
+	int insertOO(OrdersOptionVo vo);
 }
+
+
+
+
+
+
+
+
+
+
