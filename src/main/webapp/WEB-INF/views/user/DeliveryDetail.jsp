@@ -120,7 +120,7 @@
 					}
 					$("#option").html(result);
 					console.log(result);
-				}else{
+				}else if(data==null){
 					$("#option").html('X');
 				}
 			}

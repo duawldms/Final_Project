@@ -78,6 +78,7 @@
 	<select id="selectstatus" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
 		select or_status from orders where ui_id=#{ui_id}
 	</select>
+	<!-- 상세페이지에서 메인 내역만 들고오는 쿼리 -->
 	<select id="deliverydetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
        select * from 
 			 (
@@ -96,6 +97,7 @@
               )
          <![CDATA[where rnum=1]]> 
 	</select>
+	<!-- 디테일 옵션만 들고오는 쿼리 -->
 	<select id="optiondetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
       select fo.fo_name,fo.fo_cost,p.oo_count 
       from  orders o,food f,orders_detail d,orders_option p,food_options fo
@@ -122,6 +124,7 @@
 			 	and d.food_num=f.food_num and f.r_id=r.r_id and o.ui_id='${ui_id}'
 			 	<![CDATA[ and o.or_status>='1' and o.or_status<='5']]> 
 	</sql>
+	<!-- 배달내역 전체 간단히 들고오는 쿼리 -->
 	<select id="deliverylist" parameterType="hashmap" resultType="com.jhta.project.vo.user.OrdersVo">
 		select * from 
 		(
