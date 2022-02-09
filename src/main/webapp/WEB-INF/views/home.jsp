@@ -107,10 +107,9 @@
                     <a href="${cp}/category/modify?cg_name=${vo.cg_name}" class="modify_btn_a">
 					<input type="button" value="카테고리수정" class="modify_btn_a"></a>
 					<a href="${cp}/category/delete?cg_name=${vo.cg_name}" class="modify_btn_a">
-								<input type="button" value="카테고리삭제" class="modify_btn_a"></a>
+					<input type="button" value="카테고리삭제" class="modify_btn_a"></a>
 					</sec:authorize>
                     </div>
-                  
                 </div>
                 </c:forEach>
             </div>
