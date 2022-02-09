@@ -67,8 +67,8 @@ p {
 				<tr>
 					<th>주문번호</th>
 					<th>주문자 아이디</th>
-					<th>요청사항</th>
 					<th>주문상태</th>
+					<th>결제방법<ht>
 					<th>총금액</th>
 					<th>주문일</th>
 					<th>취소</th>
@@ -80,8 +80,8 @@ p {
 					<tr>
 						<td>${vo.or_num}</td>
 						<td>${vo.ui_id}</td>
-						<td>${vo.or_request}</td>
 						<td>${vo.or_status}</td>
+						<td>${vo.or_paymethod }</td>
 						<td>${vo.or_totalcost}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd "
 								value="${vo.or_regdate}" /></td>
@@ -123,6 +123,6 @@ p {
 			<input type="submit" value="검색">
 		</form:form>
 	</div>
-	<p>쿠팡요기이츠 관리자페이지 입니다</p>
+	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
 </body>
 </html>

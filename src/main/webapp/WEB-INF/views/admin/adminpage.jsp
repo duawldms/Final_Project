@@ -83,7 +83,6 @@ p {
 					<div class="panel-body">
 						<ul>
 							<li><a href="${cp }/admin/reviewchk/list">리뷰 관리</a></li>
-							<br>
 							<li><a href="${cp }/admin/refund/list">환불 관리</a></li>
 						</ul>
 					</div>
@@ -100,7 +99,6 @@ p {
 					<div class="panel-body">
 						<ul>
 							<li><a href="${cp }/admin/permission/list">신규판매자 가입승인 관리</a></li>
-							<br>
 							<li><a href="${cp }/admin/discount/list">매출우수매장 수수료감면 관리</a></li>
 						</ul>
 					</div>
@@ -108,6 +106,6 @@ p {
 			</div>
 		</div>
 	</div>
-	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="layout">여기</a></strong>를 클릭해 주세요!</p>
+	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
 </body>
 </html>

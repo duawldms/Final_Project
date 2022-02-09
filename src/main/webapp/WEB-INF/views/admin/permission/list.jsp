@@ -73,7 +73,7 @@ p {
 					<th>가게명</th>
 					<th>가게주소</th>
 					<th>가게정보</th>
-					<th>승인
+					<th>승인</th>
 					<th>
 				</tr>
 			</thead>
@@ -108,6 +108,6 @@ p {
 		</c:forEach>
 	</div>
 	<br>
-	<p>쿠팡요기이츠 관리자페이지 입니다</p>
+	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
 </body>
 </html>

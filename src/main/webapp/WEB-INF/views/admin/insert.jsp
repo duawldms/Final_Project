@@ -38,6 +38,7 @@ h1 {
 			}
 		}
 	}
+
 </script>
 </head>
 <div class="elementor-widget-container">
@@ -52,7 +53,7 @@ h1 {
 </div>
 <body>
 	<form:form method="post" action="${cp }/insertadmin">
-		<div class="contatiner">
+		<div class="container">
 			<h2>관리자생성관리</h2>
 			<br>
 			<div class="panel panel-default">
@@ -84,8 +85,8 @@ h1 {
 				</div>
 				<div class="panel-footer" >
 				<input type="button" value="메인" onclick="location.href='${cp }/admin/adminpage'" class='btn btn-primary'/>
-					<input type="submit" value="생성" class="btn btn-success />
+					<input type="submit" value="생성"  id="insert" class="btn btn-success"/>
 				</div>
 			</div>
-		</div>
+	</div>
 	</form:form>

@@ -8,7 +8,7 @@
 		(
 		   select b.*,rownum rnum
 		   from (
-		      select * from restaurant where r_state=1    
+		      select * from restaurant where r_state=0    
 		      order by r_id desc
 		    )b
 		) 
@@ -18,7 +18,7 @@
      	select NVL(count(*),0) cnt from review      	
      </select>
      <update id="update" parameterType="string">
-     	update restaurant set r_state=2
+     	update restaurant set r_state=1
      	where r_id=#{r_id}
      </update>
      <select id="detail" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
