@@ -290,7 +290,7 @@
 			}else{
 				checkbox.push($(this).val());
 			}
-			optionscnt.push($("#cnt"+$(this).prop('id').substring(5)).val());
+			optionscnt.push($(".cnt"+$(this).prop('class').substring(5)).val());
 		});
 		let nec=[];
 		$("input[class='nec']:checked").each(function(i){

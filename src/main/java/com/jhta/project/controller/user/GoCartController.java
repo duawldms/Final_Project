@@ -57,6 +57,7 @@ public class GoCartController {
 				service.insertcartdetail(cdvo);
 			}
 			for(int i=0;i<checkbox.size();i++) {
+				System.out.println(checkbox+","+optionscnt);
 				CartDetailVo cdvo=new CartDetailVo(0, seq, Integer.parseInt(checkbox.get(i)), Integer.parseInt(optionscnt.get(i)),null,0,null);
 				service.insertcartdetail(cdvo);
 			}
