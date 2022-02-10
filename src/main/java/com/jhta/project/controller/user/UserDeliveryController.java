@@ -54,6 +54,7 @@ public class UserDeliveryController {
 		bb.add(maincount);
 		aa.add(vo);
 		}
+		
 		model.addAttribute("bb",bb);
 		model.addAttribute("aa",aa);
 		//List<OrdersVo>list1=service.deliverylist(map);
