@@ -43,7 +43,7 @@
 	<!-- 상태 공지 수정 -->
 	<update id="infoUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		update restaurant set r_name=#{r_name},r_minCost=#{r_minCost},r_delCost=#{r_delCost},r_img=#{r_img},r_info=#{r_info},
-		cg_name=#{cg_name},r_delmin=#{r_delmin},r_delmax=#{r_delmax} where r_id=#{r_id}
+		cg_name=#{cg_name},r_delmin=#{r_delmin},r_delmax=#{r_delmax},r_state=#{r_state} where r_id=#{r_id}
 	</update>
 	<select id="restaurantinfo" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax from restaurant where r_id=#{r_id}

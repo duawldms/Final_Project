@@ -50,6 +50,10 @@
 				<td>${vo.r_name }</td>
 			</tr>
 			<tr>
+				<td>매장상태</td>
+				<td>${vo.r_state }</td>
+			</tr>
+			<tr>
 				<td>최소주문금액</td>
 				<td>${vo.r_minCost }</td>
 			</tr>
@@ -73,7 +77,6 @@
 				<td colspan="4" style="text-align: right;">
 					<a href="${cp }/" style="text-decoration-line: none; color: #F6416C; position: absolute; left: 370px;">Home</a>
 					<a href="${cp }/restaurant/infoupdate"style="text-decoration-line: none; color: #F6416C;">수정</a> 
-					<a href="" style="text-decoration-line: none; color: #F6416C;">삭제</a>
 				</td>
 			</tr>
 			</c:forEach>
