@@ -50,7 +50,7 @@ public class UserDeliveryController {
 		List<OrdersVo>list1=service.deliverylistnew(map);
 		OrdersVo vo=list1.get(0);
 		Integer maincount=service.maincountnew(n);
-		vo.setCount(maincount-1);
+		vo.setCount(maincount);
 		bb.add(maincount);
 		aa.add(vo);
 		}

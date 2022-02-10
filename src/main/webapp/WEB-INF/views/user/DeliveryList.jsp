@@ -100,8 +100,15 @@
 			 <td class="col2">주문취소</td>  
 			</c:when>  
 		</c:choose>    
-			<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>      
-			<td class="col2">${vo.food_name }외 ${vo.count }개 </td>      
+			<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>   
+		<c:choose>
+			<c:when test="${vo.count eq '1' }">
+				<td class="col2">${vo.food_name } </td>      
+			</c:when>
+			<c:when test="${vo.count > '1' }">
+				<td class="col2">${vo.food_name }외 ${vo.count-1 }개 </td>     
+			</c:when>
+		</c:choose>        
 			<td class="col2">${vo.or_totalcost }</td>  
 			<td class="col2">${vo.or_regdate }</td>    
 			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
