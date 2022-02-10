@@ -41,4 +41,7 @@ public class OrdersVo {
 	//category
 	private String cg_name;
 	
+	//maincount
+	private int count;
+	
 }

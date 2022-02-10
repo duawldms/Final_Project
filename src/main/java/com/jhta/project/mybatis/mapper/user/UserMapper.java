@@ -38,4 +38,5 @@ public interface UserMapper {
 	List<OrdersVo> selectornum(String ui_id);
 	List<OrdersVo> deliverylistnew(HashMap<String, Object> map);
 	int deliverycountnew(HashMap<String, Object> map);
+	int maincountnew(int or_num);
 }

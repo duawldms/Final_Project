@@ -80,46 +80,46 @@
 	   <th  class="col1">상세내역</th>
 	   <th  class="col1">배달내역삭제</th>
 	</tr>     
-	
-	<c:forEach var="vo" items="${list1 }"  > 
-	<tr>  
-	<c:choose>
-		<c:when test="${vo.or_status eq '1'}">
-		 <td class="col2">주문완료</td>  
-		</c:when>
-	    <c:when test="${vo.or_status eq '2'}">
-		 <td class="col2">조리중</td>  
-		</c:when>
-		<c:when test="${vo.or_status eq '3'}">
-		 <td class="col2">배달중</td>  
-		</c:when>
-		<c:when test="${vo.or_status eq '4'}">
-		 <td class="col2">배달완료</td>  
-		</c:when>
-		<c:when test="${vo.or_status eq '5'}">
-		 <td class="col2">주문취소</td>  
-		</c:when>  
-	</c:choose>    
-		<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>      
-		<td class="col2">${vo.food_name }</td>
-		<td class="col2">${vo.or_totalcost }</td>  
-		<td class="col2">${vo.or_regdate }</td>    
-		<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
-		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
-	</tr> 
-	</c:forEach>
+
+	<c:forEach var="vo" items="${aa }"  >          
+		<tr>  
+		<c:choose>
+			<c:when test="${vo.or_status eq '1'}">
+			 <td class="col2">주문완료</td>  
+			</c:when>
+		    <c:when test="${vo.or_status eq '2'}">
+			 <td class="col2">조리중</td>  
+			</c:when>
+			<c:when test="${vo.or_status eq '3'}">
+			 <td class="col2">배달중</td>  
+			</c:when>
+			<c:when test="${vo.or_status eq '4'}">
+			 <td class="col2">배달완료</td>  
+			</c:when>
+			<c:when test="${vo.or_status eq '5'}">
+			 <td class="col2">주문취소</td>  
+			</c:when>  
+		</c:choose>    
+			<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>      
+			<td class="col2">${vo.food_name }외 ${vo.count }개 </td>      
+			<td class="col2">${vo.or_totalcost }</td>  
+			<td class="col2">${vo.or_regdate }</td>    
+			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
+			<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
+		</tr> 
+		</c:forEach>
 </table><br>   
 <div>
 	<c:if test="${pu.startPageNum>5 }"><a href="${cp}/userdelivery?pageNum=${pu.startPageNum-1}">[이전페이지]</a></c:if>
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>   
 			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${fidel}&keyword=${keyword}&ui_id=${ui_id}">
+				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}&ui_id=${ui_id}">
 				<span style='color:blue'>${i}</span>
 				</a>
 			</c:when>
 			<c:otherwise>
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${fidel}&keyword=${keyword}&ui_id=${ui_id}">
+				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}&ui_id=${ui_id}">
 				<span style='color:red'>${i}</span>
 				</a>
 			</c:otherwise>

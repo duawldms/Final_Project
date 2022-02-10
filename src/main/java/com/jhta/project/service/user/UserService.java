@@ -112,5 +112,8 @@ public class UserService {
 	public int deliverycountnew(HashMap<String, Object> map) {
 		return mapper.deliverycountnew(map);
 	}
+	public int maincountnew(int or_num) {
+		return mapper.maincountnew(or_num);
+	}
 
 }

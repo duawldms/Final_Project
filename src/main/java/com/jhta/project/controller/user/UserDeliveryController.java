@@ -41,13 +41,22 @@ public class UserDeliveryController {
 		
 		//2022.02.09 test
 		List<OrdersVo> intlist=service.selectornum(ui_id);
+		List<OrdersVo> aa=new ArrayList<OrdersVo>();
+		List<Integer> bb=new ArrayList<Integer>();
 		int n=0;
 		for(int i=0;i<intlist.size();i++) {
 		n=intlist.get(i).getOr_num();
 		map.put("or_num", n);
 		List<OrdersVo>list1=service.deliverylistnew(map);
-		System.out.println(list1);//리스트 값 확인
-		model.addAttribute("list1",list1);
+		OrdersVo vo=list1.get(0);
+		Integer maincount=service.maincountnew(n);
+		vo.setCount(maincount);
+		bb.add(maincount);
+		aa.add(vo);
+		System.out.println(vo);
+		}
+		model.addAttribute("bb",bb);
+		model.addAttribute("aa",aa);
 		//List<OrdersVo>list1=service.deliverylist(map);
 		model.addAttribute("ui_id",ui_id);
 		model.addAttribute("field",field);
@@ -56,7 +65,7 @@ public class UserDeliveryController {
 		model.addAttribute("pu",pu);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
-		}
+		
 		return "layout";	
 	} 
 	@GetMapping("/deliveryupdate")  

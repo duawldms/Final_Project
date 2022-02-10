@@ -155,7 +155,7 @@
 	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- or_num 뽑아오기 -->
 	<select id="selectornum" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
-		select o.or_num from orders o where ui_id=#{ui_id}
+		select o.or_num from orders o where ui_id=#{ui_id} order by o.or_regdate desc
 	</select>
 	<!-- or_num에서 대표 1가지 주문내역 불러오기 -->
 	<sql id="mainselectone">
@@ -173,6 +173,7 @@
 			                      and o.or_num=#{or_num}
 			                      order by o.or_regdate desc
 			         )a
+			         
               )
          <![CDATA[where rnum1=1]]> 
 	
@@ -186,7 +187,7 @@
 			 	<include refid="searchdelivery"/>
 			 )b
 		)
-		<![CDATA[where rnum>=${startRow} and rnum<=${endRow} ]]>
+		<![CDATA[where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
 	<select id="deliverycountnew" resultType="int" parameterType="hashmap">
 		select NVL(count(*),0) cnt from  
@@ -197,6 +198,12 @@
 	    (select distinct o.or_num from orders o where o.ui_id='${ui_id}'
 			 	<![CDATA[ and o.or_status>='1' and o.or_status<='5')]]> 
 	</sql>
+	<!--메인메뉴 외 몇개를 확인하는 쿼리 -->
+	<select id="maincountnew" parameterType="int" resultType="int">
+	select NVL(count(*),0) cnt from 
+      (select * from orders o,orders_detail d where o.or_num=d.or_num and o.or_num=#{or_num} and 
+      <![CDATA[o.or_status='1' and o.or_status<='5')]]> 
+	</select>
 	
 	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
 </mapper> 
