@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	$("#items1").val("name").prop("selected",true);
+});
+
+</script>
 <style type="text/css">
 #wrap {
 	text-align: center;
@@ -56,9 +62,8 @@
 <body>
 <div class="wrap">
 	<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">공지&소개 등록</h1>
-	<form:form action="${cp }/restaurant/restaurantinfo?r_id=${vo.r_id}" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8">
-		작성자아이디<br>
-		<input type="text" name="r_id" value="${vo.num }"><br>
+	<form:form action="${cp }/restaurant/restaurantinfo" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8">
+		<input type="hidden" name="r_id" value="${vo.r_id }">
 		<h3 style="color: #F6416C">매장명</h3>
 		<input type="text" name="r_name">
 		<h3 style="color: #F6416C">카테고리</h3>
@@ -74,10 +79,9 @@
 	    </tr>
 	    <tr>
 			<td>
-				<select name="items1">
-					<option value="3">영업대기</option>
-					<option value="4">영업중</option>
-					<option value="5">영업마감</option>
+				<select name="items1" id="items1">
+					<option value="2" id="r_state">영업중</option>
+					<option value="3" id="r_state">영업마감</option>
 				</select>
 			</td>
 	    </tr>
@@ -90,7 +94,7 @@
 		<input type="text" name="r_minCost">
 		<h3 style="color: #F6416C">배달가격</h3>
 		<input type="text" name="r_delCost">
-		<input type="submit" value="등록"><br>
+		<input type="submit" value="등록" id="btn"><br>
 	</form:form>
 	</div>
 </body>

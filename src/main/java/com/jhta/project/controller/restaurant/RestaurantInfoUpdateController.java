@@ -40,7 +40,9 @@ public class RestaurantInfoUpdateController {
 	ServletContext sc;
 
 	@GetMapping("/restaurant/infoupdate")
-	public String infoUpdateForm(String r_id, Model model) {
+	public String infoUpdateForm(Principal p, Model model) {
+		RestaurantVo vo=service.idCheck(p.getName());
+		model.addAttribute("vo",vo);
 		model.addAttribute("main", "/WEB-INF/views/restaurant/infoupdate.jsp");
 		return "layout";
 	}
@@ -48,7 +50,16 @@ public class RestaurantInfoUpdateController {
 	@RequestMapping(value="/restaurant/restaurantinfo", method = {RequestMethod.POST})
 	public String infoUpdate(RestaurantVo vo, MultipartFile file1) throws Exception {
 		System.out.println("test");
-
+		try {
+			String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
+			String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
+			String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
+			vo.setCg_name(cg_name);
+			vo.setR_name(r_name);
+			vo.setR_info(r_info);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		String path = sc.getRealPath("/resources/img");
 		String orgFileName = file1.getOriginalFilename();
 		String saveFileName = UUID.randomUUID() + "_" + orgFileName;
@@ -67,7 +78,7 @@ public class RestaurantInfoUpdateController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "restaurant/restaurantinfo";
+		return "redirect:/restaurant/restaurantinfo";
 	}
 	// 판매자 회원 정보 수정
 	@GetMapping("/restaurant/sellerUpdate")
