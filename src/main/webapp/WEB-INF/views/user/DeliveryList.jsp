@@ -100,8 +100,7 @@
 		 <td class="col2">주문취소</td>  
 		</c:when>  
 	</c:choose>    
-	<!-- 가게 메뉴 페이지로 연결될 수 있게 수정하기 -->
-		<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>                
+		<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>      
 		<td class="col2">${vo.food_name }</td>
 		<td class="col2">${vo.or_totalcost }</td>  
 		<td class="col2">${vo.or_regdate }</td>    

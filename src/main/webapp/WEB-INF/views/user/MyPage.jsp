@@ -3,7 +3,7 @@
 	<style type="text/css">
 	div#mypagelayout{height:900px;margin:auto;margin-top:110px;}        
 	div#sidepage{float:left;width:330px;height:900px;}  
-	ul#list{list-style:none;}
+	ul#list{list-style:none;}       
 	
 	</style>
 	<script type="text/javascript">
@@ -28,7 +28,7 @@
 			<li><a href="${cp }/userdelete?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">회원탈퇴하기</a></li>
 		</ul>
 	</div>
-	<div id="mypagemain">
+	<div id="mypagemain">      
 		<jsp:include page="${requestScope.mypagemain }"/>
 	</div>
 </div>

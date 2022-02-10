@@ -99,5 +99,18 @@ public class UserService {
 	public ArrayList<OrdersVo> optiondetail(int or_num){
 		return mapper.optiondetail(or_num);
 	}
+	
+	
+	
+	/*배달내역 test*/
+	public  List<OrdersVo> selectornum(String ui_id){
+		return mapper.selectornum(ui_id);
+	}
+	public List<OrdersVo> deliverylistnew(HashMap<String, Object> map){
+		return mapper.deliverylistnew(map);
+	}
+	public int deliverycountnew(HashMap<String, Object> map) {
+		return mapper.deliverycountnew(map);
+	}
 
 }

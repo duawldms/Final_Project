@@ -107,16 +107,7 @@
                                   and fo.fo_num=p.fo_num
 			                      and o.or_num=#{or_num}
 	</select>
-	<!-- 디테일 메인 들고오는 쿼리 -->
-	<select id="optiondetail" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
-      select fo.fo_name,fo.fo_cost,p.oo_count 
-      from  orders o,food f,orders_detail d,orders_option p,food_options fo
-			                      where o.or_num=d.or_num 
-			                      and d.od_num=p.od_num 
-			                      and f.food_num=d.food_num  
-                                  and fo.fo_num=p.fo_num
-			                      and o.or_num=#{or_num}
-	</select>
+	
 	<sql id="searchdelivery">
 		<if test="field!=null and field!=''">
 			and ${field} like '%' || #{keyword} || '%'
@@ -156,6 +147,58 @@
 	<insert id="favoritesinsert" parameterType="com.jhta.project.vo.user.FavoritesVo">
 		insert into favorites values(#{fa_num},#{ui_id},#{r_id})
 	</insert>
+	
+	
+	
+	
+	
+	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- or_num 뽑아오기 -->
+	<select id="selectornum" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
+		select o.or_num from orders o where ui_id=#{ui_id}
+	</select>
+	<!-- or_num에서 대표 1가지 주문내역 불러오기 -->
+	<sql id="mainselectone">
+	 select * from 
+			 (
+			    select a.*,rownum rnum1
+						   from(
+			                      select o.or_request,o.or_regdate,o.or_deltime,o.or_status,o.or_totalcost,o.or_addr,
+			                      o.or_paymethod,f.food_name,f.food_cost,r.r_name,o.or_num,r.r_img
+			                      from  orders o,food f,orders_detail d,orders_option p,restaurant r
+			                      where o.or_num=d.or_num 
+			                      and d.od_num=p.od_num 
+			                      and f.r_id=r.r_id 
+			                      and f.food_num=d.food_num  
+			                      and o.or_num=#{or_num}
+			                      order by o.or_regdate desc
+			         )a
+              )
+         <![CDATA[where rnum1=1]]> 
+	
+	</sql>
+	<select id="deliverylistnew" parameterType="hashmap" resultType="com.jhta.project.vo.user.OrdersVo">
+		select * from 
+		(
+			select b.*,rownum rnum
+			 from(
+			 	<include refid="mainselectone"/>
+			 	<include refid="searchdelivery"/>
+			 )b
+		)
+		<![CDATA[where rnum>=${startRow} and rnum<=${endRow} ]]>
+	</select>
+	<select id="deliverycountnew" resultType="int" parameterType="hashmap">
+		select NVL(count(*),0) cnt from  
+		        <include refid="selectdeliverycountnew"/>
+	             <include refid="searchdelivery"/> 
+	</select>
+	<sql id="selectdeliverycountnew">
+	    (select distinct o.or_num from orders o where o.ui_id='${ui_id}'
+			 	<![CDATA[ and o.or_status>='1' and o.or_status<='5')]]> 
+	</sql>
+	
+	<!-- /////////////////////////////////////////////////////////////////////////////////// -->
 </mapper> 
 
 

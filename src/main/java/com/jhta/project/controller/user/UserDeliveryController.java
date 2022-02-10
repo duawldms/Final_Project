@@ -31,25 +31,32 @@ public class UserDeliveryController {
 		map.put("field", field);
 		map.put("keyword",keyword);
 		map.put("ui_id",ui_id);
-		int totalRowCount=service.deliverycount(map);
+		int totalRowCount=service.deliverycountnew(map);
 		PageUtil pu=new PageUtil(pageNum,5,5,totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow();
 		map.put("startRow",startRow);
 		map.put("endRow", endRow);
-		map.put("ui_id",ui_id);
-		List<OrdersVo>list1=service.deliverylist(map);
+		
+		
+		//2022.02.09 test
+		List<OrdersVo> intlist=service.selectornum(ui_id);
+		int n=0;
+		for(int i=0;i<intlist.size();i++) {
+		n=intlist.get(i).getOr_num();
+		map.put("or_num", n);
+		List<OrdersVo>list1=service.deliverylistnew(map);
+		System.out.println(list1);//리스트 값 확인
+		model.addAttribute("list1",list1);
+		//List<OrdersVo>list1=service.deliverylist(map);
 		model.addAttribute("ui_id",ui_id);
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
-		model.addAttribute("list1",list1);
+		//model.addAttribute("list1",list1);
 		model.addAttribute("pu",pu);
-		
-		//배달내역
-		ArrayList<OrdersVo> list = service.userdelivery(ui_id);
-		model.addAttribute("vo",list);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		}
 		return "layout";	
 	} 
 	@GetMapping("/deliveryupdate")  
