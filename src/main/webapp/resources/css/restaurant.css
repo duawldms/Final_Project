@@ -183,7 +183,7 @@
 /* 사이드 메뉴 추가, 수정, 삭제 */
 	.food_edit_title {
 		text-align: center;
-		margin-top: 1%;
+		padding: 10px;
 	}
 	
 	.food_list_wrep {
@@ -206,8 +206,8 @@
 	}
 	
 	#food_edit_img {
-		width: 148px;
-		height: 140px;
+		width: 150px;
+    	height: 199px;
 	}
 	
 	.list {
@@ -235,7 +235,7 @@
 	}
 	
 	.food_edit {
-		width: 300px;
+		width: 800px;
 	    height: 200px;
 	    margin-left: 5%;
 	    margin-bottom: 5%;
@@ -246,15 +246,21 @@
 /* 사이드 메뉴 추가, 수정, 삭제 끝*/
 
 /* 메뉴 수정 및 삭제 */
-	.food_info {
-		float: left;
+	.food_edit_table {
+    	margin: auto;
+    	margin-bottom: 50px;
+    	width: 930px;
 	}
 	
-	.food_modify {
-		float: right;
-		width: 50%;
+	.food_edit_table th {
+		text-align: center;
+	    background-color: #7bcfbb;
+	    height: 50px;
 	}
 	
+	.food_edit_table td {
+		text-align: center;
+	}
 	
 	.modify {
 		display: flex;
@@ -360,3 +366,149 @@
 	    transform: translate(-50%, -50%);
 	}
 /* 메뉴 수정 및 삭제 끝*/
+
+/* 메뉴 수정 */
+	.menu_update_wrap {
+		padding: 50px;
+	    border: 3px solid #7bcfbb;
+	    margin: auto;
+	    width: 600px;
+	    margin-bottom: 50px;
+	    margin-top: 50px;
+	    padding: 50px;
+	}
+	
+	.menu_update_title {
+		text-align: center;
+	}
+	
+	.menuadd_title h3 {
+		padding: 10px;
+	}
+	
+	.menu_update_table {
+		margin: auto;
+	}
+
+	.edit_td1 {
+		background-color: #F2F2F2;
+		text-align: center;
+		padding: 10px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.edit_td2 {
+		padding: 5px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.menuadd_btn_div {
+		text-align: center;
+		padding: 25px;
+	}
+	
+	#menuadd_btn {
+		width: 50px;
+		width: 130px;
+    	height: 35px;
+	}
+/* 메뉴 수정 */
+
+/* 사이드 메뉴 추가 */
+	.sideadd_wrap {
+		padding: 50px;
+	    border: 3px solid #7bcfbb;
+	    margin: auto;
+	    width: 600px;
+	    margin-bottom: 50px;
+	    margin-top: 50px;
+	    padding: 50px;
+	}
+	
+	.sideadd_title {
+		text-align: center;
+	}
+	
+	.sideadd_title h2 {
+		padding: 10px;
+	}
+	
+	.sideadd_table {
+		margin: auto;
+	}
+
+	.sideadd_td1 {
+		background-color: #F2F2F2;
+		text-align: center;
+		padding: 10px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.sideadd_td2 {
+		padding: 5px;
+		border-bottom: 1px solid #BDBDBD;
+		font-weight: bold;
+	}
+	
+	.sideadd_btn_div {
+		text-align: center;
+		padding: 25px;
+	}
+	
+/* 사이드 메뉴 추가 end */
+
+/* 옵션 수정 */
+	.option_edit_wrep {
+		padding: 150px;
+   	 	width: 1200px;
+	}
+	
+	.option_edit_title {
+		text-align: center;
+	}
+	
+	.option_edit_title h3 {
+		padding: 15px;
+	}
+	
+	.option_edit_table {
+		margin: auto;
+    	margin-bottom: 50px;
+    	width: 800px;
+	}
+	
+	.option_edit_table th {
+		text-align: center;
+	    background-color: #7bcfbb;
+	    height: 50px;
+	}
+	
+	.option_edit_table td {
+		text-align: center;
+	}
+	
+	.sideadd_btn_div {
+		text-align: center;
+		padding: 25px;
+	}
+	
+	.option_modify {
+		display: flex;
+    	align-items: center;
+    	justify-content: center;
+		height: 35px;
+		cursor: pointer;
+	}
+	
+	.option_modify:hover {
+		background-color: #E0E0E0;
+	}
+	
+	#data_empty_td {
+		font-weight: bold;
+    	height: 50px;
+	}
+/* 옵션 수정 end */

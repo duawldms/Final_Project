@@ -95,6 +95,23 @@
 #incartdelcost{
 	font-size:0.9em;
 }
+.star{
+	position:relative;
+	top:-2px;
+	left:5px;
+}
+.review{
+	background-color: #7bcfbb;
+    position: relative;
+    left: 10px;
+    top: -4px;
+    color:white;
+}
+.reviewmodal{
+	width: 700px;
+    position: relative;
+    left: -100px;
+}
 </style>
 <div class="container">
 <!-- 
@@ -136,9 +153,47 @@
 	<div class="container title">
 		<h2>${ rvo.r_name}</h2>
 		<img src='${cp}/resources/img/star.png'
-			style='width: 25px; height: 20px; float: left'> <span></span><br>
+			style='width: 25px; height: 20px; float: left'>
+			<span class='star'>
+				<c:choose>
+					<c:when test="${hit ==0}">
+						리뷰가 아직 없습니다.
+					</c:when>
+					<c:otherwise>
+						${hit }
+					</c:otherwise>
+				</c:choose>
+			</span>
+			<a data-toggle="modal" href="#exampleModal">
+				<button type="button" class="btn btn-sm review">
+					리뷰
+				</button>
+			</a>
+			<br>
 		<!-- 별점 -->
+	</div>	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content reviewmodal">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">리뷰</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+				        
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-danger" data-dismiss="modal" style="margin:auto">창닫기</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script>
+		function openreview(){
+			
+		}
+	</script>
 	<div class="container divmain">
 		<table style="border-bottom:0.5px solid black;width:750px">
 			<tr height="28px">

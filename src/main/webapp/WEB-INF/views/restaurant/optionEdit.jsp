@@ -2,94 +2,70 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
-<style>
-	.option_edit_title {
-		text-align: center;
-		margin-top: 1%;
-	}
-	
-	.food_edit_wrep {
-		width: 90%;
-		height: auto;
-		overflow:hidden;
-		margin: auto;
-	}
-	
-	.option_info {
-		width: 50%;
-		float: left;
-		padding: 20px;
-	}
-	
-	.option_list {
-		margin-top: 2%;
-	}
-	
-	.option_modify_wrap {
-		width: 50%;
-		float: right;
-	}
-	
-	.option_edit {
-		width: 300px;
-	    height: 90px;
-	    margin-left: 5%;
-	    margin-bottom: 2%;
-	    float: left;
-	    text-align: center;
-	    border: skyblue solid 1px;
-	} 
-	
-	.option_modify {
-		display: flex;
-    	align-items: center;
-    	justify-content: center;
-		height: 45px;
-		cursor: pointer;
-	}
-	
-	.option_modify:hover {
-		background-color: #E0E0E0;
-	}
-	
-</style>
-<div class="food_edit_wrep">
+<div class="option_edit_wrep">
 	<!-- <div class="side_search">
 		<input type="text" id="food_search" name="food_search" placeholder="음식명 검색">
 		<input type="button" value="검색" onclick="foodSearch()"> 
 	</div> -->
 	<div class="option_edit_title">
-		<h2>사이드 메뉴 수정</h2>
+		<h3>사이드 메뉴 수정</h3>
 	</div>
 	<div class="option_list">
-		<c:forEach var="vo" items="${requestScope.list }">
-			<div class="option_edit">
-				<div class="option_info">
-					<span>${vo.fo_name }</span>
-					<br>
-					<span>${vo.fo_cost } 원</span>
-				</div>
-				<div class="option_modify_wrap">
-					<div class="option_modify" onclick="location.href='${cp }/restaurant/optionUpdate?fo_num=${vo.fo_num}'">
-						<b>수정</b>
-					</div>
-					<div class="option_modify" onclick="${cp }/restaurant/optionDelete?fo_num=${vo.fo_num}&food_num=${vo.food_num}">
-						<b>삭제</b>
-					</div>
-					<%-- <div class="option_modify" onclick="${cp}/">
-						<b>품절</b>
-					</div> --%>
-				</div>
-			</div>
-		</c:forEach>
+		<table class="option_edit_table">
+	 		<colgroup>
+	 			<col width="25%">
+	 			<col width="25%">
+	 			<col width="25%">
+	 			<col width="25%">
+	 		</colgroup>
+	 		<thead>
+	 			<tr>
+	 				<th scope="col">카테고리명</th>
+	 				<th scope="col">식품명</th>
+	 				<th scope="col">가격</th>
+	 				<th scope="col">옵션</th>
+	 			</tr>
+	 		</thead>
+	 		<tbody>
+	 			<c:if test="${empty requestScope.list}">
+		 			<tr>
+		 				<td id="data_empty_td" colspan="4">데이터가 존재하지 않습니다.</td>
+		 			</tr>
+		 		</c:if>
+		 		<c:forEach var="vo" items="${requestScope.list }">
+		 			<tr>
+		 				<td>
+		 					<b>${vo.fo_category }</b>
+		 				</td>
+			 			<td>
+			 				<b>${vo.fo_name }</b>
+			 			</td>
+			 			<td>
+			 				<b>${vo.fo_cost }원</b>
+			 			</td>
+			 			<td>
+			 				<div class="option_modify_div">
+								<div class="option_modify" onclick="sidePopup(${vo.fo_num})">
+									<b>수정</b>
+								</div>
+								<div class="option_modify" onclick="popup_open_btn(${vo.fo_num}, ${vo.food_num })">
+									<b>삭제</b>
+								</div>
+				 			</div>
+			 			</td>
+		 			</tr>
+				</c:forEach>
+	 		</tbody>
+	 	</table>
 	</div>
 </div>
 <div id="my_modal">
 	<div class="modal_top">
-		<span id="modal_info"></span>
+		<span id="modal_info">옵션 삭제</span>
 		<span id="close" class="modal_close_btn">&times;</span>
 	</div>
 	<div class="modal_center">
+		정말 삭제하시겠습니까?
 	</div>
     <div class="modal_bottom">
 	    <input type="button" value="예" class="agree_btn">
@@ -97,7 +73,14 @@
     </div>
 </div>
 <script>
-	function modal(id, food_num, status) {
+	function sidePopup(fo_num) {
+		var url = "${cp }/restaurant/optionUpdate?fo_num=" + fo_num;
+		var name = "sideAdd";
+		var option = "width = 300, height = 280, top = 300, left = 800";
+		window.open(url, name, option);
+	}
+
+	function modal(id, fo_num, food_num) {
 	    var zIndex = 9999;
 	    var modal = document.getElementById(id);
 	
@@ -126,15 +109,10 @@
 	        bg.remove();
 	        modal.style.display = 'none';
 	    });
-	    if (status == 2) {
-		    modal.querySelector('.agree_btn').addEventListener('click', function() {
-		    	location.href = '${cp}/restaurant/foodDelete?food_num=' + food_num;
-		    });
-	    } else if (status == 0 || status == 1) {
-	    	modal.querySelector('.agree_btn').addEventListener('click', function() {
-		    	location.href = '${cp}/restaurant/foodSoldOut?food_num=' + food_num + "&food_status=" + status;
-		    });
-	    }
+	    
+	    modal.querySelector('.agree_btn').addEventListener('click', function() {
+	    	location.href = "${cp }/restaurant/optionDelete?fo_num=" + fo_num + "&food_num=" + food_num;
+	    });
 	    
 	
 	    modal.setStyle({
@@ -160,19 +138,7 @@
 	    return this;
 	};
 	
-	function popup_open_btn(food_num, status) {
-		let modal_center = document.querySelector(".modal_center");
-		let modal_info = document.getElementById("modal_info");
-		if (status == 0) {
-			modal_info.innerText = "메뉴 품절";
-			modal_center.innerText = "정말 품절 처리하시겠습니까?";
-		} else if (status == 1) {
-			modal_info.innerText = "품절 취소";
-			modal_center.innerText = "품절을 취소하시겠습니까?";
-		} else if (status == 2) {
-			modal_info.innerText = "메뉴 삭제";
-			modal_center.innerText = "정말 삭제하시겠습니까?";
-		} 
-		modal('my_modal', food_num, status);
+	function popup_open_btn(fo_num, food_num) {
+		modal('my_modal', fo_num, food_num);
 	}
 </script>

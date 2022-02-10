@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
+<style>
+	
+</style>
 <div class="food_edit_wrep">
 	<!-- <div class="side_search">
 		<input type="text" id="food_search" name="food_search" placeholder="음식명 검색">
@@ -11,49 +14,82 @@
 		<h2>메뉴 수정</h2>
 	</div>
 	<div class="list">
-		<c:forEach var="vo" items="${requestScope.menuList }">
-		 	<%-- <div class="food_list" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/optionAdd?food_num=${vo.food_num}'"> --%>
-		 	<div class="food_edit">
-		 		<div class="food_info">
-		 			<div <c:if test="${vo.food_status == 1}">class="soldout_wrap"</c:if>>
-		 				<c:if test="${vo.food_status == 1}">
-			 				<div class="soldout_text">
-			 					<h3>품절</h3>
-			 				</div>
-		 				</c:if>
-		 				<div class="soldout_image">
-							<img alt="음식 메뉴" id="food_edit_img" src="../resources/img/${vo.food_img }">
-		 				</div>
-		 			</div>
-					<div class="name_cost">
-						<b>${vo.food_name }</b>
-						<br>
-						<b>${vo.food_cost }원</b>
-					</div>
-		 		</div>
-		 		<div class="food_modify">
-					<div class="modify" onclick="location.href='${cp}/restaurant/foodUpdate?food_num=${vo.food_num }'">
-						<b>메뉴 수정</b>
-					</div>
-					<div class="modify" onclick="location.href='${cp}/restaurant/optionEdit?food_num=${vo.food_num }'">
-						<b>옵션 수정</b>
-					</div>
-					<div class="modify" onclick="popup_open_btn(${vo.food_num}, 2)">
-						<b>삭제</b>
-					</div>
-					<div class="modify" onclick="popup_open_btn(${vo.food_num}, ${vo.food_status })">
-						<c:choose>
-							<c:when test="${vo.food_status == 1}">
-								<b>품절 취소</b>
-							</c:when>
-							<c:otherwise>
-								<b>품절</b>
-							</c:otherwise>
-						</c:choose>
-					</div>
-		 		</div>
-			</div>
-		</c:forEach>
+	 	<%-- <div class="food_list" style="cursor: pointer;" onclick="location.href='${cp}/restaurant/optionAdd?food_num=${vo.food_num}'"> --%>
+	 	<table class="food_edit_table">
+	 		<colgroup>
+	 			<col width="20%">
+	 			<col width="20%">
+	 			<col width="20%">
+	 			<col width="20%">
+	 			<col width="20%">
+	 		</colgroup>
+	 		<thead>
+	 			<tr>
+	 				<th scope="col">이미지</th>
+	 				<th scope="col">식품명</th>
+	 				<th scope="col">가격</th>
+	 				<th scope="col">설명</th>
+	 				<th scope="col">옵션</th>
+	 			</tr>
+	 		</thead>
+	 		<tbody>
+	 			<c:if test="${empty requestScope.menuList}">
+		 			<tr>
+		 				<td id="data_empty_td" colspan="5">데이터가 존재하지 않습니다.</td>
+		 			</tr>
+		 		</c:if>
+		 		<c:forEach var="vo" items="${requestScope.menuList }">
+		 			<tr>
+			 			<td>
+			 				<div <c:if test="${vo.food_status == 1}">class="soldout_wrap"</c:if>>
+				 				<c:if test="${vo.food_status == 1}">
+					 				<div class="soldout_text">
+					 					<h3>품절</h3>
+					 				</div>
+				 				</c:if>
+				 				<div class="soldout_image">
+									<img alt="음식 메뉴" id="food_edit_img" src="../resources/img/${vo.food_img }">
+				 				</div>
+		 					</div>
+			 			</td>
+			 			<td>
+			 				<b>${vo.food_name }</b>
+			 			</td>
+			 			<td>
+			 				<b>${vo.food_cost }원</b>
+			 			</td>
+			 			<td>
+		 					<c:if test="${vo.food_info != null }">
+		 						<b>${vo.food_info }</b>
+		 					</c:if>
+			 			</td>
+			 			<td>
+			 				<div class="food_modify">
+								<div class="modify" onclick="location.href='${cp}/restaurant/foodUpdate?food_num=${vo.food_num }'">
+									<b>메뉴 수정</b>
+								</div>
+								<div class="modify" onclick="location.href='${cp}/restaurant/optionEdit?food_num=${vo.food_num }'">
+									<b>옵션 수정</b>
+								</div>
+								<div class="modify" onclick="popup_open_btn(${vo.food_num}, 2)">
+									<b>삭제</b>
+								</div>
+								<div class="modify" onclick="popup_open_btn(${vo.food_num}, ${vo.food_status })">
+									<c:choose>
+										<c:when test="${vo.food_status == 1}">
+											<b>품절 취소</b>
+										</c:when>
+										<c:otherwise>
+											<b>품절</b>
+										</c:otherwise>
+									</c:choose>
+								</div>
+				 			</div>
+			 			</td>
+		 			</tr>
+				</c:forEach>
+	 		</tbody>
+	 	</table>
 	</div>
 </div>
 <div id="my_modal">

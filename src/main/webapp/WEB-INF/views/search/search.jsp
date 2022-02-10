@@ -11,8 +11,9 @@
 	.restaurant{width:600px;margin:auto;margin-top:50px;height:70px}
 	.restaurant img{float:left;margin-right:10px}
 	.resimg{width:100px;height:100px}
-	.paging{position:relative;left:140px;margin-top:30px;top:60px}
+	.paging{position:relative;margin:auto;top:60px}
 	#category{width:100px}
+	.star{position:relative;top:-2px}
 </style>    
 
 <div class="container where">
@@ -130,13 +131,19 @@
 									$("#restau").empty();
 									$("#paging").empty();
 									for(let i=0;i<data.listvo.length;i++){
+										let star=+Math.round(data.listvo[i].hit*10)/10;
+										let starcount="("+data.listvo[i].re_num+")";
+										if(star==0){
+											star='아직 리뷰가 없어요';
+											starcount=""
+										}
 										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-										seller+="<span></span><br>" // 별점 
-										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+										seller+="<span>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
 										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
@@ -186,16 +193,22 @@
 				$("#restau").empty();
 				$("#paging").empty();
 				for(let i=0;i<data.listvo.length;i++){
+					let star=+Math.round(data.listvo[i].hit*10)/10;
+					let starcount="("+data.listvo[i].re_num+")";
+					if(star==0){
+						star='아직 리뷰가 없어요';
+						starcount="";
+					}
 					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
 					seller+="<div class='container restaurant'>";
 					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-					seller+="<span></span><br>"; // 별점 
-					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+					seller+="<span>"+star+"&nbsp"+starcount+"</span><br>"; // 별점 
+					seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 					seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 					seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
-					seller+="<spanstyle='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
+					seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
 					seller+="</div></a>";
 				}
 				$("#restau").append(seller);
@@ -280,13 +293,19 @@
 									x=data.user_coordx;
 									y=data.user_coordy;
 									for(let i=0;i<data.listvo.length;i++){
+										let star=+Math.round(data.listvo[i].hit*10)/10;
+										let starcount="("+data.listvo[i].re_num+")";
+										if(star==0){
+											star='아직 리뷰가 없어요';
+											starcount="";
+										}
 										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
 										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
-										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left'>";
-										seller+="<span></span><br>" // 별점 
-										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left'>";
+										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
+										seller+="<span class='star'>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
+										seller+="<img src='${cp}/resources/img/clock.jpg' style='width:20px;height:20px;float:left;margin-right:2px'>";
 										seller+="&nbsp<span style='float:left;font-size:0.9em'>"+data.listvo[i].r_delmin+"분~"+data.listvo[i].r_delmax+"분";
 										seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>"
 										seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>"

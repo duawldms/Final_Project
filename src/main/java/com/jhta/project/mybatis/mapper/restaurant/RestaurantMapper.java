@@ -34,4 +34,5 @@ public interface RestaurantMapper {
 	List<OrderListVo> selectSalesDay(Map<String, Object> map);
 	List<OrderListVo> selectSalesMonth(Map<String, Object> map);
 	List<OrderListVo> selectSalesYear(Map<String, Object> map);
+	int sellerPwdChange(Map<String, String> map);
 }
