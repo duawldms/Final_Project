@@ -129,6 +129,14 @@ public class RestaurantService {
 			return mapper.selectSalesYear(map);
 		}
 	}
+	// 판매자 비밀번호 변경
+	public int sellerPwdChange(String r_pwd, String r_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		String rPwd = passwordEncoder.encode(r_pwd);
+		map.put("r_id", r_id);
+		map.put("r_pwd", rPwd);
+		return mapper.sellerPwdChange(map);
+	}
 	
 }
 

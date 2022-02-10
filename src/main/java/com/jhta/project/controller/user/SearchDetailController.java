@@ -78,6 +78,7 @@ public class SearchDetailController {
 			distance=service.getdistance(map);
 			req.getSession().setAttribute("r_id", r_id);
 		}
+		Double hit=service.findhit(r_id);
 		InSearchRestaurantVo rvo=service.searchDetail(r_id);
 		List<FoodVo> flist=service.foodlist(r_id);
 		List<CartFoodVo> cflist=service.selectFood(principal.getName());
@@ -85,6 +86,7 @@ public class SearchDetailController {
 		model.addAttribute("rvo",rvo);
 		model.addAttribute("distance",distance);
 		model.addAttribute("flist",flist);
+		model.addAttribute("hit",Math.round(hit*10)/10.0);
 		model.addAttribute("detail","true");
 		
 		model.addAttribute("main","/WEB-INF/views/search/searchDetail.jsp");

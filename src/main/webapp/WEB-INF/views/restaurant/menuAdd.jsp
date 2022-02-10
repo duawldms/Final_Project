@@ -20,7 +20,7 @@
 				<td class="menuadd_td2">
 					<input type="file" id="file1" name="file1" onchange="imageView(event)">
 					<br>
-					<img style="width: 200px; height: 200px; display: none;" id="fo_img" src="">
+					<img style="width: 200px; height: 200px; margin-top: 5px; display: none;" id="fo_img" src="">
 				</td>
 			</tr>
 			<tr>
@@ -33,7 +33,7 @@
 			<tr style="border-bottom: 3px solid #49505796;">
 				<td class="menuadd_td1">메뉴 설명<small>(선택)</small></td>
 				<td class="menuadd_td2">
-					<textarea cols="30" rows="5" style="resize: none" name="food_info" id="food_info" placeholder="에) 참깨빵 위에 순 쇠고기 패티 두 장 특별한 소스 양상추 치즈 피클 양파 까~지"></textarea>
+					<textarea cols="30" rows="5" style="resize: none" name="food_info" id="food_info" placeholder="예) 참깨빵 위에 순 쇠고기 패티 두 장 특별한 소스 양상추 치즈 피클 양파 까~지"></textarea>
 				</td>
 			</tr>
 		</table>

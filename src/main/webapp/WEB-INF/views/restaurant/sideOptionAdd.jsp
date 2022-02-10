@@ -1,40 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<style>
-	.multi_options {
-		border: 1px solid skyblue;
-		width: 250px;
-	    height: auto;
-	    margin-bottom: 5px;
-	}
-</style>
-<div>
-	<h1>옵션 추가</h1>
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
+<div class="sideadd_wrap">
+	<div class="sideadd_title">
+		<h2>옵션 추가</h2>
+	</div>
 	<form:form id="side_form" method="post" action="${cp }/restaurant/optionAdd">
-		<img alt="음식 메뉴" id="food_img" style="width: 200px; height: 200px;" src="../resources/img/${requestScope.vo.food_img }">
-		<br>
-		<label>카테고리</label>
-		<br>
-		<input type="text" id="fo_category" name="fo_category" placeholder="예) 소스">
-		<br>
-		<label>선택 사항</label>
-		<br>
-		<input type="radio" id="" name="select_option" value="필수선택"> 필수선택
-		<input type="radio" id="" name="select_option" value="추가 선택"> 추가 선택
-		<br>
-		<label>옵션명</label>
-		<br>
-		<input type="text" id="fo_name" name="fo_name" placeholder="예) 칠리소스">
-		<br>
-		<label>가격</label>
-		<br>
-		<input type="text" id="fo_cost" name="fo_cost">
-		<br>
-		<input type="button" value="옵션 추가" onclick="optionAdd()">
-		<div class="option_add"></div>
-		<input type="button" value="등록" onclick="optionSend()">
+		<table class="sideadd_table">
+			<tr>
+				<td class="sideadd_td1">음식 이미지</td>
+				<td class="sideadd_td2">
+					<img alt="음식 메뉴" id="food_img" style="width: 200px; height: 200px;" src="../resources/img/${requestScope.vo.food_img }">
+				</td>
+			</tr>
+			<tr>
+				<td class="sideadd_td1">카테고리</td>
+				<td class="sideadd_td2">
+					<input type="text" id="fo_category" name="fo_category" placeholder="예) 소스">
+				</td>
+			</tr>
+			<tr>
+				<td class="sideadd_td1">선택 사항</td>
+				<td class="sideadd_td2">
+					<input type="radio" id="" name="select_option" value="필수선택"> 필수선택
+					<input type="radio" id="" name="select_option" value="추가 선택"> 추가 선택
+				</td>
+			</tr>
+			<tr>
+				<td class="sideadd_td1">옵션명</td>
+				<td class="sideadd_td2">
+					<input type="text" id="fo_name" name="fo_name" placeholder="예) 칠리소스">
+				</td>
+			</tr>
+			<tr>
+				<td class="sideadd_td1">가격</td>
+				<td class="sideadd_td2">
+					<input type="text" id="fo_cost" name="fo_cost">
+				</td>
+			</tr>
+			<tr>
+				<td class="sideadd_td1">옵션 추가 등록</td>
+				<td class="sideadd_td2">
+					<input type="button" value="옵션 추가" onclick="optionAdd()">
+				</td>
+			</tr>
+		</table>
 		<input type="hidden" id="food_num" name="food_num" value="${requestScope.vo.food_num }">
+		<div class="sideadd_btn_div">
+			<input type="button" class="btn3" value="등록" onclick="optionSend()">
+		</div>
 	</form:form>
 	<script>
 		var cnt = 1;
@@ -44,24 +59,29 @@
 		}
 		
 		function optionAdd() {
-			let div = document.querySelector(".option_add");
-			let div2 = document.createElement("div");
-			
-			let label = document.createElement("label");
-			let label2 = document.createElement("label");
+			let table = document.querySelector(".sideadd_table");
+			let tr = document.createElement("tr");
+			let tr2 = tr.cloneNode();
+			let td = document.createElement("td");
+			let td2 = td.cloneNode();
+			let td3 = td.cloneNode();
+			let td4 = td.cloneNode();
 			
 			let input = document.createElement("input");
-			let input2 = document.createElement("input");
+			let input2 = input.cloneNode();
 			
 			let br = document.createElement("br");
-			let br2 = document.createElement("br");
-			let br3 = document.createElement("br");
-			let br4 = document.createElement("br");
+			let br2 = br.cloneNode();
+			let br3 = br.cloneNode();
+			let br4 = br.cloneNode();
 			
-			div2.className = "multi_options";
+			td.className = "sideadd_td1";
+			td.innerText = "옵션명";
+			td2.className = "sideadd_td2";
 			
-			label.innerText = "옵션명";
-			label2.innerText = "가격";
+			td3.className = "sideadd_td1";
+			td3.innerText = "가격";
+			td4.className = "sideadd_td2";
 			
 			input.type = "text";
 			input.className = "fo_name";
@@ -72,15 +92,15 @@
 			input2.className = "fo_cost";
 			input2.name = "fo_cost" + cnt;
 			
-			div2.appendChild(label);
-			div2.appendChild(br);
-			div2.appendChild(input);
-			div2.appendChild(br2);
-			div2.appendChild(label2);
-			div2.appendChild(br3);
-			div2.appendChild(input2);
-			div2.appendChild(br4);
-			div.appendChild(div2);
+			td2.append(input);
+			td4.append(input2);
+			
+			tr.append(td);
+			tr.append(td2);
+			tr2.append(td3);
+			tr2.append(td4);
+			table.append(tr);
+			table.append(tr2);
 			cnt++;
 		}
 	</script>

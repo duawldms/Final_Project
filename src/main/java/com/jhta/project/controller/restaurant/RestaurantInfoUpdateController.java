@@ -5,11 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -115,6 +122,7 @@ public class RestaurantInfoUpdateController {
 	}
 	// 판매자 회원 정보 수정 끝
 	
+	// 판매자 비밀번호 변경
 	// 판매자 비밀번호 확인sellerPwdChange
 	@GetMapping("/restaurant/sellerPwdCheck")
 	public String pwdCheckForm(Model model) {
@@ -127,4 +135,19 @@ public class RestaurantInfoUpdateController {
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdChange.jsp");
 		return "layout";
 	}
+	
+	@PostMapping("/restaurant/pwdChange")
+	public String pwdChange(Model model, String r_pwd, Principal principal, 
+			HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		// success-hendler 무시하고 로그아웃 (get 방식으로 사용할때 사용)
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		
+		service.sellerPwdChange(r_pwd, principal.getName());
+		
+		return "redirect:/";
+	}
+	// 판매자 비밀번호 변경 end
 }

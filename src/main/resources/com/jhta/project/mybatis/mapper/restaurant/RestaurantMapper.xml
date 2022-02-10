@@ -37,6 +37,14 @@
 		where
 		r_id = #{r_id}
 	</update>
+	<!-- 판매자 비밀번호 변경 -->
+	<update id="sellerPwdChange" parameterType="hashmap">
+		update restaurant
+		set
+		r_pwd = #{r_pwd}
+		where
+		r_id = #{r_id}
+	</update>
 	<insert id="addAuth" parameterType="com.jhta.project.vo.security.AuthorityVo">
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
