@@ -88,7 +88,7 @@ public class RestaurantInfoUpdateController {
 		String addr = vo.getR_addr();
 		String[] ad = addr.split(", ");
 		model.addAttribute("addr1", ad[0]);
-		model.addAttribute("addr2", ad[1]);
+		//model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerUpdate.jsp");
 		return "layout";

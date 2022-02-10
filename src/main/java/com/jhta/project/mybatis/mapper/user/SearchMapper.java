@@ -10,6 +10,7 @@ import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
 import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.OrderAndHitVo;
 import com.jhta.project.vo.user.OrdersDetailVo;
 import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
@@ -42,6 +43,7 @@ public interface SearchMapper {
 	int insertOD(OrdersDetailVo vo);
 	int insertOO(OrdersOptionVo vo);
 	Double findhit(String r_id);
+	List<OrderAndHitVo> orfoodcount(String r_id);
 }
 
 

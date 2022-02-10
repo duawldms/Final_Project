@@ -53,7 +53,6 @@ public class UserDeliveryController {
 		vo.setCount(maincount);
 		bb.add(maincount);
 		aa.add(vo);
-		System.out.println(vo);
 		}
 		model.addAttribute("bb",bb);
 		model.addAttribute("aa",aa);
