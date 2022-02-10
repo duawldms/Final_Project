@@ -100,10 +100,10 @@
 	top:-2px;
 	left:5px;
 }
-.review{
+.reviewbtn{
 	background-color: #7bcfbb;
     position: relative;
-    left: 10px;
+    left:5px;
     top: -4px;
     color:white;
 }
@@ -160,12 +160,12 @@
 						리뷰가 아직 없습니다.
 					</c:when>
 					<c:otherwise>
-						${hit }
+						${hit },${rvo.r_id }
 					</c:otherwise>
 				</c:choose>
 			</span>
 			<a data-toggle="modal" href="#exampleModal">
-				<button type="button" class="btn btn-sm review">
+				<button type="button" class="btn btn-sm reviewbtn">
 					리뷰
 				</button>
 			</a>
