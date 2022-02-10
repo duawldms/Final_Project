@@ -256,7 +256,7 @@
 							<div class="modal-body">
 								<form:form id="forms${status.index }" method="post" action="${cp }/user/gocart">
 									<input type="hidden" name="food_num" value="${fvo.food_num }">
-									<div class="modalBody">
+									<div class="modalBody" id="modalBody${status.index}">
 										
 									</div>
 								</form:form>
@@ -427,7 +427,9 @@
 			dataType:"json",
 			success:function(data){
 				let divoptions="";
-				$(".modalBody").empty();
+				$(".modalBody").each(function(){
+					$(this).empty();
+				});
 				count=0;
 				for(let i=0;i<data.folist.length;i++){
 					if(i==0){
@@ -446,33 +448,53 @@
 						divoptions+="</div>";
 					}else{
 						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+status+"' id='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
+						divoptions+="<input type='checkbox' name='options"+status+"' class='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
 									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
-						divoptions+="&nbsp<input type='hidden' value='x' id='cntplus"+i+"' readonly"+
+						divoptions+="&nbsp<input type='hidden' value='x' class='cntplus"+i+"' readonly"+
 									" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
-						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' id='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
+						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' class='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
 									"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
 						divoptions+="<span style='float:right' id='opcost"+i+"'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
 					}
 				}
-				$(".modalBody").append(divoptions);
+				$("#modalBody"+status).append(divoptions);
 			}
 		});
 	}
 	function changecnt(index,cost){
-		let cnt=$("#cnt"+index).val();
+		let cnt=$(".cnt"+index).val();
+		console.log(cnt+","+cost);
 		let cng=(cnt*cost).toLocaleString('ko-KR');
 		$('#opcost'+index).html("+"+cng+"원");
 	}
 	function optioncount(i){
-		if($("#nomal"+i).prop('checked')){
-			$("#cnt"+i).prop('type','number');
-			$("#cntplus"+i).prop('type','text');
+		/*
+		$(".nomal"+i).each(function(a){
+			if($(this).prop('checked')){
+				$(".cnt"+i).each(function(b){
+					$(this).prop('type','number');
+				});
+				$(".cntplus"+i).each(function(b){
+					$(this).prop('type','text');
+				});
+			}else{
+				$(".cnt"+i).each(function(b){
+					$(this).prop('type','hidden');
+				});
+				$(".cntplus"+i).each(function(b){
+					$(this).prop('type','hidden');
+				});
+			}
+		});*/
+		
+		if($(".nomal"+i).prop('checked')){
+			$(".cnt"+i).prop('type','number');
+			$(".cntplus"+i).prop('type','text');
 		}else{
-			$("#cnt"+i).prop('type','hidden');
-			$("#cntplus"+i).prop('type','hidden');
+			$(".cnt"+i).prop('type','hidden');
+			$(".cntplus"+i).prop('type','hidden');
 		}
 	}
 	function checknes(element){

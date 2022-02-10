@@ -280,9 +280,21 @@
 				if(rep.success){
 					$.ajax({
 						url:"${cp}/user/purchase",
+						data:{
+							addr:$("#uamain").val()+", "+$("#uadetail").val(),
+							or_request:$("#or_request").html(),
+							or_totalcost:$("#purcost").val(),
+							or_paymethod:paymethod
+						},
 						dataType:"json",
 						success:function(data){
-							console.log('success');
+							if(data.result=='success'){
+								alert('성공적으로 결제되었습니다.');
+								location.href="${cp}/user/purchase/success?or_num="+data.or_num;
+							}else{
+								alert('결제는 성공적으로 되었으나, 데이터입력에 실패하였습니다.');
+								//location.reload(true);
+							}
 						}
 					});
 				}else{
