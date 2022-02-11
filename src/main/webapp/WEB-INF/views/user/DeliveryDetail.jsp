@@ -17,7 +17,7 @@
  	
  	#inserttable
  	{
- 	height: 150px;          
+ 	height: 100px;            
     width: 1000px;        
     border-top: 3px solid black;
     margin-right: auto;
@@ -27,6 +27,7 @@
  	td
  	{
     border-bottom: 1px dotted black;
+  	position:center;      
     }
     .col1 {
     background-color: #7bcfbb;
@@ -37,7 +38,7 @@
     }   
  
     .col2 {
-    text-align: left;
+    text-align: center;  
     padding: 5px;
     }
      .useridbtn {    
@@ -62,69 +63,91 @@
     .num{
     color: red;
     }
-</style>
+    #option{  
+    color:gray;          
+    }
+    h2{
+    text-align:center;              
+            
+    }
+</style> 
 <div id="box">
-<h2>배달 내역</h2><br><br>    
+<h2 >주문내역</h2>   
 <table  id="inserttable"> 
 	<tr>
-	
-	   <th  class="col1">가게</th>
-	   <th  class="col1">주문상태</th>
-	   <th  class="col1">주문일시</th>
-	   <th  class="col1">도착예상시간</th>
-	   <th  class="col1">음식명</th>
+	   <th  class="col1">메뉴</th>
 	   <th  class="col1">옵션</th>
-	   <th  class="col1">총가격</th>  
-	   <th  class="col1">요청사항</th>
-	   <th  class="col1">주문내역삭제</th>
+	   <th  class="col1">가격</th>
+	</tr>
+	<c:forEach var="aa" items="${aa }">
+	<tr>
+		<td class="col2">${aa.food_name }(${aa.food_cost })</td>                
+		<td class="col2">${aa.fo_name }(${aa.fo_cost }),${aa.oo_count }개</td>     
+		<td class="col2">${aa.food_cost + (aa.fo_cost * aa.oo_count)}</td>       
+	</tr> 
+	</c:forEach>
+</table><br><br>
+<h2>가게 정보</h2>
+<table  id="inserttable"> 
+	<tr>
+	   <th  class="col1">가게</th>
+	   <th  class="col1">가게 주소</th>
+	   <th  class="col1">요청 사항</th>
 	</tr>
 	<tr>
 		<td class="col2">${vo.r_name }</td>                
-		<c:choose>
-		<c:when test="${vo.or_status eq '1'}">
-		 <td class="col2">주문완료</td>  
-		</c:when>
-	    <c:when test="${vo.or_status eq '2'}">
-		 <td class="col2">조리중</td>  
-		</c:when>
-		<c:when test="${vo.or_status eq '3'}">
-		 <td class="col2">배달중</td>  
-		</c:when>
-		<c:when test="${vo.or_status eq '4'}">
-		 <td class="col2">배달완료</td>  
-		</c:when>   
-	    </c:choose>
-        <td class="col2">${vo.or_regdate }</td>
-	    <td class="col2">${vo.or_deltime }</td>
-		<td class="col2">${vo.food_name }(${vo.food_cost }원) </td>
-		<td class="col2"><span id="option"></span> </td>   
-		<td class="col2">${vo.or_totalcost }원</td>     
-		<td class="col2">${vo.or_request }</td>  
-		<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
+		<td class="col2">${vo.r_addr }</td>   
+		<td class="col2">${vo.or_request }</td>       
 	</tr> 
-</table>
+</table><br><br>
+<h3>받는사람 정보</h3>
+<table  id="inserttable"> 
+	<tr>
+	   <th  class="col1">이름</th>
+	   <th  class="col1">배달 주소</th>
+	   <th  class="col1">전화 번호</th>
+	</tr>
+	<tr>
+		<td class="col2">${vo.ui_name }</td>                
+		<td class="col2">${vo.or_addr }</td>     
+		<td class="col2">${vo.ui_phone }</td>       
+	</tr> 
+</table><br><br>
+<h2>결제 내역</h2>
+<table  id="inserttable"> 
+	<tr>
+	   <th  class="col1">결제 수단</th>
+	   <th  class="col1">배달 금액</th>
+	   <th  class="col1">총 결제 금액</th>
+	</tr>  
+	<tr>    
+		<td class="col2">${vo.or_paymethod }</td>     
+		<td class="col2">${vo.r_delcost }</td>   
+		<td class="col2">${vo.or_totalcost}</td>       
+	</tr> 
+</table><br><br>
 </div>	
 <script type="text/javascript">
 	$(function(){
-		let or_num="${vo.or_num}";
+		var or_num="${vo.or_num}";
 		$.ajax({
-			url:'/project/user/deliveryoptiondetail',   
+			url:'/project/user/deliverydetaildetailnew',   
 			data:{'or_num':or_num},
 			dataType:'json',
 			success:function(data){ 
+				console.log(data);
 				let result="";   
-				if(data!=null){    
-					console.log(data);  
-					for(let i=0;i<data.list.length;i++){            
-						result+=data.list[i].fo_name + "(" + data.list[i].fo_cost + "원)" + "<br>";       
+				if(data!=null){      
+					for(let i=0;i<data.aa.length;i++){             
+						result+=data.aa[i].fo_name + "(" + data.aa[i].fo_cost + "원)" + "<br>";       
 					}
 					$("#option").html(result);
 					console.log(result);
-				}else if(data==null){
+				}else if(data==null){     
 					$("#option").html('X');
 				}
 			}
-		});
+		});		
 	});
 
 </script>

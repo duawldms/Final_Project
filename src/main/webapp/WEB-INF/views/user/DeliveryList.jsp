@@ -102,7 +102,7 @@
 		</c:choose>    
 			<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>   
 		<c:choose>
-			<c:when test="${vo.count eq '1' }">
+			<c:when test="${vo.count eq '1' }">  
 				<td class="col2">${vo.food_name } </td>      
 			</c:when>
 			<c:when test="${vo.count > '1' }">
@@ -111,7 +111,7 @@
 		</c:choose>        
 			<td class="col2">${vo.or_totalcost }</td>  
 			<td class="col2">${vo.or_regdate }</td>    
-			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${vo.ui_id}">상세내역</a></td>
+			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">상세내역</a></td>
 			<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${vo.ui_id}">삭제하기</a></td>
 		</tr> 
 		</c:forEach>
@@ -136,10 +136,10 @@
 </div>  
 <!-- 검색 -->
 <div>
-	<form:form method="post" action="${cp }/userdelivery">
+	<form:form method="post" action="${cp }/userdelivery">       
 		<select name="field">
-			<option value="r_name"<c:if test="${ field=='r_name'}">selected</c:if>>가게이름</option>
-			<option value="food_name"<c:if test="${ field=='food_name'}">selected</c:if>>메뉴</option>
+			<option value="b.r_name"<c:if test="${ field=='b.r_name'}">selected</c:if>>가게이름</option>
+			<option value="b.food_name"<c:if test="${ field=='b.food_name'}">selected</c:if>>메뉴</option>
 		</select>
 			<input type="text" name="keyword" value="${keyword }">
 			<input type="hidden" name="ui_id" value="${ui_id }">

@@ -47,6 +47,7 @@ public class UserDeliveryController {
 		for(int i=0;i<intlist.size();i++) {
 		n=intlist.get(i).getOr_num();
 		map.put("or_num", n);
+
 		List<OrdersVo>list1=service.deliverylistnew(map);
 		OrdersVo vo=list1.get(0);
 		Integer maincount=service.maincountnew(n);
@@ -78,23 +79,28 @@ public class UserDeliveryController {
 		return "layout";	
 	}
 	@GetMapping("/user/deliverydetail")
-	public String deliverydetail(int or_num,Model model,String ui_id) {
-		OrdersVo vo=service.deliverydetail(or_num);
+	public String deliverydetail(int or_num,Model model,String ui_id,OrdersVo selectvo) {
+		selectvo.setOr_num(or_num);
+		selectvo.setUi_id(ui_id); 
+		OrdersVo vo=service.deliverydetail(selectvo);
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
-		return "layout";
-	}
-	@GetMapping(value="/user/deliveryoptiondetail",produces= {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String,Object> detail(int or_num,Model model){
-		ArrayList<OrdersVo> list=service.optiondetail(or_num);
-		System.out.println(list);
+		
 		HashMap<String,Object>map=new HashMap<String,Object>();
-		if(list!=null) {
-			map.put("list", list);
-		}else {
-			map.put("list", null);
+		List<OrdersVo>mainornum=service.selectmainornum(or_num); //or_num에 따른 메인 메뉴 번호 꺼내오기(중복제거)
+		List<OrdersVo> aa=new ArrayList<OrdersVo>();
+		int n=0;
+		for(int i=0;i<mainornum.size();i++) {
+			n=mainornum.get(i).getFood_num();
+			map.put("food_num",n);//메인메뉴 번호 담기
+			vo.setFood_num(n);
+			vo.setOr_num(or_num);
+			List<OrdersVo>optiondetail=service.mainoptionselect(vo);
+			OrdersVo vo1=optiondetail.get(0);
+			aa.add(vo1);
 		}
-		return map;
+		model.addAttribute("aa",aa);
+		return "layout";
 	}
 }
