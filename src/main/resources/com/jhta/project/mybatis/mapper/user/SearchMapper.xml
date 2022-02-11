@@ -157,15 +157,24 @@
 		where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num 
 		and r.r_id=#{r_id}
 	</select>
-	<!-- 매장별 리뷰,메인메뉴 카운트 조회 -->
+	<!-- 매장별 리뷰 넘버,메인메뉴 카운트 조회 -->
 	<select id="orfoodcount" parameterType="string" resultType="com.jhta.project.vo.user.OrderAndHitVo">
 		select o.or_num,count(od.food_num) count ,nvl(avg(r.re_hit),0) hit
 		from orders o,orders_detail od,food f,review r,review_photo rp
 		where o.or_num=od.or_num and od.food_num=f.food_num and f.r_id=#{r_id}
-        and r.or_num(+)=o.or_num and r.re_num=rp.re_number(+)
+        and r.or_num(+)=o.or_num and r.re_num=rp.re_number(+) <![CDATA[and r.re_hit<>0]]>
 		group by o.or_num
 	</select>
-	
+	<!-- 리뷰넘버로 리뷰찾기 -->
+	<select id="findreview" parameterType="int" resultType="com.jhta.project.vo.user.InSearchReviewVo">
+		select r.*,rp.rp_photo from review r,review_photo rp
+		where r.re_num=rp.re_number(+) and or_num=#{or_num}
+	</select>
+	<!-- 리뷰넘버로 음식이름 찾기 -->
+	<select id="findfoodname" parameterType="int" resultType="String">
+		select f.food_name from orders o,orders_detail od,food f
+		where o.or_num=od.or_num and od.food_num=f.food_num and o.or_num=#{or_num}
+	</select>
 </mapper> 
 
 

@@ -183,15 +183,8 @@
 		</c:forEach>
 	</div>
 	<div class="costtotalbox" style="text-align:center;">
-		<div style="font-size:0.9em">
-			<c:choose>
-				<c:when test="${delcost!=0 }">
-					<span>배달료 +${delcost }원</span>
-				</c:when>
-				<c:otherwise>
-					<span>배달료 무료</span>
-				</c:otherwise>
-			</c:choose>
+		<div id="incartdelcost" style="font-size:0.9em">
+			<input type="hidden" value="${delcost }" id="deliveryCost">
 		</div>
 		<div class="costtotal">
 		</div>
@@ -391,6 +384,11 @@
 		});
 	}
 	$(function(){
+		if($("#deliveryCost").val()!=0){
+			$("#incartdelcost").html("배달료 "+parseInt($("#deliveryCost").val()).toLocaleString('ko-KR')+"원 별도");
+		}else{
+			$("#incartdelcost").html("배달료 무료");
+		}
 		let cartnum=$(".cartnum")
 		let total=0;
 		cartnum.each(function(j){

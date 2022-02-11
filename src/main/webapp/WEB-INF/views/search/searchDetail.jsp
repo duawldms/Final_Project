@@ -5,6 +5,7 @@
 <style>
 #main{
 	padding-top:20px;
+	padding-bottom:50px;
 }
 #mainImg {
 	width: 1100px;
@@ -112,6 +113,13 @@
     position: relative;
     left: -100px;
 }
+.reviewbody{
+	overflow: auto;
+    height: 700px;
+}
+.reviewfood{
+	font-size:0.9em;
+}
 </style>
 <div class="container">
 <!-- 
@@ -127,8 +135,8 @@
 			<c:forEach var="cvo" items="${cflist }">
 				<div class="cart" >
 					<div class="cartimg">
-						<img src="${cp }/resources/img/${food_img}" 
-							style='width: 70px; height: 60px; float: left;display:inline-block;'>
+						<img src="${cp }/resources/img/${cvo.food_img}" 
+							style='width: 90px; height: 75px; float: left;display:inline-block;'>
 					</div>
 					<div class="cartsub">
 					<span>${cvo.food_name }</span>
@@ -142,9 +150,7 @@
 		</div>
 		<div class="d-grid gap-2 col-12 mx-auto cartbtn">
 			<div id="incartdelcost">
-				<c:if test="${rvo.r_delCost!=0 }">
-					배달요금 ${rvo.r_delCost }원 별도
-				</c:if>
+				<input type="hidden" value="${rvo.r_delCost }" id="deliveryCost">
 			</div>
 			<div class="costtotal" style="display:inline;margin-right:15px"></div>
 			<button type="button" class="btn text-white goOrder" style="background-color:#7bcfbb">주문하기</button>
@@ -160,11 +166,11 @@
 						리뷰가 아직 없습니다.
 					</c:when>
 					<c:otherwise>
-						${hit },${rvo.r_id }
+						${hit }
 					</c:otherwise>
 				</c:choose>
 			</span>
-			<a data-toggle="modal" href="#exampleModal">
+			<a data-toggle="modal" href="#exampleModal" onclick="javascript:openreview('${rvo.r_id }')">
 				<button type="button" class="btn btn-sm reviewbtn">
 					리뷰
 				</button>
@@ -180,7 +186,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">리뷰</h5>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body reviewbody">
 				        
 				</div>
 				<div class="modal-footer">
@@ -190,8 +196,43 @@
 		</div>
 	</div>
 	<script>
-		function openreview(){
-			
+		function openreview(r_id){
+			$.ajax({
+				url:"${cp}/user/search/review",
+				data:{
+					r_id:r_id
+				},
+				dataType:"json",
+				success:function(data){
+					if(data.result=='success'){
+						$(".reviewbody").empty();
+						let rlist=data.review
+						for(let i=0;i<rlist.length;i++){
+							let review="";
+							review+="<div class='review' style='border-bottom:1px solid black'>";
+							let hit="";
+							for(let j=0;j<rlist[i].re_hit;j++){
+								hit+="<img src='${cp}/resources/img/star.png' style='display:inline-block;width:25px;height:20px;"+
+									 "position:relative;left:-4px;'>";
+							}
+							if(rlist[i].rp_photo!=null){
+								review+="<img src='${cp}/resources/img/"+rlist[i].rp_photo+"' class='reviewimg'>";
+							}
+							review+=hit+"<br>";
+							if(rlist[i].food_count>1){
+								review+="<span class='reviewfood'>"+rlist[i].food_name+" 외 "+(rlist[i].food_count-1)+"개</span><br>";
+							}else{
+								review+="<span class='reviewfood'>"+rlist[i].food_name+"</span><br>";
+							}
+							review+="<span class='content'>"+rlist[i].re_content+"</span>";
+							review+="</div>";
+							$(".reviewbody").append(review);
+						}
+					}else{
+						console.log('fail');
+					}
+				}
+			})
 		}
 	</script>
 	<div class="container divmain">
@@ -231,9 +272,11 @@
 					style='text-decoration: none; color: black' onclick="javascript:openModal(${status.index},${fvo.food_num })">
 					<div class="container menu">
 						<img src="${cp }/resources/img/${fvo.food_img}"
-							style='width: 100px; height: 90px; float: left'>
-						<h5>${fvo.food_name }</h5>
-						<span>${fvo.food_info }</span><br> <span class="foodcost">${fvo.food_cost }</span>
+							style='width: 100px; height: 90px; float: left;margin-right:10px'>
+						<div style="padding-top:3px">
+							<h5>${fvo.food_name }</h5>
+							<span>${fvo.food_info }</span><br> <span class="foodcost">${fvo.food_cost }</span>
+						</div>
 					</div>
 				</a>
 				<div class="modal fade" id="modal${status.index }" tabindex="-1" role="dialog">
@@ -351,6 +394,11 @@
 	}
 	
 	$(function(){
+		if($("#deliveryCost").val()!=0){
+			$("#incartdelcost").html("배달료 "+parseInt($("#deliveryCost").val()).toLocaleString('ko-KR')+"원 별도");
+		}else{
+			$("#incartdelcost").html("배달료 무료");
+		}
 		$("#mincost").html(parseInt($("#mincost").html()).toLocaleString('ko-KR')+"원");
 		$("#delcost").html(parseInt($("#delcost").html()).toLocaleString('ko-KR')+"원");
 		let foodcost=$(".foodcost");
