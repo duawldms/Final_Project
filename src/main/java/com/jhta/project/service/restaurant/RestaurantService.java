@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.project.mybatis.mapper.restaurant.RestaurantMapper;
 import com.jhta.project.service.security.CustomUserDetail;
+import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.OrderCancelVo;
 import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
+import com.jhta.project.vo.user.OrdersVo;
 
 @Service
 public class RestaurantService {
@@ -51,6 +54,11 @@ public class RestaurantService {
 	// 아이디 중복체크
 	public RestaurantVo idCheck(String r_id) {
 		return mapper.idCheck(r_id);
+	}
+	
+	// 카테고리 불러오기
+	public List<CategoryVo> getCategory() {
+		return mapper.getCategory();
 	}
 	// 판매자 회원 정보 수정
 	public int sellerUpdate(RestaurantVo vo) {
@@ -136,6 +144,13 @@ public class RestaurantService {
 		map.put("r_id", r_id);
 		map.put("r_pwd", rPwd);
 		return mapper.sellerPwdChange(map);
+	}
+	// 주문 취소 내역 불러오기
+	public List<OrderCancelVo> orderCancel() {
+		return mapper.orderCancel();
+	}
+	public List<OrdersVo> getOrders() {
+		return mapper.getOrders();
 	}
 	
 }

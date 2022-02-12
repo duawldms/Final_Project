@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.project.service.restaurant.RestaurantService;
+import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 
 @Controller
@@ -83,10 +85,12 @@ public class RestaurantInfoUpdateController {
 	// 판매자 회원 정보 수정
 	@GetMapping("/restaurant/sellerUpdate")
 	public String sellerUpdateForm(Model model, Principal principal) {
+		List<CategoryVo> list = service.getCategory();
 		RestaurantVo vo = service.idCheck(principal.getName());
 		System.out.println("판매자 정보 수정 : " + vo);
 		String addr = vo.getR_addr();
 		String[] ad = addr.split(", ");
+		model.addAttribute("list", list);
 		model.addAttribute("addr1", ad[0]);
 		model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);

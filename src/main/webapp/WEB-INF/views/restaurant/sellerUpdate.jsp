@@ -22,8 +22,11 @@
 			<tr>
 				<td class="update_td1">카테고리</td>
 				<td class="update_td2">
-					<input type="text" id="cg_name" name="cg_name" placeholder="예)족발/보쌈"
-						 onblur="commonCheck(event)" value="${req.vo.cg_name }">
+					<select id="cg_name" name="cg_name" onblur="commonCheck(event)">
+						<c:forEach var="cg" items="${requestScope.list }">
+							<option <c:if test="${cg.cg_name eq vo.cg_name }">selected="selected"</c:if>>${cg.cg_name }</option>
+						</c:forEach>
+					</select>
 					<span id="cg_nameResult"></span>
 				</td>
 			</tr>

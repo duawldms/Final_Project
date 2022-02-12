@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ctc.wstx.util.StringUtil;
 import com.jhta.project.service.restaurant.RestaurantService;
+import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 
 @Controller
@@ -29,6 +31,8 @@ public class RestaurantInsertController {
 	
 	@GetMapping("/sellerInsert")
 	public String sellerInsertFrom(Model model) {
+		List<CategoryVo> list = service.getCategory();
+		model.addAttribute("list", list);
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerInsert.jsp");
 		return "layout";
 	}
