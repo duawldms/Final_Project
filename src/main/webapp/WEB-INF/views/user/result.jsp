@@ -42,9 +42,10 @@
 	
 </style>
 <div id="resultbox">
+<p></p>
 ${result }
 <p></p>
- <a href="${cp}/loginuser" class="btn3">로그인</a>    <a href="${cp}/" class="btn4">주문하러가기</a> 
+ <a href="${cp}/search" class="btn3">주문하러가기</a>    <a href="${cp}/" class="btn4">홈으로</a> 
 </div>
 
 

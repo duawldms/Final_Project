@@ -81,8 +81,8 @@ public class UserService {
 	public ArrayList<OrdersVo> userdelivery(String ui_id) {
 		return mapper.userdelivery(ui_id);
 	}
-	public OrdersVo deliverydetail(int or_num) {
-		return mapper.deliverydetail(or_num);
+	public OrdersVo deliverydetail( OrdersVo vo) {
+		return mapper.deliverydetail(vo);
 	}
 	public ArrayList<OrdersVo> selectstatus(String ui_id){
 		return mapper.selectstatus(ui_id);
@@ -98,6 +98,34 @@ public class UserService {
 	}
 	public ArrayList<OrdersVo> optiondetail(int or_num){
 		return mapper.optiondetail(or_num);
+	}
+	
+	
+	
+	/*배달내역 test*/
+	public  List<OrdersVo> selectornum(String ui_id){
+		return mapper.selectornum(ui_id);
+	}
+	public List<OrdersVo> deliverylistnew(HashMap<String, Object> map){
+		return mapper.deliverylistnew(map);
+	}
+	public int deliverycountnew(HashMap<String, Object> map) {
+		return mapper.deliverycountnew(map);
+	}
+	public int maincountnew(int or_num) {
+		return mapper.maincountnew(or_num);
+	}
+	public OrdersVo mainselectone(int or_num) {
+		return mapper.mainselectone(or_num);
+	}
+	public List<OrdersVo> selectmainoption(int or_num){
+		return mapper.selectmainoption(or_num);
+	}
+	public List<OrdersVo> mainoptionselect(OrdersVo vo){
+		return mapper.mainoptionselect(vo);
+	}
+	public List<OrdersVo> selectmainornum(int or_num){
+		return mapper.selectmainornum(or_num);
 	}
 
 }

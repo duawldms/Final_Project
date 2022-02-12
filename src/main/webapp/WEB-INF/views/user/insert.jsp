@@ -131,7 +131,7 @@ var themeObj = {
 				 return false;
 		     }
 			 if(ui_pwd.length < 5 || ui_pwd.length > 10) {
-		          alert('비밀번호는 5 ~ 10자 사이로 입력하세요.');
+		          alert('비밀번호는 5 ~ 10자리로 입력이 가능합니다.');
 		      	  $("input[name='ui_pwd']").focus();
 		          return false;
 		      }
@@ -192,8 +192,7 @@ var themeObj = {
 			<td class="col1">비밀번호</td>
 			<td class="col2">
 			<input type="password" name="ui_pwd"><span></span><br>
-			※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
-            5 ~ 10자리</span>로 입력이 가능합니다.
+			※비밀번호는 <span class="num">5 ~ 10자리</span>로 입력이 가능합니다.
 			</td>
 		</tr>
 		<tr>
