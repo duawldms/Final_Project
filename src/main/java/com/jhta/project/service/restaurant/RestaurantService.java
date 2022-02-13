@@ -137,6 +137,7 @@ public class RestaurantService {
 		map.put("r_pwd", rPwd);
 		return mapper.sellerPwdChange(map);
 	}
+
 	
 }
 
