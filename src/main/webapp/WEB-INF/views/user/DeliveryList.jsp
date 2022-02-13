@@ -139,7 +139,6 @@
 	<form:form method="post" action="${cp }/userdelivery">       
 		<select name="field">
 			<option value="b.r_name"<c:if test="${ field=='b.r_name'}">selected</c:if>>가게이름</option>
-			<option value="b.food_name"<c:if test="${ field=='b.food_name'}">selected</c:if>>메뉴</option>
 		</select>
 			<input type="text" name="keyword" value="${keyword }">
 			<input type="hidden" name="ui_id" value="${ui_id }">

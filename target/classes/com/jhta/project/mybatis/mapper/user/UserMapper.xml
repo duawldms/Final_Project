@@ -25,7 +25,13 @@
 		insert into authority values(#{au_id},#{au_authority})
 	</insert>
 	<select id="checkid" parameterType="String" resultType="String">
-	 	select * from user_information where ui_id=#{ui_id}
+	    select ui_id from user_information where ui_id=#{ui_id}
+	</select>
+	<select id="checkidadmin" parameterType="String" resultType="String">
+		select admin_id from admin where admin_id=#{ui_id}
+	</select>
+	<select id="checkidre" parameterType="String" resultType="String">
+		select r_id from restaurant where r_id=#{ui_id}
 	</select>
 	<!-- 로그인 기능 -->
 	<select id="selectId" parameterType="com.jhta.project.vo.user.UserVo">

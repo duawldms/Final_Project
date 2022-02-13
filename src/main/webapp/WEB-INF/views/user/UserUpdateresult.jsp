@@ -5,11 +5,12 @@
 	#resultbox{
 	text-align: center;
 	border: 4px solid #7bcfbb;
-	width: 400px;
+	width: 450px;        
 	margin: auto;
-	margin-top:200px;
+	margin-top:200px;  
 	margin-bottom:200px;  
 	padding: 35px;  
+	padding-top:100px;      
 	height:300px;   
 	font-size: 25px;                 
 	}     
@@ -39,6 +40,18 @@
     } 
 </style>
 <div id="resultbox">
-${result }
-<a href="${cp}/" class="btn3">주문하러가기</a> | <a href="${cp}/" class="btn4">홈으로</a>
+${result } <br><br>
+
+<input type="button" class="btn3" value="내 정보" id="info"> | <input type="button" class="btn4" value="홈으로" id="home">
 </div>
+<script type="text/javascript">
+	$(function(){
+		$("#info").click(function(){
+			location.href="${cp }/userinfocheck?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}";
+		});
+		$("#home").click(function(){
+			location.href="${cp}/";
+		});
+	});
+
+</script>
