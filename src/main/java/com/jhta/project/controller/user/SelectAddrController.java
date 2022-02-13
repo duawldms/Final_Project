@@ -45,7 +45,8 @@ public class SelectAddrController {
 	@GetMapping(value="/user/search",produces= {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> searchResaurant(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			String field,String keyword,Double user_coordx,Double user_coordy,
-			@RequestParam(value="cg_name",defaultValue = "")String cg_name,HttpServletResponse resp){
+			@RequestParam(value="cg_name",defaultValue = "")String cg_name,
+			@RequestParam(value="orderby",defaultValue = "")String orderby,HttpServletResponse resp){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		Cookie delx=new Cookie("tmpcoordx",user_coordx.toString());
 		delx.setPath("/");
@@ -67,8 +68,17 @@ public class SelectAddrController {
 		map.put("keyword", keyword);
 		map.put("user_coordy", user_coordy);
 		map.put("user_coordx", user_coordx);
-		map.put("category", cg_name);
-		System.out.println(cg_name);
+		if(!cg_name.equals("")||!cg_name.equals("all")) {
+			map.put("category", cg_name);
+		}else {
+			map.put("category","");
+		}
+		if(orderby==null||orderby.equals("")) {
+			map.put("orderby", "hit");
+		}else {
+			map.put("orderby", orderby);
+		}
+		System.out.println(orderby);
 		int totalRowCount=service.count(map);
 		//System.out.println(totalRowCount);
 		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);

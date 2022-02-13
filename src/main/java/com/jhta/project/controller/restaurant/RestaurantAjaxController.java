@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +57,11 @@ public class RestaurantAjaxController {
 			map.put("result", "fail");
 		}
 		return map;
+	}
+	
+	@RequestMapping(value = "/getMailCode", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody String mailSend(String r_email) {
+		return "";
 	}
 	
 }

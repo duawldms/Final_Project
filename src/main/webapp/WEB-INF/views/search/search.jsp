@@ -7,20 +7,26 @@
 	.where{padding-top:100px;}
 	#up{position:relative;left:220px}
 	.searchplace{width:700px;margin-bottom:100px}
-	.searchbar{width:600px}
-	.restaurant{width:600px;margin:auto;margin-top:50px;height:70px}
+	.searchbar{width:600px;margin-bottom:10px;}
+	.restaurant{width:600px;margin:auto;height:auto;padding-top:10px}
 	.restaurant img{float:left;margin-right:10px}
 	.resimg{width:100px;height:100px}
 	.paging{position:relative;margin:auto;top:60px}
 	#category{width:100px}
 	.star{position:relative;top:-2px}
+	.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	    color: #fff;
+	    background-color: #7bcfbb;
+	}
+	.nav-item a{
+		color:#71c9b4;
+	}
 </style>    
 
 <div class="container where">
-	
 	<sec:authorize access="isAuthenticated()">
 		<div class="input-group container searchplace">
-			<select onchange="changeAddr(this.options[this.selectedIndex].text)">
+			<select onchange="changeAddr(this.options[this.selectedIndex].text,'${param.keyword }')">
 				<c:forEach var="vo" items="${list }" varStatus="status">
 					<c:choose>
 						<c:when test="${vo.ua_nickname=='기본배송지' }">
@@ -33,17 +39,6 @@
 				</c:forEach>
 			</select>
 			<input type="text" class="form-control col-10" id="place" value="${vo.ua_addr }" readonly="readonly">
-		</div>
-	</sec:authorize>
-	<sec:authorize access="isAnonymous()">
-		<div id="up">
-			<a href="loginuser">아이디 있으신가요?</a>
-			<h3>어디로 배달해드릴까요?</h3>
-		</div>
-		<div class="input-group container searchplace">
-			<input type="text" class="form-control col-6" id="place" placeholder="배달받을 간단한 주소를 입력해주세요!">
-			<input type="text" class="form-control col-4 place" id="placeDetail" aria-describedby="addr-addon" >
-			<button class="btn btn-outline-secondary" type="button" id="addr-addon">검색</button>
 		</div>
 	</sec:authorize>
 </div>
@@ -76,6 +71,19 @@
 							aria-describedby="button-addon2" id="keyword" value="${param.keyword }">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
+	<div style="margin-bottom:30px;position:relative;left:270px">
+		<ul class="nav nav-pills">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" id="orderhit" onclick="javascript:orderby('hit')" href="#">별점순</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" id="orderdelcost" onclick="javascript:orderby('delcost')">배달료 낮은 순</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" id="orderdistance" onclick="javascript:orderby('distance')">거리순</a>
+			</li>
+		</ul>
+	</div>
 	<div class="container" id="restau"></div>
 	<div class="container paging" id="paging"></div>   
 </div>
@@ -84,12 +92,20 @@
 <script>
 	let x="";
 	let y="";
+	
+	function orderby(order){
+		if(keyword!=null||keyword!=''){
+			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+$("#keyword").val()+"&orderby="+order;
+		}else{
+			location.href="${cp}/search?cg_name="+$("#category").val();
+		}
+	}
 	$("#button-addon2").click(function(){
 		let keyword=$("#keyword").val();
 		if(keyword!=null||keyword!=''){
 			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+keyword;
 		}else{
-			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+keyword;
+			location.href="${cp}/search?cg_name="+$("#category").val();
 		}
 	});
 	let category="";
@@ -120,13 +136,13 @@
 								data:{
 									pageNum:"${pu.pageNum}",
 									cg_name:"${param.cg_name}",
-									keyword:"${keyword}",
+									keyword:keyword,
+									orderby:"${param.orderby}",
 									user_coordx:coordx,
 									user_coordy:coordy
 								},
 								dataType:"json",
 								success:function(data){
-									console.log(data); // 데이터 받아오는지 체크
 									let seller="";
 									$("#restau").empty();
 									$("#paging").empty();
@@ -137,9 +153,14 @@
 											star='아직 리뷰가 없어요';
 											starcount=""
 										}
+										console.log(data.listvo[i].r_name+","+data.listvo[i].r_state);
 										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 										seller+="<div class='container restaurant'>";
-										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
+										if(data.listvo[i].r_state==3){
+											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+										}else{
+											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+										}
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 										seller+="<span>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
@@ -153,7 +174,6 @@
 									let page="";
 									let keyword="";
 									//$("#keyword").val();
-									console.log("count:"+data.pu.totalPageCount);
 									x=data.user_coordx;
 									y=data.user_coordy;
 									page+="<nav aria-label='Page navigation'><ul class='pagination'>"
@@ -166,8 +186,10 @@
 													+i+"</span></a></li>";
 										}
 									}
-									page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-									+"Prev</span></a></li></ul></nav>";
+									if(data.pu.totalPageCount>1){
+										page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+										+"Prev</span></a></li></ul></nav>";
+									}
 									$("#paging").append(page);
 								}
 							});
@@ -183,12 +205,12 @@
 				pageNum:pageNum,
 				keyword:"${param.keyword}",
 				category:"${param.cg_name}",
+				orderby:"${param.orderby}",
 				user_coordx:user_coordx,
 				user_coordy:user_coordy
 			},
 			dataType:"json",
 			success:function(data){
-				console.log(data); // 데이터 받아오는지 체크
 				let seller="";
 				$("#restau").empty();
 				$("#paging").empty();
@@ -199,9 +221,13 @@
 						star='아직 리뷰가 없어요';
 						starcount="";
 					}
-					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
+					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
 					seller+="<div class='container restaurant'>";
-					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
+					if(data.listvo[i].r_state==3){
+						seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+					}else{
+						seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+					}
 					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 					seller+="<span>"+star+"&nbsp"+starcount+"</span><br>"; // 별점 
@@ -214,8 +240,7 @@
 				$("#restau").append(seller);
 				let page="";
 				let keyword="";
-					//$("#keyword").val();
-				console.log("count:"+data.pu.totalPageCount);
+				//$("#keyword").val();
 				page+="<nav aria-label='Page navigation'><ul class='pagination'>";
 				if(pageNum!=1){
 					page+="<li class='page-item'><a class='page-link' href='javascript:paging("+(pageNum-1)+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
@@ -250,12 +275,30 @@
 		   outlineColor: "#444444" //테두리 
 		};
 	window.onload = function(){
+		let orderparams="${param.orderby}";
+		if(orderparams==''||orderparams=='hit'){
+			$("#orderhit").prop('class','nav-link active');
+			
+			$("#orderdistance").prop('class','nav-link');
+			
+			$("#orderdelcost").prop('class','nav-link');
+			
+		}else if(orderparams=='distance'){
+			$("#orderdistance").prop('class','nav-link active');
+			$("#orderhit").prop('class','nav-link');
+			$("#orderdidelcost").prop('class','nav-link');
+		}else if(orderparams=='delcost'){
+			$("#orderdelcost").prop('class','nav-link active');
+			$("#orderhit").prop('class','nav-link');
+			$("#orderdistance").prop('class','nav-link');
+		}
 		category=$("#category").val();
-		
+		if(category=='all'){
+			category="";
+		}
 		let detail=document.getElementById("placeDetail");
 		$.ajax({
 			url:"${cp}/user/addrDetail?ua_nickname=기본배송지",
-			
 			dataType:"json",
 			success:function(data){
 				$("#place").prop("value",data.vo.ua_addr);
@@ -279,14 +322,14 @@
 								url:"${cp}/user/search",
 								data:{
 									pageNum:"${pu.pageNum}",
+									cg_name:category,
 									keyword:"${param.keyword}",
-									cg_name:"${param.cg_name}",
+									orderby:"${param.orderby}",
 									user_coordx:coordx,
 									user_coordy:coordy
 								},
 								dataType:"json",
 								success:function(data){
-									console.log(data);
 									let seller="";
 									$("#restau").empty();
 									$("#paging").empty();
@@ -299,9 +342,13 @@
 											star='아직 리뷰가 없어요';
 											starcount="";
 										}
-										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
+										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
 										seller+="<div class='container restaurant'>";
-										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
+										if(data.listvo[i].r_state==3){
+											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+										}else{
+											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+										}
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 										seller+="<span class='star'>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
@@ -325,8 +372,10 @@
 													+i+"</span></a></li>";
 										}
 									}
-									page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
-									+"Prev</span></a></li></ul></nav>";
+									if(data.pu.totalPageCount>1){
+										page+="<li class='page-item'><a class='page-link' href='javascript:paging("+2+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
+										+"Prev</span></a></li></ul></nav>";
+									}
 									$("#paging").append(page);
 								}
 							});

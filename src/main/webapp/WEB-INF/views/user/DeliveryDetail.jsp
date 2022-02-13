@@ -79,11 +79,18 @@
 	   <th  class="col1">옵션</th>
 	   <th  class="col1">가격</th>
 	</tr>
-	<c:forEach var="aa" items="${aa }">
+	<c:forEach var="aa1" items="${aa }" varStatus="st">	<!-- list인덱스 번호 얻어오기 -->
+		<c:set var="opt" value="${cc.get(st.index) }"/> <!-- index번호랑 맞는 list꺼내서 변수 지정하기 -->
+		<c:set var="price" value="${aa1.food_cost }"/> <!-- 메인메뉴 가격 변수 지정 -->
 	<tr>
-		<td class="col2">${aa.food_name }(${aa.food_cost })</td>                
-		<td class="col2">${aa.fo_name }(${aa.fo_cost }),${aa.oo_count }개</td>     
-		<td class="col2">${aa.food_cost + (aa.fo_cost * aa.oo_count)}</td>       
+		<td class="col2">${aa1.food_name }(${aa1.food_cost })</td>  
+		<td class="col2">      
+	<c:forEach var="op" items="${opt }"> <!-- 인덱스 번호에 맞는 list돌려서 값 얻어오기 -->
+		${op.fo_name }(${op.fo_cost })${op.oo_count }개<br> 
+			<c:set var="price" value="${price  + (op.fo_cost * op.oo_count)}"/>
+		</c:forEach>    
+		</td>
+		<td class="col2">${price}</td>       
 	</tr> 
 	</c:forEach>
 </table><br><br>
@@ -122,32 +129,12 @@
 	</tr>  
 	<tr>    
 		<td class="col2">${vo.or_paymethod }</td>     
-		<td class="col2">${vo.r_delcost }</td>   
-		<td class="col2">${vo.or_totalcost}</td>       
+		<td class="col2">${vo.r_delcost }원</td>   
+		<td class="col2">${vo.or_totalcost}원</td>       
 	</tr> 
 </table><br><br>
 </div>	
 <script type="text/javascript">
-	$(function(){
-		var or_num="${vo.or_num}";
-		$.ajax({
-			url:'/project/user/deliverydetaildetailnew',   
-			data:{'or_num':or_num},
-			dataType:'json',
-			success:function(data){ 
-				console.log(data);
-				let result="";   
-				if(data!=null){      
-					for(let i=0;i<data.aa.length;i++){             
-						result+=data.aa[i].fo_name + "(" + data.aa[i].fo_cost + "원)" + "<br>";       
-					}
-					$("#option").html(result);
-					console.log(result);
-				}else if(data==null){     
-					$("#option").html('X');
-				}
-			}
-		});		
-	});
+	
 
 </script>
