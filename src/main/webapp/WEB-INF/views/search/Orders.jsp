@@ -169,7 +169,7 @@
 		<c:forEach var="cvo" items="${cflist }">
 			<div class="cart" >
 				<div class="cartimg">
-					<img src="${cp }/resources/img/${food_img}" 
+					<img src="${cp }/resources/img/${cvo.food_img}" 
 						style='width: 70px; height: 60px; float: left;display:inline-block;'>
 				</div>
 				<div class="cartsub">
@@ -455,14 +455,22 @@
 						
 					}else{
 						addrdiv+="<div class='accordion-body addrright'><input type='text' id='uamain' value='"+data.addrmain+"' disabled><br>";
-						addrdiv+="<input type='text' id='uadetail' value='"+data.addrdetail+"' disabled><br>";
+						addrdiv+="<input type='text' id='uadetail' value='"+data.addrdetail+"' disabled>";
+						addrdiv+="<button type='button' class='btn' onclick='javascript:changedetail()'>수정</button><br>";
 						addrdiv+="<input type='text' id='phonenum' value='"+data.addrvo.ua_phone+"' disabled>"
+						addrdiv+="<button type='button' class='btn'onclick='javascript:changephone()'>수정</button><br>"
 					}
 					$("#addr").html(addrdiv);
 				}
 			});
 		});
 	});
+	function changedetail(){
+		$("#uadetail").prop('disabled',false);
+	}
+	function changephone(){
+		$("#phonenum").prop('disabled',false);
+	}
 </script>
 
 

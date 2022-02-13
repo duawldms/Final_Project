@@ -29,14 +29,14 @@ public class GoCartController {
 	public HashMap<String, Object> gocart(@RequestParam(value="checkbox[]",defaultValue = "") List<String> checkbox,
 			@RequestParam(value="optionscnt[]",defaultValue = "") List<String> optionscnt,int foodnum,HttpServletResponse resp,HttpServletRequest req,
 			@RequestParam(value="necoptions[]",defaultValue = "") List<String> nec,Model model,Principal principal,
-			@RequestParam(value="delcheck",defaultValue = "")String delcheck) {
+			@RequestParam(value="delcheck",defaultValue = "")String delcheck,
+			@RequestParam(value="ordercheck",defaultValue = "")String ordercheck) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		try {
 			String ui_id=principal.getName();
 			String r_id=service.getCartRid(ui_id);
 			if(r_id!=null) {
 				if(delcheck!=null && !delcheck.equals("")) {
-					System.out.println("checkcheck");
 					if(delcheck.equals("delete")) {
 						List<CartVo> clist=service.selectcart(ui_id);
 						for(CartVo cart:clist) {
@@ -86,11 +86,16 @@ public class GoCartController {
 			dely.setPath("/");
 			dely.setMaxAge(0);
 			resp.addCookie(dely);
+			if(ordercheck.equals("order")) {
+				map.put("result", "goorder");
+				return map;
+			}
 			map.put("result", "success");	
 		}catch(Exception e) {
 			e.printStackTrace();
 			map.put("result", "fail");
 		}
+		
 		return map;
 	}
 }

@@ -19,6 +19,11 @@
 	<insert id="restaurantInsert" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		insert into restaurant values(#{r_id}, #{r_pwd}, #{r_name}, #{r_addr}, #{r_minCost}, #{r_delCost}, #{r_img}, #{r_state}, #{r_info}, sysdate, #{cg_name},#{r_coordx},#{r_coordy},#{r_delmin},#{r_delmax},#{r_email})
 	</insert>
+	<!-- 카테고리 불러오기 -->
+	<select id="getCategory" resultType="com.jhta.project.vo.restaurant.CategoryVo">
+		select * 
+		from category
+	</select>
 	<!-- 판매자 정보 수정 -->
 	<update id="sellerUpdate" parameterType="com.jhta.project.vo.restaurant.RestaurantVo">
 		update restaurant
@@ -54,7 +59,7 @@
 		cg_name=#{cg_name},r_delmin=#{r_delmin},r_delmax=#{r_delmax},r_state=#{r_state} where r_id=#{r_id}
 	</update>
 	<select id="restaurantinfo" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
-		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax from restaurant where r_id=#{r_id}
+		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax,r_state from restaurant where r_id=#{r_id}
 	</select>
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
@@ -170,5 +175,36 @@
 		where f.r_id = #{r_id} and or_regdate between #{s_date} and #{e_date}
 		GROUP BY to_char(or_regdate, 'YY') 
 		order by sales_year
+	</select>
+	<!-- 주문 취소 내역 불러오기 -->
+	<select id="orderCancel" resultType="com.jhta.project.vo.restaurant.OrderCancelVo">
+		select distinct
+		o.or_num,
+		o.ui_id,
+		o.or_totalcost,
+		f.food_name,
+		fo.fo_name
+		from orders o, 
+		     orders_detail od,
+		     orders_option oo,
+		     food f,
+		     food_options fo
+		where
+		o.or_num = od.or_num 
+		and 
+		od.od_num = oo.od_num 
+		and 
+		od.food_num = f.food_num
+		and
+		f.food_num = fo.food_num
+		and
+		o.or_status = 5
+		order by f.food_name asc
+	</select>
+	<select id="getOrders" resultType="com.jhta.project.vo.user.OrdersVo">
+		select * 
+		from orders
+		where
+		or_status = 5
 	</select>
 </mapper>
