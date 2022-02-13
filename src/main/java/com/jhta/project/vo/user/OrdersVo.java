@@ -17,6 +17,7 @@ public class OrdersVo {
 	private int or_status;
 	private int or_totalcost;
 	private String or_addr;
+	private String or_paymethod;
 	
 	//order_detail
 	private int od_num;
@@ -37,11 +38,16 @@ public class OrdersVo {
 	private String r_name;
 	private int r_delcost; //배달비
 	private String r_img;//가게 사진
+	private String r_addr;
 	
 	//category
 	private String cg_name;
 	
 	//maincount
 	private int count;
+	
+	//user_information
+	private String ui_name;
+	private String ui_phone;
 	
 }

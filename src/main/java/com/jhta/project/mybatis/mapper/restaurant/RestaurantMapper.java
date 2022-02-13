@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.jhta.project.service.security.CustomUserDetail;
+import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.OrderCancelVo;
 import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 import com.jhta.project.vo.security.AuthorityVo;
+import com.jhta.project.vo.user.OrdersVo;
 
 public interface RestaurantMapper {
 	CustomUserDetail getAuths(String r_id);
@@ -35,4 +38,7 @@ public interface RestaurantMapper {
 	List<OrderListVo> selectSalesMonth(Map<String, Object> map);
 	List<OrderListVo> selectSalesYear(Map<String, Object> map);
 	int sellerPwdChange(Map<String, String> map);
+	List<CategoryVo> getCategory();
+	List<OrderCancelVo> orderCancel();
+	List<OrdersVo> getOrders();
 }
