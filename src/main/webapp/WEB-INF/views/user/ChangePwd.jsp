@@ -81,6 +81,11 @@
 				$("input[name='ui_pwdchk']").focus();
 				return false;
 			}
+			if(pwd.length < 5 || pwd.length > 10) {
+		          alert('비밀번호는 5 ~ 10자리로 입력이 가능합니다.');
+		      	  $("input[name='ui_pwd']").focus();
+		          return false;
+		      }
 			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
                alert("비밀번호가 일치하지 않습니다.")
                return false;

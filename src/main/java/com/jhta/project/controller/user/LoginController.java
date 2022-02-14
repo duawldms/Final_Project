@@ -8,12 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.jhta.project.service.user.CategoryService;
 import com.jhta.project.service.user.UserService;
 
 @Controller
 public class LoginController {
 	@Autowired UserService service;
 	@Autowired private ServletContext sc;
+	@Autowired CategoryService service1;
 	
 	@GetMapping("/loginuser")
 	public String loginForm(Model model) {
@@ -30,8 +32,8 @@ public class LoginController {
 	
 	@GetMapping("/loginsuccess")
 	public String login(Model model){
-		model.addAttribute("result","로그인되었습니다.");
-		model.addAttribute("main","/WEB-INF/views/user/result.jsp");
+		model.addAttribute("main","/WEB-INF/views/home.jsp");
+		model.addAttribute("list", service1.Categorylist());
 		return "layout";
 	}
 	

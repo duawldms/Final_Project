@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b89a8c65d42f06fcb2f0dd87d520b67&libraries=services"></script>
@@ -49,18 +50,9 @@
 				<td class="col2">
 					<select id="cg_name" name="cg_name" onblur="commonCheck(event)">
 						<option>-카테고리 선택-</option>
-						<option>1인분 주문</option>
-						<option>프랜차이즈</option>
-						<option>치킨</option>
-						<option>피자/양식</option>
-						<option>중국집</option>
-						<option>한식</option>
-						<option>일식/돈까스</option>
-						<option>족발/보쌈</option>
-						<option>야식</option>
-						<option>분식</option>
-						<option>카페/디저트</option>
-						<option>편의점/마트</option>
+						<c:forEach var="vo" items="${requestScope.list }">
+							<option>${vo.cg_name }</option>
+						</c:forEach>
 					</select>
 					<span id="cg_nameResult"></span>
 				</td>
@@ -230,14 +222,14 @@
 			return;
 		}
 		if (addr1.value == '') {
-			document.getElementById("sample6_addressResult").innerHTML = "주소를 입력해 주세요.<br>";
+			document.getElementById("sample6_addressResult").innerHTML = "<br>주소를 입력해 주세요.<br>";
 			addr1.focus();
 			return;
 		} else {
 			document.getElementById("sample6_addressResult").innerText = "";
 		}
 		if (addr2.value == '') {
-			document.getElementById("sample6_detailAddressResult").innerHTML = "상세 주소를 입력해 주세요.<br>";
+			document.getElementById("sample6_detailAddressResult").innerHTML = "<br>상세 주소를 입력해 주세요.<br>";
 			addr2.focus();
 			return;
 		} else {

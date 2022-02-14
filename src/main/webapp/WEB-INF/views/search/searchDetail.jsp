@@ -5,6 +5,7 @@
 <style>
 #main{
 	padding-top:20px;
+	padding-bottom:50px;
 }
 #mainImg {
 	width: 1100px;
@@ -100,10 +101,10 @@
 	top:-2px;
 	left:5px;
 }
-.review{
+.reviewbtn{
 	background-color: #7bcfbb;
     position: relative;
-    left: 10px;
+    left:5px;
     top: -4px;
     color:white;
 }
@@ -111,6 +112,13 @@
 	width: 700px;
     position: relative;
     left: -100px;
+}
+.reviewbody{
+	overflow: auto;
+    height: 700px;
+}
+.reviewfood{
+	font-size:0.9em;
 }
 </style>
 <div class="container">
@@ -127,8 +135,8 @@
 			<c:forEach var="cvo" items="${cflist }">
 				<div class="cart" >
 					<div class="cartimg">
-						<img src="${cp }/resources/img/${food_img}" 
-							style='width: 70px; height: 60px; float: left;display:inline-block;'>
+						<img src="${cp }/resources/img/${cvo.food_img}" 
+							style='width: 90px; height: 75px; float: left;display:inline-block;'>
 					</div>
 					<div class="cartsub">
 					<span>${cvo.food_name }</span>
@@ -142,9 +150,7 @@
 		</div>
 		<div class="d-grid gap-2 col-12 mx-auto cartbtn">
 			<div id="incartdelcost">
-				<c:if test="${rvo.r_delCost!=0 }">
-					배달요금 ${rvo.r_delCost }원 별도
-				</c:if>
+				<input type="hidden" value="${rvo.r_delCost }" id="deliveryCost">
 			</div>
 			<div class="costtotal" style="display:inline;margin-right:15px"></div>
 			<button type="button" class="btn text-white goOrder" style="background-color:#7bcfbb">주문하기</button>
@@ -164,8 +170,8 @@
 					</c:otherwise>
 				</c:choose>
 			</span>
-			<a data-toggle="modal" href="#exampleModal">
-				<button type="button" class="btn btn-sm review">
+			<a data-toggle="modal" href="#exampleModal" onclick="javascript:openreview('${rvo.r_id }')">
+				<button type="button" class="btn btn-sm reviewbtn">
 					리뷰
 				</button>
 			</a>
@@ -180,7 +186,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">리뷰</h5>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body reviewbody">
 				        
 				</div>
 				<div class="modal-footer">
@@ -190,8 +196,50 @@
 		</div>
 	</div>
 	<script>
-		function openreview(){
-			
+		function openreview(r_id){
+			$.ajax({
+				url:"${cp}/user/search/review",
+				data:{
+					r_id:r_id
+				},
+				dataType:"json",
+				success:function(data){
+					if(data.result=='success'){
+						$(".reviewbody").empty();
+						let rlist=data.review
+						for(let i=0;i<rlist.length;i++){
+							let review="";
+							let hit="";
+							for(let j=0;j<rlist[i].re_hit;j++){
+								hit+="<img src='${cp}/resources/img/star.png' style='float:left;display:inline-block;width:25px;height:20px;"+
+									 "position:relative;left:-4px;'>";
+							}
+							
+							
+							if(rlist[i].rp_photo!=null){
+								review+="<div class='review' style='border-bottom:1px solid black;height:280px'>";
+								review+="<img src='${cp}/resources/img/"+rlist[i].rp_photo+"' class='reviewimg' style='float:left;"+
+								"width:320px;height:270px'>";
+							}else{
+								review+="<div class='review' style='border-bottom:1px solid black;height:auto'>";
+							}
+							review+="<div style='display:inline-block;width:320px;padding-left:10px;overflow:auto'>";
+							review+=hit+"<br>";
+							if(rlist[i].food_count>1){
+								review+="<span class='reviewfood'>"+rlist[i].food_name+" 외 "+(rlist[i].food_count-1)+"개</span><br>";
+							}else{
+								review+="<span class='reviewfood'>"+rlist[i].food_name+"</span><br>";
+							}
+							review+="<span class='content'>"+rlist[i].re_content+"</span>";
+							review+="</div>";
+							review+="</div>";
+							$(".reviewbody").append(review);
+						}
+					}else{
+						console.log('fail');
+					}
+				}
+			})
 		}
 	</script>
 	<div class="container divmain">
@@ -227,13 +275,16 @@
 		<div class="container menudiv">
 
 			<c:forEach var="fvo" items="${flist }" varStatus="status">
+			<c:if test="${fvo.food_status==0 }">
 				<a data-toggle="modal" href="#modal${status.index }"
 					style='text-decoration: none; color: black' onclick="javascript:openModal(${status.index},${fvo.food_num })">
 					<div class="container menu">
 						<img src="${cp }/resources/img/${fvo.food_img}"
-							style='width: 100px; height: 90px; float: left'>
-						<h5>${fvo.food_name }</h5>
-						<span>${fvo.food_info }</span><br> <span class="foodcost">${fvo.food_cost }</span>
+							style='width: 100px; height: 90px; float: left;margin-right:10px'>
+						<div style="padding-top:3px">
+							<h5>${fvo.food_name }</h5>
+							<span>${fvo.food_info }</span><br> <span class="foodcost">${fvo.food_cost }</span>
+						</div>
 					</div>
 				</a>
 				<div class="modal fade" id="modal${status.index }" tabindex="-1" role="dialog">
@@ -256,14 +307,14 @@
 							<div class="modal-body">
 								<form:form id="forms${status.index }" method="post" action="${cp }/user/gocart">
 									<input type="hidden" name="food_num" value="${fvo.food_num }">
-									<div class="modalBody">
+									<div class="modalBody" id="modalBody${status.index}">
 										
 									</div>
 								</form:form>
 							</div>
 							<!-- Modal footer -->
 							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-success goOrder">바로주문</button>
+								<button type="button" class="btn btn-outline-success" onclick="javascript:goorder(${status.index},${fvo.food_num})">바로주문</button>
 								<button type="button" class="btn btn-outline-success addCart" 
 										onclick="javascript:gocart(${status.index},${fvo.food_num })" >주문표에 추가</button>
 								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">창닫기</button>
@@ -271,6 +322,7 @@
 						</div>
 					</div>
 				</div>
+			</c:if>
 			</c:forEach>
 		</div>
 	</div>
@@ -279,8 +331,12 @@
 	$(".goOrder").click(function(){
 		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 	});
+	function goorder(index,foodnum){
+		gocart(index,foodnum,'a','order');
+		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
+	}
 	let count=0;
-	function gocart(index,foodnum,delcheck){
+	function gocart(index,foodnum,delcheck,ordercheck){
 		let necoptions=[];
 		let checkbox=[];
 		let optionscnt=[];
@@ -290,7 +346,7 @@
 			}else{
 				checkbox.push($(this).val());
 			}
-			optionscnt.push($("#cnt"+$(this).prop('id').substring(5)).val());
+			optionscnt.push($(".cnt"+$(this).prop('class').substring(5)).val());
 		});
 		let nec=[];
 		$("input[class='nec']:checked").each(function(i){
@@ -310,7 +366,8 @@
 				necoptions:necoptions,
 				optionscnt:optionscnt,
 				foodnum:foodnum,
-				delcheck:delcheck
+				delcheck:delcheck,
+				ordercheck:ordercheck
 			},
 			success:function(data){
 				if(data.result=='success'){
@@ -319,8 +376,6 @@
 				}else if(data.result=='check'){
 					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
 						gocart(index,foodnum,'delete');
-					}else{
-						alert('no');
 					}
 				}
 			}
@@ -351,6 +406,11 @@
 	}
 	
 	$(function(){
+		if($("#deliveryCost").val()!=0){
+			$("#incartdelcost").html("배달료 "+parseInt($("#deliveryCost").val()).toLocaleString('ko-KR')+"원 별도");
+		}else{
+			$("#incartdelcost").html("배달료 무료");
+		}
 		$("#mincost").html(parseInt($("#mincost").html()).toLocaleString('ko-KR')+"원");
 		$("#delcost").html(parseInt($("#delcost").html()).toLocaleString('ko-KR')+"원");
 		let foodcost=$(".foodcost");
@@ -427,7 +487,9 @@
 			dataType:"json",
 			success:function(data){
 				let divoptions="";
-				$(".modalBody").empty();
+				$(".modalBody").each(function(){
+					$(this).empty();
+				});
 				count=0;
 				for(let i=0;i<data.folist.length;i++){
 					if(i==0){
@@ -446,33 +508,53 @@
 						divoptions+="</div>";
 					}else{
 						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+status+"' id='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
+						divoptions+="<input type='checkbox' name='options"+status+"' class='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
 									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
-						divoptions+="&nbsp<input type='hidden' value='x' id='cntplus"+i+"' readonly"+
+						divoptions+="&nbsp<input type='hidden' value='x' class='cntplus"+i+"' readonly"+
 									" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
-						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' id='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
+						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' class='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
 									"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
 						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
 						divoptions+="<span style='float:right' id='opcost"+i+"'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
 						divoptions+="</div>";
 					}
 				}
-				$(".modalBody").append(divoptions);
+				$("#modalBody"+status).append(divoptions);
 			}
 		});
 	}
 	function changecnt(index,cost){
-		let cnt=$("#cnt"+index).val();
+		let cnt=$(".cnt"+index).val();
+		console.log(cnt+","+cost);
 		let cng=(cnt*cost).toLocaleString('ko-KR');
 		$('#opcost'+index).html("+"+cng+"원");
 	}
 	function optioncount(i){
-		if($("#nomal"+i).prop('checked')){
-			$("#cnt"+i).prop('type','number');
-			$("#cntplus"+i).prop('type','text');
+		/*
+		$(".nomal"+i).each(function(a){
+			if($(this).prop('checked')){
+				$(".cnt"+i).each(function(b){
+					$(this).prop('type','number');
+				});
+				$(".cntplus"+i).each(function(b){
+					$(this).prop('type','text');
+				});
+			}else{
+				$(".cnt"+i).each(function(b){
+					$(this).prop('type','hidden');
+				});
+				$(".cntplus"+i).each(function(b){
+					$(this).prop('type','hidden');
+				});
+			}
+		});*/
+		
+		if($(".nomal"+i).prop('checked')){
+			$(".cnt"+i).prop('type','number');
+			$(".cntplus"+i).prop('type','text');
 		}else{
-			$("#cnt"+i).prop('type','hidden');
-			$("#cntplus"+i).prop('type','hidden');
+			$(".cnt"+i).prop('type','hidden');
+			$(".cntplus"+i).prop('type','hidden');
 		}
 	}
 	function checknes(element){

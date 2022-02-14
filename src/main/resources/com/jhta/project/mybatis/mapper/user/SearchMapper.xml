@@ -6,7 +6,7 @@
 	<sql id="searchfield">
 		<choose>
 			<when test="keyword!=null and keyword!=''">
-				and(res_name like '%'||#{keyword}||'%' or  res.cg_name like '%'||#{keyword}||'%')
+				and(res.r_name like '%'||#{keyword}||'%' or  res.r_name like '%'||#{keyword}||'%')
 			</when>
 			<when test="category!=null and category!=''">
 				and cg_name=#{category}
@@ -23,10 +23,13 @@
 	<sql id="orderby">
 		<choose>
 			<when test="orderby=='distance'">
-				order by res.distance 
+				, res.distance 
 			</when>
 			<when test="orderby=='hit'">
-				order by a.hitavg
+				, a.hitavg desc nulls last
+			</when>
+			<when test="orderby=='delcost'">
+				, res.r_delcost
 			</when>
 		</choose>
 	</sql>
@@ -44,26 +47,36 @@
 				            select * from 
 				            (
 				                select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
-				                from restaurant r 
+				                from restaurant r <![CDATA[where r.r_state>1]]>
 				            ) <![CDATA[where distance<3]]>) res,
 				(select rid,avg(hit) hitavg, count(re_num) re_num from (
-				select r.r_id rid,re.re_hit hit,re.re_num
+				select distinct r.r_id rid,re.re_hit hit,re.re_num
 				from restaurant r, review re, orders_detail o,food f
 				where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num)
-				group by rid) a <![CDATA[where res.r_id=a.rid(+)]]> <include refid="searchfield"/> <include refid="orderby"/>) sr
+				group by rid) a <![CDATA[where res.r_id=a.rid(+)]]> <include refid="searchfield"/> order by res.r_state <include refid="orderby"/>) sr
 				) <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
 	</select>
+	<sql id="searchfieldcount">
+		<choose>
+			<when test="keyword!=null and keyword!=''">
+				where r.r_name like '%'||#{keyword}||'%' or  r.r_name like '%'||#{keyword}||'%'
+			</when>
+			<when test="category!=null and category!=''">
+				where r.cg_name=#{category}
+			</when>
+		</choose>
+	</sql>
 	<select id="count" parameterType="hashmap" resultType="int">
 		select NVL(count(r_id),0) from 
 		(
 			select r.*,(select calc_distance(#{user_coordx},#{user_coordy},r.r_coordx,r.r_coordy) distance from dual) distance
-			from restaurant r 
-		) <![CDATA[where distance<3]]> <include refid="searchfield"/>
+			from restaurant r <include refid="searchfieldcount"/>
+		) <![CDATA[where distance<3]]> 
 		
 	</select>
 	<select id="findhit" parameterType="string" resultType="Double">
 		select nvl(avg(hit),0) hit from (
-			select re.re_hit hit
+			select distinct re.re_hit hit
 			from restaurant r, review re, orders_detail o,food f
 			where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num and r.r_id=#{r_id})
 	</select>
@@ -157,7 +170,24 @@
 		where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num 
 		and r.r_id=#{r_id}
 	</select>
-	<!-- 매장별 리뷰 조회 -->
+	<!-- 매장별 리뷰 넘버,메인메뉴 카운트 조회 -->
+	<select id="orfoodcount" parameterType="string" resultType="com.jhta.project.vo.user.OrderAndHitVo">
+		select o.or_num,count(od.food_num) count ,nvl(avg(r.re_hit),0) hit
+		from orders o,orders_detail od,food f,review r,review_photo rp
+		where o.or_num=od.or_num and od.food_num=f.food_num and f.r_id=#{r_id}
+        and r.or_num(+)=o.or_num and r.re_num=rp.re_number(+) <![CDATA[and r.re_hit<>0]]>
+		group by o.or_num
+	</select>
+	<!-- 리뷰넘버로 리뷰찾기 -->
+	<select id="findreview" parameterType="int" resultType="com.jhta.project.vo.user.InSearchReviewVo">
+		select r.*,rp.rp_photo from review r,review_photo rp
+		where r.re_num=rp.re_number(+) and or_num=#{or_num}
+	</select>
+	<!-- 리뷰넘버로 음식이름 찾기 -->
+	<select id="findfoodname" parameterType="int" resultType="String">
+		select f.food_name from orders o,orders_detail od,food f
+		where o.or_num=od.or_num and od.food_num=f.food_num and o.or_num=#{or_num}
+	</select>
 </mapper> 
 
 

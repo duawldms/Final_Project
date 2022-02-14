@@ -27,10 +27,22 @@ public interface UserMapper {
 	int userpwdupdate(UserVo vo);
 	int favoritesinsert(FavoritesVo vo);
 	ArrayList<OrdersVo> userdelivery(String ui_id);
-	OrdersVo deliverydetail(int or_num);
+	OrdersVo deliverydetail( OrdersVo vo);
 	ArrayList<OrdersVo> selectstatus(String ui_id);
 	int statusupdate(OrdersVo vo);
 	List<OrdersVo> deliverylist(HashMap<String, Object> map);
 	int deliverycount(HashMap<String, Object> map);
 	ArrayList<OrdersVo> optiondetail(int or_num);
+	String checkidadmin(String ui_id);
+	String checkidre(String ui_id);
+	
+	/*배달내역 test*/
+	List<OrdersVo> selectornum(String ui_id);
+	List<OrdersVo> deliverylistnew(HashMap<String, Object> map);
+	int deliverycountnew(HashMap<String, Object> map);
+	int maincountnew(int or_num);
+	OrdersVo mainselectone(int or_num);
+	List<OrdersVo> selectmainoption(int or_num);
+	List<OrdersVo> mainoptionselect(OrdersVo vo);
+	List<OrdersVo> selectmainornum(int or_num); //중복제거 후 메인메뉴만 불러오기
 }

@@ -14,6 +14,8 @@ import com.jhta.project.vo.user.CartVo;
 import com.jhta.project.vo.user.FoodOptionsVo;
 import com.jhta.project.vo.user.InSearchOrdersVo;
 import com.jhta.project.vo.user.InSearchRestaurantVo;
+import com.jhta.project.vo.user.InSearchReviewVo;
+import com.jhta.project.vo.user.OrderAndHitVo;
 import com.jhta.project.vo.user.OrdersDetailVo;
 import com.jhta.project.vo.user.OrdersOptionVo;
 import com.jhta.project.vo.user.UserAddrVo;
@@ -102,6 +104,15 @@ public class SearchService {
 	}
 	public Double findhit(String r_id) {
 		return mapper.findhit(r_id);
+	}
+	public List<OrderAndHitVo> orfoodcount(String r_id){
+		return mapper.orfoodcount(r_id);
+	}
+	public InSearchReviewVo findreview(int or_num) {
+		return mapper.findreview(or_num);
+	}
+	public List<String> findfoodname(int or_num) {
+		return mapper.findfoodname(or_num);
 	}
 }
 

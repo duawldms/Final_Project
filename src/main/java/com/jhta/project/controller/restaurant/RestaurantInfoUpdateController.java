@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.project.service.restaurant.RestaurantService;
+import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 
 @Controller
@@ -47,16 +49,18 @@ public class RestaurantInfoUpdateController {
 		return "layout";
 	}
 
-	@RequestMapping(value="/restaurant/restaurantinfo", method = {RequestMethod.POST})
+	@RequestMapping(value="/restaurant/infoupdate", method = {RequestMethod.POST})
 	public String infoUpdate(RestaurantVo vo, MultipartFile file1) throws Exception {
-		System.out.println("test");
+		//System.out.println("test");
 		try {
 			String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
 			String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
 			String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
+			
 			vo.setCg_name(cg_name);
 			vo.setR_name(r_name);
 			vo.setR_info(r_info);
+			//System.out.println("vo"+vo);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -68,7 +72,7 @@ public class RestaurantInfoUpdateController {
 		}
 		
 		service.infoUpdate(vo);
-		System.out.println(vo);
+		//System.out.println(vo);
 		try {
 			InputStream is = file1.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + saveFileName);
@@ -83,12 +87,14 @@ public class RestaurantInfoUpdateController {
 	// 판매자 회원 정보 수정
 	@GetMapping("/restaurant/sellerUpdate")
 	public String sellerUpdateForm(Model model, Principal principal) {
+		List<CategoryVo> list = service.getCategory();
 		RestaurantVo vo = service.idCheck(principal.getName());
 		System.out.println("판매자 정보 수정 : " + vo);
 		String addr = vo.getR_addr();
 		String[] ad = addr.split(", ");
+		model.addAttribute("list", list);
 		model.addAttribute("addr1", ad[0]);
-		model.addAttribute("addr2", ad[1]);
+		//model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerUpdate.jsp");
 		return "layout";

@@ -26,7 +26,8 @@ public class SearchController {
 	@GetMapping("/search")
 	public String goSearch(Model model,Principal principal,
 			@RequestParam(value="cg_name",defaultValue = "")String cg_name,
-			@RequestParam(value="keyword",defaultValue = "")String keyword) {
+			@RequestParam(value="keyword",defaultValue = "")String keyword,
+			@RequestParam(value="orderby",defaultValue = "")String orderby) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		if(principal!=null) {
 			String ui_id=principal.getName();
@@ -35,6 +36,7 @@ public class SearchController {
 			model.addAttribute("list",list);
 		}
 		model.addAttribute("category",cg_name);
+		model.addAttribute("orderby",orderby);
 		model.addAttribute("cglist",service.searchCategory());
 		model.addAttribute("main","/WEB-INF/views/search/search.jsp");
 		return "layout";
