@@ -80,10 +80,10 @@
 		<td class="col2">${vo.ua_addr }</td>
 		<td class="col2">${vo.ua_name }</td>
 		<td class="col2">${vo.ua_phone }</td>  
-		<td class="col2"><a href="${cp }/useraddrupdate?ui_id=${vo.ui_id}&ua_num=${vo.ua_num}">수정하기</a></td>
-		<td class="col2"><a href="${cp }/useraddrdelete?ui_id=${vo.ui_id}&ua_num=${vo.ua_num}">삭제하기</a></td>
+		<td class="col2"><a href="${cp }/useraddrupdate?ua_num=${vo.ua_num}">수정하기</a></td>
+		<td class="col2"><a href="${cp }/useraddrdelete?ua_num=${vo.ua_num}">삭제하기</a></td>
 	</tr> 
 	</c:forEach>
 </table><br><br>  
-	<a href="${cp }/useraddrinsert?ui_id=${ui_id}">추가하기</a>
+	<a href="${cp }/useraddrinsert">추가하기</a>
 </div>	

@@ -1,5 +1,6 @@
 package com.jhta.project.controller.user;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +20,26 @@ public class UserMyPageAddrController {
 	UserAddrService service;
 
 	@GetMapping("/useraddr")
-	public String UserAddrForm(Model model,String ui_id) {
-		ArrayList<UserAddrVo> vo=service.useraddrselectAll(ui_id);
+	public String UserAddrForm(Model model,Principal principal) {
+		ArrayList<UserAddrVo> vo=service.useraddrselectAll(principal.getName());
 		model.addAttribute("vo",vo);
-		model.addAttribute("ui_id",ui_id);
+		model.addAttribute("ui_id",principal.getName());
 		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 	    return"layout";
   }
 	@GetMapping("/useraddrdelete")
-	public String UserAddrDelete(Model model,String ui_id,int ua_num) {
+	public String UserAddrDelete(Model model,Principal principal,int ua_num) {
 		int n=service.useraddrdelete(ua_num);
-		ArrayList<UserAddrVo> vo=service.useraddrselectAll(ui_id);
+		ArrayList<UserAddrVo> vo=service.useraddrselectAll(principal.getName());
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 	    return"layout";
 	}
 	@GetMapping("/useraddrupdate")
-	public String UserAddrUpdateForm(UserAddrVo vo,Model model) {
+	public String UserAddrUpdateForm(UserAddrVo vo,Model model,Principal principal) {
+		vo.setUi_id(principal.getName());
 		UserAddrVo vo1=service.useraddrselect(vo);
 		model.addAttribute("vo",vo1);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddrUpdate.jsp");
@@ -45,10 +47,10 @@ public class UserMyPageAddrController {
 	    return"layout";
 	}
 	@PostMapping("/useraddrupdate")
-	public String UserAddrUpdate(Model model,UserAddrVo vo) {
+	public String UserAddrUpdate(Model model,UserAddrVo vo,Principal principal) {
 		int n=service.useraddrupdate(vo);
 		if(n>0) {
-			ArrayList<UserAddrVo> vo1=service.useraddrselectAll(vo.getUi_id());
+			ArrayList<UserAddrVo> vo1=service.useraddrselectAll(principal.getName());
 			model.addAttribute("vo",vo1);
 			model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
@@ -60,8 +62,8 @@ public class UserMyPageAddrController {
 	    return"layout";
 	}
 	@GetMapping("/useraddrinsert")
-	public String UserAddrInsertForm(String ui_id,Model model) {
-		model.addAttribute("ui_id",ui_id);
+	public String UserAddrInsertForm(Principal principal,Model model) {
+		model.addAttribute("ui_id",principal.getName());
 		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddrInsert.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 	    return"layout";

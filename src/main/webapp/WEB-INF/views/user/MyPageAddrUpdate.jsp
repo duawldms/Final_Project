@@ -136,7 +136,7 @@ $(function(){
 <table  id="inserttable"> 
     <tr>
 		<td class="col1">배송지 명칭</td>
-		<td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }"></td>
+		<td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }" readonly="readonly"></td>
 	</tr>
 	<tr>
 		<td class="col1">배송받을 분</td>
