@@ -49,16 +49,18 @@ public class RestaurantInfoUpdateController {
 		return "layout";
 	}
 
-	@RequestMapping(value="/restaurant/restaurantinfo", method = {RequestMethod.POST})
+	@RequestMapping(value="/restaurant/infoupdate", method = {RequestMethod.POST})
 	public String infoUpdate(RestaurantVo vo, MultipartFile file1) throws Exception {
-		System.out.println("test");
+		//System.out.println("test");
 		try {
 			String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
 			String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
 			String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
+			
 			vo.setCg_name(cg_name);
 			vo.setR_name(r_name);
 			vo.setR_info(r_info);
+			//System.out.println("vo"+vo);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -70,7 +72,7 @@ public class RestaurantInfoUpdateController {
 		}
 		
 		service.infoUpdate(vo);
-		System.out.println(vo);
+		//System.out.println(vo);
 		try {
 			InputStream is = file1.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + saveFileName);

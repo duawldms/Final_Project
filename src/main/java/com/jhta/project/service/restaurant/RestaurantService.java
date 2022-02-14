@@ -145,6 +145,7 @@ public class RestaurantService {
 		map.put("r_pwd", rPwd);
 		return mapper.sellerPwdChange(map);
 	}
+
 	// 주문 취소 내역 불러오기
 	public List<OrderCancelVo> orderCancel() {
 		return mapper.orderCancel();

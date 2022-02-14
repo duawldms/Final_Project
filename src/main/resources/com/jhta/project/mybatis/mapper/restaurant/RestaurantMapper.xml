@@ -59,7 +59,7 @@
 		cg_name=#{cg_name},r_delmin=#{r_delmin},r_delmax=#{r_delmax},r_state=#{r_state} where r_id=#{r_id}
 	</update>
 	<select id="restaurantinfo" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
-		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax from restaurant where r_id=#{r_id}
+		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax,r_state from restaurant where r_id=#{r_id}
 	</select>
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
