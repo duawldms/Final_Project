@@ -119,6 +119,51 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
+					<style>
+						.alarm_div {
+							position: absolute;
+						    z-index: 1;
+						    width: 200px;
+						    height: 300px;
+						    background: white;
+						    border: 3px solid black;
+						    top: 43px;
+						    left: 89px;
+						    box-shadow: 4px 4px 15px #aaa;
+						    display: none;
+						}
+							
+						
+					</style>
+					<li class="elementor-icon-list-item elementor-inline-item">
+						<span id="alarm" class="elementor-icon-list-text"><a href="#" style="color:white;text-decoration:none;">알림</a></span>
+					</li>
+					<div class="alarm_div">
+					</div>
+					<script>
+						$(document).ready(function() {
+							$('#alarm').click(function() {
+								if ($('.alarm_div').css('display') == "none") {
+									$('.alarm_div').css('display', 'block');
+								} else {
+									$('.alarm_div').css('display', 'none');
+								}
+							});
+							
+							alarmList();
+						});
+						
+						function alarmList() {
+							$.ajax({
+								type : "get",
+								url : "${cp}/getCancelList",
+								dataType : "json",
+								success : function(data) {
+									alert(data.length);
+								}
+							});
+						}
+					</script>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage" style="color:white;text-decoration:none;">My Page</a></span>
 					</li>

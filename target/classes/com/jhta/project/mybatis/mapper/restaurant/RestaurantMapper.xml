@@ -176,14 +176,61 @@
 		GROUP BY to_char(or_regdate, 'YY') 
 		order by sales_year
 	</select>
-	<!-- 주문 취소 내역 불러오기 -->
-	<select id="orderCancel" resultType="com.jhta.project.vo.restaurant.OrderCancelVo">
+	<!-- 주문 내역 불러오기 -->
+	<select id="getOrders" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
 		select distinct
 		o.or_num,
-		o.ui_id,
-		o.or_totalcost,
-		f.food_name,
-		fo.fo_name
+		or_request,
+		or_regdate,
+		or_totalcost
+		from orders o,
+			 orders_detail od,
+			 food f	 
+		where
+		o.or_num = od.or_num
+		and
+		od.food_num = f.food_num
+		and
+		or_status = 1
+		and
+		f.r_id = #{r_id}
+	</select>
+	<select id="getMenuUnion" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
+		select
+		o.or_num,
+		f.food_num,
+		1 as fo_num,
+		food_name,
+		null as fo_name,
+		count(food_name)as food_count,
+		sum(food_cost) as food_cost_sum,
+		or_regdate
+		from orders o, 
+		     orders_detail od,
+		     food f
+		where
+		o.or_num = od.or_num 
+		and 
+		od.food_num = f.food_num
+		and
+		or_status = 1
+		and
+		f.r_id = #{r_id}
+		group by 
+		o.or_num,
+		f.food_num,
+		food_name,
+		or_regdate
+		union all
+		select
+		o.or_num,
+		fo.food_num,
+		fo.fo_num,
+		null,
+		fo_name,
+		oo_count,
+		oo_count * fo_cost as option_cost_sum,
+		o.or_regdate
 		from orders o, 
 		     orders_detail od,
 		     orders_option oo,
@@ -192,19 +239,42 @@
 		where
 		o.or_num = od.or_num 
 		and 
-		od.od_num = oo.od_num 
-		and 
-		od.food_num = f.food_num
+		od.od_num = oo.od_num
 		and
 		f.food_num = fo.food_num
 		and
-		o.or_status = 5
-		order by f.food_name asc
+		oo.fo_num = fo.fo_num
+		and 
+		or_status = 1
+		and
+		f.r_id = #{r_id}
+		order by food_num, fo_num
 	</select>
-	<select id="getOrders" resultType="com.jhta.project.vo.user.OrdersVo">
-		select * 
-		from orders
-		where
+	<!-- 주문 내역 불러오기 end -->
+	
+	<!-- 주문 취소 -->
+	<update id="orderCancel" parameterType="int">
+		update orders
+		set
 		or_status = 5
+		where
+		or_num = #{or_num}
+	</update>
+	<!-- 취소된 주문 불러오기 -->
+	<select id="cancelList" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
+		select distinct 
+		o.or_num,
+		f.food_name
+		from orders o,
+		     orders_detail od,
+		     food f
+		where 
+		o.or_num = od.or_num
+		and
+		od.food_num = f.food_num
+		and
+		or_status = 5
+		and
+		r_id = #{r_id}
 	</select>
 </mapper>
