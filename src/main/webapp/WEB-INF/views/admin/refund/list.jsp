@@ -11,7 +11,7 @@
  	font-family:consolas,sans-serif;
 }
 h1 {
-	text-align: center
+	text-align: center;
 }
 
 ul {
@@ -21,7 +21,7 @@ ul {
 }
 
 p {
-	text-align: center
+	text-align: center;
 }
 </style>
 <div class="elementor-widget-container">
@@ -95,16 +95,17 @@ p {
 		</table>
 	</div>
 	<div class="text-center">
+	<c:if test="${pu.startPageNum>5 }"><a href="${cp }/admin/refund/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a></c:if>
 		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 			<c:choose>
 				<c:when test="${i==param.pageNum }">
 					<a
-						href="${cp }/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: blue'>${i }</span></a>
 				</c:when>
 				<c:otherwise>
 					<a
-						href="${cp }/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: gray'>${i }</span></a>
 				</c:otherwise>
 			</c:choose>

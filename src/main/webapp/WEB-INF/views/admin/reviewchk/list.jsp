@@ -86,16 +86,15 @@ p {
 		</table>
 	</div>
 	<div class="text-center">
+	<c:if test="${pu.startPageNum>5 }"><a href="${cp }/admin/reviewchk/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a></c:if>
 		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 			<c:choose>
 				<c:when test="${i==param.pageNum }">
-					<a
-						href="${cp }/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+					<a href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: blue'>${i }</span></a>
 				</c:when>
 				<c:otherwise>
-					<a
-						href="${cp }/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+					<a href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: gray'>${i }</span></a>
 				</c:otherwise>
 			</c:choose>

@@ -44,7 +44,7 @@ h1 {
 <body>
 	<form:form method="post" action="${cp }/insertadmin">
 		<div class="container">
-			<h2>관리자생성관리</h2>dddd
+			<h2>관리자생성관리</h2>
 			<br>
 			<div class="panel panel-default">
 				<div class="panel-heading">관리자생성관리</div>

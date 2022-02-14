@@ -75,10 +75,9 @@ p {
 						readonly="readonly">${vo.re_content}</textarea>
 				</div>
 				<div class="form-group">
-				<!-- <label>사진</label>
-					<textarea class="form-control" rows="6" name="photo"
-						readonly="readonly">${vo.rp_photo}</textarea>-->	
-					<img alt="사진" src="${cp }/resources/img/${rp_photo}" >
+				<label>사진</label>
+				<!-- 사용자 review insert 안만들어져 아직 사진 확인 어려움 -->
+				<img src="${cp }/resources/img/check.png">
 				</div>
 					<input type="button" value="목록" onclick="location.href='${cp }/admin/reviewchk/list'" class='btn btn-primary'/>
 				</div>
