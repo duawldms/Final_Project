@@ -15,13 +15,19 @@
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
      </select>
      <select id="count" resultType="int"  parameterType="hashmap">
-     	select NVL(count(*),0) cnt from review      	
+     	select NVL(count(*),0) cnt from restaurant   where r_state=0   	
      </select>
-     <update id="update" parameterType="string">
+     <update id="update" parameterType="string" >
      	update restaurant set r_state=1
      	where r_id=#{r_id}
      </update>
      <select id="detail" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
      	select * from restaurant where r_id=#{r_id}
      </select>
+     
+<!--      테스트좀 하게 -->
+	<select id="testList" parameterType="int" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
+		select * from restaurant
+		where r_state = 0
+	</select>
   </mapper>

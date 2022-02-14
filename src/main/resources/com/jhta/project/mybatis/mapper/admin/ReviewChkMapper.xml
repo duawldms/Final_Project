@@ -34,8 +34,8 @@
      </delete>
      <!-- 글조회 -->
      <select id="detail" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
-     	select or_num,re_content,rp_photo from review re,review_photo rp
-     	where re.re_num=rp.re_number and re.re_num=#{re_num}
-	<!--select or_num,re_content from review where re_num=#{re_num}  -->
+     	<!-- select or_num,re_content,rp_photo from review re,review_photo rp
+     	where re.re_num=rp.re_number and re.re_num=#{re_num}-->
+	select or_num,re_content from review where re_num=#{re_num}
      </select>
  </mapper>

@@ -108,23 +108,7 @@ $(function(){
 		//let ua_addr=$("input[name='ua_addr']").val();    
 		
 		 var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			
-			 if(ui_pwd==''){
-				  //$("input[name='ui_pwd']").next().html("비밀번호를 입력해 주세요");
-				  alert("비밀번호를 입력해 주세요.");
-				  $("input[name='ui_pwd']").focus();
-				 return false;
-		     }
-			 if(ui_pwdchk==''){
-				  //$("input[name='ui_pwdchk']").next().html("비밀번호를 입력해 주세요");
-				  alert("비밀번호 확인란을 입력해 주세요.");
-				  $("input[name='ui_pwdchk']").focus();
-				  return false;
-		     }
-			 if($("input[name='ui_pwd']").val()!=$("input[name='ui_pwdchk']").val()){
-					$("input[name='ui_pwdchk']").next().html("비밀번호를 올바르게 입력해주세요");
-					return false;
-			}
+	
 			  if(ui_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
@@ -145,13 +129,6 @@ $(function(){
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
-			  /*
-			  if(ua_addr==''){
-			  alert("주소를 입력해 주세요.");
-			  $("input[name='ua_addr']").focus();
-		    return false;
-	         }   
-		*/
 			  
   	});	
 });
@@ -184,7 +161,7 @@ $(function(){
 		<td class="col2"><input type="text" name="ui_phone" value="${vo.ui_phone }"><span></span></td>
 	</tr>
     <tr>
-	    <td class="col1">배송받을 주소</td>
+	    <td class="col1">기본 배송지</td>
 		<td class="col2">
 		<input type="text" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
 		<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 

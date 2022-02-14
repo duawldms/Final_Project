@@ -54,7 +54,7 @@ public class UserMyPageAddrController {
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}else {
 			model.addAttribute("result","주소 및 입력정보를 다시 확인 해 주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/result.jsp");
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}
 	    return"layout";
@@ -76,7 +76,7 @@ public class UserMyPageAddrController {
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}else {
 			model.addAttribute("result","주소 및 입력정보를 다시 확인 해 주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/result.jsp");
+			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}
 	    return"layout";

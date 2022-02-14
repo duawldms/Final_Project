@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.jhta.project.service.admin.PermissionService;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 
@@ -14,11 +13,17 @@ public class PermissionUpdateController {
 	@Autowired private PermissionService service;
 	
 	@GetMapping("/permission/update")
-	public String update(Model model,String r_id ) {
-		RestaurantVo vo=service.detail(r_id);
-		model.addAttribute("vo",vo);
-		return "admin/permission/list";
+	public String permissionupdate(Model model,RestaurantVo vo, String r_id) {
+		service.update(r_id);
+		
+		//List<RestaurantVo> list = service.testList();
+		//System.out.println("testList:" + list);
+		//model.addAttribute("vo",list);
+		model.addAttribute("main","/WEB-INF/views/admin/permission/list.jsp");
+		return "redirect:/admin/permission/list";
 		
 	}
+		
+		
 
 }

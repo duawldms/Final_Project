@@ -99,7 +99,12 @@ public class UserService {
 	public ArrayList<OrdersVo> optiondetail(int or_num){
 		return mapper.optiondetail(or_num);
 	}
-	
+	public String checkidadmin(String ui_id) {
+		return mapper.checkidadmin(ui_id);
+	}
+	public String checkidre(String ui_id) {
+		return mapper.checkidre(ui_id);
+	}
 	
 	
 	/*배달내역 test*/
