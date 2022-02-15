@@ -50,19 +50,19 @@
       </dependency>
   
 		<!-- ///////////// -->
-	
+
 		<!-- 파일업로드 -->
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.11.0</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
 		</dependency>
 		
 		<!-- 대웅님이 추가하신 dependency -->
@@ -76,40 +76,40 @@
 		<!-- jackson(ajax) -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.13.1</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.dataformat</groupId>
-		    <artifactId>jackson-dataformat-xml</artifactId>
-		    <version>2.13.1</version>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.13.1</version>
 		</dependency>
 		<!-- 스프링 시큐리티 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>5.2.15.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.2.15.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>5.2.15.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.2.15.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>5.2.15.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.2.15.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-taglibs</artifactId>
-		    <version>5.2.15.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>5.2.15.RELEASE</version>
 		</dependency>
 		<!-- 스프링 기본 셋팅 (jdbc, mybaits, dbcp, lombok) -->
 		<dependency>
@@ -129,13 +129,13 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>2.0.6</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->	
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->		
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
@@ -158,7 +158,7 @@
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
-				 </exclusion>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -166,14 +166,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
-		
+		</dependency>
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -223,7 +223,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
+
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -242,14 +242,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
