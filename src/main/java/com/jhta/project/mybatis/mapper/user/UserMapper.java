@@ -33,6 +33,8 @@ public interface UserMapper {
 	List<OrdersVo> deliverylist(HashMap<String, Object> map);
 	int deliverycount(HashMap<String, Object> map);
 	ArrayList<OrdersVo> optiondetail(int or_num);
+	String checkidadmin(String ui_id);
+	String checkidre(String ui_id);
 	
 	/*배달내역 test*/
 	List<OrdersVo> selectornum(String ui_id);

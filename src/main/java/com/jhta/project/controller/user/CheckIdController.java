@@ -23,8 +23,10 @@ public class CheckIdController {
 	@GetMapping(value="/checkid",produces= {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String,Object> selectid(String ui_id){
 		String b= service.checkid(ui_id);
+		String c=service.checkidadmin(ui_id);
+		String d=service.checkidre(ui_id);
 		HashMap<String,Object>map=new HashMap<String,Object>();
-		if(b!=null) {
+		if(b!=null || c!=null || d!=null) {
 			map.put("using", true);
 		}else {
 			map.put("using", false);

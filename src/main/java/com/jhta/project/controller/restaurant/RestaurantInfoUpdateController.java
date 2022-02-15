@@ -45,20 +45,23 @@ public class RestaurantInfoUpdateController {
 	public String infoUpdateForm(Principal p, Model model) {
 		RestaurantVo vo=service.idCheck(p.getName());
 		model.addAttribute("vo",vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/infoupdate.jsp");
 		return "layout";
 	}
 
-	@RequestMapping(value="/restaurant/restaurantinfo", method = {RequestMethod.POST})
+	@RequestMapping(value="/restaurant/infoupdate", method = {RequestMethod.POST})
 	public String infoUpdate(RestaurantVo vo, MultipartFile file1) throws Exception {
-		System.out.println("test");
+		//System.out.println("test");
 		try {
 			String r_name = new String(StringUtils.cleanPath(vo.getR_name()).getBytes("8859_1"),"utf-8");
 			String cg_name = new String(StringUtils.cleanPath(vo.getCg_name()).getBytes("8859_1"),"utf-8");
 			String r_info = new String(StringUtils.cleanPath(vo.getR_info()).getBytes("8859_1"),"utf-8");
+			
 			vo.setCg_name(cg_name);
 			vo.setR_name(r_name);
 			vo.setR_info(r_info);
+			//System.out.println("vo"+vo);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -70,7 +73,7 @@ public class RestaurantInfoUpdateController {
 		}
 		
 		service.infoUpdate(vo);
-		System.out.println(vo);
+		//System.out.println(vo);
 		try {
 			InputStream is = file1.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + saveFileName);
@@ -94,6 +97,7 @@ public class RestaurantInfoUpdateController {
 		model.addAttribute("addr1", ad[0]);
 		//model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerUpdate.jsp");
 		return "layout";
 	}
@@ -141,12 +145,14 @@ public class RestaurantInfoUpdateController {
 	// 판매자 비밀번호 확인sellerPwdChange
 	@GetMapping("/restaurant/sellerPwdCheck")
 	public String pwdCheckForm(Model model) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdCheck.jsp");
 		return "layout";
 	}
 	
 	@GetMapping("/restaurant/pwdChange")
 	public String pwdCheck(Model model, Principal principal) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdChange.jsp");
 		return "layout";
 	}

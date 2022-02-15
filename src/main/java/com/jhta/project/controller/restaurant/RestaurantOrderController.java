@@ -23,6 +23,7 @@ public class RestaurantOrderController {
 		List<MenuUnionVo> menu = service.getMenuUnion(principal.getName());
 		model.addAttribute("list", list);
 		model.addAttribute("menu", menu);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/orderList.jsp");
 		return "layout";
 	}

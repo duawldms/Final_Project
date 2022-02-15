@@ -209,15 +209,21 @@
 						let rlist=data.review
 						for(let i=0;i<rlist.length;i++){
 							let review="";
-							review+="<div class='review' style='border-bottom:1px solid black'>";
 							let hit="";
 							for(let j=0;j<rlist[i].re_hit;j++){
-								hit+="<img src='${cp}/resources/img/star.png' style='display:inline-block;width:25px;height:20px;"+
+								hit+="<img src='${cp}/resources/img/star.png' style='float:left;display:inline-block;width:25px;height:20px;"+
 									 "position:relative;left:-4px;'>";
 							}
+							
+							
 							if(rlist[i].rp_photo!=null){
-								review+="<img src='${cp}/resources/img/"+rlist[i].rp_photo+"' class='reviewimg'>";
+								review+="<div class='review' style='border-bottom:1px solid black;height:280px'>";
+								review+="<img src='${cp}/resources/img/"+rlist[i].rp_photo+"' class='reviewimg' style='float:left;"+
+								"width:320px;height:270px'>";
+							}else{
+								review+="<div class='review' style='border-bottom:1px solid black;height:auto'>";
 							}
+							review+="<div style='display:inline-block;width:320px;padding-left:10px;overflow:auto'>";
 							review+=hit+"<br>";
 							if(rlist[i].food_count>1){
 								review+="<span class='reviewfood'>"+rlist[i].food_name+" 외 "+(rlist[i].food_count-1)+"개</span><br>";
@@ -225,6 +231,7 @@
 								review+="<span class='reviewfood'>"+rlist[i].food_name+"</span><br>";
 							}
 							review+="<span class='content'>"+rlist[i].re_content+"</span>";
+							review+="</div>";
 							review+="</div>";
 							$(".reviewbody").append(review);
 						}
@@ -268,6 +275,7 @@
 		<div class="container menudiv">
 
 			<c:forEach var="fvo" items="${flist }" varStatus="status">
+			<c:if test="${fvo.food_status==0 }">
 				<a data-toggle="modal" href="#modal${status.index }"
 					style='text-decoration: none; color: black' onclick="javascript:openModal(${status.index},${fvo.food_num })">
 					<div class="container menu">
@@ -306,7 +314,7 @@
 							</div>
 							<!-- Modal footer -->
 							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-success goOrder">바로주문</button>
+								<button type="button" class="btn btn-outline-success" onclick="javascript:goorder(${status.index},${fvo.food_num})">바로주문</button>
 								<button type="button" class="btn btn-outline-success addCart" 
 										onclick="javascript:gocart(${status.index},${fvo.food_num })" >주문표에 추가</button>
 								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">창닫기</button>
@@ -314,6 +322,7 @@
 						</div>
 					</div>
 				</div>
+			</c:if>
 			</c:forEach>
 		</div>
 	</div>
@@ -322,8 +331,12 @@
 	$(".goOrder").click(function(){
 		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 	});
+	function goorder(index,foodnum){
+		gocart(index,foodnum,'a','order');
+		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
+	}
 	let count=0;
-	function gocart(index,foodnum,delcheck){
+	function gocart(index,foodnum,delcheck,ordercheck){
 		let necoptions=[];
 		let checkbox=[];
 		let optionscnt=[];
@@ -353,7 +366,8 @@
 				necoptions:necoptions,
 				optionscnt:optionscnt,
 				foodnum:foodnum,
-				delcheck:delcheck
+				delcheck:delcheck,
+				ordercheck:ordercheck
 			},
 			success:function(data){
 				if(data.result=='success'){
@@ -362,8 +376,6 @@
 				}else if(data.result=='check'){
 					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
 						gocart(index,foodnum,'delete');
-					}else{
-						alert('no');
 					}
 				}
 			}

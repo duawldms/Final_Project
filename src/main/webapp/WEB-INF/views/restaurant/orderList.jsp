@@ -3,6 +3,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
+	.order_cancel_wrap {
+		width: 70%;
+	    height: 750px;
+	    margin: auto;
+	    overflow-y: auto;
+	    -ms-overflow-style: none;
+	    scrollbar-width: none;
+	}
+	
+	.order_cancel_wrap::-webkit-scrollbar {
+		display: none;
+	}
+	
 	.order_cancel_table {
     	margin: auto;
     	margin-bottom: 50px;

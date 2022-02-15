@@ -13,6 +13,7 @@ public class RestaurantSalesController {
 	
 	@GetMapping("/restaurant/sales")
 	public String Sales(Model model) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main","/WEB-INF/views/restaurant/sales.jsp");
 		return "layout";
 	}

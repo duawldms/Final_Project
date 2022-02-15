@@ -44,4 +44,5 @@ public interface RestaurantMapper {
 	List<OrdersVo> getOrders(String r_id);
 	List<MenuUnionVo> getMenuUnion(String r_id);
 	List<MenuUnionVo> cancelList(String r_id);
+	int sellerDelete(String r_id);
 }

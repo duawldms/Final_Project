@@ -163,6 +163,10 @@ public class RestaurantService {
 	public List<MenuUnionVo> cancelList(String r_id) {
 		return mapper.cancelList(r_id);
 	}
+	// 회원 탈퇴
+	public int sellerDelete(String r_id) {
+		return mapper.sellerDelete(r_id);
+	}
 	
 }
 
