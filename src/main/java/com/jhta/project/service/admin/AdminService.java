@@ -34,6 +34,16 @@ public class AdminService {
 	public int selectadmin(String admin_id) {
 		return mapper.selectadmin(admin_id);
 	}
+	public String checkidadmin(String admin_id) {
+		return mapper.checkidadmin(admin_id);
+	}
+	public String checkiduser(String admin_id) {
+		return mapper.checkiduser(admin_id);
+	}
+	public String checkidre(String admin_id) {
+		return mapper.checkidre(admin_id);
+	}
+	
 }
 
 

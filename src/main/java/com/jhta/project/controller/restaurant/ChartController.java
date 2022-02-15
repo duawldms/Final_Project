@@ -1,6 +1,8 @@
 package com.jhta.project.controller.restaurant;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +13,23 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,4 +68,98 @@ public class ChartController {
 		return map; 
 		 
 	}
+//	@PostMapping("/restaurant/chart")
+//	public void excleDownload(@RequestParam String fileName,HttpServletResponse response,Model model) throws Exception{
+//		HSSFWorkbook objWorkBook = new HSSFWorkbook();
+//		HSSFSheet objSheet = null;
+//		HSSFRow objRow=null;
+//		HSSFCell objCell=null;
+//		
+//		HSSFFont font = objWorkBook.createFont();
+//		font.setFontHeightInPoints((short)9);
+//		font.setFontName("맑은고딕");
+//		
+//		HSSFCellStyle styleHd=objWorkBook.createCellStyle();
+//		styleHd.setFont(font);
+//		
+//		objSheet=objWorkBook.createSheet("첫번째 시트");
+//		
+//		objRow = objSheet.createRow(0);
+//		objRow.setHeight((short)0x150);
+//		
+//		objCell=objRow.createCell(0);
+//		objCell.setCellValue("번호");
+//		objCell.setCellStyle(styleHd);
+//		
+//		objCell=objRow.createCell(1);
+//		objCell.setCellValue("이름");
+//		objCell.setCellStyle(styleHd);
+//		
+//		//2행
+//		objRow=objSheet.createRow(1);
+//		objRow.setHeight((short)0x150);
+//		
+//		objCell=objRow.createCell(0);
+//		objCell.setCellValue("1");
+//		objCell.setCellStyle(styleHd);
+//		
+//		objCell=objRow.createCell(1);
+//		objCell.setCellValue("홍길동");
+//		objCell.setCellStyle(styleHd);
+//		
+//		
+//		response.setContentType("Application/Msexcel");
+//		response.setHeader("Content-Disposition", "ATTachment; Filename="+URLEncoder.encode("테스트","UTF-8")+".xls");
+//		
+//		OutputStream fileOut =response.getOutputStream();
+//		objWorkBook.write(fileOut);
+//		fileOut.close();
+//		
+//		response.getOutputStream().flush();
+//		response.getOutputStream().close();
+//	}
+	 	@GetMapping("/restaurant/excel")
+	  public void excelDownload(HttpServletResponse response,HttpServletRequest req,String r_id,Principal p) throws IOException {
+	 	System.out.println("aa");
+	 	List<OrderListVo> list = service.selectSalesDay(req,p.getName());
+	 	System.out.println("bb"+list);
+	 	//Workbook wb = new HSSFWorkbook();
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("첫번째 시트");
+        Row row = null;
+        Cell cell = null;
+        int rowNum = 0;
+        
+        
+
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue("매출액");
+        cell = row.createCell(1);
+        cell.setCellValue("날짜");
+
+        
+        
+        for (int i=0; i<list.size(); i++) {
+        	//System.out.println(list.get(i).getOr_totalcost());
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue(list.get(i).getOr_totalcost());
+            cell = row.createCell(1);
+            cell.setCellValue(list.get(i).getSales_day());
+        }
+        
+        response.setContentType("ms-vnd/excel");
+//        response.setContentType("application/ms-excel; charset=UTF-8");
+        //response.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
+       String fileName = "fileName";
+       // response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", String.format("attachment;filename=%s.xlsx", fileName));
+        wb.write(response.getOutputStream());
+        //response.getOutputStream().flush();
+        wb.close();
+        
+    }
+	 	
+	 	
 }

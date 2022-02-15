@@ -137,8 +137,8 @@
 	    border: 3px solid #7bcfbb;
 	    margin: auto;
 	    width: 600px;
-	    margin-bottom: 50px;
-	    margin-top: 50px;
+	    margin-bottom: 100px;
+    	margin-top: 100px;
 	    padding: 50px;
 	}
 	
@@ -186,18 +186,30 @@
 		padding: 10px;
 	}
 	
-	.food_list_wrep {
+	.food_list_wrap {
 		width: 70%;
-		height: auto;
-		overflow:hidden;
-		margin: auto;
+	    height: 750px;
+	    margin: auto;
+	    overflow-y: auto;
+	    -ms-overflow-style: none;
+	    scrollbar-width: none;
+	}
+	
+	.food_list_wrap::-webkit-scrollbar {
+		display: none;
 	}
 	
 	.food_edit_wrap {
-		width: 90%;
-		height: auto;
-		overflow:hidden;
-		margin: auto;
+		width: 70%;
+	    height: 750px;
+	    margin: auto;
+	    overflow-y: auto;
+	    -ms-overflow-style: none;
+	    scrollbar-width: none;
+	}
+	
+	.food_edit_wrap::-webkit-scrollbar {
+		display: none;
 	}
 	
 	#food_img {
@@ -462,8 +474,16 @@
 
 /* 옵션 수정 */
 	.option_edit_wrep {
-		padding: 150px;
-   	 	width: 1200px;
+		width: 70%;
+	    height: 750px;
+	    margin: auto;
+	    overflow-y: auto;
+	    -ms-overflow-style: none;
+	    scrollbar-width: none;
+	}
+	
+	.option_edit_wrep::-webkit-scrollbar {
+		display: none;
 	}
 	
 	.option_edit_title {

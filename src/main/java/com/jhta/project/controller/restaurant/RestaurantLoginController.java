@@ -34,7 +34,7 @@ public class RestaurantLoginController {
 	
 	@GetMapping("/loginRestaurantsuccess")
 	public String login(Model model){
-		model.addAttribute("main", "/WEB-INF/views/restaurant/result.jsp");
+		model.addAttribute("main","/WEB-INF/views/home.jsp");
 		return "layout";
 	}
 }

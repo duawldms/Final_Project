@@ -22,6 +22,7 @@ public class RestaurantInfoController {
 		List<RestaurantVo> list=service.restaurantinfo(p.getName());
 		//System.out.println("aa"+list);
 		model.addAttribute("list",list);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main","/WEB-INF/views/restaurant/restaurantinfo.jsp");
 		return "layout";
 	}

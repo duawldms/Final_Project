@@ -10,5 +10,8 @@ public interface AdminMapper {
 	int addAuth(AuthorityVo vo);
 	boolean selectId(AdminVo vo);
 	int selectadmin(String admin_id);
+	String checkidadmin(String admin_id);
+	String checkiduser(String admin_id);
+	String checkidre(String admin_id);
 	
 }

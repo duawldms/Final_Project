@@ -43,6 +43,7 @@
 				<td class="sideadd_td1">옵션 추가 등록</td>
 				<td class="sideadd_td2">
 					<input type="button" value="옵션 추가" onclick="optionAdd()">
+					<input type="button" value="옵션 삭제" onclick="optionDel()">
 				</td>
 			</tr>
 		</table>
@@ -56,6 +57,16 @@
 		
 		function optionSend() {
 			document.getElementById("side_form").submit();
+		}
+		
+		function optionDel() {
+			let table = document.querySelector(".sideadd_table");
+			let tCount = table.childElementCount;
+			
+			if (tCount > 1) {
+				table.removeChild(table.lastChild);
+				table.removeChild(table.lastChild);
+			}
 		}
 		
 		function optionAdd() {

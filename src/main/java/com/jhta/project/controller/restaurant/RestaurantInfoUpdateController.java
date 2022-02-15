@@ -45,6 +45,7 @@ public class RestaurantInfoUpdateController {
 	public String infoUpdateForm(Principal p, Model model) {
 		RestaurantVo vo=service.idCheck(p.getName());
 		model.addAttribute("vo",vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/infoupdate.jsp");
 		return "layout";
 	}
@@ -96,6 +97,7 @@ public class RestaurantInfoUpdateController {
 		model.addAttribute("addr1", ad[0]);
 		//model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerUpdate.jsp");
 		return "layout";
 	}
@@ -143,12 +145,14 @@ public class RestaurantInfoUpdateController {
 	// 판매자 비밀번호 확인sellerPwdChange
 	@GetMapping("/restaurant/sellerPwdCheck")
 	public String pwdCheckForm(Model model) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdCheck.jsp");
 		return "layout";
 	}
 	
 	@GetMapping("/restaurant/pwdChange")
 	public String pwdCheck(Model model, Principal principal) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdChange.jsp");
 		return "layout";
 	}

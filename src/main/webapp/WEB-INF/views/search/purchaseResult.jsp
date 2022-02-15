@@ -23,7 +23,7 @@
 </div>
 <script>
 	function goOrderDetail(){
-		location.href="${cp}/user/deliverydetail?or_num=${or_num}";
+		location.href="${cp}/user/deliverydetail?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}&or_num=${or_num}";
 	}
 	function gohome(){
 		location.href="${cp}/";
