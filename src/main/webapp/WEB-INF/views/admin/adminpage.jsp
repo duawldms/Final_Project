@@ -7,7 +7,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
-<style>
+<style type="text/css">
 * {
 	font-size: 16x;
 	font-family: consolas, sans-serif;
@@ -21,6 +21,7 @@ p {
 	text-align: center;
 	font-size:16px;
 }
+
 </style>
 <head>
 <meta charset="UTF-8">

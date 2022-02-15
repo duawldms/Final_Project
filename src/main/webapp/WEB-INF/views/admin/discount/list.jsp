@@ -51,14 +51,15 @@
 			<thead>
 				<tr>
 					<th>가게명</th>
+					<th>날짜<th>
 					<th>매출액</th>
 				</tr>
 			</thead>
-	
-			<tbody>
+		<tbody>
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td>${vo.r_name }</td>
+						<td>${vo.or_regdate }</td>
 					<td>${vo.or_totalcost }</td> 
 					</tr>
 				</c:forEach>
