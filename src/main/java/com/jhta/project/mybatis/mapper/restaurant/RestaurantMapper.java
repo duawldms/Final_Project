@@ -41,4 +41,5 @@ public interface RestaurantMapper {
 	List<CategoryVo> getCategory();
 	List<OrderCancelVo> orderCancel();
 	List<OrdersVo> getOrders();
+	List<OrderListVo> excelDown(Map<String, Object> map);
 }
