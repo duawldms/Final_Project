@@ -6,6 +6,30 @@
 <c:set var="cp" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<style>
+* {
+	font-size: 16x;
+	font-family: consolas, sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+p {
+	text-align: center;
+	font-size:16px;
+}
+.container{
+padding-right:300px;
+padding_left:300px;
+margin-right:auto;
+margin-left:auto;
+padding-top:130px;
+}
+}
+
+</style>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -20,8 +44,9 @@
 </head>
 <body>
 	<div class="container">
-		<h2>작성페이지</h2>
-		<div class="panel panel-default">
+		<h1>작성페이지</h1>
+		<br>
+		<div class="panel panel-default" >
 			<div class="panel-heading">작성페이지</div>
 			<div class="panel-body">
 				<form:form method="post" id="smsForm">

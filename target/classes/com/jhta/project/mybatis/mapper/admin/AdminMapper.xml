@@ -28,4 +28,13 @@
 	<select id="selectadmin"  parameterType="String" resultType="int">
 		select admin_lv from admin where admin_id=#{admin_id}
 	</select>
+	<select id="checkiduser" parameterType="String" resultType="String">
+	select ui_id from user_information where ui_id=#{admin_id}
+	</select>
+	<select id="checkidadmin" parameterType="String" resultType="String">
+	select admin_id from admin where admin_id=#{admin_id}
+	</select>
+	<select id="checkidre" parameterType="String" resultType="String">
+	select r_id from restaurant where r_id=#{admin_id}
+	</select>
 </mapper>

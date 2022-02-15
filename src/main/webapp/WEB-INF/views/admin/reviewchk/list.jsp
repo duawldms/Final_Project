@@ -21,19 +21,11 @@ ul {
 }
 
 p {
+	font-size:16px;
 	text-align: center
 }
 </style>
-<div class="elementor-widget-container">
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
-			반갑습니다.]</span>
-		<span class="elementor-icon-list-text"><a href="#"
-			onclick="document.getElementById('admin_logout').submit();">로그아웃</a></span>
-		<form:form id="admin_logout" method="post" action="${cp }/logout">
-		</form:form>
-	</sec:authorize>
-</div>
+
 <div class="page-header">
 	<h1>
 		<a href="${cp }/admin/adminpage">관리자 페이지</a>
@@ -111,6 +103,16 @@ p {
 			<input type="submit" value="검색">
 		</form:form>
 	</div>
-	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
+	<br>
+	<div class="elementor-widget-container" >
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<p>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
+				반갑습니다:)] <a href="#"
+				onclick="document.getElementById('admin_logout').submit();">로그아웃</a> | 쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/" style="color:#D811FF">여기</a></strong>를 클릭해 주세요!</p>
+			<form:form id="admin_logout" method="post" action="${cp }/logout">
+			</form:form>
+		</sec:authorize>
+	</div>
+	
 </body>
 </html>
