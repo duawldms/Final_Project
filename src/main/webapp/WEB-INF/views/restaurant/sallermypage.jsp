@@ -11,14 +11,13 @@
 	
 	.seller-info {
 		height: 50%;
-    	background-color: #F2F2F2;
     	height: 100%;
 	    display: table-cell;   
 	    vertical-align: middle; 
 	}
 	
 	.seller-edit {
-		border: 1px solid skyblue;
+		border: 1px solid #D8D8D8;
 	    height: 25%;
 	    width: 25%;
 	    display: inline-block;
@@ -28,10 +27,6 @@
 	
 	.seller-edit:hover {
 		background-color: #E0E0E0;
-	}
-	
-	.seller-edit:after {
-		
 	}
 	
 	.seller-edit img {

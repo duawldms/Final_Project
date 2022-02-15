@@ -18,11 +18,13 @@ public class PermissionService {
 	public int getCount(HashMap<String,Object> map) {
 		return mapper.count(map);
 	}
-	public int update(RestaurantVo vo) {
-		return mapper.update(vo);
-	}
-	public RestaurantVo detail(String r_id) {
-		return mapper.detail(r_id);
+	public int update(String r_id) {
+		return mapper.update(r_id);
 	}
 	
-}
+	public List<RestaurantVo> testList(){
+		return mapper.testList();
+	}
+	}
+	
+

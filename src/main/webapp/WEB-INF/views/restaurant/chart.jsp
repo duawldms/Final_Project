@@ -7,6 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+select::-ms-expand { 
+	display: none;
+}
+.select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.select {
+  { ... }
+  width: 150px;
+  height: 35px;
+  background-size: 20px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
+}
+.select option {
+  background: black;
+  color: #fff;
+  padding: 3px 0;
+}
+#wrap {
+	text-align: center;
+}
+#saleslist {
+	margin: auto;
+	font-family: fantasy;
+	font-size: 18px;
+	width: 1200px;
+	border-collapse: collapse;
+	text-align: center;
+}
+</style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
@@ -131,25 +167,58 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 				}
 			});
 		}
+		function ajax_excel(){
+			var gbn = $("#gbn").val();
+			var s_date = $("#s_date").val();
+			var e_date = $("#e_date").val();
+			$.ajax({
+				url:"${cp}/restaurant/excel",
+				data:{
+					gbn : gbn,
+					s_date:s_date,
+					e_date:e_date
+				},
+				dataType:"json",
+				success:function(data){
+
+
+				}
+			});
+		}
     
 </script>	
 </head>
 
 <body>
 <div class="wrap">
-	<form:form action="${cp }/restaurant/chart?r_id=${vo.r_id}" method="get" id="selectChart" enctype="multipart/form-data" acceptCharset="utf-8">
-	</form:form>
-</div>	
+	
+
 			<div id="chart1"></div>
+			<div>
+			 <form action="${cp }/restaurant/excel?r_id=${vo.r_id}" method="get">
 			조회 : 
-			<select id="gbn">
+			<select id="gbn" name="gbn" class="select">
+				<option disabled selected>선택</option>
 				<option value="day">일</option>
 				<option value="month">월</option>
 				<option value="year">년</option>
 			</select>
-			
-			<input type="date" id="s_date"> ~ <input type="date" id="e_date">
+<!-- 		<form id="excelForm" name="excelForm" method="post" action="${cp }/restaurant/excel?r_id=${vo.r_id}">
+			<input type="text" name="fileName">
+			<input type="submit" value="xlsx파일로 받기">
+			</form>
+-->			
+ 
+      	<input type="date" id="s_date" name="s_date"> ~ <input type="date" id="e_date" name="e_date">
+           <input type="submit" value="다운로드" >
+           
 			<input type="button" value="검색" onclick="ajax_sales()">
+            <!-- <button type="button" onclick="ajax_excel()">Excel</button>-->
+        </form>
+    </div>
+
+		
+			
+</div>	
 </body>
 </html>
-

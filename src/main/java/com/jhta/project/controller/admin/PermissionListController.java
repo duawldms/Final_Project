@@ -22,11 +22,12 @@ public class PermissionListController {
 			String field,
 			String keyword,
 			Model model) {
-		HashMap<String, Object> map=new HashMap<String, Object>();
+		HashMap<String,Object> map=new HashMap<String, Object>();
 		map.put("field",field);
 		map.put("keyword", keyword);
 		
 		int totalRowCount=service.getCount(map);
+		System.out.println("aa"+totalRowCount);
 		PageUtil pu=new PageUtil(pageNum,5, 10, totalRowCount);
 		int startRow=pu.getStartRow();//시작행번호
 		int endRow=pu.getEndRow();//끝행번호

@@ -27,9 +27,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 	img{display:block; margin:0px auto;}
+	#result1{
+	margin-top:160px;
+	}
 </style>
 </head>
 <body>
+<div id="result1">
 <img src="${cp }/resources/img/check.png" style="display:block; margin:0 auto; width:260px; height:230px; top:100px;">
 <br><br>
 <div id="showresult">
@@ -41,6 +45,7 @@ ${result }
 <div align="center">
 <a href="${cp }/admin/adminpage"><input type="button" value="메인" class="btn btn-primary"></a>&nbsp;
 <a href="${cp }/loginAdmin"><input type="button" value="로그인" class="btn btn-success"></a>
+</div>
 </div>
 </body>
 </html>

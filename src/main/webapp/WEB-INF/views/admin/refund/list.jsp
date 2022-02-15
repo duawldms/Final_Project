@@ -6,12 +6,13 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <style>
-*{
- 	font-size:16x;
- 	font-family:consolas,sans-serif;
+* {
+	font-size: 16x;
+	font-family: consolas, sans-serif;
 }
+
 h1 {
-	text-align: center
+	text-align: center;
 }
 
 ul {
@@ -21,19 +22,11 @@ ul {
 }
 
 p {
-	text-align: center
+	font-size: 16px;
+	text-align: center;
 }
 </style>
-<div class="elementor-widget-container">
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
-			반갑습니다.]</span>
-		<span class="elementor-icon-list-text"><a href="#"
-			onclick="document.getElementById('admin_logout').submit();">로그아웃</a></span>
-		<form:form id="admin_logout" method="post" action="${cp }/logout">
-		</form:form>
-	</sec:authorize>
-</div>
+
 <div class="page-header">
 	<h1>
 		<a href="${cp }/admin/adminpage">관리자 페이지</a>
@@ -69,10 +62,9 @@ p {
 					<th>주문자 아이디</th>
 					<th>주문상태</th>
 					<th>결제방법<ht>
-					<th>총금액</th>
-					<th>주문일</th>
-					<th>취소</th>
-					<th>문자</th>
+						<th>총금액</th>
+						<th>주문일</th>
+						<th>취소</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -87,24 +79,29 @@ p {
 								value="${vo.or_regdate}" /></td>
 						<td><a href="${cp }/refund/delete?or_num=${vo.or_num }"><input
 								type="button" value="취소" class="btn btn-warning"></a></td>
-						<td><a href="${cp }/refund/send"><input type="button"
-								value="문자" class="btn btn-success"></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	<div class="container">
+		<a href="${cp }/refund/send"><input type="button"
+								value="문자" class="btn btn-success" data-toggle="tooltip" title="환불문자를 보내려면 클릭하세요"></a>
+	</div>
 	<div class="text-center">
+		<c:if test="${pu.startPageNum>5 }">
+			<a href="${cp }/admin/refund/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a>
+		</c:if>
 		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 			<c:choose>
 				<c:when test="${i==param.pageNum }">
 					<a
-						href="${cp }/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: blue'>${i }</span></a>
 				</c:when>
 				<c:otherwise>
 					<a
-						href="${cp }/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/refund/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: gray'>${i }</span></a>
 				</c:otherwise>
 			</c:choose>
@@ -123,6 +120,21 @@ p {
 			<input type="submit" value="검색">
 		</form:form>
 	</div>
-	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
+	<br>
+	<div class="elementor-widget-container" >
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<p>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
+				반갑습니다:)] <a href="#"
+				onclick="document.getElementById('admin_logout').submit();">로그아웃</a> | 쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/" style="color:#D811FF">여기</a></strong>를 클릭해 주세요!</p>
+			<form:form id="admin_logout" method="post" action="${cp }/logout">
+			</form:form>
+		</sec:authorize>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 </body>
 </html>

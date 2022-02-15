@@ -138,6 +138,11 @@ public class RestaurantService {
 			return mapper.selectSalesYear(map);
 		}
 	}
+	public List<OrderListVo> excelDown(HttpServletRequest req,String r_id){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("or_totalcost",req.getParameter("or_totalcost"));
+		return mapper.excelDown(map);
+	}
 	// 판매자 비밀번호 변경
 	public int sellerPwdChange(String r_pwd, String r_id) {
 		Map<String, String> map = new HashMap<String, String>();

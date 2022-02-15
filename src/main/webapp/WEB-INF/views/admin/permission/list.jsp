@@ -6,19 +6,26 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <style>
-	h1{text-align:center}
-    ul {width: 430px; margin-left: auto; margin-right: auto; }
-	p{text-align:center}
+*{
+ 	font-size:16x;
+ 	font-family:consolas,sans-serif;
+}
+	h1{
+	text-align:center;
+	}
+	
+    ul {
+    width: 430px; 
+    margin-left: auto;
+     margin-right: auto;
+      }
+      
+	p{
+	font-size:16px;
+	text-align:center;
+	}
 
 </style>
-<div class="elementor-widget-container">
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
-		<span class="elementor-icon-list-text"><a href="#" onclick="document.getElementById('admin_logout').submit();">로그아웃</a></span>
-		<form:form id="admin_logout" method="post" action="${cp }/logout">
-		</form:form>
-</sec:authorize>
-</div>
 <div class="page-header">
 	<h1><a href="${cp }/admin/adminpage">관리자 페이지</a></h1>
 </div>
@@ -37,9 +44,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<head>
-<meta charset="UTF-8">
-<title>permission list</title>
 </head>
 <body>
 	<div class="container">
@@ -51,7 +55,6 @@
 					<th>가게주소</th>
 					<th>가게정보</th>
 					<th>승인</th>
-					<th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,22 +72,33 @@
 		</table>
 	</div>
 	<div class="text-center">
+	<c:if test="${pu.startPageNum>5 }"><a href="${cp }/admin/permission/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a></c:if>
 		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 			<c:choose>
 				<c:when test="${i==param.pageNum }">
 					<a
-						href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: blue'>${i }</span></a>
 				</c:when>
 				<c:otherwise>
+
 					<a
-						href="${cp }/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+						href="${cp }/admin/permission/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: gray'>${i }</span></a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 	</div>
 	<br>
-	<p>쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/">여기</a></strong>를 클릭해 주세요!</p>
+
+<div class="elementor-widget-container" >
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<p>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
+				반갑습니다:)] <a href="#"
+				onclick="document.getElementById('admin_logout').submit();">로그아웃</a> | 쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/" style="color:#D811FF">여기</a></strong>를 클릭해 주세요!</p>
+			<form:form id="admin_logout" method="post" action="${cp }/logout">
+			</form:form>
+		</sec:authorize>
+	</div>
 </body>
 </html>

@@ -41,8 +41,5 @@
 		<br> 
  로그인 유지 <input type="checkbox" name="remember-me" id="rememberMe">
 		<br>
-		<input type="submit" value="로그인">
-		<br>
-		<br>
 	</form:form>
 </div>
