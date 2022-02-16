@@ -18,5 +18,6 @@ public class UserVo {
 	private Date ui_regdate;
 	private String ui_state;
 	private String ua_addr;
+	private String ua_nickname;
 	
 }

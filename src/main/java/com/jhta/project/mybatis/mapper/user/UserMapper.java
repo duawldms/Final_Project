@@ -16,6 +16,7 @@ public interface UserMapper {
 	int userinsert(UserVo vo);
 	int addAuth(AuthorityVo vo);
 	String checkid(String ui_id);
+	UserVo checkua_nickname(UserVo vo);
 	boolean selectId(UserVo vo);
 	String searchId(UserVo vo);
 	UserVo searchPwd(UserVo vo);

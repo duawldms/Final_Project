@@ -62,6 +62,13 @@
     .num{
     color: red;
     }
+     .addrchk {    
+    height: 25px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-color: black;
+    }
 </style>
 <script type="text/javascript">
 var themeObj = {
@@ -86,9 +93,29 @@ var themeObj = {
 				q:document.getElementById("ua_addr").value
 			 });
 		});
-	   
+		
+		 $("#addrchk").click(function(){
+				let ua_nickname=$("input[name='ua_nickname']").val();
+				$.ajax({
+					url:'/project/checkua_nickname',
+					data:{"ua_nickname":ua_nickname},
+					dataType:'json', 
+					success:function(data){    
+					if(data.using==true){ 
+						$("#addrresult").html("사용중인 배송지 이름입니다.");
+						$("input[name='addrChkvalue']").prop("value","N");
+					}else if(ua_nickname==''){
+						$("#addrresult").html("배송지 이름을 입력해 주세요");
+					}else{
+						$("#addrresult").html("해당 배송지 이름은 사용하실 수 있습니다.");
+						$("input[name='addrChkvalue']").prop("value","Y");
+					}
+				  }
+				});
+			  });
 		
   	$("form").submit(function(){
+  		let addrChkvalue=$("input[name='addrChkvalue']").val();
 		let ua_name=$("input[name='ua_name']").val();
 	    let ua_phone=$("input[name='ua_phone']").val();
 	    let ua_addr=$("input[id='ua_addr1']").val();
@@ -99,6 +126,10 @@ var themeObj = {
 				  $("input[name='ua_nickname']").focus();
 				return false;
 			 }
+		    if(addrChkvalue=='N'){
+				alert("배송지 명칭 중복 확인을 해 주세요");
+				return false;
+			}
 			  if(ua_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
@@ -129,7 +160,12 @@ var themeObj = {
 <table  id="inserttable"> 
     <tr>
 		<td class="col1">배송지 명칭</td>
-		<td class="col2"><input type="text" name="ua_nickname"></td>
+		<td class="col2">
+		<input type="text" name="ua_nickname" id="ua_nickname">
+		<input type="button" value="중복검사" id="addrchk" name="addrchk" class="addrchk">
+		<input type="hidden" id="addrChkvalue" value="N" name="addrChkvalue">  
+		<span id="addrresult"></span>  
+		</td>
 	</tr>
 	<tr>
 		<td class="col1">배송받을 분</td>

@@ -163,15 +163,13 @@ $(function(){
     <tr>
 	    <td class="col1">기본 배송지</td>
 		<td class="col2">
-		<input type="text" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
-		<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
-		<input type="text"  id="ua_addr2" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
+		<a href="${cp }/useraddr">배송지 관리하기</a>
 		</td>
     </tr>  
     <tr>
 		<td class="col1">비밀번호</td>
 		<td class="col2">   
-		<a href="${cp }/changepwd?ui_id=${vo.ui_id}">비밀번호 변경하기</a>
+		<a href="${cp }/changepwd">비밀번호 변경하기</a>
 		</td>
 	</tr>
 </table><br><br>   
