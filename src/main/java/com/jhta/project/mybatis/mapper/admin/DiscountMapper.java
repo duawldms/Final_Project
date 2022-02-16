@@ -7,7 +7,5 @@ import com.jhta.project.vo.admin.DiscountVo;
 
 public interface DiscountMapper {
 	//목록
-	List<DiscountVo> list(HashMap<String,Object> map);
-	// 글 갯수
-	int count(HashMap<String,Object> map);
+	List<DiscountVo> list(String date);
 }

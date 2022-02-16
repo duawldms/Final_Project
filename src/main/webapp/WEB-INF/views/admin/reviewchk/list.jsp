@@ -6,10 +6,11 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <style>
-*{
- 	font-size:16x;
- 	font-family:consolas,sans-serif;
+* {
+	font-size: 16x;
+	font-family: consolas, sans-serif;
 }
+
 h1 {
 	text-align: center
 }
@@ -21,7 +22,7 @@ ul {
 }
 
 p {
-	font-size:16px;
+	font-size: 16px;
 	text-align: center
 }
 </style>
@@ -78,15 +79,19 @@ p {
 		</table>
 	</div>
 	<div class="text-center">
-	<c:if test="${pu.startPageNum>5 }"><a href="${cp }/admin/reviewchk/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a></c:if>
+		<c:if test="${pu.startPageNum>5 }">
+			<a href="${cp }/admin/reviewchk/list?pageNum=${pu.startPageNum-1}">[이전페이지]</a>
+		</c:if>
 		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 			<c:choose>
 				<c:when test="${i==param.pageNum }">
-					<a href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+					<a
+						href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: blue'>${i }</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
+					<a
+						href="${cp }/admin/reviewchk/list?pageNum=${i}&field=${field}&keyword=${keyword}"><span
 						style='color: gray'>${i }</span></a>
 				</c:otherwise>
 			</c:choose>
@@ -104,15 +109,19 @@ p {
 		</form:form>
 	</div>
 	<br>
-	<div class="elementor-widget-container" >
+	<div class="elementor-widget-container">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<p>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
+			<p>
+				[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님
 				반갑습니다:)] <a href="#"
-				onclick="document.getElementById('admin_logout').submit();">로그아웃</a> | 쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/" style="color:#D811FF">여기</a></strong>를 클릭해 주세요!</p>
+					onclick="document.getElementById('admin_logout').submit();">로그아웃</a>
+				| 쿠팡요기이츠 메인화면으로 돌아가시려면 <strong><a href="${cp }/"
+					style="color: #D811FF">여기</a></strong>를 클릭해 주세요!
+			</p>
 			<form:form id="admin_logout" method="post" action="${cp }/logout">
 			</form:form>
 		</sec:authorize>
 	</div>
-	
+
 </body>
 </html>
