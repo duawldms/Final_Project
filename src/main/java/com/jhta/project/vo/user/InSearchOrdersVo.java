@@ -13,9 +13,10 @@ public class InSearchOrdersVo {
 	private int or_num;
 	private String ui_id;
 	private String or_request;
-	private Date or_deltime;
+	private int or_deltime;
 	private int or_status;
 	private int or_totalcost;
 	private String or_addr;
 	private String or_paymethod;
+	private String r_id;
 }

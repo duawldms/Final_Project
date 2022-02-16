@@ -23,6 +23,7 @@
 	    display: inline-block;
 	    margin: 5px;
 	    cursor: pointer;
+	    padding: 25px;
 	}
 	
 	.seller-edit:hover {
@@ -32,18 +33,20 @@
 	.seller-edit img {
 		width: 100px;
 		height: 100px;
+		max-width:100%; max-height:100%;
+            vertical-align:middle;
 	}
 </style>
 <div class="seller-my">
 	<div class="seller-info">
-		<div class="seller-edit"><img src="${cp }/resources/img/user2.png"><br>회원정보 수정</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/password.png"><br>비밀번호 변경</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/shop.png"><br>매장정보</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/house-repair.png"><br>매장정보 수정</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/order-food.png"><br>주문목록</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/bill.png"><br>매출현황</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/menu.png"><br>메뉴 등록</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/product-design.png"><br>메뉴 수정</div>	
-		<div class="seller-edit"><img src="${cp }/resources/img/food.png"><br>사이드 메뉴 추가</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/sellerUpdate'"><img src="${cp }/resources/img/user2.png"><br>회원정보 수정</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/sellerPwdCheck'"><img src="${cp }/resources/img/password.png"><br>비밀번호 변경</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/restaurantinfo'"><img src="${cp }/resources/img/shop.png"><br>매장정보</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/infoupdate'"><img src="${cp }/resources/img/house-repair.png"><br>매장정보 수정</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/orderList'"><img src="${cp }/resources/img/order-food.png"><br>주문목록</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/chart'"><img src="${cp }/resources/img/bill.png"><br>매출현황</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/menuadd'"><img src="${cp }/resources/img/menu.png"><br>메뉴 등록</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/foodEdit'"><img src="${cp }/resources/img/product-design.png"><br>메뉴 수정</div>	
+		<div class="seller-edit" onclick="location.href='${cp }/restaurant/foodList'"><img src="${cp }/resources/img/food.png"><br>사이드 메뉴 추가</div>	
 	</div>
 </div>

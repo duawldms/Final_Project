@@ -58,9 +58,9 @@
 			<li><a href="${cp }/restaurant/chart">매출현황</a></li>
 			<li><a href="">리뷰관리</a></li>
 			<li class="li_title"><img src="${cp }/resources/img/fork.png" style="width: 20px; height: 20px;">메뉴 관리</li>
-			<li><a href="${cp }/restaurant/menuadd">음식 등록</a></li>
-			<li><a href="${cp }/restaurant/foodEdit">음식 수정 및 삭제</a></li>
-			<li><a href="${cp }/restaurant/foodList">사이드 음식 추가</a></li>
+			<li><a href="${cp }/restaurant/menuadd">메뉴 등록</a></li>
+			<li><a href="${cp }/restaurant/foodEdit">메뉴 수정</a></li>
+			<li><a href="${cp }/restaurant/foodList">사이드 메뉴 추가</a></li>
 		</ul>
 	</div>
 </div>

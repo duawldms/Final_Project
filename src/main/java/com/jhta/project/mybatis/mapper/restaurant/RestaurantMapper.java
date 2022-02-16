@@ -46,4 +46,6 @@ public interface RestaurantMapper {
 	List<MenuUnionVo> cancelList(String r_id);
 	int sellerDelete(String r_id);
 	List<OrderListVo> excelDown(Map<String, Object> map);
+	int orderAccept(Map<String, Integer> map);
+	int deliveryStart(int or_num);
 }

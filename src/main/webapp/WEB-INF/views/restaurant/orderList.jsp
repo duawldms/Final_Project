@@ -41,7 +41,7 @@
 		padding: 10px;
 	}
 	
-	#order_cancel {
+	.orderlist-btn {
 		border-radius: 10px;
 	    border: 1px solid;
 	    display: block;
@@ -53,11 +53,13 @@
 	    text-decoration: none;
 	    background-color: #7bcfbb;
 		color: white;
+		display: inline-block;
 	}
 	
-	#order_cancel:hover {
+	.orderlist-btn:hover {
 		color: #7bcfbb;
 		background-color: white;
+		text-decoration: none;
 	}
 </style>
 <c:set var="cnt" value="0"/>
@@ -119,7 +121,17 @@
 					</tr>
 				</c:if>
 				<tr>
-					<td colspan="3"><a id="order_cancel" href="javascript:void(0)" onclick="cancelPopup(${vo.or_num})">주문 거부</a></td>
+					<td colspan="3">
+						<c:choose>
+							<c:when test="${vo.or_status == 1}">
+								<a id="order_accept" class="orderlist-btn" href="javascript:void(0)" onclick="acceptPopup(${vo.or_num})">주문 수락</a>
+							</c:when>
+							<c:otherwise>
+								<a id="order_delivery" class="orderlist-btn" href="javascript:void(0)" onclick="deliveryStart(${vo.or_num})">배달 시작</a>
+							</c:otherwise>
+						</c:choose>
+						<a id="order_cancel" class="orderlist-btn" href="javascript:void(0)" onclick="cancelPopup(${vo.or_num})">주문 거부</a>
+					</td>
 				</tr>
 	 		</tbody>
 	 	</table>
@@ -131,5 +143,21 @@
 		var name = "cancelReason";
 		var option = "width = 300, height = 280, top = 300, left = 800";
 		window.open(url, name, option);
+	}
+	
+	function acceptPopup(or_num) {
+		var url = "${cp }/restaurant/acceptReason?or_num=" + or_num;
+		var name = "acceptReason";
+		var option = "width = 300, height = 150, top = 300, left = 800";
+		window.open(url, name, option);
+	}
+	
+	function deliveryStart(or_num) {
+		if (confirm("배달을 시작하시겠습니까?")) {
+			alert("해당 주문의 배달이 시작되었습니다.");
+			location.href="${cp }/restaurant/deliveryStart?or_num=" + or_num;
+		} else {
+			return;
+		}
 	}
 </script>

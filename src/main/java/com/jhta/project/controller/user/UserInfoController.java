@@ -1,5 +1,7 @@
 package com.jhta.project.controller.user;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,15 +29,15 @@ public class UserInfoController {
 	}
 	//비밀번호 확인 창으로 넘어가기 
 	@GetMapping("/userinfocheck")
-		public String UserInfoCheckForm(Model model,String ui_id) {
+		public String UserInfoCheckForm(Model model,Principal principal) {
 		model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheck.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "layout";		
 	}
 	@PostMapping("/userinfo")
-	public String postPrevModify(Authentication auth,@RequestParam("ui_pwd")String pw,String ui_id,Model model) {
-		String userpwd=service.test(ui_id).getUi_pwd();
-		UserVo vo1=service.selectUser(ui_id);
+	public String postPrevModify(Authentication auth,@RequestParam("ui_pwd")String pw,Principal principal,Model model) {
+		String userpwd=service.test(principal.getName()).getUi_pwd();
+		UserVo vo1=service.selectUser(principal.getName());
 		if(passwordEncoder.matches(pw, userpwd)) {
 			model.addAttribute("vo",vo1);
 			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfo.jsp");

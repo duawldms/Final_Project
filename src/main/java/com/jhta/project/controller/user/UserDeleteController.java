@@ -1,5 +1,7 @@
 package com.jhta.project.controller.user;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,8 +26,8 @@ public class UserDeleteController {
 	
 	
 	@GetMapping("/userdelete") //회원탈퇴 페이지로 이동
-	public String UserDeleteForm(Model model,String ui_id) {
-		UserVo vo=service.test(ui_id);
+	public String UserDeleteForm(Model model,Principal principal) {
+		UserVo vo=service.test(principal.getName());
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/Delete.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
