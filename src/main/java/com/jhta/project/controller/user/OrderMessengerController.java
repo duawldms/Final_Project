@@ -22,10 +22,10 @@ public class OrderMessengerController {
 	private final SimpMessagingTemplate messagingTemplate;
 	@Autowired private SearchService service;
 	@MessageMapping("/order")
-	//@SendTo("/topic/greetings")
 	public void greeting(HelloMessage message,Principal principal) throws Exception {
 		String name=principal.getName();
-		messagingTemplate.convertAndSend("/topic/orders", new Greeting(message.getOr_num(),0));
+		String r_id=service.getRidOrnum(message.getOr_num());
+		messagingTemplate.convertAndSend("/topic/"+r_id, new Greeting(message.getOr_num(),0));
 	}
 	@MessageMapping("/callback")
 	public void callback(HelloMessage message,Principal principal) {
