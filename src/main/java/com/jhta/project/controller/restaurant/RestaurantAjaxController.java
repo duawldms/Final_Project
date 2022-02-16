@@ -65,8 +65,14 @@ public class RestaurantAjaxController {
 		return "";
 	}
 	
+//	@RequestMapping(value = "/getCancelList", produces = {MediaType.APPLICATION_JSON_VALUE})
+//	public List<MenuUnionVo> cancelList(Principal principal) {
+//		List<MenuUnionVo> list = service.cancelList(principal.getName());
+//		return list;
+//	}
+	
 	@RequestMapping(value = "/getCancelList", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<MenuUnionVo> cancelList(Principal principal) {
+	public List<MenuUnionVo> getOrder(Principal principal) {
 		List<MenuUnionVo> list = service.cancelList(principal.getName());
 		return list;
 	}

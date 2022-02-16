@@ -47,6 +47,9 @@ public class UserService {
 	public String checkid(String ui_id) {
 		return mapper.checkid(ui_id);
 	}
+	public UserVo checkua_nickname(UserVo vo) {
+		return mapper.checkua_nickname(vo);
+	}
 	public boolean selectId(UserVo vo) {
 		return mapper.selectId(vo);
 	}

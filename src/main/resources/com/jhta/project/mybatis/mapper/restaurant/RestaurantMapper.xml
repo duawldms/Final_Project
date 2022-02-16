@@ -186,7 +186,8 @@
 		o.or_num,
 		or_request,
 		or_regdate,
-		or_totalcost
+		or_totalcost,
+		or_status
 		from orders o,
 			 orders_detail od,
 			 food f	 
@@ -195,19 +196,21 @@
 		and
 		od.food_num = f.food_num
 		and
-		or_status = 1
+		or_status in(1, 2)
 		and
 		f.r_id = #{r_id}
 	</select>
 	<select id="getMenuUnion" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
 		select
 		o.or_num,
+		or_request,
 		f.food_num,
 		1 as fo_num,
 		food_name,
 		null as fo_name,
 		count(food_name)as food_count,
 		sum(food_cost) as food_cost_sum,
+		or_totalcost,
 		or_regdate
 		from orders o, 
 		     orders_detail od,
@@ -217,23 +220,27 @@
 		and 
 		od.food_num = f.food_num
 		and
-		or_status = 1
+		or_status in(1, 2)
 		and
-		f.r_id = #{r_id}
+		f.r_id = 'zxc'
 		group by 
 		o.or_num,
+		or_request,
 		f.food_num,
 		food_name,
+		or_totalcost,
 		or_regdate
 		union all
 		select
 		o.or_num,
+		or_request,
 		fo.food_num,
 		fo.fo_num,
 		null,
 		fo_name,
 		oo_count,
 		oo_count * fo_cost as option_cost_sum,
+		or_totalcost,
 		o.or_regdate
 		from orders o, 
 		     orders_detail od,
@@ -249,9 +256,9 @@
 		and
 		oo.fo_num = fo.fo_num
 		and 
-		or_status = 1
+		or_status in(1, 2)
 		and
-		f.r_id = #{r_id}
+		f.r_id = 'zxc'
 		order by food_num, fo_num
 	</select>
 	<!-- 주문 내역 불러오기 end -->
@@ -288,4 +295,38 @@
 		where
 		r_id = #{r_id}
 	</update>
+	<!-- 주문 수락 -->
+	<update id="orderAccept" parameterType="hashmap">
+		update orders
+		set
+		or_status = 2,
+		or_deltime = #{or_deltime}
+		where
+		or_num = #{or_num}
+	</update>
+	<!-- 배달 시작 -->
+	<update id="deliveryStart" parameterType="int">
+		update orders
+		set
+		or_status = 3
+		where
+		or_num = #{or_num}
+	</update>
+	<!-- 접수된 주문 수(삭제 예정)-->
+	<!-- <select id="orderCount" parameterType="string" resultType="int">
+		select
+		count(distinct o.or_num)
+		from 
+		orders o,
+		orders_detail od,
+		food f
+		where
+		o.or_num = od.or_num
+		and
+		od.food_num = f.food_num
+		and
+		or_status = 1
+		and
+		r_id = #{r_id}
+	</select> -->
 </mapper>

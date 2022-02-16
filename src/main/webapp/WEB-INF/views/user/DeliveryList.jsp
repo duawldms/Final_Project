@@ -111,7 +111,7 @@
 		</c:choose>        
 			<td class="col2">${vo.or_totalcost }</td>  
 			<td class="col2">${vo.or_regdate }</td>    
-			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}&ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">상세내역</a></td>
+			<td class="col2"><a href="${cp }/user/deliverydetail?or_num=${vo.or_num}">상세내역</a></td>
 			<td class="col2"><a href="${cp }/deliveryupdate?or_num=${vo.or_num}&ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">삭제하기</a></td>
 		</tr> 
 		</c:forEach>

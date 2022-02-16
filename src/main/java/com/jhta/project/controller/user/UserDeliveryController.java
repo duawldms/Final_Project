@@ -1,6 +1,7 @@
 package com.jhta.project.controller.user;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,14 +24,14 @@ public class UserDeliveryController {
 	@Autowired UserService service;
 	
 	@RequestMapping("/userdelivery")
-	public String deliverydetail(String ui_id,Model model,
+	public String deliverydetail(Model model,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			String field,String keyword) {
+			String field,String keyword,Principal principal) {
 		//페이징 처리
 		HashMap<String,Object>map=new HashMap<String,Object>();
 		map.put("field", field);
 		map.put("keyword",keyword);
-		map.put("ui_id",ui_id);
+		map.put("ui_id",principal.getName());
 		int totalRowCount=service.deliverycountnew(map);
 		PageUtil pu=new PageUtil(pageNum,5,5,totalRowCount);
 		int startRow=pu.getStartRow();
@@ -40,26 +41,26 @@ public class UserDeliveryController {
 		
 		
 		//2022.02.09 test
-		List<OrdersVo> intlist=service.selectornum(ui_id);
+		List<OrdersVo> intlist=service.selectornum(principal.getName());
 		List<OrdersVo> aa=new ArrayList<OrdersVo>();
 		List<Integer> bb=new ArrayList<Integer>();
 		int n=0;
 		for(int i=0;i<intlist.size();i++) {
 		n=intlist.get(i).getOr_num();
 		map.put("or_num", n);
-
 		List<OrdersVo>list1=service.deliverylistnew(map);
-		OrdersVo vo=list1.get(0);
+		if(list1.size()!=0) {
+		OrdersVo vo=list1.get(0);	
 		Integer maincount=service.maincountnew(n);
 		vo.setCount(maincount);
 		bb.add(maincount);
 		aa.add(vo);
 		}
-		
+		}
 		model.addAttribute("bb",bb);
 		model.addAttribute("aa",aa);
 		//List<OrdersVo>list1=service.deliverylist(map);
-		model.addAttribute("ui_id",ui_id);
+		model.addAttribute("ui_id",principal.getName());
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		//model.addAttribute("list1",list1);
@@ -70,18 +71,18 @@ public class UserDeliveryController {
 		return "layout";	
 	} 
 	@GetMapping("/deliveryupdate")  
-	public String deliverydelete(int or_num,Model model,String ui_id,OrdersVo vo) {
+	public String deliverydelete(int or_num,Model model,Principal principal,OrdersVo vo) {
 		service.statusupdate(vo);
-		ArrayList<OrdersVo> list = service.userdelivery(ui_id);
-		model.addAttribute("ui_id",ui_id);
+		ArrayList<OrdersVo> list = service.userdelivery(principal.getName());
+		model.addAttribute("ui_id",principal.getName());
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		return "redirect:/userdelivery";	
 	}
 	@GetMapping("/user/deliverydetail")
-	public String deliverydetail(int or_num,Model model,String ui_id,OrdersVo selectvo) {
+	public String deliverydetail(int or_num,Model model,Principal principal,OrdersVo selectvo) {
 		selectvo.setOr_num(or_num);
-		selectvo.setUi_id(ui_id); 
+		selectvo.setUi_id(principal.getName()); 
 		OrdersVo vo=service.deliverydetail(selectvo);
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");

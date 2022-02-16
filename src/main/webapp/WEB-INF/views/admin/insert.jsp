@@ -12,6 +12,7 @@
 
 h1 {
 	text-align: center;
+	
 }
 
 p {
@@ -19,7 +20,7 @@ p {
 	font-size: 16px;
 }
 #insert1{
-	margin-top:160px;
+	margin-top:130px;
 }
 #form{
 	text-align:center;
@@ -75,7 +76,7 @@ p {
 </head>
 <body>
 	<div class="container" id="insert1">
-	<h1>관리자생성관리</h1>
+	<h1 style="color:#337ab7;">관리자생성관리</h1>
 	<br>
 	<div id="form">
 		<div class="row">

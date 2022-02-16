@@ -18,6 +18,8 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/layout.css">
 <link rel='stylesheet' id='rocket-font-css'
 	href='//cdn.jsdelivr.net/font-notosans-kr/1.0.0-v1004/NotoSansKR-2350.css?ver=5.8.2' type='text/css' media='all' />
@@ -87,14 +89,118 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="javascript:showcart()" style="color:white;text-decoration:none;">주문표</a></span>
 					</li>
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:-35px;">
+						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
+						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;"></span>
+						<span class="sr-only">unread messages</span>
+					</button>
+					<div style="display:none;position:absolute;z-index:99;top:30px;left:-40px" id="Alarmlist" data-bs-toggle="tooltip" data-bs-placement="top" title="클릭하면 알람이 삭제됩니다">
+						
+					</div>
+					<div class="toast-container position-absolute p-3" style="z-index:99">
+					<div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+						<div class="toast-header" id="toasthead"></div>
+						<div class="toast-body" id="toastbody" style="text-align:left"></div>
+					</div>
+					</div>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cda1d2e6578e00f2f149b8981a3cb1f&libraries=services"></script>
 					<script>
+						var stompClient = null;
 						$(function(){
+							getAlarm();
 							let cart="${param.cart}";
 							if(cart=='empty'){
 								alert('주문표에 있는 메뉴가 없습니다.');
 							}
+							$("#call").click(function(){
+								$("#Alarmlist").toggle();
+								//stompClient.send("/app/order", {}, JSON.stringify({'or_num': 322}));
+							});
+							connect();
 						});
+						function getAlarm(){
+							$.ajax({
+								url:"${cp}/user/getAlarm",
+								dataType:"json",
+								success:function(data){
+									let alarm="";
+									let alarmcount=0;
+									if(data.result=='success'){
+										alarm+="<div class='list-group'>";
+										alarm+='<a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true"';
+										alarm+=' style="padding:0.2rem 0.8rem;text-align:center">주문목록</a>';
+										for(let i=0;i<data.list.length;i++){
+											//alarm+="<span class='d-inline-block' tabindex='0' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-content='상세내역을 보려면 클릭하세요'>"
+											alarm+="<a href='javascript:testtest()' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+											alarm+="주문번호:"+data.list[i].or_num+"</a>";
+											alarmcount++;
+										}
+										alarm+="</div>";
+										$("#Alarmlist").html(alarm);
+										if(alarmcount==0){
+											$("#alarmbadge").html();
+											console.log('count=0');
+										}else{
+											$("#alarmbadge").html(alarmcount);
+											console.log('count!=0');
+										}
+									}
+								}
+							});
+						}
+						function testtest(){
+							stompClient.send("/app/order", {}, JSON.stringify({'or_num':322}));
+						}
+						function connect() {
+						    var socket = new SockJS('/project/stomp');
+						    stompClient = Stomp.over(socket);
+						    stompClient.connect({}, function (frame) {
+				    				stompClient.subscribe('/topic/${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}', function (greeting) {
+				    					let or_num=JSON.parse(greeting.body).or_num;
+				    					let deltime=JSON.parse(greeting.body).deltime;
+				    					$.ajax({
+							    			url:"${cp}/user/saveAlarm",
+							    			data:{
+							    				or_num:or_num,
+							    				deltime:deltime
+							    			},
+							    			dataType:"json",
+							    			success:function(data){
+							    				if(data.result='success'){
+							    					let ovo=data.ovo;
+							    					console.log(ovo);
+							    					if(ovo.or_status==2){
+							    						$("#toasthead").html("<strong>고객님의 주문이 접수되었습니다!</strong>");
+							    						$("#toastbody").html("고객님의 소중한 주문이 정상 접수되어, " + ovo.or_deltime+"분 내외로 도착할 예정입니다.");
+							    						$("#toast").prop('class','toast show');;
+							    						setTimeout(function(){
+							    							$("#toast").prop('class','toast hide');
+							    						},2500);
+							    					}else if(ovo.or_status==3){
+							    						$("#toasthead").html("<strong>주문하신 음식의 배달이 시작되었습니다!</strong>");
+							    						$("#toastbody").html("배달주소 : " + ovo.or_addr);
+							    						$("#toast").prop('class','toast show');;
+							    						setTimeout(function(){
+							    							$("#toast").prop('class','toast hide');
+							    						},2500);
+							    					}else if(ovo.or_status==4){
+							    						$("#toasthead").html("<strong>주문하신 음식이 도착했습니다!</strong>");
+							    						$("#toastbody").html("맛있게 드시고 다음에도 주문해주세요~");
+							    						$("#toast").prop('class','toast show');;
+							    						setTimeout(function(){
+							    							$("#toast").prop('class','toast hide');
+							    						},2500);
+							    					}
+							    					getAlarm();
+							    				}else{
+							    					console.log('fail');
+							    				}
+							    			}
+							    		});
+				    				});
+						        console.log('Connected: ' + frame);
+						    });
+						}
 						function showcart(){
 							let checkcart="${detail}";
 							let coordx="";
@@ -119,6 +225,18 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:180px;top:1px;">
+						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
+						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;">1</span>
+						<span class="sr-only">unread messages</span>
+					</button>
+					<div style="display:none;position:absolute;z-index:99;top:30px;left:175px;width: 270px;" id="Alarmlist" data-bs-toggle="tooltip" data-bs-placement="top" title="클릭하면 알람이 삭제됩니다">
+						<div class='list-group' id="Alarmlist">
+							<a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true"
+									style="padding:0.2rem 0.8rem;text-align:center">주문목록</a>
+							
+						</div>
+					</div>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="${cp }/restaurant/sallermypage" style="color:white;text-decoration:none;">My Page</a></span>
 					</li>
@@ -127,6 +245,49 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						<form:form id="restaurant_logout" method="post" action="${cp }/logout">
 						</form:form>
 					</li>
+					<div id="alarmlist" style="display:none;position:absolute;top:50px;
+										border:1px solid black;width:300px;height:500px;z-index:99;background-color:yellow">
+						<div id="alarmhead">
+							<h3>주문목록</h3>
+						</div>
+						<div id="alarmbody" style="border-top:1px solid black">
+						</div>
+					</div>
+					<script>
+						var stompClient = null;
+						$(function(){
+							connect();
+							$("#call").click(function(){
+								$("#Alarmlist").toggle();
+								//stompClient.send("/app/order", {}, JSON.stringify({'or_num': 322}));
+							});
+						});
+						function connect() {
+						    var socket = new SockJS('/project/stomp');
+						    stompClient = Stomp.over(socket);
+						    stompClient.connect({}, function (frame) {
+						        console.log('Connected: ' + frame);
+						        stompClient.subscribe('/topic/orders', function (greeting) {
+						        	let alarm=""
+						        	//JSON.parse(greeting.body).content
+						        	alarm+="<a href='javascript:callbackorder("+JSON.parse(greeting.body).content+")'"
+						        	alarm+=" class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;text-align:left;' >";
+						        	alarm+=""+JSON.parse(greeting.body).or_num+"번 주문이 들어왔습니다</a>";
+						        	
+						            $("#Alarmlist").append(alarm);
+						        });
+						    });
+						}
+						function callbackorder(or_num){
+							//$.ajax({
+							//	
+							//});
+							stompClient.send("/app/callback", {}, JSON.stringify({'deltime': 30,'or_num':322}));
+						}
+						function showalarm(){
+							$("#alarmlist").toggle();
+						}
+					</script>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li class="elementor-icon-list-item elementor-inline-item">
