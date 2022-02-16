@@ -49,7 +49,7 @@
 		<h6><img src="${cp }/resources/img/user.png" style="width: 20px; height: 20px;">${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.</h6>
 		<ul id="list"> 
 			<li><a href="${cp }/userdelivery">배달내역</a></li>
-			<li><a href="${cp }/">리뷰쓰기</a></li>
+			<li><a href="${cp }/userreview">리뷰관리</a></li>
 			<li><a href="${cp }/userinfocheck">기본정보</a></li>
 			<li><a href="${cp }/useraddr">배송지 관리</a></li>
 			<li><a href="${cp }/userdelete">회원탈퇴하기</a></li>

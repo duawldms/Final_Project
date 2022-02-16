@@ -61,7 +61,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 													<div class="hfe-site-logo-set">
 														<div class="hfe-site-logo-container">
 															<img class="hfe-site-logo-img elementor-animation-"
-																src="https://www.coupangeats.com/wp-content/uploads/2021/10/white-solid-300x52.png"
+																src="/project/resources/img/logo.PNG"
 																alt="white solid" />
 														</div>
 													</div>
