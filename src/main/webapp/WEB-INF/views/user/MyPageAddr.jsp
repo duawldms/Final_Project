@@ -73,6 +73,7 @@
 	   <th  class="col1">전화번호</th>
 	   <th  class="col1">수정</th>
 	   <th  class="col1">삭제</th>   
+	   
 	</tr>
 	<c:forEach var="vo" items="${vo }" >
 	<tr>
