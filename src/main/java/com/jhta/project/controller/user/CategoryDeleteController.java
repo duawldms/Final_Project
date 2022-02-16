@@ -17,13 +17,19 @@ import com.jhta.project.service.user.CategoryService;
 public class CategoryDeleteController {
 	@Autowired private ServletContext sc;
 	@Autowired CategoryService service;
-	@GetMapping("/category/delete")
+	
+	
+	/*
+	 *
+	 * @GetMapping("/category/delete")
 	public String categoryForm(String cg_name, Model model) {
 		model.addAttribute("main","/WEB-INF/views/category/categoryModify.jsp");
 		model.addAttribute("vo",service.selectOne(cg_name));
 		return "layout";
 	}
-	@PostMapping("/category/delete")
+	 * 
+	 * */
+	@GetMapping("/category/delete")
 	public String categoryDelete(String cg_name) throws Exception {
 		String cgname=new String(StringUtils.cleanPath(cg_name).getBytes("8859_1"),"utf-8");
 		System.out.println("이건뭘까" + cg_name);

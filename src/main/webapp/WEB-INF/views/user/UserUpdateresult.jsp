@@ -12,7 +12,7 @@
 	padding: 35px;  
 	padding-top:100px;      
 	height:300px;   
-	font-size: 25px;                 
+	font-size: 20px;                            
 	}     
 	 .btn3 {
     color:white; 
