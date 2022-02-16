@@ -172,7 +172,14 @@ public class RestaurantService {
 	public int sellerDelete(String r_id) {
 		return mapper.sellerDelete(r_id);
 	}
-	
+	// 주문 수락
+	public int orderAccept(Map<String, Integer> map) {
+		return mapper.orderAccept(map);
+	}
+	// 배달 시작
+	public int deliveryStart(int or_num) {
+		return mapper.deliveryStart(or_num);
+	}
 }
 
 
