@@ -22,4 +22,23 @@ where cg_name=#{cg_name}
 <delete id="delete" parameterType="int">
 delete from category where cg_name=#{cg_name}
 </delete>
+<select id="orderList" resultType="com.jhta.project.vo.user.OrdersVo">
+select * from orders where or_status = 4
+</select>
+<select id="orderReview" resultType="com.jhta.project.vo.user.OrderReviewVo">
+select distinct
+o.or_num,o.ui_id,o.or_regdate,
+f.food_name,
+fo.fo_name,
+r.r_img,r.r_name
+from orders o,food f,food_options fo,restaurant r,orders_detail od, orders_option oo
+where o.or_num = od.or_num 
+		and od.food_num = f.food_num
+		and od.od_num = oo.od_num 
+		and f.food_num = fo.food_num
+		and f.r_id=r.r_id 
+		and o.or_status = 4
+		order by o.or_regdate desc
+</select>
+
 </mapper>

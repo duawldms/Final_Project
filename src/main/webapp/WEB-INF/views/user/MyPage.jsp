@@ -52,7 +52,7 @@
 	<div class="seller-my">
 	<div class="seller-info">   
 		<div class="seller-edit" onclick="location.href='${cp }/userdelivery'"><img src="${cp }/resources/img/foodall.png"><br>배달내역</div>	
-				<div class="seller-edit" onclick="location.href='${cp }/'"><img src="${cp }/resources/img/shop.png"><br>리뷰관리</div>	<br>       
+				<div class="seller-edit" onclick="location.href='${cp }/userreview'"><img src="${cp }/resources/img/shop.png"><br>리뷰관리</div>	<br>       
 		<div class="seller-edit" onclick="location.href='${cp }/userinfocheck'"><img src="${cp }/resources/img/password.png"><br>기본정보</div>      	
 		<div class="seller-edit" onclick="location.href='${cp }/userdelete'"><img src="${cp }/resources/img/deleteimg.png"><br>회원탈퇴</div>	
 		</div>
