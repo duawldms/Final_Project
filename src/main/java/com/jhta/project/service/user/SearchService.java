@@ -120,6 +120,9 @@ public class SearchService {
 	public InSearchOrdersVo getOrder(int or_num) {
 		return mapper.getOrder(or_num);
 	}
+	public String getRidOrnum(int or_num) {
+		return mapper.getRidOrnum(or_num);
+	}
 }
 
 
