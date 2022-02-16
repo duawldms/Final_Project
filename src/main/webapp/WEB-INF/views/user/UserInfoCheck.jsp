@@ -10,7 +10,9 @@
 	height:300px; 
 	padding:45px;   
 	padding-top:50px;      
-	margin-top:125px;          
+	margin-top:125px;  
+	padding-bottom: 100px;      
+	margin-bottom: 200px;              
    } 
    .btn3 {
     color:white; 

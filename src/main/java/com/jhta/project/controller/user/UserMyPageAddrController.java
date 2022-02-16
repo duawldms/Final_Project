@@ -31,8 +31,8 @@ public class UserMyPageAddrController {
 		ArrayList<UserAddrVo> vo=service.useraddrselectAll(principal.getName());
 		model.addAttribute("vo",vo);
 		model.addAttribute("ui_id",principal.getName());
-		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/MyPageAddr.jsp");
 	    return"layout";
   }
 	@GetMapping("/useraddrdelete")
@@ -40,8 +40,8 @@ public class UserMyPageAddrController {
 		int n=service.useraddrdelete(ua_num);
 		ArrayList<UserAddrVo> vo=service.useraddrselectAll(principal.getName());
 		model.addAttribute("vo",vo);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/MyPageAddr.jsp");
 	    return"layout";
 	}
 	@GetMapping("/useraddrupdate")
@@ -49,8 +49,8 @@ public class UserMyPageAddrController {
 		vo.setUi_id(principal.getName());
 		UserAddrVo vo1=service.useraddrselect(vo);
 		model.addAttribute("vo",vo1);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddrUpdate.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/MyPageAddrUpdate.jsp");
 	    return"layout";
 	}
 	@PostMapping("/useraddrupdate")
@@ -59,20 +59,20 @@ public class UserMyPageAddrController {
 		if(n>0) {
 			ArrayList<UserAddrVo> vo1=service.useraddrselectAll(principal.getName());
 			model.addAttribute("vo",vo1);
-			model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPageAddr.jsp");
 		}else {
 			model.addAttribute("result","주소 및 입력정보를 다시 확인 해 주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}
 	    return"layout";
 	}
 	@GetMapping("/useraddrinsert")
 	public String UserAddrInsertForm(Principal principal,Model model) {
 		model.addAttribute("ui_id",principal.getName());
-		model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddrInsert.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/MyPageAddrInsert.jsp");
 	    return"layout";
 	}
 	@PostMapping("/useraddrinsert")
@@ -81,12 +81,12 @@ public class UserMyPageAddrController {
 		if(n>0) {
 			ArrayList<UserAddrVo> vo1=service.useraddrselectAll(vo.getUi_id());
 			model.addAttribute("vo",vo1);
-			model.addAttribute("mypagemain","/WEB-INF/views/user/MyPageAddr.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/MyPageAddr.jsp");
 		}else {
 			model.addAttribute("result","주소 및 입력정보를 다시 확인 해 주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}
 	    return"layout";
 	}

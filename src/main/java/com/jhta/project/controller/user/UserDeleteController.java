@@ -29,8 +29,8 @@ public class UserDeleteController {
 	public String UserDeleteForm(Model model,Principal principal) {
 		UserVo vo=service.test(principal.getName());
 		model.addAttribute("vo",vo);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/Delete.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/Delete.jsp");
 		return "layout";
 	}
 	@PostMapping("/delete")//탈퇴 비밀번호 입력받고
@@ -41,12 +41,12 @@ public class UserDeleteController {
 		if(passwordEncoder.matches(pw, userpwd) && n>0) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 			model.addAttribute("result","회원탈퇴가 완료되었습니다.");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}else {
 			model.addAttribute("result","비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}
 		
 		return "layout";

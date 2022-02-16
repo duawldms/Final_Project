@@ -133,8 +133,11 @@
 		<td class="col2">${vo.or_totalcost}원</td>       
 	</tr> 
 </table><br><br>
+<input type="button" value="목록" onclick="returnlist()" class="btn3">
 </div>	
-<script type="text/javascript">
-	
 
+<script>
+function returnlist(){
+	location.href="${cp }/userdelivery";  
+	}
 </script>
