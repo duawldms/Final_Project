@@ -35,6 +35,7 @@ public class MenuController {
 	@GetMapping("/restaurant/menuadd")
 	public String menuAddForm(Model model, Principal principal) {
 		model.addAttribute("r_id", principal.getName());
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/menuAdd.jsp");
 		return "layout";
 	}
@@ -74,6 +75,7 @@ public class MenuController {
 	public String categoryList(Model model, Principal principal) {
 		List<FoodVo> menuList = service.menuList(principal.getName());
 		model.addAttribute("menuList", menuList);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/foodList.jsp");
 		return "layout";
 	}
@@ -82,6 +84,7 @@ public class MenuController {
 	public String optionAddForm(int food_num, Model model) {
 		FoodVo vo = service.getFood(food_num);
 		model.addAttribute("vo", vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sideOptionAdd.jsp");
 		return "layout";
 	}
@@ -104,6 +107,7 @@ public class MenuController {
 	public String foodEdit(Model model, Principal principal) {
 		List<FoodVo> menuList = service.menuList(principal.getName());
 		model.addAttribute("menuList", menuList);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/foodEdit.jsp");
 		return "layout";
 	}
@@ -113,6 +117,7 @@ public class MenuController {
 	public String foodUpdateForm(Model model, int food_num) {
 		FoodVo vo = service.getFood(food_num);
 		model.addAttribute("vo", vo);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/foodUpdate.jsp");
 		return "layout";
 	}
@@ -182,6 +187,7 @@ public class MenuController {
 	public String optionEditForm(int food_num, Model model) {
 		List<FoodOptionVo> list = service.optionSelect(food_num);
 		model.addAttribute("list", list);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/optionEdit.jsp");
 		return "layout";
 	}

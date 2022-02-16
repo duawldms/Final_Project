@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jhta.project.service.restaurant.RestaurantService;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.MenuUnionVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
 
 @RestController
@@ -62,6 +63,12 @@ public class RestaurantAjaxController {
 	@RequestMapping(value = "/getMailCode", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String mailSend(String r_email) {
 		return "";
+	}
+	
+	@RequestMapping(value = "/getCancelList", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public List<MenuUnionVo> cancelList(Principal principal) {
+		List<MenuUnionVo> list = service.cancelList(principal.getName());
+		return list;
 	}
 	
 }
