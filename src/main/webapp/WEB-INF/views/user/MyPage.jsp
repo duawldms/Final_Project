@@ -1,34 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<style type="text/css">
-	div#mypagelayout{height:900px;margin:auto;margin-top:110px;}        
-	div#sidepage{float:left;width:330px;height:900px;}  
-	ul#list{list-style:none;}       
+	<style type="text/css">   
+	#wrap{
+		margin:0px; 
+		padding: 0px; 
+		text-align: center;
+		margin-top: 50px;
+	}
+	#saller1{
+	float:left;
+	width:330px;    
+	height:30px;                    
+	}     
+	.seller-my {
+			display: table;
+		    margin: 0 auto;
+		    width: 100%;
+		    height: 720px;
+		    text-align: center;
+		}
+	
+	.seller-info {     
+    	height: 100%;
+    	width : 500px;          
+	    display: table-cell;   
+	      
+	}
+	
+	.seller-edit {
+		border: 1px solid #D8D8D8;
+	    height: 25%;
+	    width: 25%;
+	    display: inline-block;
+	    margin: 5px;
+	    cursor: pointer;
+	    padding: 25px;
+	}
+	
+	.seller-edit:hover {
+		background-color: #E0E0E0;
+	}
+	
+	.seller-edit img {     
+		width: 100px;
+		height: 100px;
+		max-width:100%; max-height:100%;
+            vertical-align:middle;
+	}
 	
 	</style>
-	<script type="text/javascript">
-	
-	
-	
-	</script>
 
-<div id="mypagelayout">
-	<div id="sidepage" style="width:150px;">
-		<div> 
-		 <h3>My Page</h3>
-			<h6>${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.</h6>
-		</div>  
-		<!-- 회원등급? -->
-		<ul id="list">
-			<li><a href="${cp }/userdelivery">배달내역</a></li>
-			<li><a href="${cp }/">리뷰쓰기</a></li>
-			<li><a href="${cp }/userreview?ui_id=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">리뷰내역</a></li>
-			<li><a href="${cp }/userinfocheck">기본정보</a></li>
-			<li><a href="${cp }/useraddr">배송지 관리</a></li>
-			<li><a href="${cp }/userdelete">회원탈퇴하기</a></li>
-		</ul>
-	</div>
-	<div id="mypagemain">      
-		<jsp:include page="${requestScope.mypagemain }"/>
-	</div>
+<div id="wrap">
+	<div class="seller-my">
+	<div class="seller-info">   
+		<div class="seller-edit" onclick="location.href='${cp }/userdelivery'"><img src="${cp }/resources/img/foodall.png"><br>배달내역</div>	
+				<div class="seller-edit" onclick="location.href='${cp }/'"><img src="${cp }/resources/img/shop.png"><br>리뷰관리</div>	<br>       
+		<div class="seller-edit" onclick="location.href='${cp }/userinfocheck'"><img src="${cp }/resources/img/password.png"><br>기본정보</div>      	
+		<div class="seller-edit" onclick="location.href='${cp }/userdelete'"><img src="${cp }/resources/img/deleteimg.png"><br>회원탈퇴</div>	
+
+		</div>
+	</div> 
 </div>
+

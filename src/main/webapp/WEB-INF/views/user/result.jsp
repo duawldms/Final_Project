@@ -13,7 +13,7 @@
 	margin-bottom:200px;  
 	padding: 35px;  
 	height:300px;   
-	font-size: 25px;                 
+	font-size: 20px;                      
 	}     
 	 .btn3 {
     color:white; 

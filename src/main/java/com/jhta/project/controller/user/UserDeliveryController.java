@@ -65,8 +65,8 @@ public class UserDeliveryController {
 		model.addAttribute("keyword",keyword);
 		//model.addAttribute("list1",list1);
 		model.addAttribute("pu",pu);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/DeliveryList.jsp");
 		
 		return "layout";	
 	} 
@@ -75,8 +75,8 @@ public class UserDeliveryController {
 		service.statusupdate(vo);
 		ArrayList<OrdersVo> list = service.userdelivery(principal.getName());
 		model.addAttribute("ui_id",principal.getName());
-		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryList.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/DeliveryList.jsp");
 		return "redirect:/userdelivery";	
 	}
 	@GetMapping("/user/deliverydetail")
@@ -85,8 +85,8 @@ public class UserDeliveryController {
 		selectvo.setUi_id(principal.getName()); 
 		OrdersVo vo=service.deliverydetail(selectvo);
 		model.addAttribute("vo",vo);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/DeliveryDetail.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/DeliveryDetail.jsp");
 		
 		HashMap<String,Object>map=new HashMap<String,Object>();
 		List<OrdersVo>mainornum=service.selectmainornum(or_num); //or_num에 따른 메인 메뉴 번호 꺼내오기(중복제거)

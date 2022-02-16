@@ -25,13 +25,14 @@ public class UserInfoController {
 	@GetMapping("/user/usermypage")
 	public String UserPage(Model model){
 		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
 		return "layout";
 	}
 	//비밀번호 확인 창으로 넘어가기 
 	@GetMapping("/userinfocheck")
 		public String UserInfoCheckForm(Model model,Principal principal) {
-		model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheck.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/UserInfoCheck.jsp");
 		return "layout";		
 	}
 	@PostMapping("/userinfo")
@@ -40,12 +41,12 @@ public class UserInfoController {
 		UserVo vo1=service.selectUser(principal.getName());
 		if(passwordEncoder.matches(pw, userpwd)) {
 			model.addAttribute("vo",vo1);
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfo.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserInfo.jsp");
 		}else {
 			model.addAttribute("vo","비밀번호가 일치하지 않습니다.");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserInfoCheckFalse.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");	
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserInfo.jsp");	
 		}
 		return "layout";
 	}

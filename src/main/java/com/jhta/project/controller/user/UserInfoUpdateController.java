@@ -24,14 +24,14 @@ public class UserInfoUpdateController {
 		vo1.setUa_name(vo.getUi_name());
 		vo1.setUa_phone(vo.getUi_phone());
 		if(n>0) {
-			addrservice.addrupdate(vo1);
+			//addrservice.addrupdate(vo1);
 			model.addAttribute("result","회원정보가 업데이트 되었습니다.");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}else {
 			model.addAttribute("result","회원정보 업데이트에 오류가 발생했습니다. 입력 내용을 다시 확인 해 주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}
 	
 		return "layout";

@@ -11,7 +11,7 @@
 	margin-bottom:200px;  
 	padding: 35px;  
 	height:300px;   
-	font-size: 25px;                 
+	font-size: 25px;                   
 	}     
 	 .btn3 {
     color:white; 
@@ -28,7 +28,7 @@
 	
 </style>
 <div id="resultbox">
-입력하신 비밀번호가 일치하지 않습니다. 
-다시 확인 해 주세요.
+입력하신 비밀번호가 <br> 일치하지 않습니다.<br>      
+다시 확인 해 주세요.<br>   
 <a href="${cp }/userinfocheck" class="btn3">닫기</a>
 </div>
