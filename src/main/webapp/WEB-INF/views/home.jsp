@@ -105,7 +105,7 @@
 	                        <h2>전체보기</h2>
 	                    </div>
 	                </div>
-	         	<c:forEach var="vo" items="${list}">
+	         	<c:forEach var="vo" items="${list}" >
 		                <div class="card">
 		                    <div class="img">
 		                    <a href="${cp }/search?cg_name=${vo.cg_name}">
@@ -115,14 +115,15 @@
 		                    <div class="text">
 		                        <h2 style="margin-bottom:10px">${vo.cg_name}</h2>
 			                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-									<button type="button" class="btn-light" onclick="javascript:modify()">카테고리수정</button>
-									<button type="button" class="btn-light" onclick="javascript:cadelete()">카테고리삭제</button>
+									<button type="button" class="btn-light" onclick="javascript:modify('${vo.cg_name}')">카테고리수정</button>
+									<button type="button" class="btn-light" onclick="javascript:cadelete('${vo.cg_name}')">카테고리삭제</button>
+									<input type="hidden" value="${vo.cg_name }" id="cg_name"> 
 									<script>
-										function modify(){
-											location.href="${cp}/category/modify?cg_name=${vo.cg_name}";
+										function modify(${vo.cg_name}){
+											location.href="${cp}/category/modify?cg_name=" + ${vo.cg_name};  
 										}
-										function cadelete(){
-											location.href="${cp}/category/delete?cg_name=${vo.cg_name}";
+										function cadelete(${vo.cg_name}){
+											location.href="${cp}/category/delete?cg_name=" + ${vo.cg_name};
 										}
 									</script>
 								</sec:authorize>
