@@ -35,7 +35,7 @@ public class MailUtil {
 		//email전송
 		String mailRecipient=vo.getUi_email();//받는 사람 이메일 주소
 		try {
-			//객체 선언
+			//객체 선언  
 			HtmlEmail mail = new HtmlEmail();
 			mail.setDebug(true);
 			mail.setCharset(charSet);
