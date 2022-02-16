@@ -12,8 +12,8 @@
 	    /* height: 300px; */
 	    padding: 50px;
 	    padding-top: 50px;
-	    margin-top: 200px;
-	    margin-bottom: 200px;      
+	    margin-top: 210px;
+    	margin-bottom: 210px;     
    } 
    
    .check_btn_div {
@@ -78,6 +78,13 @@
 		let params = "r_pwd=" + r_pwd.value;
 		let token = document.getElementById("_csrf").getAttribute("content");
 		let token_header = document.getElementById("_csrf_header").getAttribute("content");
+		
+		if (r_pwd.value == '') {
+			r_pwd.focus();
+			pwd_err.innerText = "비밀번호를 입력해 주세요.";
+			return;
+		}
+		
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {

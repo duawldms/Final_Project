@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
-<h1 style="text-align: center;">사이드 메뉴 등록</h1>
-<div class="food_list_wrep">
+<div class="food_list_wrap">
+	<h2 style="text-align: center;">사이드 메뉴 등록</h2>
 	<div class="side_search">
 		<input type="text" id="food_search" name="food_search" placeholder="음식명 검색">
 		<input type="button" value="검색" onclick="foodSearch()"> 

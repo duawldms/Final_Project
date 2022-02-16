@@ -15,6 +15,7 @@ import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.MenuUnionVo;
 import com.jhta.project.vo.restaurant.OrderCancelVo;
 import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
@@ -137,6 +138,11 @@ public class RestaurantService {
 			return mapper.selectSalesYear(map);
 		}
 	}
+	public List<OrderListVo> excelDown(HttpServletRequest req,String r_id){
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("or_totalcost",req.getParameter("or_totalcost"));
+		return mapper.excelDown(map);
+	}
 	// 판매자 비밀번호 변경
 	public int sellerPwdChange(String r_pwd, String r_id) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -145,13 +151,26 @@ public class RestaurantService {
 		map.put("r_pwd", rPwd);
 		return mapper.sellerPwdChange(map);
 	}
-
-	// 주문 취소 내역 불러오기
-	public List<OrderCancelVo> orderCancel() {
-		return mapper.orderCancel();
+	// 주문 리스트 불러오기
+	public List<OrdersVo> getOrders(String r_id) {
+		return mapper.getOrders(r_id);
 	}
-	public List<OrdersVo> getOrders() {
-		return mapper.getOrders();
+	public List<MenuUnionVo> getMenuUnion(String r_id) {
+		return mapper.getMenuUnion(r_id);
+	}
+	// 주문 리스트 불러오기 end
+	
+	// 주문 취소
+	public int orderCancel(int or_num) {
+		return mapper.orderCancel(or_num);
+	}
+	// 주문 취소 리스트
+	public List<MenuUnionVo> cancelList(String r_id) {
+		return mapper.cancelList(r_id);
+	}
+	// 회원 탈퇴
+	public int sellerDelete(String r_id) {
+		return mapper.sellerDelete(r_id);
 	}
 	
 }

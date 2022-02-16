@@ -47,6 +47,8 @@ public interface SearchMapper {
 	List<OrderAndHitVo> orfoodcount(String r_id);
 	InSearchReviewVo findreview(int or_num);
 	List<String> findfoodname(int or_num);
+	List<InSearchOrdersVo> findOrdersRid(String ui_id);
+	InSearchOrdersVo getOrder(int or_num);
 }
 
 

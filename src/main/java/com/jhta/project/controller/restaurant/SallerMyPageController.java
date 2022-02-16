@@ -13,6 +13,7 @@ public class SallerMyPageController {
 	
 	@GetMapping("/restaurant/sallermypage")
 	public String sallermypage(Model model) {
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main","/WEB-INF/views/restaurant/sallermypage.jsp");
 		return "layout";
 	}

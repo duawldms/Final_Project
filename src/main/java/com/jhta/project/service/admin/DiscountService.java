@@ -1,6 +1,5 @@
 package com.jhta.project.service.admin;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,7 @@ import com.jhta.project.vo.admin.DiscountVo;
 public class DiscountService {
 	@Autowired private DiscountMapper mapper;
 	
-	public List<DiscountVo> selectList(HashMap<String,Object> map){
-		return mapper.list(map);
-	}
-	public int getCount(HashMap<String,Object> map) {
-		return mapper.count(map);
+	public List<DiscountVo> selectList(String date){
+		return mapper.list(date);
 	}
 }

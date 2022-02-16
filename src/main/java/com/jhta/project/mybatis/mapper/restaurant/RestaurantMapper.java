@@ -7,6 +7,7 @@ import com.jhta.project.service.security.CustomUserDetail;
 import com.jhta.project.vo.restaurant.CategoryVo;
 import com.jhta.project.vo.restaurant.FoodOptionVo;
 import com.jhta.project.vo.restaurant.FoodVo;
+import com.jhta.project.vo.restaurant.MenuUnionVo;
 import com.jhta.project.vo.restaurant.OrderCancelVo;
 import com.jhta.project.vo.restaurant.OrderListVo;
 import com.jhta.project.vo.restaurant.RestaurantVo;
@@ -39,6 +40,10 @@ public interface RestaurantMapper {
 	List<OrderListVo> selectSalesYear(Map<String, Object> map);
 	int sellerPwdChange(Map<String, String> map);
 	List<CategoryVo> getCategory();
-	List<OrderCancelVo> orderCancel();
-	List<OrdersVo> getOrders();
+	int orderCancel(int or_num);
+	List<OrdersVo> getOrders(String r_id);
+	List<MenuUnionVo> getMenuUnion(String r_id);
+	List<MenuUnionVo> cancelList(String r_id);
+	int sellerDelete(String r_id);
+	List<OrderListVo> excelDown(Map<String, Object> map);
 }

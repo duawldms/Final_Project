@@ -312,6 +312,12 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</div>
 			</div>
 		</header>
+		<nav id="left" style="top: auto;
+						    height: auto;
+						    width: 203px;
+						    position: absolute;"	>
+			<jsp:include page="${requestScope.mypage }"/>
+		</nav>
 		<main id="content" class="neve-main" role="main">
 
 			<div id="main">

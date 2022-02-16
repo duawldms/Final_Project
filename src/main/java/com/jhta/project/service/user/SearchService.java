@@ -114,6 +114,12 @@ public class SearchService {
 	public List<String> findfoodname(int or_num) {
 		return mapper.findfoodname(or_num);
 	}
+	public List<InSearchOrdersVo> findOrdersRid(String ui_id){
+		return mapper.findOrdersRid(ui_id);
+	}
+	public InSearchOrdersVo getOrder(int or_num) {
+		return mapper.getOrder(or_num);
+	}
 }
 
 
