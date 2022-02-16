@@ -16,5 +16,8 @@ public class MenuUnionVo {
 	private String fo_name;
 	private int food_count;
 	private int food_cost_sum;
+	private int or_totalcost;
+	private String or_request;
+	private int or_status;
 	private Date or_regdate;
 }

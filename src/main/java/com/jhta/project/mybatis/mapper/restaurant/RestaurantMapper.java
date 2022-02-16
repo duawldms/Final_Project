@@ -48,4 +48,5 @@ public interface RestaurantMapper {
 	List<OrderListVo> excelDown(Map<String, Object> map);
 	int orderAccept(Map<String, Integer> map);
 	int deliveryStart(int or_num);
+	List<MenuUnionVo> getOrder(int or_num);
 }

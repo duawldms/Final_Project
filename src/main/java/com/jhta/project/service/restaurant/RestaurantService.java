@@ -155,6 +155,10 @@ public class RestaurantService {
 	public List<OrdersVo> getOrders(String r_id) {
 		return mapper.getOrders(r_id);
 	}
+	// 해당 or_num 주문 불러오기
+	public List<MenuUnionVo> getOrder(int or_num) {
+		return mapper.getOrder(or_num);
+	}
 	public List<MenuUnionVo> getMenuUnion(String r_id) {
 		return mapper.getMenuUnion(r_id);
 	}

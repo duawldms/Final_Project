@@ -63,4 +63,14 @@ public class RestaurantOrderController {
 		service.deliveryStart(or_num);
 		return "redirect:/restaurant/orderList";
 	}
+	
+	@GetMapping("/restaurant/orderInfo")
+	public String orderInfo(Model model, int or_num) {
+		List<MenuUnionVo> list = service.getOrder(or_num);
+		list.forEach((aa) -> System.out.println(aa));
+		model.addAttribute("list", list);	
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
+		model.addAttribute("main", "/WEB-INF/views/restaurant/orderList.jsp");
+		return "layout";
+	}
 }
