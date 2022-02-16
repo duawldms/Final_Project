@@ -196,6 +196,10 @@
 	<select id="getOrder" parameterType="int" resultType="com.jhta.project.vo.user.InSearchOrdersVo">
 		select * from orders where or_num=#{or_num}
 	</select>
+	<select id="getRidOrnum" parameterType="int" resultType="string">
+		select distinct f.r_id from orders o,orders_detail od,food f
+		where o.or_num=od.or_num and od.food_num=f.food_num and o.or_num=#{or_num}
+	</select>
 </mapper> 
 
 

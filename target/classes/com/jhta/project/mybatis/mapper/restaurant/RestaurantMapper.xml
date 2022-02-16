@@ -201,6 +201,7 @@
 		f.r_id = #{r_id}
 	</select>
 	<select id="getMenuUnion" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
+		<![CDATA[
 		select
 		o.or_num,
 		or_request,
@@ -220,9 +221,11 @@
 		and 
 		od.food_num = f.food_num
 		and
-		or_status in(1, 2)
+		or_status >= 1
 		and
-		f.r_id = 'zxc'
+		or_status <= 4
+		and
+		f.r_id = #{r_id}
 		group by 
 		o.or_num,
 		or_request,
@@ -255,11 +258,14 @@
 		f.food_num = fo.food_num
 		and
 		oo.fo_num = fo.fo_num
-		and 
-		or_status in(1, 2)
 		and
-		f.r_id = 'zxc'
+		or_status >= 1
+		and
+		or_status <= 4
+		and
+		f.r_id = #{r_id}
 		order by food_num, fo_num
+		]]>
 	</select>
 	<!-- 주문 내역 불러오기 end -->
 	
@@ -312,21 +318,75 @@
 		where
 		or_num = #{or_num}
 	</update>
-	<!-- 접수된 주문 수(삭제 예정)-->
-	<!-- <select id="orderCount" parameterType="string" resultType="int">
+	<!-- or_num에 해당되는 주문 -->
+	<select id="getOrder" parameterType="int" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
+		<![CDATA[
 		select
-		count(distinct o.or_num)
-		from 
-		orders o,
-		orders_detail od,
-		food f
+		o.or_num,
+		or_request,
+		f.food_num,
+		1 as fo_num,
+		food_name,
+		null as fo_name,
+		count(food_name)as food_count,
+		sum(food_cost) as food_cost_sum,
+		or_totalcost,
+		or_status,
+		or_regdate
+		from orders o, 
+		     orders_detail od,
+		     food f
 		where
-		o.or_num = od.or_num
-		and
+		o.or_num = od.or_num 
+		and 
 		od.food_num = f.food_num
 		and
-		or_status = 1
+		or_status >= 1
 		and
-		r_id = #{r_id}
-	</select> -->
+		or_status <= 3
+		and
+		o.or_num = #{or_num}
+		group by 
+		o.or_num,
+		or_request,
+		f.food_num,
+		food_name,
+		or_totalcost,
+		or_status,
+		or_regdate
+		union all
+		select
+		o.or_num,
+		or_request,
+		fo.food_num,
+		fo.fo_num,
+		null,
+		fo_name,
+		oo_count,
+		oo_count * fo_cost as option_cost_sum,
+		or_totalcost,
+		or_status,
+		o.or_regdate
+		from orders o, 
+		     orders_detail od,
+		     orders_option oo,
+		     food f,
+		     food_options fo
+		where
+		o.or_num = od.or_num 
+		and 
+		od.od_num = oo.od_num
+		and
+		f.food_num = fo.food_num
+		and
+		oo.fo_num = fo.fo_num
+		and
+		or_status >= 1
+		and
+		or_status <= 3
+		and
+		o.or_num = #{or_num}
+		order by food_num, fo_num
+		]]>
+	</select>
 </mapper>

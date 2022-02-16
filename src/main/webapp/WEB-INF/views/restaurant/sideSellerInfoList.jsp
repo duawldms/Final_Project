@@ -45,7 +45,6 @@
 </style>
 <div id="wrap">
 	<div id="saller1">
-		
 		<ul>
 			<li class="li_title"><img src="${cp }/resources/img/user.png" style="width: 20px; height: 20px;">정보 수정</li>
 			<li><a href="${cp }/restaurant/sellerUpdate">회원정보 수정</a></li>
@@ -56,7 +55,7 @@
 			<li><a href="${cp }/restaurant/infoupdate">매장정보수정</a></li>
 			<li><a href="${cp }/restaurant/orderList">주문 목록</a></li>
 			<li><a href="${cp }/restaurant/chart">매출현황</a></li>
-			<li><a href="">리뷰관리</a></li>
+			<li><a href="${cp }/restaurant/orderInfo?or_num=1">주문 완료 목록</a></li>
 			<li class="li_title"><img src="${cp }/resources/img/fork.png" style="width: 20px; height: 20px;">메뉴 관리</li>
 			<li><a href="${cp }/restaurant/menuadd">메뉴 등록</a></li>
 			<li><a href="${cp }/restaurant/foodEdit">메뉴 수정</a></li>

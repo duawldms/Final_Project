@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
+<script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <style>
 	.order-accept-wrap {
 		margin: auto;
@@ -57,18 +60,30 @@
 			<input type="number" step="5" min="10" id="or_deltime" name="or_deltime" value="30"><b style="font-size: 20px;">분</b>
 		</div>
 		<div class="order-accept-div">
-			<a href="javascript:void(0)" id="order-accept-a" onclick="orderAccept()">주문 수락</a>
+			<a href="javascript:void(0)" id="order-accept-a" onclick="orderAccept(${requestScope.or_num})">주문 수락</a>
 		</div>
 		<input type="hidden" name="or_num" value="${requestScope.or_num }">
 	</form:form>	
 </div>
 <script>
-	function orderAccept() {
+	var stompClient = null;
+	
+	$(function() {
+		var socket = new SockJS('/project/stomp');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({}, function (frame) {
+			console.log("connected : " + frame);
+		});
+	});
+	
+	function orderAccept(or_num) {
+		stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num}));
 		window.opener.name = "orderList"; // 부모창의 이름 설정
-	    document.getElementById("order-accept-form").target = "${cp}/restaurant/orderList"; // 타켓을 부모창으로 설정
-	    document.getElementById("order-accept-form").action = "${cp}/restaurant/acceptReason";
-	    document.getElementById("order-accept-form").method = "post";
-	    document.getElementById("order-accept-form").submit();
-	    self.close();
+	   document.getElementById("order-accept-form").target = "${cp}/restaurant/orderList"; // 타켓을 부모창으로 설정
+	   document.getElementById("order-accept-form").action = "${cp}/restaurant/acceptReason";
+	   document.getElementById("order-accept-form").method = "post";
+	   document.getElementById("order-accept-form").submit();
+	   self.close();
 	}
+	
 </script>
