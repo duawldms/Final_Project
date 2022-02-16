@@ -74,14 +74,21 @@
 	   <th  class="col1">수정</th>
 	   <th  class="col1">삭제</th>
 	</tr>
-	<c:forEach var="vo" items="${vo }"> 
+	<c:forEach var="vo" items="${vo }" >
 	<tr>
 		<td class="col2">${vo.ua_nickname }</td>
 		<td class="col2">${vo.ua_addr }</td>
 		<td class="col2">${vo.ua_name }</td>
 		<td class="col2">${vo.ua_phone }</td>  
 		<td class="col2"><a href="${cp }/useraddrupdate?ua_num=${vo.ua_num}">수정하기</a></td>
-		<td class="col2"><a href="${cp }/useraddrdelete?ua_num=${vo.ua_num}">삭제하기</a></td>
+		<c:choose>
+			<c:when test="${vo.ua_nickname eq '기본배송지' }">
+				<td class="col2"></td>		
+			</c:when>
+			<c:when test="${vo.ua_nickname ne '기본배송지' }">
+			  <td class="col2"><a href="${cp }/useraddrdelete?ua_num=${vo.ua_num}">삭제하기</a></td>		
+			</c:when>
+		</c:choose>
 	</tr> 
 	</c:forEach>
 </table><br><br>  

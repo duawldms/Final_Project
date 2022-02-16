@@ -62,6 +62,13 @@
     .num{
     color: red;
     }
+    .addrchk {    
+    height: 25px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-color: black;
+    }
 </style>
 <script type="text/javascript">
 var themeObj = { 
@@ -94,8 +101,9 @@ $(function(){
 			$("input[id='ua_addr1']").attr('value',afteraddr1);    
 			$("input[id='ua_addr2']").attr('value',afteraddr2);   
 		});
-		
+	
   	$("form").submit(function(){
+  		let addrChkvalue=$("input[name='addrChkvalue']").val();
   		let ua_name=$("input[name='ua_name']").val();
 	    let ua_phone=$("input[name='ua_phone']").val();
 	    let ua_addr=$("input[id='ua_addr1']").val();
@@ -106,6 +114,7 @@ $(function(){
 				  $("input[name='ua_nickname']").focus();
 				return false;
 			 }
+		 
 			  if(ua_name==''){
 				  alert("이름을 입력해 주세요.");
 				  $("input[name='ui_name']").focus();
@@ -136,7 +145,16 @@ $(function(){
 <table  id="inserttable"> 
     <tr>
 		<td class="col1">배송지 명칭</td>
-		<td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }" readonly="readonly"></td>
+	<c:choose>
+		<c:when test="${vo.ua_nickname eq '기본배송지' }">
+		    <td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }" readonly="readonly"></td>
+		</c:when>
+		<c:otherwise>
+		<td class="col2"><input type="text" name="ua_nickname" value="${vo.ua_nickname }" id="ua_nickname" readonly="readonly">
+	 
+		</td>
+		</c:otherwise>
+	</c:choose>
 	</tr>
 	<tr>
 		<td class="col1">배송받을 분</td>

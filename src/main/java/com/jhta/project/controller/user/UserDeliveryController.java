@@ -45,11 +45,11 @@ public class UserDeliveryController {
 		List<OrdersVo> aa=new ArrayList<OrdersVo>();
 		List<Integer> bb=new ArrayList<Integer>();
 		int n=0;
-		if(intlist.size()!=0) {
 		for(int i=0;i<intlist.size();i++) {
 		n=intlist.get(i).getOr_num();
 		map.put("or_num", n);
 		List<OrdersVo>list1=service.deliverylistnew(map);
+		if(list1.size()!=0) {
 		OrdersVo vo=list1.get(0);	
 		Integer maincount=service.maincountnew(n);
 		vo.setCount(maincount);

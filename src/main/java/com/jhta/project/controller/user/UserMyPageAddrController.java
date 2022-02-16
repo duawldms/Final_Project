@@ -2,15 +2,20 @@ package com.jhta.project.controller.user;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.project.service.user.UserAddrService;
+import com.jhta.project.service.user.UserService;
 import com.jhta.project.vo.user.UserAddrVo;
+import com.jhta.project.vo.user.UserVo;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -18,6 +23,8 @@ import oracle.jdbc.proxy.annotation.Post;
 public class UserMyPageAddrController {
 	@Autowired
 	UserAddrService service;
+	@Autowired
+	UserService userservice;
 
 	@GetMapping("/useraddr")
 	public String UserAddrForm(Model model,Principal principal) {
@@ -82,6 +89,18 @@ public class UserMyPageAddrController {
 			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
 		}
 	    return"layout";
+	}
+	@GetMapping(value="/checkua_nickname",produces= {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String,Object> selectid(String ua_nickname,Principal principal,UserVo vo){
+		vo.setUi_id(principal.getName());
+	    UserVo vo1= userservice.checkua_nickname(vo);
+		HashMap<String,Object>map=new HashMap<String,Object>();
+		if(vo1!=null) {
+			map.put("using", true);
+		}else {
+			map.put("using", false);
+		}
+		return map;
 	}
 	
 }
