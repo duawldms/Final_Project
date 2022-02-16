@@ -16,8 +16,8 @@ public class MailUtil {
 		//Mail Server 설정
 		String charSet="utf-8";
 		String hostSMTP="smtp.gmail.com";
-		String hostSMTPid="yeoumjieun@gmail.com"; //관리자 이메일 아이디
-		String hostSMTPpw="Qwe378193919!!"; //관리자 이메일 비밀번호
+		String hostSMTPid=""; //관리자 이메일 아이디
+		String hostSMTPpw=""; //관리자 이메일 비밀번호
 		
 		//보내는 사람 
 		String fromEmail=""; //보내는 사람 이메일 
@@ -35,7 +35,7 @@ public class MailUtil {
 		//email전송
 		String mailRecipient=vo.getUi_email();//받는 사람 이메일 주소
 		try {
-			//객체 선언
+			//객체 선언  
 			HtmlEmail mail = new HtmlEmail();
 			mail.setDebug(true);
 			mail.setCharset(charSet);

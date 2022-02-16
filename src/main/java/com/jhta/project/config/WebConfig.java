@@ -18,7 +18,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	//servlet-context.xml에 대한 기능을 갖는 클래스 지정
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {ServletConfig.class};
+		return new Class[] {ServletConfig.class,WebSocketConfig.class};
 	}
 	//디스패쳐 서블릿 매핑 설정
 	@Override

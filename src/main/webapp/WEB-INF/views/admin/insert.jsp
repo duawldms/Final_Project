@@ -101,7 +101,7 @@ p {
 										onclick="doOpenCheck(this);">2</label>
 						</div>
 						<button type="submit" id="login-submit" class="btn btn-default btn-block"/>계정 생성</button>
-						<input type="button" onclick="location.href='${cp }/admin/adminpage'" class="btn btn-default btn-block" value="메인으로 돌아가기"> 
+						<input type="button" onclick="location.href='${cp }/admin/adminpage'" class="btn btn-default btn-block" value="관리자 메인으로 돌아가기"> 
 				</form:form>
 			</div>
 			</div>

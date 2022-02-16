@@ -36,5 +36,5 @@ public class ServletConfig implements WebMvcConfigurer {
 			= new StandardServletMultipartResolver();
 		return resolver;
 	}
-
+	
 }

@@ -188,6 +188,14 @@
 		select f.food_name from orders o,orders_detail od,food f
 		where o.or_num=od.or_num and od.food_num=f.food_num and o.or_num=#{or_num}
 	</select>
+	<!-- orders테이블에서 r_id 찾기 -->
+	<select id="findOrdersRid" parameterType="String" resultType="com.jhta.project.vo.user.InSearchOrdersVo">
+		select distinct o.or_num or_num,f.r_id r_id from orders o,orders_detail od,food f
+		<![CDATA[where o.or_num=od.or_num and od.food_num=f.food_num and o.ui_id=#{ui_id} and o.or_status<4]]>
+	</select>
+	<select id="getOrder" parameterType="int" resultType="com.jhta.project.vo.user.InSearchOrdersVo">
+		select * from orders where or_num=#{or_num}
+	</select>
 </mapper> 
 
 

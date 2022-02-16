@@ -3,19 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhta.project.mybatis.mapper.admin.DiscountMapper">
-	<sql id="search">
-		<if test="field!=null and field!=''">
-		where ${field} like '%'||#{keyword}||'%'
-		</if>
-	</sql>
-	<select id="list"  parameterType="hashMap" resultType="com.jhta.project.vo.admin.DiscountVo">
-		select r.r_name,to_char(o.or_regdate,'YYYY/MM')or_regdate,SUM(o.or_totalcost)or_totalcost
+
+	<select id="list"  parameterType="String" resultType="com.jhta.project.vo.admin.DiscountVo">
+		select r.r_name,to_char(o.or_regdate,'YYYY/MM') or_regdate,SUM(o.or_totalcost) or_totalcost
 		from orders o,orders_detail od,food f,restaurant r
-		where o.or_num=od.or_num
+		where o.or_num=od.or_num 
 		and od.food_num=f.food_num
 		and f.r_id=r.r_id
-		group by r.r_name, to_char(o.or_regdate,'YYYY/MM')
-		<include refid="search"/>
+		<if test="date!=null and date!=''">
+        and to_char(o.or_regdate,'YYYY/MM')=#{date}
+        </if>
+		group by r.r_name,to_char(o.or_regdate,'YYYY/MM')
 		order by or_totalcost desc
 	</select>
 	<!-- 전체 글의 갯수 -->
