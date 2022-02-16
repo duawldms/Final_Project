@@ -28,7 +28,9 @@ public class RestaurantAjaxController {
 	public HashMap<String, String> idCheck(String id) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		RestaurantVo vo = service.idCheck(id);
-		if (vo != null) {
+		String ui_id = service.userIdCheck(id);
+		String admin_id = service.adminIdCheck(id);
+		if (vo != null || ui_id != null || admin_id != null) {
 			map.put("result", "fail");
 		} else {
 			map.put("result", "success");

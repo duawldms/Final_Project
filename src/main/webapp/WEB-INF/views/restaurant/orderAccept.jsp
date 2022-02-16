@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
 <script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
 <style>
 	.order-accept-wrap {
 		margin: auto;
@@ -62,6 +62,7 @@
 		<div class="order-accept-div">
 			<a href="javascript:void(0)" id="order-accept-a" onclick="orderAccept(${requestScope.or_num})">주문 수락</a>
 		</div>
+		<input type="hidden" name="status" value="${requestScope.status }">
 		<input type="hidden" name="or_num" value="${requestScope.or_num }">
 	</form:form>	
 </div>
@@ -77,8 +78,8 @@
 	});
 	
 	function orderAccept(or_num) {
-		stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num}));
-		window.opener.name = "orderList"; // 부모창의 이름 설정
+	   stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num}));
+	   window.opener.name = "orderList"; // 부모창의 이름 설정
 	   document.getElementById("order-accept-form").target = "${cp}/restaurant/orderList"; // 타켓을 부모창으로 설정
 	   document.getElementById("order-accept-form").action = "${cp}/restaurant/acceptReason";
 	   document.getElementById("order-accept-form").method = "post";
