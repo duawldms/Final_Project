@@ -44,7 +44,7 @@ padding-top:130px;
 </head>
 <body>
 	<div class="container">
-		<h1>작성페이지</h1>
+		<h1 style="color:#337ab7;">작성페이지</h1>
 		<br>
 		<div class="panel panel-default" >
 			<div class="panel-heading">작성페이지</div>
