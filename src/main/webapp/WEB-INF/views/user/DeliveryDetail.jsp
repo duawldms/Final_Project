@@ -86,7 +86,7 @@
 		<td class="col2">${aa1.food_name }(${aa1.food_cost })</td>  
 		<td class="col2">      
 	<c:forEach var="op" items="${opt }"> <!-- 인덱스 번호에 맞는 list돌려서 값 얻어오기 -->
-		${op.fo_name }(${op.fo_cost })${op.oo_count }개<br> 
+		${op.fo_name }(${op.fo_cost }),${op.oo_count }개<br> 
 			<c:set var="price" value="${price  + (op.fo_cost * op.oo_count)}"/>
 		</c:forEach>    
 		</td>
