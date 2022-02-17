@@ -65,9 +65,19 @@
 	<select id="restaurantinfo" parameterType="String" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select r_name,r_minCost,r_delCost,r_img,r_info,r_delmin,r_delmax,r_state from restaurant where r_id=#{r_id}
 	</select>
+	
+	<!-- 아이디 중복 체크 -->
 	<select id="idCheck" parameterType="string" resultType="com.jhta.project.vo.restaurant.RestaurantVo">
 		select * from restaurant where r_id = #{r_id}
 	</select>
+	<select id="userIdCheck" parameterType="string" resultType="string">
+		select ui_id from user_information where ui_id = #{r_id}
+	</select>
+	<select id="adminIdCheck" parameterType="string" resultType="string">
+		select admin_id from admin where admin_id = #{r_id}
+	</select>
+	<!-- 아이디 중복 체크 end -->
+	
 	<!-- 메뉴 등록 -->
 	<insert id="menuAdd" parameterType="com.jhta.project.vo.restaurant.FoodVo">
 		insert into food values(food_seq.nextval, #{food_name}, #{r_id}, #{food_img}, #{food_cost}, #{food_info}, #{food_status})
@@ -182,6 +192,7 @@
 	</select>
 	<!-- 주문 내역 불러오기 -->
 	<select id="getOrders" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
+		<![CDATA[
 		select distinct
 		o.or_num,
 		or_request,
@@ -196,9 +207,12 @@
 		and
 		od.food_num = f.food_num
 		and
-		or_status in(1, 2)
+		or_status >= 1
+		and
+		or_status <= 4
 		and
 		f.r_id = #{r_id}
+		]]>
 	</select>
 	<select id="getMenuUnion" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
 		<![CDATA[
@@ -267,6 +281,13 @@
 		order by food_num, fo_num
 		]]>
 	</select>
+	<!-- 알림에서 받아온 or_num 주문 불러오기 -->
+	<select id="selectOrder" parameterType="int" resultType="com.jhta.project.vo.user.OrdersVo">
+		select *
+		from orders
+		where
+		or_num = #{or_num}
+	</select>
 	<!-- 주문 내역 불러오기 end -->
 	
 	<!-- 주문 취소 -->
@@ -315,6 +336,14 @@
 		update orders
 		set
 		or_status = 3
+		where
+		or_num = #{or_num}
+	</update>
+	<!-- 배달 완료 -->
+	<update id="deliveryEnd" parameterType="int">
+		update orders
+		set
+		or_status = 4
 		where
 		or_num = #{or_num}
 	</update>

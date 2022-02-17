@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jhta.project.service.restaurant.RestaurantService;
 import com.jhta.project.vo.restaurant.MenuUnionVo;
@@ -44,33 +45,62 @@ public class RestaurantOrderController {
 	}
 	
 	@GetMapping("/restaurant/acceptReason")
-	public String orderAcceptForm(Model model, int or_num) {
+	public String orderAcceptForm(Model model, int or_num, @RequestParam(value = "status", defaultValue = "0") int status) {
 		model.addAttribute("or_num", or_num);
+		model.addAttribute("status", status);
 		return "restaurant/orderAccept";
 	}
 	
 	@PostMapping("/restaurant/acceptReason")
-	public String orderAccept(int or_num, int or_deltime) {
+	public String orderAccept(int or_num, int or_deltime, @RequestParam(value = "status", defaultValue = "0") int status) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("or_num", or_num);
 		map.put("or_deltime", or_deltime);
 		service.orderAccept(map);
-		return "redirect:/restaurant/orderList";
+		if (status == 1) {
+			return "redirect:/restaurant/orderInfo?or_num=" + or_num;
+		} else {
+			return "redirect:/restaurant/orderList";
+		}
 	}
 	
 	@GetMapping("/restaurant/deliveryStart")
-	public String deliveryStart(int or_num) {
+	public String deliveryStart(int or_num, @RequestParam(value = "status", defaultValue = "0") int status) {
 		service.deliveryStart(or_num);
+		if (status == 1) {
+			return "redirect:/restaurant/orderInfo?or_num=" + or_num;
+		} else {
+			return "redirect:/restaurant/orderList";
+		}
+	}
+	
+	@GetMapping("/restaurant/deliveryEnd")
+	public String deliveryEnd(int or_num, @RequestParam(value = "status", defaultValue = "0") int status) {
+		service.deliveryEnd(or_num);
 		return "redirect:/restaurant/orderList";
 	}
 	
 	@GetMapping("/restaurant/orderInfo")
 	public String orderInfo(Model model, int or_num) {
-		List<MenuUnionVo> list = service.getOrder(or_num);
-		list.forEach((aa) -> System.out.println(aa));
-		model.addAttribute("list", list);	
+		OrdersVo vo = service.selectOrder(or_num);
+		System.out.println("vo : " + vo);
+		List<MenuUnionVo> menu = service.getOrder(or_num);
+		menu.forEach((aa) -> System.out.println(aa));
+		model.addAttribute("vo", vo);	
+		model.addAttribute("menu", menu);	
 		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
-		model.addAttribute("main", "/WEB-INF/views/restaurant/orderList.jsp");
+		model.addAttribute("main", "/WEB-INF/views/restaurant/orderInfo.jsp");
+		return "layout";
+	}
+	
+	@GetMapping("/restaurant/orderComplete")
+	public String orderComplete(Model model, Principal principal) {
+		List<OrdersVo> list = service.getOrders(principal.getName());
+		List<MenuUnionVo> menu = service.getMenuUnion(principal.getName());
+		model.addAttribute("list", list);
+		model.addAttribute("menu", menu);
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
+		model.addAttribute("main", "/WEB-INF/views/restaurant/orderComplete.jsp");
 		return "layout";
 	}
 }

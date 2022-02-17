@@ -51,12 +51,6 @@ public class RestaurantService {
 	public int addAuth(AuthorityVo vo) {
 		return mapper.addAuth(vo);
 	}
-	
-	// 아이디 중복체크
-	public RestaurantVo idCheck(String r_id) {
-		return mapper.idCheck(r_id);
-	}
-	
 	// 카테고리 불러오기
 	public List<CategoryVo> getCategory() {
 		return mapper.getCategory();
@@ -183,6 +177,26 @@ public class RestaurantService {
 	// 배달 시작
 	public int deliveryStart(int or_num) {
 		return mapper.deliveryStart(or_num);
+	}
+	// 알림에서 받아온 or_num 주문 불러오기
+	public OrdersVo selectOrder(int or_num) {
+		return mapper.selectOrder(or_num);
+	}
+	// 아이디 중복체크
+	public RestaurantVo idCheck(String r_id) {
+		return mapper.idCheck(r_id);
+	}
+	public String userIdCheck(String id) {
+		return mapper.userIdCheck(id);
+	}
+
+	public String adminIdCheck(String id) {
+		return mapper.adminIdCheck(id);
+	}
+	// 아이디 중복체크 end
+
+	public int deliveryEnd(int or_num) {
+		return mapper.deliveryEnd(or_num);
 	}
 }
 
