@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script type="text/javascript" src="${cp }/resources/js/jquery-3.6.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
 <style>
 	.cancel_reason_wrap {
@@ -89,6 +92,16 @@
     </div>
 </div>
 <script>
+	var stompClient = null;
+	
+	$(function() {
+		var socket = new SockJS('/project/stomp');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({}, function (frame) {
+			console.log("connected : " + frame);
+		});
+	});
+
 	function orderCancel() {
 		let radio = document.getElementsByName("cancel_reason");
 		let radio_check = false;
@@ -102,7 +115,7 @@
 			popup_open_btn();
 			return;
 		}
-		
+		stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num}));
 		window.opener.name = "orderList"; // 부모창의 이름 설정
 	    document.getElementById("cancel_reason_form").target = "${cp}/restaurant/orderList"; // 타켓을 부모창으로 설정
 	    document.getElementById("cancel_reason_form").action = "${cp}/restaurant/cancelReason";

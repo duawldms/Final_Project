@@ -74,13 +74,13 @@ var themeObj = {
 		document.getElementById("addr-addon").addEventListener('click',function(){
 			new daum.Postcode({
 		        oncomplete: function(data) {
-		    	   	document.getElementById("ua_addr").value = data.address; // 주소 넣기
-		        	document.getElementById("ua_addr").placeholder = "상세주소를 입력하세요";
-		        	document.getElementById("ua_addr").focus();
+		    	   	document.getElementById("ua_addr1").value = data.address; // 주소 넣기
+		        	document.getElementById("ua_addr2").placeholder = "상세주소를 입력하세요";
+		        	document.getElementById("ua_addr1").focus();
 		        },
 		        theme:themeObj
 			 }).open({
-				q:document.getElementById("ua_addr").value
+				q:document.getElementById("ua_addr1").value
 			 });
 		});
 	    //아이디 중복확인
@@ -112,7 +112,8 @@ var themeObj = {
 		let ui_name=$("input[name='ui_name']").val();
 		let ui_email=$("input[name='ui_email']").val();
 	    let ui_phone=$("input[name='ui_phone']").val();
-		let ua_addr=$("input[name='ua_addr']").val();    
+		let ua_addr1=$("input[id='ua_addr1']").val();   
+		let ua_addr2=$("input[id='ua_addr2']").val();  
 		
 		 var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			
@@ -167,9 +168,14 @@ var themeObj = {
 				  $("input[name='ui_phone']").focus();
 			    return false;
 		    }
-			  if(ua_addr==''){
+			  if(ua_addr1==''){
 				  alert("주소를 입력해 주세요.");
-				  $("input[name='ua_addr']").focus();
+				  $("input[id='ua_addr1']").focus();
+			    return false;
+		    }
+			  if(ua_addr2==''){
+				  alert("상세 주소를 입력해 주세요.");  
+				  $("input[id='ua_addr2']").focus();
 			    return false;
 		    }
 
@@ -219,9 +225,9 @@ var themeObj = {
 		<tr>
 			<td class="col1">배송받을 주소</td>
 			<td class="col2">
-			<input type="text" id="ua_addr" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
-			<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
-			<input type="text"  id="ua_addr" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
+		<input type="text" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">
+		<button  type="button" id="addr-addon" class="useridbtn">검색</button> <br> 
+		<input type="text"  id="ua_addr2" name="ua_addr" aria-describedby="addr-addon" style="width:500px;" placeholder="상세주소를 입력해 주세요"> 
 			</td>
 		</tr>
 	</table><br><br>   

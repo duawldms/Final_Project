@@ -65,10 +65,10 @@
 <c:set var="cnt" value="0"/>
 <div class="order_cancel_wrap">
 	<div class="order_cancel_title">
-		<h3>주문 목록</h3>
+		<h3>주문 완료 목록</h3>
 	</div>
 	<c:forEach var="vo" items="${requestScope.list }">
-		<c:if test="${vo.or_status != 4 }">
+		<c:if test="${vo.or_status == 4 }">
 			<table class="order_cancel_table" style="border-collapse: collapse">
 		 		<colgroup>
 		 			<col width="auto">
@@ -83,62 +83,44 @@
 		 			</tr>
 		 		</thead>
 		 		<tbody>
-					<c:forEach var="menu" items="${requestScope.menu }">
+						<c:forEach var="menu" items="${requestScope.menu }">
+							<tr>
+								<c:if test="${vo.or_num == menu.or_num }">
+									<c:choose>
+										<c:when test="${menu.food_name != null }">
+											<td>
+												<b>${menu.food_name }</b>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td>
+												${menu.fo_name }&nbsp;<small>(옵션)</small>
+											</td>
+										</c:otherwise>
+									</c:choose>
+									<td>
+										${menu.food_count }개
+									</td>
+									<td>
+										${menu.food_cost_sum }원
+									</td>
+								</c:if>
+							</tr>
+						</c:forEach>
 						<tr>
-							<c:if test="${vo.or_num == menu.or_num }">
-								<c:choose>
-									<c:when test="${menu.food_name != null }">
-										<td>
-											<b>${menu.food_name }</b>
-										</td>
-									</c:when>
-									<c:otherwise>
-										<td>
-											${menu.fo_name }&nbsp;<small>(옵션)</small>
-										</td>
-									</c:otherwise>
-								</c:choose>
-								<td>
-									${menu.food_count }개
-								</td>
-								<td>
-									${menu.food_cost_sum }원
-								</td>
-							</c:if>
+							<td colspan="3"><hr><i>총 결제 금액 : ${vo.or_totalcost }</i></td>
 						</tr>
-					</c:forEach>
-					<tr>
-						<td colspan="3"><hr><i>총 결제 금액 : ${vo.or_totalcost }</i></td>
-					</tr>
-					<tr>
-						<td colspan="3"><hr><i>주문번호 : ${vo.or_num }</i><hr></td>
-					</tr>
-					<tr>
-						<td colspan="3"><i>주문 시간 : ${vo.or_regdate }</i><hr></td>
-					</tr>
-					<c:if test="${vo.or_request != null }">
 						<tr>
-							<td colspan="3"><i>요청 사항 : ${vo.or_request }</i><hr></td>
+							<td colspan="3"><hr><i>주문번호 : ${vo.or_num }</i><hr></td>
 						</tr>
-					</c:if>
-					<tr>
-						<td colspan="3">
-							<c:choose>
-								<c:when test="${vo.or_status == 1}">
-									<a id="order_accept" class="orderlist-btn" href="javascript:void(0)" onclick="acceptPopup(${vo.or_num})">주문 수락</a>
-								</c:when>
-								<c:when test="${vo.or_status == 2}">
-									<a id="order_delivery" class="orderlist-btn" href="javascript:void(0)" onclick="deliveryStart(${vo.or_num})">배달 시작</a>
-								</c:when>
-								<c:when test="${vo.or_status == 3}">
-									<a id="order_delivery" class="orderlist-btn" href="javascript:void(0)" onclick="deliveryEnd(${vo.or_num})">배달 완료</a>
-								</c:when>
-							</c:choose>
-							<c:if test="${vo.or_status == 1}">
-								<a id="order_cancel" class="orderlist-btn" href="javascript:void(0)" onclick="cancelPopup(${vo.or_num})">주문 거부</a>
-							</c:if>
-						</td>
-					</tr>
+						<tr>
+							<td colspan="3"><i>주문 시간 : ${vo.or_regdate }</i><hr></td>
+						</tr>
+						<c:if test="${vo.or_request != null }">
+							<tr>
+								<td colspan="3"><i>요청 사항 : ${vo.or_request }</i><hr></td>
+							</tr>
+						</c:if>
 		 		</tbody>
 		 	</table>
 		</c:if>

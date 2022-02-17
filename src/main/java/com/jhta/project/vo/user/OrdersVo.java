@@ -13,7 +13,7 @@ public class OrdersVo {
 	private String ui_id;
 	private String or_request;
 	private Date or_regdate;
-	private Date or_deltime;
+	private int or_deltime;
 	private int or_status;
 	private int or_totalcost;
 	private String or_addr;

@@ -90,7 +90,7 @@ var themeObj = {
 		        },
 		        theme:themeObj
 			 }).open({
-				q:document.getElementById("ua_addr").value
+				q:document.getElementById("ua_addr1").value
 			 });
 		});
 		

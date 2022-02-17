@@ -95,7 +95,7 @@ public class RestaurantInfoUpdateController {
 		String[] ad = addr.split(", ");
 		model.addAttribute("list", list);
 		model.addAttribute("addr1", ad[0]);
-		//model.addAttribute("addr2", ad[1]);
+		model.addAttribute("addr2", ad[1]);
 		model.addAttribute("vo", vo);
 		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerUpdate.jsp");

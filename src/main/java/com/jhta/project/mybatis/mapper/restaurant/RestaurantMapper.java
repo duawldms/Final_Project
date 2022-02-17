@@ -49,4 +49,8 @@ public interface RestaurantMapper {
 	int orderAccept(Map<String, Integer> map);
 	int deliveryStart(int or_num);
 	List<MenuUnionVo> getOrder(int or_num);
+	OrdersVo selectOrder(int or_num);
+	String userIdCheck(String id);
+	String adminIdCheck(String id);
+	int deliveryEnd(int or_num);
 }
