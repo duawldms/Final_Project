@@ -298,6 +298,8 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						    			dataType:"json",
 						    			success:function(data){
 						    				if(data.result=='success'){
+						    					let audio=new Audio('${cp}/resources/sound/alarm.m4a');
+						    					audio.play();
 						    					$("#toasthead").html("<strong>배달요기이츠 주문이 들어왔습니다!</strong>");
 					    						$("#toastbody").html(JSON.parse(greeting.body).or_num+"번 주문이 들어왔습니다");
 					    						$("#toast").prop('class','toast show');;
