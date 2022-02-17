@@ -23,7 +23,7 @@ public class SearchController {
 	@Autowired private ServletContext sc;
 	@Autowired private SearchService service;
 	
-	@GetMapping("/search")
+	@GetMapping("/user/search")
 	public String goSearch(Model model,Principal principal,
 			@RequestParam(value="cg_name",defaultValue = "")String cg_name,
 			@RequestParam(value="keyword",defaultValue = "")String keyword,

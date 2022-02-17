@@ -31,7 +31,8 @@ public class PurchaseSuccessController {
 				int or_num=service.incOrseq();
 				map.put("or_num", or_num);
 				InSearchOrdersVo orvo=new InSearchOrdersVo(or_num, principal.getName(),
-						or_request, 0, 0, or_totalcost, addr, or_paymethod,null);
+						or_request, 0, 0, or_totalcost, addr, or_paymethod,null,0);
+				System.out.println(orvo);
 				service.insertOrders(orvo);
 				for(int i=0;i<cartlist.size();i++) {
 					CartVo cvo=cartlist.get(i);

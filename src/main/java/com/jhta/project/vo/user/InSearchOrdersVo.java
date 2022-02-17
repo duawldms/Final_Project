@@ -19,4 +19,5 @@ public class InSearchOrdersVo {
 	private String or_addr;
 	private String or_paymethod;
 	private String r_id;
+	private int remainTime;
 }

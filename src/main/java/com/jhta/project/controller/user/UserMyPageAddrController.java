@@ -93,7 +93,7 @@ public class UserMyPageAddrController {
 	@GetMapping(value="/checkua_nickname",produces= {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String,Object> selectid(String ua_nickname,Principal principal,UserVo vo){
 		vo.setUi_id(principal.getName());
-	    UserVo vo1= userservice.checkua_nickname(vo);
+	    String vo1= userservice.checkua_nickname(vo);
 		HashMap<String,Object>map=new HashMap<String,Object>();
 		if(vo1!=null) {
 			map.put("using", true);

@@ -176,7 +176,7 @@
 									//$("#keyword").val();
 									x=data.user_coordx;
 									y=data.user_coordy;
-									page+="<nav aria-label='Page navigation'><ul class='pagination'>"
+									page+="<nav aria-label='Page navigation'><ul class='pagination justify-content-center'>"
 									for(let i=1;i<=data.pu.totalPageCount;i++){
 										if(i==1){
 											page+="<li class='page-item active' aria-current='page'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
@@ -241,7 +241,7 @@
 				let page="";
 				let keyword="";
 				//$("#keyword").val();
-				page+="<nav aria-label='Page navigation'><ul class='pagination'>";
+				page+="<nav aria-label='Page navigation'><ul class='pagination justify-content-center'>";
 				if(pageNum!=1){
 					page+="<li class='page-item'><a class='page-link' href='javascript:paging("+(pageNum-1)+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"
 					+"Prev</span></a><li>";
@@ -362,7 +362,7 @@
 									let keyword="";
 										//$("#keyword").val();
 									$("#restau").append(seller);
-									page+="<nav aria-label='Page navigation example'><ul class='pagination'>"
+									page+="<nav aria-label='Page navigation example'><ul class='pagination justify-content-center'>"
 									for(let i=1;i<=data.pu.totalPageCount;i++){
 										if(i==1){
 											page+="<li class='page-item active' aria-current='page'><a class='page-link' href='javascript:paging("+i+","+data.user_coordx+","+data.user_coordy+")'><span style='color:blue'>"

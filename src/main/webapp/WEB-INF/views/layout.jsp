@@ -85,11 +85,11 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</sec:authorize>
 				<!-- 권한이 있는 사용자 처리 -->
 				<sec:authorize access="hasRole('ROLE_USER')">
-					<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
+					<span style="">[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="javascript:showcart()" style="color:white;text-decoration:none;">주문표</a></span>
 					</li>
-					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:-35px;">
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="border:none;padding:0px;color:white;position:absolute;left:-35px;">
 						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
 						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;"></span>
 						<span class="sr-only">unread messages</span>
@@ -97,7 +97,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					<div style="display:none;position:absolute;z-index:99;top:30px;left:-40px" id="Alarmlist" data-bs-toggle="tooltip" data-bs-placement="top" title="클릭하면 알람이 삭제됩니다">
 						
 					</div>
-					<div class="toast-container position-absolute p-3" style="z-index:99">
+					<div class="toast-container position-absolute p-3" style="z-index:99;">
 					<div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
 						<div class="toast-header" id="toasthead"></div>
 						<div class="toast-body" id="toastbody" style="text-align:left"></div>
@@ -113,8 +113,9 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 								alert('주문표에 있는 메뉴가 없습니다.');
 							}
 							$("#call").click(function(){
+								getAlarm();
 								$("#Alarmlist").toggle();
-								//stompClient.send("/app/callback", {}, JSON.stringify({'or_num': 322}));
+								
 							});
 							connect();
 						});
@@ -132,10 +133,10 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 										for(let i=0;i<data.list.length;i++){
 											if(data.list[i].or_status==2){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
-												alarm+=data.list[i].or_num+"번 주문이 조리중입니다.</a>";
+												alarm+=data.list[i].or_num+"번 주문이 조리중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==3){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
-												alarm+=data.list[i].or_num+"번 주문이 배달중입니다.</a>";
+												alarm+=data.list[i].or_num+"번 주문이 배달중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==4){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
 												alarm+=data.list[i].or_num+"번 주문이 배달완료 되었습니다.</a>";
@@ -146,6 +147,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 										$("#Alarmlist").html(alarm);
 										if(alarmcount==0){
 											$("#alarmbadge").html("");
+											$("#Alarmlist").css('display','none');
 											console.log('count=0');
 										}else{
 											$("#alarmbadge").html(alarmcount);
@@ -174,50 +176,55 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						    stompClient = Stomp.over(socket);
 						    stompClient.connect({}, function (frame) {
 				    				stompClient.subscribe('/topic/${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}', function (greeting) {
-				    					let or_num=JSON.parse(greeting.body).or_num;
-				    					let deltime=JSON.parse(greeting.body).deltime;
-				    					$.ajax({
-							    			url:"${cp}/saveAlarm",
-							    			data:{
-							    				or_num:or_num,
-							    				deltime:deltime
-							    			},
-							    			dataType:"json",
-							    			success:function(data){
-							    				if(data.result='success'){
-							    					let ovo=data.ovo;
-							    					console.log(ovo);
-							    					if(ovo.or_status==2){
-							    						$("#toasthead").html("<strong>고객님의 주문이 접수되었습니다!</strong>");
-							    						$("#toastbody").html("고객님의 소중한 주문이 정상 접수되어, " + ovo.or_deltime+"분 내외로 도착할 예정입니다.");
-							    						$("#toast").prop('class','toast show');;
-							    						setTimeout(function(){
-							    							$("#toast").prop('class','toast hide');
-							    						},2500);
-							    					}else if(ovo.or_status==3){
-							    						$("#toasthead").html("<strong>주문하신 음식의 배달이 시작되었습니다!</strong>");
-							    						$("#toastbody").html("배달주소 : " + ovo.or_addr);
-							    						$("#toast").prop('class','toast show');;
-							    						setTimeout(function(){
-							    							$("#toast").prop('class','toast hide');
-							    						},2500);
-							    					}else if(ovo.or_status==4){
-							    						$("#toasthead").html("<strong>주문하신 음식이 도착했습니다!</strong>");
-							    						$("#toastbody").html("맛있게 드시고 다음에도 주문해주세요~");
-							    						$("#toast").prop('class','toast show');;
-							    						setTimeout(function(){
-							    							$("#toast").prop('class','toast hide');
-							    						},2500);
-							    					}
-							    					getAlarm();
-							    				}else{
-							    					console.log('fail');
-							    				}
-							    			}
-							    		});
+				    					setTimeout(function(){
+				    						let or_num=JSON.parse(greeting.body).or_num;
+					    					$.ajax({
+								    			url:"${cp}/saveAlarm",
+								    			data:{
+								    				or_num:or_num
+								    			},
+								    			dataType:"json",
+								    			success:function(data){
+								    				if(data.result='success'){
+								    					let ovo=data.ovo;
+								    					console.log(ovo);
+								    					if(ovo.or_status==2){
+								    						console.log(2);
+								    						$("#toasthead").html("<strong>고객님의 주문이 접수되었습니다!</strong>");
+								    						$("#toastbody").html("고객님의 소중한 주문이 정상 접수되어, " + ovo.or_deltime+"분 내외로 도착할 예정입니다.");
+								    						$("#toast").prop('class','toast show');;
+								    						setTimeout(function(){
+								    							$("#toast").prop('class','toast hide');
+								    						},2500);
+								    					}else if(ovo.or_status==3){
+								    						console.log(3);
+								    						$("#toasthead").html("<strong>주문하신 음식의 배달이 시작되었습니다!</strong>");
+								    						$("#toastbody").html("배달주소 : " + ovo.or_addr);
+								    						$("#toast").prop('class','toast show');;
+								    						setTimeout(function(){
+								    							$("#toast").prop('class','toast hide');
+								    						},2500);
+								    					}else if(ovo.or_status==4){
+								    						console.log(4);
+								    						$("#toasthead").html("<strong>주문하신 음식이 도착했습니다!</strong>");
+								    						$("#toastbody").html("맛있게 드시고 다음에도 주문해주세요~");
+								    						$("#toast").prop('class','toast show');;
+								    						setTimeout(function(){
+								    							$("#toast").prop('class','toast hide');
+								    						},2500);
+								    					}else{
+								    						console.log('그 외');
+								    					}
+								    					getAlarm();
+								    				}else{
+								    					console.log('fail');
+								    				}
+								    			}
+								    		});
+				    					},500);
 				    				});
 						        console.log('Connected: ' + frame);
-						    });
+						    });	
 						}
 						function showcart(){
 							let checkcart="${detail}";
@@ -243,7 +250,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
-					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:180px;top:1px;">
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="border:none;padding:0px;color:white;position:absolute;left:180px;top:1px;">
 						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
 						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;"></span>
 						<span class="sr-only">unread messages</span>
@@ -260,7 +267,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						</form:form>
 					</li>
 					
-					<div class="toast-container position-absolute p-3" style="z-index:99">
+					<div class="toast-container position-absolute p-3" style="z-index:99;left:220px;top:15px;width:320px">
 					<div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
 						<div class="toast-header" id="toasthead"></div>
 						<div class="toast-body" id="toastbody" style="text-align:left"></div>
@@ -286,8 +293,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						        	$.ajax({
 						        		url:"${cp}/saveAlarm",
 						    			data:{
-						    				or_num:or_num,
-						    				deltime:0
+						    				or_num:or_num
 						    			},
 						    			dataType:"json",
 						    			success:function(data){
@@ -328,6 +334,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 										$("#Alarmlist").html(alarm);
 							            if(alarmcount==0){
 											$("#alarmbadge").html("");
+											$("#Alarmlist").css('display','none');
 											console.log('count=0');
 										}else{
 											$("#alarmbadge").html(alarmcount);
@@ -338,10 +345,22 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 							});
 						}
 						function callbackorder(or_num){
-							//$.ajax({
-							//	
-							//});
-							//stompClient.send("/app/callback", {}, JSON.stringify({'deltime': 30,'or_num':322}));
+							deleteAlarm(or_num);
+							location.href="${cp}/restaurant/orderInfo?or_num="+or_num;
+						}
+						function deleteAlarm(or_num){
+							$.ajax({
+								url:"${cp}/deleteAlarm",
+								data:{
+									or_num:or_num
+								},
+								dataType:"json",
+								success:function(data){
+									if(data.result=='success'){
+										getAlarm();
+									}
+								}
+							})
 						}
 						function showalarm(){
 							$("#alarmlist").toggle();
