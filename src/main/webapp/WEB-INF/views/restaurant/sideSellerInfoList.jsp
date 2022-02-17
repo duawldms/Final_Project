@@ -17,6 +17,9 @@
 	text-align: center;
 	margin-top: 50px;
 }
+#saller1 ul {
+	list-style:none;
+}
 
 #saller1 ul li:not(.li_title) {
 	height: 50px;

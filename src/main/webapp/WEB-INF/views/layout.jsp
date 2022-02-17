@@ -409,9 +409,10 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 											data-widget_type="text-editor.default">
 											<div class="elementor-widget-container">
 												<p class="p1">
-												<span><a href="${cp }/loginRestaurant" style="color:white;text-decoration:none;">판매자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/loginAdmin" style="color:white;text-decoration:none;">관리자 로그인</a></span>&nbsp;
-												<span><a href="${cp }/sellerInsert" style="color:white;text-decoration:none;">도로 주소명 테스트</a></span>
+												<sec:authorize access="isAnonymous()">
+													<span><a href="${cp }/loginRestaurant" style="color:white;text-decoration:none;">판매자 로그인</a></span>&nbsp;
+													<span><a href="${cp }/loginAdmin" style="color:white;text-decoration:none;">관리자 로그인</a></span>&nbsp;
+												</sec:authorize>
 													<span class="s1"><br />유한책임회사 위대한개발자</span>(<span
 														class="s1">주</span>) | <span class="s1">TEL</span>: <span
 														class="s1">070-8240-3211~3 FAX: 02-777-5407</span> <br />

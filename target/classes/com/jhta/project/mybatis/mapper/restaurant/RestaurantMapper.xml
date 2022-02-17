@@ -212,6 +212,7 @@
 		or_status <= 4
 		and
 		f.r_id = #{r_id}
+		order by or_num
 		]]>
 	</select>
 	<select id="getMenuUnion" parameterType="string" resultType="com.jhta.project.vo.restaurant.MenuUnionVo">
@@ -278,7 +279,7 @@
 		or_status <= 4
 		and
 		f.r_id = #{r_id}
-		order by food_num, fo_num
+		order by or_num, food_num, fo_num
 		]]>
 	</select>
 	<!-- 알림에서 받아온 or_num 주문 불러오기 -->
@@ -415,7 +416,7 @@
 		or_status <= 3
 		and
 		o.or_num = #{or_num}
-		order by food_num, fo_num
+		order by or_num, food_num, fo_num
 		]]>
 	</select>
 </mapper>

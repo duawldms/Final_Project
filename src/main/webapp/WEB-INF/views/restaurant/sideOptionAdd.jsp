@@ -56,7 +56,47 @@
 		var cnt = 1;
 		
 		function optionSend() {
-			document.getElementById("side_form").submit();
+			let fo_category = document.getElementById("fo_category");
+			let fo_name = document.getElementById("fo_name");
+			let fo_cost = document.getElementById("fo_cost");
+			let class_fo_name = document.getElementsByClassName("fo_name");
+			let class_fo_cost = document.getElementsByClassName("fo_cost");
+			
+			if (fo_category.value == '') {
+				fo_category.focus();
+				alert("카테고리를 입력해 주세요.");
+				return;
+			}
+			
+			if (fo_name.value == '') {
+				fo_name.focus();
+				alert("옵션명을 입력해 주세요.");
+				return;
+			}
+			
+			if (fo_cost.value == '') {
+				fo_cost.focus();
+				alert("가격을 입력해 주세요.");
+				return;
+			}
+			
+			for (let i = 0; i < class_fo_name.length; i++) {
+				if (class_fo_name[i].value == '') {
+					class_fo_name[i].focus();
+					alert("옵션명을 입력해 주세요.");
+					return;
+				}
+			}
+			
+			for (let i = 0; i < class_fo_cost.length; i++) {
+				if (class_fo_cost[i].value == '') {
+					class_fo_cost[i].focus();
+					alert("가격을 입력해 주세요.");
+					return;
+				}
+			}
+			
+			//document.getElementById("side_form").submit();
 		}
 		
 		function optionDel() {
