@@ -85,11 +85,11 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				</sec:authorize>
 				<!-- 권한이 있는 사용자 처리 -->
 				<sec:authorize access="hasRole('ROLE_USER')">
-					<span>[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
+					<span style="">[${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}님 반갑습니다.]</span>
 					<li class="elementor-icon-list-item elementor-inline-item">
 						<span class="elementor-icon-list-text"><a href="javascript:showcart()" style="color:white;text-decoration:none;">주문표</a></span>
 					</li>
-					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:-35px;">
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="border:none;padding:0px;color:white;position:absolute;left:-35px;">
 						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
 						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;"></span>
 						<span class="sr-only">unread messages</span>
@@ -97,7 +97,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					<div style="display:none;position:absolute;z-index:99;top:30px;left:-40px" id="Alarmlist" data-bs-toggle="tooltip" data-bs-placement="top" title="클릭하면 알람이 삭제됩니다">
 						
 					</div>
-					<div class="toast-container position-absolute p-3" style="z-index:99">
+					<div class="toast-container position-absolute p-3" style="z-index:99;">
 					<div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
 						<div class="toast-header" id="toasthead"></div>
 						<div class="toast-body" id="toastbody" style="text-align:left"></div>
@@ -113,8 +113,9 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 								alert('주문표에 있는 메뉴가 없습니다.');
 							}
 							$("#call").click(function(){
+								getAlarm();
 								$("#Alarmlist").toggle();
-								//stompClient.send("/app/callback", {}, JSON.stringify({'or_num': 322}));
+								
 							});
 							connect();
 						});
@@ -132,10 +133,10 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 										for(let i=0;i<data.list.length;i++){
 											if(data.list[i].or_status==2){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
-												alarm+=data.list[i].or_num+"번 주문이 조리중입니다.</a>";
+												alarm+=data.list[i].or_num+"번 주문이 조리중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==3){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
-												alarm+=data.list[i].or_num+"번 주문이 배달중입니다.</a>";
+												alarm+=data.list[i].or_num+"번 주문이 배달중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==4){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
 												alarm+=data.list[i].or_num+"번 주문이 배달완료 되었습니다.</a>";
@@ -223,7 +224,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				    					},500);
 				    				});
 						        console.log('Connected: ' + frame);
-						    });
+						    });	
 						}
 						function showcart(){
 							let checkcart="${detail}";
@@ -249,7 +250,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 					</li> 
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_RESTAURANT')">
-					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="padding:0px;color:white;position:absolute;left:180px;top:1px;">
+					<button type="button" id="call" class="btn btn-outline-dark btn-sm" style="border:none;padding:0px;color:white;position:absolute;left:180px;top:1px;">
 						<img src="${cp }/resources/img/ring.png" style="width:20px;height:21px">
 						<span class="badge badge-light" id="alarmbadge" style="border-radius:0.5rem;top:-10px;left:-10px;font-size:50%;background-color: #FF9090;"></span>
 						<span class="sr-only">unread messages</span>
@@ -266,7 +267,7 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 						</form:form>
 					</li>
 					
-					<div class="toast-container position-absolute p-3" style="z-index:99">
+					<div class="toast-container position-absolute p-3" style="z-index:99;left:220px;top:15px;width:320px">
 					<div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
 						<div class="toast-header" id="toasthead"></div>
 						<div class="toast-body" id="toastbody" style="text-align:left"></div>
