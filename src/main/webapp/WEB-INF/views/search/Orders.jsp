@@ -258,6 +258,7 @@
 	let paymethod=""
 	$("#orderNow").click(requestPay);
 	function requestPay(){
+		console.log($("#or_request").val());
 		IMP.init("imp85181988");
 		if(paymethod==''||paymethod==null){
 			alert('결제방법을 선택해주세요.');
@@ -275,7 +276,7 @@
 						url:"${cp}/user/purchase",
 						data:{
 							addr:$("#uamain").val()+", "+$("#uadetail").val(),
-							or_request:$("#or_request").html(),
+							or_request:$("#or_request").val(),
 							or_totalcost:$("#purcost").val(),
 							or_paymethod:paymethod
 						},
@@ -309,7 +310,7 @@
 						url:"${cp}/user/purchase",
 						data:{
 							addr:$("#uamain").val()+", "+$("#uadetail").val(),
-							or_request:$("#or_request").html(),
+							or_request:$("#or_request").val(),
 							or_totalcost:$("#purcost").val(),
 							or_paymethod:paymethod
 						},
