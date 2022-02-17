@@ -27,16 +27,9 @@
 	<select id="checkid" parameterType="String" resultType="String">
 	    select ui_id from user_information where ui_id=#{ui_id}
 	</select>
-	<select id="checkua_nickname" parameterType="com.jhta.project.vo.user.UserVo" resultType="com.jhta.project.vo.user.UserVo">
-          select * from 
-			 (
-			    select a.*,rownum rnum
-						   from(
-                             select a.ua_nickname,u.ui_id from user_addr a,user_information u 
-                             where ua_nickname=#{ua_nickname} and u.ui_id=#{ui_id}
-                )a
-              )
-  <![CDATA[where rnum=1]]> 
+	<select id="checkua_nickname" parameterType="com.jhta.project.vo.user.UserVo" resultType="string">
+      select ua_nickname from user_addr 
+                         where ua_nickname=#{ua_nickname} and ui_id=#{ui_id}
 	</select>
 	<select id="checkidadmin" parameterType="String" resultType="String">
 		select admin_id from admin where admin_id=#{ui_id}

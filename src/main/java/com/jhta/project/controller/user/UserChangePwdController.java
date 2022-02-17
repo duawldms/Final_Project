@@ -1,5 +1,7 @@
 package com.jhta.project.controller.user;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,27 +24,29 @@ public class UserChangePwdController {
 	@Autowired private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/changepwd")
-	public String ChangePwdForm(Model model,String ui_id) {
-		model.addAttribute("ui_id", ui_id);
-		model.addAttribute("mypagemain","/WEB-INF/views/user/ChangePwd.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+	public String ChangePwdForm(Model model,Principal principal) {
+		model.addAttribute("ui_id", principal.getName());
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/ChangePwd.jsp");
 		return "layout";
 	}
 	@PostMapping("/changepwd")
-	public String ChangPwd(Model model,UserVo vo,HttpServletRequest request,HttpServletResponse response,Authentication auth) {
+	public String ChangPwd(Model model,UserVo vo,HttpServletRequest request,HttpServletResponse response,
+			Authentication auth,Principal principal) {
 		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 		String pwd=encoder.encode(vo.getUi_pwd());
 		vo.setUi_pwd(pwd);
+		vo.setUi_id(principal.getName());
 		int n=service.userpwdupdate(vo);
 		if(n>0) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 			model.addAttribute("result", "비밀번호가 변경되었습니다 새로운 비밀번호로 재로그인해주세요");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");	
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");	
 		}else {
 			model.addAttribute("result", "비밀번호가 업데이트되는데 문제가 발생했습니다.");
-			model.addAttribute("mypagemain","/WEB-INF/views/user/UserUpdateresult.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/MyPage.jsp");
+			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+			model.addAttribute("main","/WEB-INF/views/user/UserUpdateresult.jsp");
 		}
 		return "layout";
 	}
