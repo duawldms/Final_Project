@@ -90,6 +90,7 @@
 		</section>
 		
 		<section class="serv_list">
+		<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
         <div class="container">
             <div class="title">
                 <h1>음식 카테고리</h1>
@@ -132,6 +133,7 @@
 				</script>
             </div>
         </div>
+        </sec:authorize>
     </section>
 				<section class="elementor-section elementor-top-section elementor-element elementor-element-88349f4 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="88349f4" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
