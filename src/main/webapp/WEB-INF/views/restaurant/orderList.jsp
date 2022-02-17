@@ -108,17 +108,17 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="3"><hr>총 결제 금액 : ${vo.or_totalcost }</td>
+						<td colspan="3"><hr><i>총 결제 금액 : ${vo.or_totalcost }</i></td>
 					</tr>
 					<tr>
-						<td colspan="3"><hr>주문번호 : ${vo.or_num }<hr></td>
+						<td colspan="3"><hr><i>주문번호 : ${vo.or_num }</i><hr></td>
 					</tr>
 					<tr>
-						<td colspan="3">주문 시간 : ${vo.or_regdate }<hr></td>
+						<td colspan="3"><i>주문 시간 : ${vo.or_regdate }</i><hr></td>
 					</tr>
 					<c:if test="${vo.or_request != null }">
 						<tr>
-							<td colspan="3">요청 사항 : ${vo.or_request }<hr></td>
+							<td colspan="3"><i>요청 사항 : ${vo.or_request }</i><hr></td>
 						</tr>
 					</c:if>
 					<tr>
