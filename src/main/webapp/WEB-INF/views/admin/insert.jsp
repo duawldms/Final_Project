@@ -83,7 +83,7 @@ p {
 			<div class="col-sm-3">
 				<div class="login-box well">
 					<form:form method="post" action="${cp }/insertadmin">
-						<legend>로그인</legend>
+						<legend>관리자생성</legend>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user" style="color:#9CEBFF;"></i></span>
 								<input type="text" id="admin_id" name="admin_id"
