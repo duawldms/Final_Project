@@ -12,4 +12,16 @@ public class SellerCheckController {
 		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerCheck.jsp");
 		return "layout";
 	}
+	
+	@GetMapping("/sellerIdFind")
+	public String sellerIdFind(Model model) {
+		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerIdFind.jsp");
+		return "layout";
+	}
+	
+	@GetMapping("/sellerPwdFind")
+	public String sellerPwdFind(Model model) {
+		model.addAttribute("main", "/WEB-INF/views/restaurant/sellerPwdFind.jsp");
+		return "layout";
+	}
 }

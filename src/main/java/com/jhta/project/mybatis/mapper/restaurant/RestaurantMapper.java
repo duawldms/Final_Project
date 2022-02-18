@@ -53,4 +53,8 @@ public interface RestaurantMapper {
 	String userIdCheck(String id);
 	String adminIdCheck(String id);
 	int deliveryEnd(int or_num);
+	String getSellerId(String r_email);
+	String emailCheck(String r_email);
+	String sellerInfoFind(Map<String, String> map);
+	void sellerTempPwd(Map<String, String> map);
 }

@@ -62,21 +62,27 @@ public class RestaurantAjaxController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/getMailCode", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody String mailSend(String r_email) {
-		return "";
-	}
-	
-//	@RequestMapping(value = "/getCancelList", produces = {MediaType.APPLICATION_JSON_VALUE})
-//	public List<MenuUnionVo> cancelList(Principal principal) {
-//		List<MenuUnionVo> list = service.cancelList(principal.getName());
-//		return list;
-//	}
-	
 	@RequestMapping(value = "/getCancelList", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<MenuUnionVo> getOrder(Principal principal) {
 		List<MenuUnionVo> list = service.cancelList(principal.getName());
 		return list;
+	}
+	
+	@PostMapping(value = "/sellerIdFind", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public Map<String, String> sellerIdFind(String r_email) {
+		System.out.println("r_email + " + r_email);
+		Map<String, String> map = new HashMap<String, String>();
+		String id = service.getSellerId(r_email);
+		if (id != null) {
+			String set_id = id.substring(0, id.length() / 2) + "**";
+			System.out.println("아이디 : " + set_id);
+			map.put("result", "success");
+			map.put("r_id", set_id);
+		} else {
+			map.put("result", "fail");
+		}
+		return map;
 	}
 	
 }

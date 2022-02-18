@@ -65,7 +65,7 @@
 				<input type="checkbox" name="remember-me" id="rememberMe">
 			</div>
 			<div>
-				<a href="${cp }/sellerInsert">회원가입</a> / <a href="">아이디 찾기</a>
+				<a href="${cp }/sellerInsert">회원가입</a> / <a href="${cp }/sellerIdFind">아이디 찾기</a>
 			</div>
 		</form:form>
 	</div>
