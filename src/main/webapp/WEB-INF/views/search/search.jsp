@@ -95,17 +95,17 @@
 	
 	function orderby(order){
 		if(keyword!=null||keyword!=''){
-			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+$("#keyword").val()+"&orderby="+order;
+			location.href="${cp}/user/search?cg_name="+$("#category").val()+"&keyword="+$("#keyword").val()+"&orderby="+order;
 		}else{
-			location.href="${cp}/search?cg_name="+$("#category").val();
+			location.href="${cp}/user/search?cg_name="+$("#category").val();
 		}
 	}
 	$("#button-addon2").click(function(){
 		let keyword=$("#keyword").val();
 		if(keyword!=null||keyword!=''){
-			location.href="${cp}/search?cg_name="+$("#category").val()+"&keyword="+keyword;
+			location.href="${cp}/user/search?cg_name="+$("#category").val()+"&keyword="+keyword;
 		}else{
-			location.href="${cp}/search?cg_name="+$("#category").val();
+			location.href="${cp}/user/search?cg_name="+$("#category").val();
 		}
 	});
 	let category="";
