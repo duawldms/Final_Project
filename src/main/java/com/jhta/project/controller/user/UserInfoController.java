@@ -46,7 +46,7 @@ public class UserInfoController {
 		}else {
 			model.addAttribute("vo","비밀번호가 일치하지 않습니다.");
 			model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
-			model.addAttribute("main","/WEB-INF/views/user/UserInfo.jsp");	
+			model.addAttribute("main","/WEB-INF/views/user/UserInfoCheckFalse.jsp");	
 		}
 		return "layout";
 	}

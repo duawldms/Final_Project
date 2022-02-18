@@ -51,7 +51,14 @@
 			</tr>
 			<tr>
 				<td>매장상태</td>
-				<td>${vo.r_state }</td>
+				<td>
+				<c:if test="${vo.r_state eq '2'}">
+   				 영업중
+				</c:if>
+				<c:if test="${vo.r_state eq '3'}">
+   				 영업마감
+				</c:if>				
+				</td>
 			</tr>
 			<tr>
 				<td>최소주문금액</td>
@@ -63,7 +70,7 @@
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td>${vo.r_img }</td>
+				<td><img alt="대표사진" id="r_img" src="../resources/img/${vo.r_img }" style="width: 200px; height:200px;"></td>
 			</tr>
 			<tr>
 				<td>공지사항</td>
@@ -83,3 +90,6 @@
 		</table>
 	</form:form>
 </div>
+
+
+
