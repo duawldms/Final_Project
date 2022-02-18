@@ -22,15 +22,6 @@
 				<td class="col1">이메일</td>
 				<td class="col2">
 					<input type="text" id="r_email" name="r_email">
-					<input type="button" value="이메일 인증" onclick="emailCodeSend()">
-					<span id="r_emailResult"></span>
-				</td>
-			</tr>
-			<tr>
-				<td class="col1">이메일 인증</td>
-				<td class="col2">
-					<input type="text" id="r_email_chk" name="r_email_chk" onblur="emailCheck()">
-					<span id="r_emailCheckResult"></span>
 				</td>
 			</tr>
 			<tr>
@@ -122,53 +113,12 @@
 <script>
 	var xhr = null;
 	var idCheckFlag = false;
-	var emailCheckFlag = false;
-	
-	// 이메일 인증번호 체크
-	function emailCheck() {
-		let r_code = document.getElementById("r_email_chk");
-		let r_email = document.getElementById("r_email");
-		let r_emailCheckResult = document.getElementById("r_emailCheckResult");
-		
-		if (r_email.value == '') {
-			document.getElementById("r_emailResult").innerText ="이메일을 입력해 주세요.";
-			r_email.foucs();
-			return;
-		}
-		
-		if (r_code.value == '') {
-			document.getElementById("r_emailCheckResult").innerText ="인증번호를 입력해 주세요.";
-			r_code.foucs();
-			return;
-		}
-		
-		let url = "${cp}/emailCodeCheck?r_code=" + r_code.value + "&r_email=" + r_email.value;
-		xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				let data = xhr.responseText;
-				let json = JSON.parse(data);
-
-				if (json.result == 'success') {
-					r_emailCheckResult.innerText = "인증번호가 확인되었습니다.";
-					emailCheckFlag = true;
-				} else {
-					r_emailCheckResult.innerText = "인증번호가 일치하지 않습니다.";
-					emailCheckFlag = false;
-				}
-			}
-		}
-		xhr.open('get', url, true);
-		xhr.send();
-	}
-	
 	// 아이디 중복 체크
 	function idCheck() {
 		let r_id = document.getElementById("r_id");
 		let idCheckResult = document.getElementById("r_idResult");
 		if (r_id.value == '') {
 			idCheckResult.innerText = "아이디를 입력해 주세요.";
-			r_id.focus();
 			return;
 		}
 		let url = "${cp}/restaurantIdCheck?id=" + r_id.value;
@@ -191,32 +141,6 @@
 		xhr.send();
 	}
 	// 아이디 중복 체크 end
-	
-	// 메일 인증
-	function emailCodeSend() {
-		let r_email = document.getElementById("r_email");
-		if (r_email.value == '') {
-			idCheckResult.innerText = "이메일을 입력해 주세요.";
-			r_email.focus();
-			return;
-		}
-		let url = "${cp}/emailCheck?r_email=" + r_email.value;
-		xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				let data = xhr.responseText;
-				let json = JSON.parse(data);
-
-				if (json.result == 'success') {
-					alert("인증번호 전송 성공");
-				} else {
-					alert("인증번호 전송 실패");
-				}
-			}
-		}
-		xhr.open('get', url, true);
-		xhr.send();
-	}
 	
 	// 이미지 미리보기
 	function imageView(e) {
@@ -259,7 +183,6 @@
 	// 가입
 	function sellerInsert() {
 		let r_id = document.getElementById("r_id");
-		let r_email = document.getElementById("r_email");
 		let r_pwd = document.getElementById("r_pwd");
 		let r_pwd_check = document.getElementById("r_pwd_check");
 		let r_name = document.getElementById("r_name");
@@ -276,13 +199,6 @@
 			r_id.focus();
 			return;
 		}
-		
-		if (r_email.value == '') {
-			document.getElementById("r_emailResult").innerText ="이메일을 입력해 주세요.";
-			r_email.foucs();
-			return;
-		}
-		
 		if (r_pwd.value == '') {
 			document.getElementById("r_pwdResult").innerText = "비밀번호를 입력해 주세요.";
 			r_pwd.focus();
@@ -340,22 +256,14 @@
 		}
 		if (r_pwd.value != r_pwd_check.value) {
 			alert("비밀번호를 확인해주세요.");
-			r_pwd.focus();
+			r_pwd.focuse();
 			return;
 		}
 		if (idCheckFlag == false) {
 			alert("아이디를 확인해주세요.");
-			r_id.focus();
+			r_id.focuse();
 			return;
 		}
-		
-		if (emailCheckFlag == false) {
-			alert("이메일 또는 이메일 인증번호를 확인해주세요.");
-			r_email.focus()
-			return;
-		}
-		
-		alert("회원가입이 완료되었습니다.");
 		
 		document.getElementById("restaurantForm").submit();
 	}

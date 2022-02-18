@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +40,7 @@ public class RestaurantInsertController {
 	}
 	
 	@PostMapping("/sellerInsert")
-	public String sellerInsert(RestaurantVo vo, MultipartFile file1) {
+	public String sellerInsert(RestaurantVo vo, MultipartFile file1, HttpServletRequest req) {
 		// multipart/form-data 한글 깨짐 처리 UTF-8 인코딩 코드
 		
 		try {
@@ -62,6 +64,9 @@ public class RestaurantInsertController {
 			vo.setR_img(saveFileName);
 		}
 		service.addRestaurant(vo);
+		HttpSession session = req.getSession();
+		session.removeAttribute("authKey");
+		session.removeAttribute("r_email");
 		try {
 			InputStream is = file1.getInputStream();
 			FileOutputStream fos = new FileOutputStream(path + "\\" + saveFileName);

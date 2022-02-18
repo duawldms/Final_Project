@@ -96,7 +96,7 @@
 				}
 			}
 			
-			//document.getElementById("side_form").submit();
+			document.getElementById("side_form").submit();
 		}
 		
 		function optionDel() {
