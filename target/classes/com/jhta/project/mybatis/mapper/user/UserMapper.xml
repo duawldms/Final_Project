@@ -190,7 +190,6 @@
 			                      and f.r_id=r.r_id 
 			                      and f.food_num=d.food_num  
 			                      and o.or_num=#{or_num}
-			            
 			                      order by o.or_regdate desc
 			         )a
 			         
