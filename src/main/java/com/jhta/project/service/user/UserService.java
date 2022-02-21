@@ -136,4 +136,12 @@ public class UserService {
 		return mapper.selectmainornum(or_num);
 	}
 
+	/*detail 확인하기*/
+	public List<OrdersVo> selectmainlistforornum(int or_num){
+		return mapper.selectmainlistforornum(or_num);
+	}
+	public List<OrdersVo> selectmainoptionforodnum(int od_num){
+		return mapper.selectmainoptionforodnum(od_num);
+	}
+	
 }

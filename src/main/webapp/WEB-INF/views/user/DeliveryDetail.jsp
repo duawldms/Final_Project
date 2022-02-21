@@ -71,30 +71,42 @@
             
     }
 </style> 
+
 <div id="box">
-<h2 >주문내역</h2>   
+<h2 >상세 메뉴</h2>   
 <table  id="inserttable"> 
 	<tr>
 	   <th  class="col1">메뉴</th>
 	   <th  class="col1">옵션</th>
 	   <th  class="col1">가격</th>
 	</tr>
-	<c:forEach var="aa1" items="${aa }" varStatus="st">	<!-- list인덱스 번호 얻어오기 -->
-		<c:set var="opt" value="${cc.get(st.index) }"/> <!-- index번호랑 맞는 list꺼내서 변수 지정하기 -->
-		<c:set var="price" value="${aa1.food_cost }"/> <!-- 메인메뉴 가격 변수 지정 -->
+	<c:forEach var="test" items="${selectmainlistforornum }" varStatus="testst"><!-- list인덱스 번호 얻어오기 -->
+	<c:set var="testopt" value="${ff.get(testst.index) }"/> <!-- index번호랑 맞는 list꺼내서 변수 지정하기 -->
+	<c:set var="testprice" value="${test.food_cost }"/><!-- 메인메뉴 가격 변수 지정 -->
 	<tr>
-		<td class="col2">${aa1.food_name }(${aa1.food_cost })</td>  
-		<td class="col2">      
-	<c:forEach var="op" items="${opt }"> <!-- 인덱스 번호에 맞는 list돌려서 값 얻어오기 -->
-		${op.fo_name }(${op.fo_cost }),${op.oo_count }개<br> 
-			<c:set var="price" value="${price  + (op.fo_cost * op.oo_count)}"/>
-		</c:forEach>    
-		</td>
-		<td class="col2">${price}</td>       
-	</tr> 
-	</c:forEach>
+		<td class="col2">${test.food_name }(${testprice }원)</td>      
+		<td class="col2"> 
+		<c:forEach var="testop" items="${testopt }">    <!-- 인덱스 번호에 맞는 list돌려서 값 얻어오기 -->
+		<c:choose>
+		<c:when test="${not empty testop.fo_name}">
+		${testop.fo_name}(${testop.fo_cost }원),${testop.oo_count }개<br> 
+		</c:when>
+		<c:when test="${empty testop.fo_name}">    
+		X      
+		</c:when>
+		</c:choose>  
+		</c:forEach>
+		</td>   
+		<c:set var="total" value="0"/>
+		<c:forEach var="result" items="${testopt }" varStatus="status">
+		<c:set var="total" value="${total + (result.fo_cost * result.oo_count) }"/>   
+		</c:forEach>                 
+		<td class="col2">${total + testprice}원</td>     
+		</tr>          
+		</c:forEach>
 </table><br><br>
-<h2>가게 정보</h2>
+
+<h2>가게 정보</h2>  
 <table  id="inserttable"> 
 	<tr>
 	   <th  class="col1">가게</th>
@@ -136,8 +148,9 @@
 <input type="button" value="목록" onclick="returnlist()" class="btn3">
 </div>	
 
-<script>
+<script type="text/javascript">
+  
 function returnlist(){
 	location.href="${cp }/userdelivery";  
-	}
+	};
 </script>

@@ -103,6 +103,5 @@ $(function(){
 </table><br><br>   
 	<span style="color:red">탈퇴하시면 모든 정보가 사라집니다.</span><br><br>   
 	<input type="submit" value="탈퇴하기" class="btn3">
-	 <input type="button" value="취소" id="btn2" class="btn4">   
 </form:form>
 </div>

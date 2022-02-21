@@ -46,4 +46,10 @@ public interface UserMapper {
 	List<OrdersVo> selectmainoption(int or_num);
 	List<OrdersVo> mainoptionselect(OrdersVo vo);
 	List<OrdersVo> selectmainornum(int or_num); //중복제거 후 메인메뉴만 불러오기
+	
+	
+	
+	/*detail 확인하기*/
+	List<OrdersVo> selectmainlistforornum(int or_num);
+	List<OrdersVo> selectmainoptionforodnum(int od_num);
 }

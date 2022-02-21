@@ -87,26 +87,17 @@ public class UserDeliveryController {
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
 		model.addAttribute("main","/WEB-INF/views/user/DeliveryDetail.jsp");
-		
-		HashMap<String,Object>map=new HashMap<String,Object>();
-		List<OrdersVo>mainornum=service.selectmainornum(or_num); //or_num에 따른 메인 메뉴 번호 꺼내오기(중복제거)
-		List<OrdersVo> aa=new ArrayList<OrdersVo>();
-		List<OrdersVo> bb=new ArrayList<OrdersVo>();
-		ArrayList<List<OrdersVo>> cc=new ArrayList<List<OrdersVo>>();
-		int n=0;
-		for(int i=0;i<mainornum.size();i++) {
-			n=mainornum.get(i).getFood_num();
-			map.put("food_num",n);//메인메뉴 번호 담기
-			vo.setFood_num(n);
-			vo.setOr_num(or_num);
-			List<OrdersVo>optiondetail=service.mainoptionselect(vo);
-			OrdersVo vo1=optiondetail.get(0);
-			cc.add(optiondetail);
-			aa.add(vo1);
-			
+	
+		ArrayList<List<OrdersVo>> ff=new ArrayList<List<OrdersVo>>();
+		List<OrdersVo>selectmainlistforornum=service.selectmainlistforornum(or_num);
+		int m=0;
+		for(int j=0;j<selectmainlistforornum.size();j++) {
+			m=selectmainlistforornum.get(j).getOd_num();
+			List<OrdersVo>selectmainoptionforodnum=service.selectmainoptionforodnum(m);
+			ff.add(selectmainoptionforodnum);
 		}
-		model.addAttribute("aa",aa);
-		model.addAttribute("cc",cc);
+		model.addAttribute("selectmainlistforornum",selectmainlistforornum);
+		model.addAttribute("ff",ff);
 		return "layout";
 	}
 	@GetMapping(value="/user/deliverydetailoptionlist",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -127,5 +118,13 @@ public class UserDeliveryController {
 		}
 		model.addAttribute("aa",aa);
 		return map;
+	}
+	@GetMapping(value="/selectmainoptionforodnum",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Model selectmainoptionforodnum(int od_num,Model model,OrdersVo vo){
+		List<OrdersVo> result=service.selectmainoptionforodnum(od_num);
+		model.addAttribute(result);
+		System.out.println(od_num);
+		System.out.println(result);
+		return model;
 	}
 }
