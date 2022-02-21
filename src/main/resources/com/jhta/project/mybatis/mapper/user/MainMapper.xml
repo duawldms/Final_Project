@@ -88,20 +88,12 @@ where o.or_num = od.or_num
 </choose>
 </insert>
 <select id="reviewList" parameterType="int" resultType="com.jhta.project.vo.user.ReviewVo">
-select * from 
-			 (
-			    select a.*,rownum rnum1
-						   from(
-			                      select re.re_regdate,o.or_status,
-			                      f.food_name,r.r_name,o.or_num,o.ui_id,r.r_img,re.re_num,re.re_hit,re.re_content,rp.rp_photo
-			                      from orders o,food f,restaurant r,review re,review_photo rp
-			                      where f.r_id=r.r_id 
-			                      and re.or_num(+)=o.or_num
-                                  and re.re_num=rp.re_number(+)
-			                      and re.re_num=#{re_num}
-			                      order by o.or_regdate desc
-			         )a
-              )b
-              
+	select re.re_regdate,
+	o.or_num,o.ui_id,re.re_num,re.re_hit,re.re_content,rp.rp_photo
+	from orders o,review re,review_photo rp
+	where re.or_num=o.or_num
+	and re.re_num=rp.re_number(+)
+	and re.re_num=#{re_num}
+	order by o.or_regdate desc
 </select>
 </mapper>
