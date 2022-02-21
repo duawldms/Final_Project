@@ -34,7 +34,7 @@
 	position:absolute;
 	top:88px;
 	left:1170px;
-	width:375px;
+	width:385px;
 	height:422px;
 	border:1px solid black;
 	background-color:#7bcfbb;
@@ -120,6 +120,15 @@
 .reviewfood{
 	font-size:0.9em;
 }
+#tooltip {
+  display: none;
+  position: absolute;
+  
+  font-size: 0.8em;
+}
+#lesscost:hover .tooltip{
+	
+}
 </style>
 <div class="container">
 <!-- 
@@ -153,7 +162,9 @@
 				<input type="hidden" value="${rvo.r_delCost }" id="deliveryCost">
 			</div>
 			<div class="costtotal" style="display:inline;margin-right:15px"></div>
+			<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="">
 			<button type="button" class="btn text-white goOrder" style="background-color:#7bcfbb">주문하기</button>
+			</span>
 		</div>
 	</div>
 	<div class="container title">
@@ -214,8 +225,6 @@
 								hit+="<img src='${cp}/resources/img/star.png' style='float:left;display:inline-block;width:25px;height:20px;"+
 									 "position:relative;left:-4px;'>";
 							}
-							
-							
 							if(rlist[i].rp_photo!=null){
 								review+="<div class='review' style='border-bottom:1px solid black;height:280px'>";
 								review+="<img src='${cp}/resources/img/"+rlist[i].rp_photo+"' class='reviewimg' style='float:left;"+
@@ -314,7 +323,7 @@
 							</div>
 							<!-- Modal footer -->
 							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-success" onclick="javascript:goorder(${status.index},${fvo.food_num})">바로주문</button>
+								
 								<button type="button" class="btn btn-outline-success addCart" 
 										onclick="javascript:gocart(${status.index},${fvo.food_num })" >주문표에 추가</button>
 								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">창닫기</button>
@@ -376,17 +385,8 @@
 					location.reload(true);
 				}else if(data.result=='check'){
 					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
-						if(ordercheck=='order'){
-							gocart(index,foodnum,'delete','order');
-							console.log(1);
-							location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
-						}else{
-							gocart(index,foodnum,'delete');
-							console.log(2);
-						}
+						gocart(index,foodnum,'delete');
 					}
-				}else if(data.result=='goorder'){
-					location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 				}
 			}
 		});
@@ -415,8 +415,16 @@
 			}
 		});
 	}
-	
+	let tt;
 	$(function(){
+		let top=parseInt($("#cartlist").css("top"));
+		$(window).scroll(function(){
+			let sTop=$(window).scrollTop();//스크롤된 top의 위치 얻어오기
+			let moveTop=sTop+top;
+			$("#cartlist").stop().animate({
+				top:moveTop
+			},200);
+		});
 		if($("#deliveryCost").val()!=0){
 			$("#incartdelcost").html("배달료 "+parseInt($("#deliveryCost").val()).toLocaleString('ko-KR')+"원 별도");
 		}else{
@@ -434,6 +442,7 @@
 			let num=$(this).html();
 			$.ajax({
 				url:"${cp}/user/cartdetail",
+				async: false,
 				data:{
 					cartnum:num
 				},
@@ -480,12 +489,23 @@
 					let indivdel="<a href='javascript:del("+num+")'><img src='${cp}/resources/img/deleteimg.png' class='delimg'></a>&nbsp&nbsp";
 					indivdel+=(parseInt($(".cost"+num).html())+totalcost).toLocaleString('ko-KR')+"원";
 					total+=parseInt($(".cost"+num).html())+totalcost;
-					$(".costtotal").html("<span>합계 : "+(total.toLocaleString('ko-KR'))+"원</span>");
+					$(".costtotal").html("<span id='tc'>합계 : "+(total.toLocaleString('ko-KR'))+"원</span>");
 					$("#total"+num).html(indivdel);
+					tt=total;
+					
 				}
 			});
-			
+			console.log("tt3:"+tt+"total:"+total);
 		});
+		console.log("tt3:"+tt+"total:"+total);
+		if(total<${rvo.r_minCost }){
+			$(".goOrder").prop('disabled','disabled');
+			$(".d-inline-block").prop('title',((${rvo.r_minCost}).toLocaleString('ko-KR'))+"원 이상 주문가능합니다.");
+		}else{
+			$(".goOrder").removeProp("disabled");
+			$(".d-inline-block").prop('title','');
+		}
+		
 	});
 	
 

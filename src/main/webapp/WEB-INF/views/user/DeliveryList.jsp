@@ -121,12 +121,12 @@
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>   
 			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}&ui_id=${ui_id}">
+				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}">
 				<span style='color:blue'>${i}</span>
 				</a>
 			</c:when>
 			<c:otherwise>
-				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}&ui_id=${ui_id}">
+				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}">
 				<span style='color:red'>${i}</span>
 				</a>
 			</c:otherwise>
