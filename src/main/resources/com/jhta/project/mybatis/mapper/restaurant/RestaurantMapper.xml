@@ -84,7 +84,7 @@
 	</insert>
 	<!-- 사이드 메뉴 추가 -->
 	<insert id="sideAdd" parameterType="com.jhta.project.vo.restaurant.FoodOptionVo">
-		insert into food_options values(food_options_seq.nextval, #{food_num}, #{fo_name}, #{fo_cost}, #{fo_category})
+		insert into food_options values(food_options_seq.nextval, #{food_num}, #{fo_name}, #{fo_cost}, #{fo_category}, 0)
 	</insert>
 	<!-- 해당 매장 메뉴 불러오기 -->
 	<select id="menuList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
