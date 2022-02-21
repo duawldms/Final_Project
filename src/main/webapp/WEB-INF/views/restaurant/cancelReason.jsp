@@ -61,16 +61,16 @@
 	<form:form id="cancel_reason_form">
 		<div class="cancel_radio_wrap">
 			<div class="cancel_radio">
-				<input type="radio" name="cancel_reason" value="재료소진"> 재료소진
+				<input type="radio" name="cancel_reason" value="재료소진"> 재료 소진
 			</div>
 			<div class="cancel_radio">
-				<input type="radio" name="cancel_reason" value="배달지연"> 배달지연
+				<input type="radio" name="cancel_reason" value="배달지연"> 배달 지연
 			</div>
 			<div class="cancel_radio">
 				<input type="radio" name="cancel_reason" value="고객정보 불일치"> 고객정보 불일치
 			</div>
 			<div class="cancel_radio">
-				<input type="radio" name="cancel_reason" value="기타"> 기타
+				<input type="radio" name="cancel_reason" value="기타"> 기타 사유
 			</div>
 		</div>
 		<div class="order_cancel_div">
@@ -105,9 +105,13 @@
 	function orderCancel() {
 		let radio = document.getElementsByName("cancel_reason");
 		let radio_check = false;
+		let radio_value = null;
+		
 		for (let i = 0; i < radio.length; i++) {
 			if (radio[i].checked == true) {
 				radio_check = true;
+				radio_value = radio[i].value + "(으)로 인해 주문이 취소되었습니다.";
+				break;
 			}
 		}
 		
@@ -115,7 +119,7 @@
 			popup_open_btn();
 			return;
 		}
-		stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num}));
+		stompClient.send("/app/callback", {}, JSON.stringify({'or_num': or_num, 'reject': radio_value}));
 		window.opener.name = "orderList"; // 부모창의 이름 설정
 	    document.getElementById("cancel_reason_form").target = "${cp}/restaurant/orderList"; // 타켓을 부모창으로 설정
 	    document.getElementById("cancel_reason_form").action = "${cp}/restaurant/cancelReason";
