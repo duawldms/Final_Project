@@ -43,7 +43,7 @@ public class CategoryDeleteController {
 			return "redirect:/";
 		}catch(Exception e) {
 			System.out.println("오류 : " + e.getMessage());
-			return "/category/modify";	
+			return "redirect:/";	
 		}
 	}
 }
