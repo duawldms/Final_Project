@@ -27,6 +27,4 @@ public class CategoryService {
 		return mapper.delete(cg_name);
 		
 	}
-	
-	
 }

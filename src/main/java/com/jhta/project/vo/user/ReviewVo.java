@@ -18,5 +18,6 @@ public class ReviewVo {
 	private int re_hit;
 	private Date re_regdate;
 	private String rp_photo;
+	private int re_number;
 
 }

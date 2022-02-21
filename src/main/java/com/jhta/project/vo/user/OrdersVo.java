@@ -50,4 +50,7 @@ public class OrdersVo {
 	private String ui_name;
 	private String ui_phone;
 	
+	//review
+	private int re_hit;
+	
 }

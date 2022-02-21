@@ -2,11 +2,13 @@ package com.jhta.project.mybatis.mapper.user;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.project.vo.user.CategoryVo;
 import com.jhta.project.vo.user.OrderReviewVo;
 import com.jhta.project.vo.user.OrdersVo;
+import com.jhta.project.vo.user.ReviewVo;
 
 public interface MainMapper {
 
@@ -16,7 +18,10 @@ public interface MainMapper {
 	int update(CategoryVo vo);
 	int delete(String cg_name);
 	List<OrderReviewVo> orderReview();
-	List<OrdersVo> orderList();
+	List<OrdersVo> orderList(String ui_id);
+	int reviewWrite(ReviewVo vo);
+	List<OrdersVo> orderList1(HashMap<String, Object> map);
+	int maincount(int or_num);
 	
 	
 }

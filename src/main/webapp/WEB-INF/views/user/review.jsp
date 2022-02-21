@@ -80,16 +80,50 @@
 	   <th  class="col1">리뷰쓰기</th>
 	</tr>     
 
-	<c:forEach var="vo" items="${requestScope.vo}"  >      
-		<h5>작성가능한 리뷰</h5>    
+	<h5>작성가능한 리뷰</h5>    
+	<c:forEach var="vo" items="${requestScope.before}"  >      
 		<tr>
 		<td class="col2">${vo.or_regdate }</td>    
 		<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>   
-		<td class="col2">${vo.food_name } </td>       
+		<c:choose>
+			<c:when test="${vo.count eq '1' }">  
+				<td class="col2">${vo.food_name } </td>      
+			</c:when>
+			<c:when test="${vo.count > '1' }">
+				<td class="col2">${vo.food_name }외 ${vo.count-1 }개 </td>     
+			</c:when>
+		</c:choose>           
 		<td class="col2"><a href="${cp }/review/write?or_num=${vo.or_num}">리뷰쓰기</a></td>
 		</tr> 
 	</c:forEach>
-</table><br>  
+	
+</table><br><br>  
+<table  id="inserttable"> 
+	<tr>
+	   <th  class="col1">배달날짜</th>
+	   <th  class="col1">주문한 가게</th>
+	   <th  class="col1">주문한 음식</th>
+	   <th  class="col1">리뷰쓰기</th>
+	</tr>     
+
+	<h5>작성한 리뷰</h5>    
+	<c:forEach var="vo" items="${requestScope.after}"  >      
+		<tr>
+		<td class="col2">${vo.or_regdate }</td>    
+		<td class="col2"><img src="${cp}/resources/img/${vo.r_img}" class="rimg"><br>${vo.r_name }</td>   
+		<c:choose>
+			<c:when test="${vo.count eq '1' }">  
+				<td class="col2">${vo.food_name } </td>      
+			</c:when>
+			<c:when test="${vo.count > '1' }">
+				<td class="col2">${vo.food_name }외 ${vo.count-1 }개 </td>     
+			</c:when>
+		</c:choose>           
+		<td class="col2">${vo.re_hit}</td>
+		</tr> 
+	</c:forEach>
+	
+</table>
 </div>
 
 	

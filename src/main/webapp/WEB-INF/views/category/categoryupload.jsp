@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
+<style type="text/css">
+    input[type=submit] {
+	width: 210px;
+	background-color:#F6416C;
+	color: white;
+	padding: 10px 16px;
+	margin: 8px 0;
+	border: 2px solid white;
+	border-radius: 4px;
+	cursor: pointer;
+	MARGIN: auto;
+    DISPLAY: BLOCK;
+}
+</style>
 <script type="text/javascript">
-	$(function() {
-		$("#frm").submit(function() {
-			if ($("#cg_name").val() == "") {
-				$("#cg_name").focus();
-				alert("카테고리명을 입력하세요.");
-				return false;
-			}
-			if ($("#file1").val() == "") {
-				$("#file1").focus();
-				alert("카테고리사진을 등록해주세요.");
-				return false;
-			}
-		});
-	});
 	function imageView(e) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
@@ -26,12 +27,27 @@
 		reader.readAsDataURL(e.target.files[0]);
 	}
 </script>
-<form:form method="post" action="${cp }/category/upload" id = "frm" enctype="multipart/form-data" acceptCharset="utf-8">
-<h1>카테고리등록</h1>
-	카테고리명<br>
-	<input type="text" name="cg_name" id="cg_name"><br><br>
-	카테고리사진<br>
-	<input type="file" name="file1" id="file1" onchange="imageView(event)"><br><br>
-	<img style="width: 200px; height: 200px; display: none;" id="cg_photo">
-	<input type="submit" value="카테고리등록">
+<div class="menuadd_wrap">
+	<div class="menuadd_title">
+		<h3>카테고리등록</h3>
+	</div>
+<form:form method="post" action="${cp }/category/upload" id = "categoryInsert" enctype="multipart/form-data" acceptCharset="utf-8">
+	<table class="menuadd_table">
+	<tr style="border-bottom: 3px solid #49505796;">
+				<td class="menuadd_td1">카테고리명</td>
+				<td class="menuadd_td2">
+					<input type="text" name="cg_name" id="cg_name">
+				</td>
+	</tr>
+	<tr>
+				<td class="menuadd_td1">카테고리 이미지</td>
+				<td class="menuadd_td2">
+					<input type="file" id="file1" name="file1" onchange="imageView(event)">
+					<br>
+					<img style="width: 200px; height: 200px; margin-top: 5px; display: none;" id="cg_photo" src="">
+				</td>
+			</tr>
+	</table>
+<input type="submit" class="btnJoin2" value="카테고리등록">
 </form:form>
+</div>

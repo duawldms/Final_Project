@@ -22,8 +22,8 @@ where cg_name=#{cg_name}
 <delete id="delete" parameterType="int">
 delete from category where cg_name=#{cg_name}
 </delete>
-<select id="orderList" resultType="com.jhta.project.vo.user.OrdersVo">
-select * from orders where or_status = 4
+<select id="orderList" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">
+select * from orders where ui_id=#{ui_id} and or_status = 4 order by or_regdate desc
 </select>
 <select id="orderReview" resultType="com.jhta.project.vo.user.OrderReviewVo">
 select distinct
@@ -40,5 +40,45 @@ where o.or_num = od.or_num
 		and o.or_status = 4
 		order by o.or_regdate desc
 </select>
-
+<sql id="orderSelect">
+  select * from 
+			 (
+			    select a.*,rownum rnum1
+						   from(
+			                      select o.or_regdate,o.or_status,
+			                      f.food_name,r.r_name,o.or_num,r.r_img,re.re_num,re.re_hit
+			                      from orders o,food f,orders_detail d,orders_option p,restaurant r,review re
+			                      where o.or_num=d.or_num 
+			                      and d.od_num=p.od_num(+) 
+			                      and f.r_id=r.r_id 
+			                      and f.food_num=d.food_num  
+                                  and re.or_num(+)=o.or_num
+			                      and o.or_num=#{or_num}
+                                  and re.re_num ${re_num}
+			                      order by o.or_regdate desc
+			         )a
+              )b
+         <![CDATA[where rnum1=1]]> 
+</sql>
+<select id="orderList1" parameterType="hashmap" resultType="com.jhta.project.vo.user.OrdersVo">
+		select * from 
+		(
+			select a.*,rownum rnum
+			 from(
+			 	<include refid="orderSelect"/>
+			 
+			 )a
+		)
+</select>
+<select id="maincount" parameterType="int" resultType="int">
+	select NVL(count(*),0) cnt from 
+      (select * from orders o,orders_detail d where o.or_num=d.or_num and o.or_num=#{or_num} and 
+      <![CDATA[o.or_status='4')]]> 
+</select>
+<insert id="reviewWrite" parameterType="com.jhta.project.vo.user.ReviewVo" >
+insert all 
+into review values (review_seq.nextval,#{or_num},#{re_content},#{re_hit},sysdate)
+into review_photo values (#{rp_photo},review_seq.currval)
+select * from dual
+</insert>
 </mapper>
