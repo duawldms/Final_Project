@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/restaurant.css">
 <div class="menuadd_wrap">
 	<div class="menuadd_title">
@@ -11,7 +12,9 @@
 			<tr style="border-top: 3px solid #49505796;">
 				<td class="menuadd_td1">별점평가</td>
 				<td class="menuadd_td2">
-					"${vo.re_hit}"
+					<c:forEach begin="1" end="${vo.re_hit}" step="1">
+					<img src="${cp }/resources/img/star.png" style="width: 40px;height:32px;">
+					</c:forEach>
 				</td>
 			</tr>
 			<tr style="border-bottom: 3px solid #49505796;">
