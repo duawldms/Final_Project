@@ -76,9 +76,16 @@ where o.or_num = od.or_num
       <![CDATA[o.or_status='4')]]> 
 </select>
 <insert id="reviewWrite" parameterType="com.jhta.project.vo.user.ReviewVo" >
-insert all 
-into review values (review_seq.nextval,#{or_num},#{re_content},#{re_hit},sysdate)
-into review_photo values (#{rp_photo},review_seq.currval)
-select * from dual
+<choose>
+	<when test="rp_photo==null">
+		insert into review values (review_seq.nextval,#{or_num},#{re_content},#{re_hit},sysdate)
+	</when>
+	<otherwise>
+		insert all 
+		into review values (review_seq.nextval,#{or_num},#{re_content},#{re_hit},sysdate)
+		into review_photo values (#{rp_photo},review_seq.currval)
+		select * from dual
+	</otherwise>
+</choose>
 </insert>
 </mapper>

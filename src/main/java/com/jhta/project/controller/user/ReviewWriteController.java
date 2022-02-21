@@ -41,9 +41,12 @@ public class ReviewWriteController {
 		String orgname=file1.getOriginalFilename();
 		String saveFileName= UUID.randomUUID() +"_" + orgname;
 		vo.setRe_content(re_content);
-		if(file1!=null) {
+		if(orgname!=null) {
 			vo.setRp_photo(saveFileName);
+		}else {
+			vo.setRp_photo(null);
 		}
+		System.out.println("org"+orgname);
 		service.reviewWrite(vo);
 		try {
 			InputStream is=file1.getInputStream();

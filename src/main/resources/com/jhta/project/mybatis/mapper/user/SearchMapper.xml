@@ -90,7 +90,7 @@
 		select * from food where r_id=#{r_id}
 	</select>
 	<select id="foodOptionslist" parameterType="int" resultType="com.jhta.project.vo.user.FoodOptionsVo">
-		select * from food_options where food_num=#{food_num} order by fo_category
+		select * from food_options where food_num=#{food_num} order by (case when fo_category like '%필수%' then 1 else 2 end),fo_status
 	</select>
 	<!-- 매장 거리계산 -->
 	<select id="getdistance" parameterType="hashmap" resultType="Double">

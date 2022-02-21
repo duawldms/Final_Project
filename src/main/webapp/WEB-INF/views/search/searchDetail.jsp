@@ -523,31 +523,33 @@
 				});
 				count=0;
 				for(let i=0;i<data.folist.length;i++){
-					if(i==0){
-						divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
-						if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
-					}else if(data.folist[i-1].fo_category!=data.folist[i].fo_category){
-						divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
-						if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
-					}
-					if(data.folist[i].fo_category.indexOf('필수')!=-1){
-						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+status+"' class='nec' onclick='checknes(this)' value='"+data.folist[i].fo_num+
-									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
-						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
-						divoptions+="<span style='float:right'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
-						divoptions+="</div>";
-					}else{
-						divoptions+="<div class='foodOptions' style='clear:both'>";
-						divoptions+="<input type='checkbox' name='options"+status+"' class='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
-									"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
-						divoptions+="&nbsp<input type='hidden' value='x' class='cntplus"+i+"' readonly"+
-									" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
-						divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' class='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
-									"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
-						divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
-						divoptions+="<span style='float:right' id='opcost"+i+"'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
-						divoptions+="</div>";
+					if(data.folist[i].fo_status==0){
+						if(i==0){
+							divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
+							if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
+						}else if(data.folist[i-1].fo_category!=data.folist[i].fo_category){
+							divoptions+="<h5>"+data.folist[i].fo_category+"</h5>";
+							if(data.folist[i].fo_category.indexOf('필수')!=-1){count++;}
+						}
+						if(data.folist[i].fo_category.indexOf('필수')!=-1){
+							divoptions+="<div class='foodOptions' style='clear:both'>";
+							divoptions+="<input type='checkbox' name='options"+status+"' class='nec' onclick='checknes(this)' value='"+data.folist[i].fo_num+
+										"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
+							divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
+							divoptions+="<span style='float:right'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
+							divoptions+="</div>";
+						}else{
+							divoptions+="<div class='foodOptions' style='clear:both'>";
+							divoptions+="<input type='checkbox' name='options"+status+"' class='nomal"+i+"' onclick='optioncount("+i+")' value='"+data.folist[i].fo_num+
+										"' style='float:left;width:18px;height:18px;position:relative;top:3px'>";
+							divoptions+="&nbsp<input type='hidden' value='x' class='cntplus"+i+"' readonly"+
+										" style='width:10px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";
+							divoptions+="&nbsp<input type='hidden' name='optionscnt"+status+"' class='cnt"+i+"' value='1' min='1' max='5' onchange='javascript:changecnt("+i+","+data.folist[i].fo_cost+")'"+
+										"style='width:30px;border:none;border-right:0px;border-top:0px;boder-left:0px;boder-bottom:0px;'>";			
+							divoptions+="<span style='float:left'>&nbsp"+data.folist[i].fo_name+"</span>";
+							divoptions+="<span style='float:right' id='opcost"+i+"'>+"+(data.folist[i].fo_cost).toLocaleString('ko-KR')+"원</span>";
+							divoptions+="</div>";
+						}
 					}
 				}
 				$("#modalBody"+status).append(divoptions);

@@ -153,14 +153,15 @@
 											star='아직 리뷰가 없어요';
 											starcount=""
 										}
-										console.log(data.listvo[i].r_name+","+data.listvo[i].r_state);
-										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
-										seller+="<div class='container restaurant'>";
 										if(data.listvo[i].r_state==3){
-											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+											seller+="<a href='javascript:closepopup()' style='text-decoration:none;color:black'>"
+											seller+="<div class='container restaurant' style='filter: opacity(0.4)'>";
+											seller+="<span style='position:absolute;width:100px;left:25px;top:30px;font-weight:initial;filter:none;font-size:0.9em'>지금은<br>영업준비중<br>입니다</span>";
 										}else{
-											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+											seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
+											seller+="<div class='container restaurant'>";
 										}
+										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 										seller+="<span>"+star+"&nbsp"+starcount+"</span><br>" // 별점 
@@ -221,13 +222,15 @@
 						star='아직 리뷰가 없어요';
 						starcount="";
 					}
-					seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
-					seller+="<div class='container restaurant'>";
 					if(data.listvo[i].r_state==3){
-						seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+						seller+="<a href='javascript:closepopup()' style='text-decoration:none;color:black'>"
+						seller+="<div class='container restaurant' style='filter: opacity(0.4)'>";
+						seller+="<span style='position:absolute;width:100px;left:25px;top:30px;font-weight:initial;filter:none;font-size:0.9em'>지금은<br>영업준비중<br>입니다</span>";
 					}else{
-						seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+						seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
+						seller+="<div class='container restaurant'>";
 					}
+					seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg'>";
 					seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 					seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 					seller+="<span>"+star+"&nbsp"+starcount+"</span><br>"; // 별점 
@@ -236,6 +239,7 @@
 					seller+="&nbsp&nbsp·&nbsp"+Math.round(data.listvo[i].distance *10)/10+"km </span><br>";
 					seller+="<span style='font-size:0.9em'>배달요금 "+(data.listvo[i].r_delCost).toLocaleString('ko-KR')+"원</span>";
 					seller+="</div></a>";
+					
 				}
 				$("#restau").append(seller);
 				let page="";
@@ -262,6 +266,9 @@
 				$("#paging").append(page);
 			}
 		});
+	}
+	function closepopup(){
+		alert('해당 매장은 영업준비중입니다.');
 	}
 	var themeObj = {
 		   bgColor: "#162525", //바탕 배경색
@@ -342,13 +349,15 @@
 											star='아직 리뷰가 없어요';
 											starcount="";
 										}
-										seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>";
-										seller+="<div class='container restaurant'>";
 										if(data.listvo[i].r_state==3){
-											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' style='filter: opacity(0.4)'>";
+											seller+="<a href='javascript:closepopup()' style='text-decoration:none;color:black'>"
+											seller+="<div class='container restaurant' style='filter: opacity(0.4)'>";
+											seller+="<span style='position:absolute;width:100px;left:25px;top:30px;font-weight:initial;filter:none;font-size:0.9em'>지금은<br>영업준비중<br>입니다</span>";
 										}else{
-											seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
+											seller+="<a href='${cp}/searchDetail?r_id="+data.listvo[i].r_id+"&distance="+data.listvo[i].distance+"' style='text-decoration:none;color:black'>"
+											seller+="<div class='container restaurant'>";
 										}
+										seller+="<img src='${cp}/resources/img/"+data.listvo[i].r_img+"' class='resimg' >";
 										seller+="<h5>"+data.listvo[i].r_name+"</h5>";
 										seller+="<img src='${cp}/resources/img/star.png' style='width:25px;height:20px;float:left;margin-right:2px'>";
 										seller+="<span class='star'>"+star+"&nbsp"+starcount+"</span><br>" // 별점 

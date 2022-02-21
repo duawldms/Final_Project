@@ -17,4 +17,5 @@ public class FoodOptionsVo {
 	@NumberFormat(style=Style.NUMBER)
 	private int fo_cost;
 	private String fo_category;
+	private int fo_status;
 }
