@@ -14,8 +14,8 @@
 	</resultMap>
 	<select id="getAuths" parameterType="String" resultMap="userDetail">
 		select * from user_information m, authority a
-		where m.ui_id=a.au_id and m.ui_id=#{ui_id}
-	</select>
+		where m.ui_id=a.au_id and m.ui_id=#{ui_id} 
+	</select> 
 	<!-- 회원가입 -->
 	<insert id="userinsert" parameterType="com.jhta.project.vo.user.UserVo">
 		insert into user_information values(#{ui_id},#{ui_pwd},#{ui_name},#{ui_email},#{ui_phone},sysdate,1)
