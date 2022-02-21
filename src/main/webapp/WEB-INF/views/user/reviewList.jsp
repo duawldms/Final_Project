@@ -35,7 +35,7 @@
 		<input type="hidden" id="ui_id" name="ui_id" value="${requestScope.ui_id }">
 		<input type="hidden" id="or_num" name="or_num" value="${or_num}" >
 		<div class="menuadd_btn_div">
-			<input type="submit" class="btn3" value="리뷰등록" onclick="review()">
+			<a href="${cp }/userreview">리뷰관리페이지로 돌아가기</a>
 		</div>
 	</form:form>
 </div>
