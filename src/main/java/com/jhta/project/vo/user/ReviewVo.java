@@ -14,6 +14,7 @@ import lombok.ToString;
 public class ReviewVo {
 	private int re_num;
 	private int or_num;
+	private String ui_id;
 	private String re_content;
 	private int re_hit;
 	private Date re_regdate;

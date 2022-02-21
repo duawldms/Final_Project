@@ -66,4 +66,14 @@ public class ReviewController {
 
 		return "layout";
 	}
+	@GetMapping("/reviewList")
+	public String reviewList(int re_num,Model model,Principal principal) {
+		ReviewVo vo=service.reviewList(re_num);
+		System.out.println("vo" +vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main", "/WEB-INF/views/user/reviewList.jsp");
+		return "layout";
+		
+	}
 }
