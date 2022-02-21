@@ -34,7 +34,7 @@ public class CategoryDeleteController {
 		String cgname=new String(StringUtils.cleanPath(cg_name).getBytes("8859_1"),"utf-8");
 		System.out.println("이건뭘까" + cg_name);
 		try {
-			String fileName=service.selectOne(cgname).getCg_name();
+			String fileName=service.selectOne(cg_name).getCg_photo();
 			String path = sc.getRealPath("/resources/img");
 			File f=new File(path +"\\" + fileName);
 			if(f.exists()) {
@@ -44,7 +44,7 @@ public class CategoryDeleteController {
 			return "redirect:/";
 		}catch(Exception e) {
 			System.out.println("오류 : " + e.getMessage());
-			return "/category/modify";	
+			return "redirect:/";	
 		}
 	}
 }

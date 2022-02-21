@@ -57,7 +57,7 @@
 		이름<br>
 		<input type="text" name="ui_name"><br>
 		핸드폰 번호<br>
-		<input type="text" name="ui_phone"><br><br>   
+		<input type="text" name="ui_phone" placeholder="숫자만 입력해 주세요"><br><br>   
 		<input type="button" value="조회" id="searchbtn" class="btn3"><br><br>  
 		<span id="result"></span> 
 		<span></span>	
