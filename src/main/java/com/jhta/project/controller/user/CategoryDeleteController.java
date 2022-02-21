@@ -32,7 +32,6 @@ public class CategoryDeleteController {
 	@GetMapping("/category/delete")
 	public String categoryDelete(String cg_name) throws Exception {
 		String cgname=new String(StringUtils.cleanPath(cg_name).getBytes("8859_1"),"utf-8");
-		System.out.println("이건뭘까" + cg_name);
 		try {
 			String fileName=service.selectOne(cgname).getCg_name();
 			String path = sc.getRealPath("/resources/img");
