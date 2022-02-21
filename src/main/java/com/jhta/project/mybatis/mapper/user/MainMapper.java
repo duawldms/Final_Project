@@ -22,6 +22,5 @@ public interface MainMapper {
 	int reviewWrite(ReviewVo vo);
 	List<OrdersVo> orderList1(HashMap<String, Object> map);
 	int maincount(int or_num);
-	
-	
+	ReviewVo reviewList(int re_num);
 }

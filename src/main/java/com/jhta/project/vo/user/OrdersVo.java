@@ -51,6 +51,7 @@ public class OrdersVo {
 	private String ui_phone;
 	
 	//review
+	private int re_num;
 	private int re_hit;
 	
 }

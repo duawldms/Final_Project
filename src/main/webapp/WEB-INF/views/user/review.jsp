@@ -103,7 +103,7 @@
 	   <th  class="col1">배달날짜</th>
 	   <th  class="col1">주문한 가게</th>
 	   <th  class="col1">주문한 음식</th>
-	   <th  class="col1">리뷰쓰기</th>
+	   <th  class="col1">리뷰보기</th>
 	</tr>     
 
 	<h5>작성한 리뷰</h5>    
@@ -119,7 +119,7 @@
 				<td class="col2">${vo.food_name }외 ${vo.count-1 }개 </td>     
 			</c:when>
 		</c:choose>           
-		<td class="col2">${vo.re_hit}</td>
+		<td class="col2"><a href="${cp }/reviewList?re_num=${vo.re_num}">작성한 리뷰보기</a></td>
 		</tr> 
 	</c:forEach>
 	

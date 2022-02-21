@@ -32,5 +32,8 @@ public class ReviewService {
 	public List<OrdersVo> orderList(String ui_id) {
 		return mapper.orderList(ui_id);
 	}
+	public ReviewVo reviewList(int re_num) {
+		return mapper.reviewList(re_num);
+	}
 	
 }
