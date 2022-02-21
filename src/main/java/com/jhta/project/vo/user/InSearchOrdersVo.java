@@ -20,4 +20,5 @@ public class InSearchOrdersVo {
 	private String or_paymethod;
 	private String r_id;
 	private int remainTime;
+	private String reject;
 }

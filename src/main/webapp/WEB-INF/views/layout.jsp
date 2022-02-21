@@ -140,7 +140,11 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 											}else if(data.list[i].or_status==4){
 												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
 												alarm+=data.list[i].or_num+"번 주문이 배달완료 되었습니다.</a>";
+											}else if(data.list[i].or_status==4){
+												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+												alarm+=data.list[i].or_num+"번 주문이 "+data.list[i].reject+"</a>";
 											}
+											
 											alarmcount++;
 										}
 										alarm+="</div>";
@@ -178,10 +182,12 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 				    				stompClient.subscribe('/topic/${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}', function (greeting) {
 				    					setTimeout(function(){
 				    						let or_num=JSON.parse(greeting.body).or_num;
+								        	let reject=JSON.parse(greeting.body).reject;
 					    					$.ajax({
 								    			url:"${cp}/saveAlarm",
 								    			data:{
-								    				or_num:or_num
+								    				or_num:or_num,
+								    				reject,reject
 								    			},
 								    			dataType:"json",
 								    			success:function(data){
@@ -208,6 +214,13 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 								    						console.log(4);
 								    						$("#toasthead").html("<strong>주문하신 음식이 도착했습니다!</strong>");
 								    						$("#toastbody").html("맛있게 드시고 다음에도 주문해주세요~");
+								    						$("#toast").prop('class','toast show');;
+								    						setTimeout(function(){
+								    							$("#toast").prop('class','toast hide');
+								    						},2500);
+								    					}else if(ovo.or_status==5){
+								    						$("#toasthead").html("<strong>주문이 취소되었습니다.</strong>");
+								    						$("#toastbody").html(reject);
 								    						$("#toast").prop('class','toast show');;
 								    						setTimeout(function(){
 								    							$("#toast").prop('class','toast hide');
