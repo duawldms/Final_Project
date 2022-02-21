@@ -77,7 +77,7 @@ public class AlarmController {
 				map.put("result", "success");
 				map.put("ovo", vo);
 			}else {
-				map.put("result", "fail");	
+				map.put("result", "fail");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -101,7 +101,7 @@ public class AlarmController {
 						Calendar now=Calendar.getInstance();
 						String hour=deltime.split(":")[0];
 						String min=deltime.split(":")[1];
-						cal.set(Calendar.HOUR, Integer.parseInt(hour));
+						cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
 						cal.set(Calendar.MINUTE, Integer.parseInt(min));
 						int remainTime=(int)((cal.getTimeInMillis()-now.getTimeInMillis())/60000);
 						InSearchOrdersVo vo=service.getOrder(or_num);
