@@ -13,4 +13,5 @@ public class FoodOptionVo {
 	private String fo_name;
 	private int fo_cost;
 	private String fo_category;
+	private int fo_status;
 }

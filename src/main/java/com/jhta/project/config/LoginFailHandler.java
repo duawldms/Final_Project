@@ -34,7 +34,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 				|| exception instanceof InternalAuthenticationServiceException) {
 			errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
 		} else if (exception instanceof DisabledException) {
-			errMsg = "이미 탈퇴한 계정입니다.";
+			errMsg = "탈퇴하거나 관리자 승인중인 계정입니다.";
 		} else {
 			errMsg = "관리자에게 문의하세요.";
 		}
