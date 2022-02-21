@@ -25,12 +25,12 @@ public class OrderMessengerController {
 	public void greeting(HelloMessage message,Principal principal) throws Exception {
 		String name=principal.getName();
 		String r_id=service.getRidOrnum(message.getOr_num());
-		messagingTemplate.convertAndSend("/topic/"+r_id, new Greeting(message.getOr_num(),0));
+		messagingTemplate.convertAndSend("/topic/"+r_id, new Greeting(message.getOr_num(),0,null));
 	}
 	@MessageMapping("/callback")
 	public void callback(HelloMessage message,Principal principal) {
 		InSearchOrdersVo vo=service.getOrder(message.getOr_num());
-		messagingTemplate.convertAndSend("/topic/"+vo.getUi_id(),new Greeting(message.getOr_num(),message.getDeltime()));
+		messagingTemplate.convertAndSend("/topic/"+vo.getUi_id(),new Greeting(message.getOr_num(),message.getDeltime(),null));
 	}
 }
 

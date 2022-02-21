@@ -39,7 +39,7 @@ public class AlarmController {
 	}
 	@GetMapping("/saveAlarm")
 	public HashMap<String, Object> saveAlarm(int or_num,
-			HttpServletResponse resp,HttpServletRequest req,Principal principal){
+			HttpServletResponse resp,HttpServletRequest req,Principal principal, @RequestParam(value="reject",defaultValue ="")String reject){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		try {
 			if(req.isUserInRole("ROLE_USER")) {
@@ -52,7 +52,10 @@ public class AlarmController {
 					System.out.println(deltime);
 					c=new Cookie(URLEncoder.encode(principal.getName()+".or_num,"+or_num,"utf-8"), 
 							URLEncoder.encode(Integer.toString(vo.getOr_status())+","+deltime,"utf-8") );
-				}else {
+				}else if(vo.getOr_status()==5){
+					c=new Cookie(URLEncoder.encode(principal.getName()+".or_num,"+or_num,"utf-8"), 
+							URLEncoder.encode(reject,"utf-8") );
+				}else{
 					Cookie[] cookie=req.getCookies();
 					for(Cookie tempc:cookie) {
 						if(tempc.getName().equals(URLEncoder.encode(principal.getName()+".or_num,"+or_num,"utf-8"))) {
@@ -96,17 +99,22 @@ public class AlarmController {
 					String name=URLDecoder.decode(c.getName(),"utf-8");
 					if(name.startsWith(principal.getName()+".or_num")) {
 						int or_num=Integer.parseInt(name.split(",")[1]);
-						String deltime=URLDecoder.decode(c.getValue(),"utf-8").split(",")[1];
-						Calendar cal=Calendar.getInstance();
-						Calendar now=Calendar.getInstance();
-						String hour=deltime.split(":")[0];
-						String min=deltime.split(":")[1];
-						cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
-						cal.set(Calendar.MINUTE, Integer.parseInt(min));
-						int remainTime=(int)((cal.getTimeInMillis()-now.getTimeInMillis())/60000);
-						InSearchOrdersVo vo=service.getOrder(or_num);
-						vo.setRemainTime(remainTime);
-						list.add(vo);
+						if(service.getOrder(or_num).getOr_status()==5) {
+							String reject=URLDecoder.decode(c.getValue(),"utf-8");
+							list.add(service.getOrder(or_num));
+						}else {
+							String deltime=URLDecoder.decode(c.getValue(),"utf-8").split(",")[1];
+							Calendar cal=Calendar.getInstance();
+							Calendar now=Calendar.getInstance();
+							String hour=deltime.split(":")[0];
+							String min=deltime.split(":")[1];
+							cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
+							cal.set(Calendar.MINUTE, Integer.parseInt(min));
+							int remainTime=(int)((cal.getTimeInMillis()-now.getTimeInMillis())/60000);
+							InSearchOrdersVo vo=service.getOrder(or_num);
+							vo.setRemainTime(remainTime);
+							list.add(vo);
+						}
 					}
 				}
 				map.put("list", list);

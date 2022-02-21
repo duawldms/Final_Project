@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class Greeting {
 	private int or_num;
 	private int deltime;
+	private String reject;
 }
