@@ -198,6 +198,19 @@ public class RestaurantService {
 	public int deliveryEnd(int or_num) {
 		return mapper.deliveryEnd(or_num);
 	}
+	// 판매자 아이디 찾기
+	public String getSellerId(String r_email) {
+		return mapper.getSellerId(r_email);
+	}
+	
+	// 메일 중복 체크
+	public String emailCheck(String r_email) {
+		return mapper.emailCheck(r_email);
+	}
+	// 판매자 아이디 이메일 체크
+	public String sellerInfoFind(Map<String, String> map) {
+		return mapper.sellerInfoFind(map);
+	}
 }
 
 

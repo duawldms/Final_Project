@@ -419,4 +419,30 @@
 		order by or_num, food_num, fo_num
 		]]>
 	</select>
+	<!-- 이메일 중복 검사 -->
+	<select id="emailCheck" parameterType="string" resultType="string">
+		select r_email
+		from restaurant
+		where r_email = #{r_email}
+	</select>
+	<!-- 판매자 아이디 찾기 -->
+	<select id="getSellerId" parameterType="string" resultType="string">
+		select r_id
+		from restaurant
+		where r_email = #{r_email} 
+	</select>
+	<!-- 판매자 비밀번호 찾기 -->
+	<select id="sellerInfoFind" parameterType="hashmap" resultType="string">
+		select r_id
+		from restaurant
+		where r_id = #{r_id} and r_email = #{r_email}
+	</select>
+	<!-- 판매자 임시 비빌번호 발급(비밀번호 임시 비밀번호로 변경) -->
+	<update id="sellerTempPwd" parameterType="hashmap">
+		update restaurant
+		set
+		r_pwd = #{r_pwd}
+		where
+		r_id = #{r_id}
+	</update>
 </mapper>

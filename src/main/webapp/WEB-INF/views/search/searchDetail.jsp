@@ -333,8 +333,9 @@
 	});
 	function goorder(index,foodnum){
 		gocart(index,foodnum,'a','order');
-		location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 	}
+	
+	let test1='';
 	let count=0;
 	function gocart(index,foodnum,delcheck,ordercheck){
 		let necoptions=[];
@@ -375,11 +376,21 @@
 					location.reload(true);
 				}else if(data.result=='check'){
 					if(confirm('다른 음식점에서 이미 담은 메뉴가 있습니다. \n담긴 메뉴를 취소하고 새로운 음식점의 메뉴를 담을까요?')){
-						gocart(index,foodnum,'delete');
+						if(ordercheck=='order'){
+							gocart(index,foodnum,'delete','order');
+							console.log(1);
+							location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
+						}else{
+							gocart(index,foodnum,'delete');
+							console.log(2);
+						}
 					}
+				}else if(data.result=='goorder'){
+					location.href='${cp}/user/order?delcost=${rvo.r_delCost }';
 				}
 			}
 		});
+		return;
 	}
 	
 	function del(cartnum){

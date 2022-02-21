@@ -43,6 +43,11 @@ public class GoCartController {
 							service.deletecd(cart.getCart_num());
 						}
 						service.deletecart(ui_id);
+					}else {
+						if(!r_id.equals(service.getFoodRid(foodnum))) {
+							map.put("result", "check");
+							return map;
+						}
 					}
 				}else if(!r_id.equals(service.getFoodRid(foodnum))) {
 					map.put("result", "check");

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.project.service.restaurant.MailService;
+import com.jhta.project.service.restaurant.RestaurantService;
 
 @Controller
 public class MailauthController {
 	@Autowired MailService ms;
+	@Autowired RestaurantService service;
 	// 이메일 인증코드 발송
 	@RequestMapping(value = "/emailCheck", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
@@ -25,7 +27,8 @@ public class MailauthController {
 		System.out.println("r_email : " + r_email);
 		int result = ms.sendMail(r_email, req);
 		System.out.println("result : " + result);
-		if (result == 1) {
+		String email = service.emailCheck(r_email);
+		if (result == 1 && email == null) {
 			map.put("result", "success");
 		} else {
 			map.put("result", "fail");
@@ -49,6 +52,23 @@ public class MailauthController {
 			map.put("result", "fail");
 		}
 		return map;
+	}
+	// 임시비밀번호 발급
+	@RequestMapping(value = "/sellerPwdFind", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public Map<String, String> sellerPwdFind(String r_id, String r_email) {
+		Map<String, String> mailSend = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("r_id", r_id);
+		map.put("r_email", r_email);
+		String id = service.sellerInfoFind(map);
+		if (id != null) {
+			ms.sendMail(r_email, r_id);
+			mailSend.put("result", "success");
+		} else {
+			mailSend.put("result", "fail");
+		}
+		return mailSend;
 	}
 	
 }

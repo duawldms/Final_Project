@@ -210,7 +210,7 @@
 				if (json.result == 'success') {
 					alert("인증번호 전송 성공");
 				} else {
-					alert("인증번호 전송 실패");
+					alert("이미 사용중인 이메일입니다.");
 				}
 			}
 		}

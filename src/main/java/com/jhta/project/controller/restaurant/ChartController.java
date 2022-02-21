@@ -46,8 +46,10 @@ public class ChartController {
 	@Autowired ServletContext sc;
 	@GetMapping("/restaurant/chart")
 	public String chartData(HttpServletResponse response,Principal p, Model model) {  //@RequestParam(value="r_id",required=false)String r_id
-
+		RestaurantVo vo=service.idCheck(p.getName());
+		model.addAttribute("vo",vo);
 		model.addAttribute("main","/WEB-INF/views/restaurant/chart.jsp");
+		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");
 		return "layout";
 		
 	}
@@ -56,7 +58,6 @@ public class ChartController {
 	@ResponseBody
 	@GetMapping(value="/restaurant/sales_chart", produces= {MediaType.APPLICATION_JSON_VALUE})
 	public Map<String, Object> sales_chart(HttpServletResponse response,Principal p, Model model,HttpServletRequest req) {  //@RequestParam(value="r_id",required=false)String r_id
-
 		Map<String, Object> map= new HashMap<String, Object>();
 		List<OrderListVo> list = service.selectSalesDay(req,p.getName());
  
@@ -134,9 +135,9 @@ public class ChartController {
 
         row = sheet.createRow(rowNum++);
         cell = row.createCell(0);
-        cell.setCellValue("매출액");
-        cell = row.createCell(1);
         cell.setCellValue("날짜");
+        cell = row.createCell(1);
+        cell.setCellValue("매출액");
 
         
         
@@ -144,9 +145,9 @@ public class ChartController {
         	//System.out.println(list.get(i).getOr_totalcost());
             row = sheet.createRow(rowNum++);
             cell = row.createCell(0);
-            cell.setCellValue(list.get(i).getOr_totalcost());
-            cell = row.createCell(1);
             cell.setCellValue(list.get(i).getSales_day());
+            cell = row.createCell(1);
+            cell.setCellValue(list.get(i).getOr_totalcost());
         }
         
         response.setContentType("ms-vnd/excel");
