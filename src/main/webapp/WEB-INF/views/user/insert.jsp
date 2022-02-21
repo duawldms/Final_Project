@@ -220,9 +220,9 @@ var themeObj = {
 		</tr>
 		<tr>
 			<td class="col1">전화번호</td>
-			<td class="col2"><input type="text" name="ui_phone"></td>
+			<td class="col2"><input type="text" name="ui_phone" placeholder="숫자만 입력해 주세요"></td>
 		</tr>
-		<tr>
+		<tr>  
 			<td class="col1">배송받을 주소</td>
 			<td class="col2">
 		<input type="text" id="ua_addr1" name="ua_addr" placeholder="배달받을 간단한 주소를 입력해주세요!" style="width:400px; ">

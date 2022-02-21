@@ -84,13 +84,13 @@
 	</insert>
 	<!-- 사이드 메뉴 추가 -->
 	<insert id="sideAdd" parameterType="com.jhta.project.vo.restaurant.FoodOptionVo">
-		insert into food_options values(food_options_seq.nextval, #{food_num}, #{fo_name}, #{fo_cost}, #{fo_category})
+		insert into food_options values(food_options_seq.nextval, #{food_num}, #{fo_name}, #{fo_cost}, #{fo_category}, 0)
 	</insert>
 	<!-- 해당 매장 메뉴 불러오기 -->
 	<select id="menuList" parameterType="string" resultType="com.jhta.project.vo.restaurant.FoodVo">
 		select food_num, food_name, food_info, food_img, food_cost, food_status
 		from restaurant r, food f
-		where r.r_id = f.r_id and r.r_id = #{r_id}
+		where r.r_id = f.r_id and r.r_id = #{r_id} and food_status in(0, 1)
 	</select>
 	<!-- food_num에 해당되는 메뉴 불러오기 -->
 	<select id="getFood" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodVo">
@@ -131,24 +131,30 @@
 		fo_num = #{fo_num}
 	</update>
 	<!-- 메뉴 삭제 -->
-	<delete id="foodDelete" parameterType="int">
+	<update id="foodDelete" parameterType="int">
 		begin
-			delete food_options
+			update food_options
+			set
+			fo_status = 1
 			where food_num = #{food_num};
-			delete food
+			update food
+			set
+			food_status = 2
 			where food_num = #{food_num};
 		end;
-	</delete>
+	</update>
 	<!-- 사이드 메뉴 삭제 -->
-	<delete id="optionDelete" parameterType="int">
-		delete food_options
+	<update id="optionDelete" parameterType="int">
+		update food_options
+		set
+		fo_status = 1
 		where fo_num = #{fo_num}
-	</delete>
+	</update>
 	<!-- 사이드 메뉴 불러오기 -->
 	<select id="optionSelect" parameterType="int" resultType="com.jhta.project.vo.restaurant.FoodOptionVo">
 		select *
 		from food_options
-		where food_num = #{food_num}
+		where food_num = #{food_num} and fo_status = 0
 		order by fo_category
 	</select>
 	<!-- 메뉴 품절 처리 -->

@@ -19,7 +19,7 @@ update category set cg_name=#{cg_name}
 </if>
 where cg_name=#{cg_name}
 </update>
-<delete id="delete" parameterType="int">
+<delete id="delete" parameterType="String">
 delete from category where cg_name=#{cg_name}
 </delete>
 <select id="orderList" parameterType="string" resultType="com.jhta.project.vo.user.OrdersVo">

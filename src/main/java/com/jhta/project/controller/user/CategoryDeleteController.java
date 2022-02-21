@@ -33,7 +33,7 @@ public class CategoryDeleteController {
 	public String categoryDelete(String cg_name) throws Exception {
 		String cgname=new String(StringUtils.cleanPath(cg_name).getBytes("8859_1"),"utf-8");
 		try {
-			String fileName=service.selectOne(cgname).getCg_name();
+			String fileName=service.selectOne(cg_name).getCg_photo();
 			String path = sc.getRealPath("/resources/img");
 			File f=new File(path +"\\" + fileName);
 			if(f.exists()) {
