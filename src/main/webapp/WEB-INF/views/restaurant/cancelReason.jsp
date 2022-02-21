@@ -76,7 +76,7 @@
 		<div class="order_cancel_div">
 			<a href="javascript:void(0)" id="order_cancel_a" onclick="orderCancel()">주문 거부</a>
 		</div>
-		<input type="hidden" name="or_num" value="${requestScope.or_num }">
+		<input type="hidden" name="or_num" id="or_num" value="${requestScope.or_num }">
 	</form:form>	
 </div>
 <div id="my_modal">
@@ -106,6 +106,7 @@
 		let radio = document.getElementsByName("cancel_reason");
 		let radio_check = false;
 		let radio_value = null;
+		let or_num = document.getElementById("or_num");
 		
 		for (let i = 0; i < radio.length; i++) {
 			if (radio[i].checked == true) {
