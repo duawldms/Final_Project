@@ -121,16 +121,16 @@ public class ChartController {
 //	}
 	 	@GetMapping("/restaurant/excel")
 	  public void excelDownload(HttpServletResponse response,HttpServletRequest req,String r_id,Principal p) throws IOException {
-	 	System.out.println("aa");
+	 	//System.out.println("aa");
 	 	List<OrderListVo> list = service.selectSalesDay(req,p.getName());
-	 	System.out.println("bb"+list);
-	 	//Workbook wb = new HSSFWorkbook();
+	 	//System.out.println("bb"+list);
+	 	//Workbook wb = new HSSFWorkbook(); 
         Workbook wb = new XSSFWorkbook();
         Sheet sheet = wb.createSheet("첫번째 시트");
         Row row = null;
         Cell cell = null;
         int rowNum = 0;
-        
+        String gbn = req.getParameter("gbn");
         
 
         row = sheet.createRow(rowNum++);
@@ -139,17 +139,38 @@ public class ChartController {
         cell = row.createCell(1);
         cell.setCellValue("매출액");
 
-        
-        
+        //System.out.println(gbn+"aa");
+        //System.out.println(list+"xx");
+        if(gbn.equals("day")) {
         for (int i=0; i<list.size(); i++) {
-        	//System.out.println(list.get(i).getOr_totalcost());
+        	//System.out.println("xx"+list);
             row = sheet.createRow(rowNum++);
             cell = row.createCell(0);
             cell.setCellValue(list.get(i).getSales_day());
             cell = row.createCell(1);
             cell.setCellValue(list.get(i).getOr_totalcost());
+           // System.out.println(list.get(i).getOr_totalcost()+"aa");
+        	}
+        }else if(gbn.equals("month")) {
+        	 for (int j=0; j<list.size(); j++) {
+             	 //System.out.println(list.get(j).getOr_totalcost());
+                 row = sheet.createRow(rowNum++);
+                 cell = row.createCell(0);
+                 cell.setCellValue(list.get(j).getSales_month());
+                 cell = row.createCell(1);
+                 cell.setCellValue(list.get(j).getOr_totalcost());
+             	}
+        }else if(gbn.equals("year")) {
+        	for (int y=0; y<list.size(); y++) {
+        		//System.out.println("yy"+list);
+             	//System.out.println(list.get(i).getOr_totalcost());
+                 row = sheet.createRow(rowNum++);
+                 cell = row.createCell(0);
+                 cell.setCellValue(list.get(y).getSales_year());
+                 cell = row.createCell(1);
+                 cell.setCellValue(list.get(y).getOr_totalcost());
+             	}
         }
-        
         response.setContentType("ms-vnd/excel");
 //        response.setContentType("application/ms-excel; charset=UTF-8");
         //response.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
