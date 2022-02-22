@@ -32,13 +32,13 @@
     .col1 {
     background-color: #7bcfbb;
     padding: 10px;
-    text-align: center;
+    text-align: INHERIT;
     font-weight: bold;
     font-size: 1.2  em;  
     }   
  
     .col2 {
-    text-align: left;
+    text-align: INHERIT;
     padding: 5px;
     }
      .useridbtn {    

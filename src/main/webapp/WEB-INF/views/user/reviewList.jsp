@@ -17,13 +17,14 @@
 					</c:forEach>
 				</td>
 			</tr>
-			<tr style="border-bottom: 3px solid #49505796;">
-				<td class="menuadd_td1">리뷰작성</td>
+			<tr>
+				<td class="menuadd_td1">리뷰</td>
 				<td class="menuadd_td2">
 					<textarea cols="30" rows="5" style="resize: none" name="re_content" id="re_content" readonly="readonly">${vo.re_content}</textarea>
 				</td>
 			</tr>
-			<tr>
+			<c:if test="${vo.rp_photo!=null }">
+			<tr style="border-bottom: 3px solid #49505796;">
 				<td class="menuadd_td1">사진</td>
 				<td class="menuadd_td2">
 				<img src="${cp }/resources/img/${vo.rp_photo}"><br>	
@@ -31,11 +32,17 @@
 					<img style="width: 200px; height: 200px; margin-top: 5px; display: none;" id="re_photo" src="">
 				</td>
 			</tr>
+			</c:if>
 		</table>
 		<input type="hidden" id="ui_id" name="ui_id" value="${requestScope.ui_id }">
 		<input type="hidden" id="or_num" name="or_num" value="${or_num}" >
 		<div class="menuadd_btn_div">
-			<a href="${cp }/userreview">리뷰관리페이지로 돌아가기</a>
+		<input type="button" value="리뷰관리페이지로" onclick="returnreview()" class="btn3">
 		</div>
 	</form:form>
 </div>
+<script type="text/javascript">
+function returnreview(){
+	location.href="${cp }/userreview";  
+	};
+</script>

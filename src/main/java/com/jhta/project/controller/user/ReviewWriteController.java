@@ -61,6 +61,6 @@ public class ReviewWriteController {
 			System.out.println("오류 : "+ e.getMessage());
 			model.addAttribute("code","fail");
 		}
-		return "layout";
+		return "review";
 	}
 }

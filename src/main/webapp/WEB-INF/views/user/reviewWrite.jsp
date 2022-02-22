@@ -83,13 +83,13 @@ function review() {
 			</div> 
 				</td>
 			</tr>
-			<tr style="border-bottom: 3px solid #49505796;">
+			<tr>
 				<td class="menuadd_td1">리뷰작성</td>
 				<td class="menuadd_td2">
 					<textarea cols="30" rows="5" style="resize: none" name="re_content" id="re_content" placeholder="솔직한 리뷰를 작성해주세요!"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<tr style="border-bottom: 3px solid #49505796;">
 				<td class="menuadd_td1">사진리뷰 등록</td>
 				<td class="menuadd_td2">
 					<input type="file" id="file1" name="file1" onchange="imageView(event)">
