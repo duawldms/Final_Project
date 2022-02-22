@@ -41,7 +41,7 @@ public class ReviewWriteController {
 		String orgname=file1.getOriginalFilename();
 		String saveFileName= UUID.randomUUID() +"_" + orgname;
 		vo.setRe_content(re_content);
-		if(orgname!=null) {
+		if(orgname!=null && !orgname.equals("")) {
 			vo.setRp_photo(saveFileName);
 		}else {
 			vo.setRp_photo(null);

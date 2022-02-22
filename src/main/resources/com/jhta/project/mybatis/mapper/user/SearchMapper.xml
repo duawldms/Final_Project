@@ -26,7 +26,7 @@
 				, res.distance 
 			</when>
 			<when test="orderby=='hit'">
-				, a.hitavg desc nulls last
+				, a.hitavg desc nulls last,re_num desc
 			</when>
 			<when test="orderby=='delcost'">
 				, res.r_delcost
@@ -172,11 +172,11 @@
 	</select>
 	<!-- 매장별 리뷰 넘버,메인메뉴 카운트 조회 -->
 	<select id="orfoodcount" parameterType="string" resultType="com.jhta.project.vo.user.OrderAndHitVo">
-		select o.or_num,count(od.food_num) count ,nvl(avg(r.re_hit),0) hit
+		select o.or_num,count(od.food_num) count ,nvl(avg(r.re_hit),0) hit,r.re_regdate
 		from orders o,orders_detail od,food f,review r,review_photo rp
 		where o.or_num=od.or_num and od.food_num=f.food_num and f.r_id=#{r_id}
         and r.or_num(+)=o.or_num and r.re_num=rp.re_number(+) <![CDATA[and r.re_hit<>0]]>
-		group by o.or_num
+		group by o.or_num,r.re_regdate order by r.re_regdate desc
 	</select>
 	<!-- 리뷰넘버로 리뷰찾기 -->
 	<select id="findreview" parameterType="int" resultType="com.jhta.project.vo.user.InSearchReviewVo">

@@ -132,16 +132,16 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 										alarm+=' style="padding:0.2rem 0.8rem;text-align:center">주문목록</a>';
 										for(let i=0;i<data.list.length;i++){
 											if(data.list[i].or_status==2){
-												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;text-align:left'>";
 												alarm+=data.list[i].or_num+"번 주문이 조리중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==3){
-												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;text-align:left'>";
 												alarm+=data.list[i].or_num+"번 주문이 배달중입니다. "+data.list[i].remainTime+"분 후 도착예정입니다.</a>";
 											}else if(data.list[i].or_status==4){
-												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;text-align:left'>";
 												alarm+=data.list[i].or_num+"번 주문이 배달완료 되었습니다.</a>";
 											}else if(data.list[i].or_status==4){
-												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;'>";
+												alarm+="<a href='javascript:deleteAlarm("+data.list[i].or_num+")' class='list-group-item list-group-item-action' style='padding:0.4rem 0.8rem;text-align:left'>";
 												alarm+=data.list[i].or_num+"번 주문이 "+data.list[i].reject+"</a>";
 											}
 											

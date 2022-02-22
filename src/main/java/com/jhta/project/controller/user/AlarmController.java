@@ -48,7 +48,8 @@ public class AlarmController {
 				if(vo.getOr_status()==2) {
 					Calendar cal=Calendar.getInstance();
 					cal.add(Calendar.MINUTE,vo.getOr_deltime());
-					String deltime=String.format("%02d", cal.get(Calendar.HOUR_OF_DAY))+":"+cal.get(Calendar.MINUTE);
+					String deltime=cal.get(Calendar.YEAR)+"/"+(cal.get(Calendar.MONTH)+1)+";"+cal.get(Calendar.DAY_OF_MONTH)+"_"+
+								String.format("%02d", cal.get(Calendar.HOUR_OF_DAY))+":"+String.format("%02d",cal.get(Calendar.MINUTE));
 					System.out.println(deltime);
 					c=new Cookie(URLEncoder.encode(principal.getName()+".or_num,"+or_num,"utf-8"), 
 							URLEncoder.encode(Integer.toString(vo.getOr_status())+","+deltime,"utf-8") );
@@ -106,8 +107,14 @@ public class AlarmController {
 							String deltime=URLDecoder.decode(c.getValue(),"utf-8").split(",")[1];
 							Calendar cal=Calendar.getInstance();
 							Calendar now=Calendar.getInstance();
-							String hour=deltime.split(":")[0];
-							String min=deltime.split(":")[1];
+							String year=deltime.split("_")[0].split("/")[0];
+							String month=deltime.split("_")[0].split("/")[1].split(";")[0];
+							String day=deltime.split("_")[0].split("/")[1].split(";")[1];
+							String hour=deltime.split("_")[1].split(":")[0];
+							String min=deltime.split("_")[1].split(":")[1];
+							cal.set(Calendar.YEAR, Integer.parseInt(year));
+							cal.set(Calendar.MONTH, Integer.parseInt(month)-1);
+							cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(day));
 							cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
 							cal.set(Calendar.MINUTE, Integer.parseInt(min));
 							int remainTime=(int)((cal.getTimeInMillis()-now.getTimeInMillis())/60000);
@@ -159,6 +166,7 @@ public class AlarmController {
 				for(Cookie c:cookies) {
 					String name=URLDecoder.decode(c.getName(),"utf-8");
 					if(name.equals(principal.getName()+".or_num,"+or_num)) {
+						System.out.println(name+","+URLDecoder.decode(c.getValue(),"utf-8"));
 						Cookie cookie=new Cookie(URLEncoder.encode(principal.getName()+".or_num,"+or_num,"utf-8"),"");
 						cookie.setPath("/");
 						cookie.setMaxAge(0);
