@@ -41,6 +41,6 @@
 		<br> 
  로그인 유지 <input type="checkbox" name="remember-me" id="rememberMe">
 		<br>
-		<a href="${cp }/insertadmin">**회원가입하기</a><br>
+		<!-- <a href="${cp }/insertadmin">**회원가입하기</a><br> -->
 	</form:form>
 </div>
