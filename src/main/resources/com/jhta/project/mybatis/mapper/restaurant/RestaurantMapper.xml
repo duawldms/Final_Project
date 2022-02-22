@@ -325,7 +325,7 @@
 	<update id="sellerDelete" parameterType="string">
 		update restaurant
 		set
-		r_state = 0
+		r_state = 5
 		where
 		r_id = #{r_id}
 	</update>
@@ -451,4 +451,16 @@
 		where
 		r_id = #{r_id}
 	</update>
+	<!-- 판매자 가입 상태 불러오기 -->
+	<select id="getSellerStatus" parameterType="string" resultType="int">
+		select r_state
+		from restaurant
+		where r_id = #{r_id}
+	</select>
+	<!-- 사용자 -->
+	<select id="getAuthority" parameterType="string" resultType="string">
+		select au_authority 
+		from authority
+		where au_id = #{au_id}
+	</select>
 </mapper>

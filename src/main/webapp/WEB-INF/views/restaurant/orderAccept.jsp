@@ -84,6 +84,7 @@
 	   document.getElementById("order-accept-form").action = "${cp}/restaurant/acceptReason";
 	   document.getElementById("order-accept-form").method = "post";
 	   document.getElementById("order-accept-form").submit();
+	   window.opener.closeWin();
 	   self.close();
 	}
 	

@@ -211,6 +211,14 @@ public class RestaurantService {
 	public String sellerInfoFind(Map<String, String> map) {
 		return mapper.sellerInfoFind(map);
 	}
+	// 판매자 가입 상태 불러오기
+	public int getSellerStatus(String r_id) {
+		return mapper.getSellerStatus(r_id);
+	}
+	// 사용자 권한 불러오기
+	public String getAuthority(String au_id) {
+		return mapper.getAuthority(au_id);
+	}
 }
 
 

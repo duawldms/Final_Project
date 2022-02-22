@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<meta id="_csrf" content="${_csrf.token}">
+<meta id="_csrf_header" content="${_csrf.headerName}">  
 <style>
 	.restaurant_login_wrap {
 		text-align: center;
@@ -59,7 +61,7 @@
 			<div class="login_btn_div">
 				<input type="submit" id="login_btn" value="로그인">
 			</div>
-			<div>${requestScope.errMsg }</div>
+			<div id="errMsg">${requestScope.errMsg }</div>
 			<div>
 				<label>로그인 유지</label>
 				<input type="checkbox" name="remember-me" id="rememberMe">

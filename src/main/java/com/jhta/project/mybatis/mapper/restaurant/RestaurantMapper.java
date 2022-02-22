@@ -57,4 +57,6 @@ public interface RestaurantMapper {
 	String emailCheck(String r_email);
 	String sellerInfoFind(Map<String, String> map);
 	void sellerTempPwd(Map<String, String> map);
+	int getSellerStatus(String r_id);
+	String getAuthority(String au_id);
 }

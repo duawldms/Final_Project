@@ -126,6 +126,7 @@
 	    document.getElementById("cancel_reason_form").action = "${cp}/restaurant/cancelReason";
 	    document.getElementById("cancel_reason_form").method = "post";
 	    document.getElementById("cancel_reason_form").submit();
+	    window.opener.closeWin();
 	    self.close();
 	}
 	

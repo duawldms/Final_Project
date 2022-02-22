@@ -14,9 +14,12 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import com.jhta.project.service.restaurant.RestaurantService;
 @Configuration
 public class LoginFailHandler implements AuthenticationFailureHandler{
 	@Autowired ServletContext sc;
+	@Autowired RestaurantService service;
 	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
@@ -28,13 +31,23 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 //		CredentialExpiredException : 비밀번호 만료
 //		DisabledException : 계정 비활성화
 //		LockedException : 계정잠김
-		String errMsg = null;
-
+		String errMsg = null; 
+		String id = (String)request.getParameter("username");
 		if (exception instanceof BadCredentialsException 
 				|| exception instanceof InternalAuthenticationServiceException) {
 			errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
 		} else if (exception instanceof DisabledException) {
-			errMsg = "탈퇴하거나 관리자 승인중인 계정입니다.";
+			String authority = service.getAuthority(id);
+			if (authority.equals("ROLE_USER")) {
+				errMsg = "이미 탈퇴한 계정입니다.";
+			} else if (authority.equals("ROLE_RESTAURANT")) {
+				int status = service.getSellerStatus(id);
+				if (status == 5) {
+					errMsg = "이미 탈퇴한 계정입니다.";
+				} else {
+					errMsg = "관리자 승인을 대기 중인 계정입니다.";
+				}
+			}
 		} else {
 			errMsg = "관리자에게 문의하세요.";
 		}
