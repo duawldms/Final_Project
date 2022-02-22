@@ -4,6 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
  	#box{
+ 	
  	position:center;
  	padding:45px;                   
  	margin:100px; 
@@ -32,13 +33,13 @@
     .col1 {
     background-color: #7bcfbb;
     padding: 10px;
-    text-align: center;
+    text-align: INHERIT;  
     font-weight: bold;
     font-size: 1.2  em;  
     }   
  
     .col2 {
-    text-align: left;
+    text-align: INHERIT;   
     padding: 5px;
     }
      .useridbtn {    
