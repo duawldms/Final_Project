@@ -47,7 +47,7 @@
 		<select class="form-control col-3" id="category">
 		<c:choose>
 			<c:when test="${category==''||category==null }">
-				<option value="all" selected>전체</option>
+				<option value="" selected>전체</option>
 				<c:forEach var="cg_name" items="${cglist }">
 					<option value="${cg_name }">${cg_name }</option>
 				</c:forEach>
