@@ -79,7 +79,6 @@
 	   <th  class="col1">주문한 음식</th>
 	   <th  class="col1">리뷰쓰기</th>
 	</tr>     
-
 	<h5>작성가능한 리뷰</h5>    
 	<c:forEach var="vo" items="${requestScope.before}"  >      
 		<tr>

@@ -84,10 +84,6 @@ public class UserDeliveryController {
 		selectvo.setOr_num(or_num);
 		selectvo.setUi_id(principal.getName()); 
 		OrdersVo vo=service.deliverydetail(selectvo);
-		model.addAttribute("vo",vo);
-		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
-		model.addAttribute("main","/WEB-INF/views/user/DeliveryDetail.jsp");
-	
 		ArrayList<List<OrdersVo>> ff=new ArrayList<List<OrdersVo>>();
 		List<OrdersVo>selectmainlistforornum=service.selectmainlistforornum(or_num);
 		int m=0;
@@ -96,6 +92,9 @@ public class UserDeliveryController {
 			List<OrdersVo>selectmainoptionforodnum=service.selectmainoptionforodnum(m);
 			ff.add(selectmainoptionforodnum);
 		}
+		model.addAttribute("vo",vo);
+		model.addAttribute("mypage","/WEB-INF/views/user/userInfoList.jsp");
+		model.addAttribute("main","/WEB-INF/views/user/DeliveryDetail.jsp");
 		model.addAttribute("selectmainlistforornum",selectmainlistforornum);
 		model.addAttribute("ff",ff);
 		return "layout";

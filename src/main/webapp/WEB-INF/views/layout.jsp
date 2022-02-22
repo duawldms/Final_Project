@@ -23,7 +23,14 @@ href='https://www.coupangeats.com/wp-content/plugins/elementor/assets/css/fronte
 <link rel="stylesheet" type="text/css" href="${cp }/resources/css/layout.css">
 <link rel='stylesheet' id='rocket-font-css'
 	href='//cdn.jsdelivr.net/font-notosans-kr/1.0.0-v1004/NotoSansKR-2350.css?ver=5.8.2' type='text/css' media='all' />
-	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+<style>
+	#main{
+		font-family: 'Open Sans', sans-serif;
+	}
+</style>
 <body>
 <body class="home page-template page-template-elementor_header_footer page page-id-308 wp-custom-logo ehf-header ehf-footer ehf-template-neve ehf-stylesheet-neve  nv-blog-grid nv-sidebar-full-width menu_sidebar_slide_left elementor-default elementor-template-full-width elementor-kit-31 elementor-page elementor-page-308"
 	id="neve_body">

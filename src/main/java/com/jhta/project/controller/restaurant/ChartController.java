@@ -4,8 +4,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -120,7 +126,7 @@ public class ChartController {
 //		response.getOutputStream().close();
 //	}
 	 	@GetMapping("/restaurant/excel")
-	  public void excelDownload(HttpServletResponse response,HttpServletRequest req,String r_id,Principal p) throws IOException {
+	  public void excelDownload(HttpServletResponse response,HttpServletRequest req,String r_id,Principal p) throws IOException, ParseException {
 	 	//System.out.println("aa");
 	 	List<OrderListVo> list = service.selectSalesDay(req,p.getName());
 	 	//System.out.println("bb"+list);
@@ -131,8 +137,17 @@ public class ChartController {
         Cell cell = null;
         int rowNum = 0;
         String gbn = req.getParameter("gbn");
+        SimpleDateFormat simpleDate=new SimpleDateFormat("yyyyMMdd");
         
-
+        Date time= new Date();
+        
+        String today = simpleDate.format(time);
+        Date selectDate=simpleDate.parse(today);
+        Calendar cal=new GregorianCalendar(Locale.KOREA);
+        cal.setTime(selectDate);
+        today=simpleDate.format(cal.getTime());
+        System.out.println(today);
+        
         row = sheet.createRow(rowNum++);
         cell = row.createCell(0);
         cell.setCellValue("날짜");
@@ -174,7 +189,7 @@ public class ChartController {
         response.setContentType("ms-vnd/excel");
 //        response.setContentType("application/ms-excel; charset=UTF-8");
         //response.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
-       String fileName = "fileName";
+       String fileName =today+".excel";
        // response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", String.format("attachment;filename=%s.xlsx", fileName));
         wb.write(response.getOutputStream());
