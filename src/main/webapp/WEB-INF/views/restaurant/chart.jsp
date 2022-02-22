@@ -16,7 +16,6 @@
     height: 750px;
 /*     margin: auto; */
 }
-
 #selectBox {
 	margin: auto;
 	font-family: fantasy;
@@ -24,6 +23,14 @@
 	width: 1200px;
 	border-collapse: collapse;
 	text-align: center;
+}
+#infoupdate select {
+	border-collapse: collapse;
+	font-size: 18px;
+	font-weight: normal;
+	color: #F6416C;
+	padding: 10px 8px;
+	border-bottom: 2px solid #7bcfbb;
 }
 
 select::-ms-expand {
@@ -80,31 +87,45 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 	$(document).ready(function() {
 		//ajaxData();
 		$('#addBtn').hide();
-
 		var now = new Date(); // 현재 날짜 및 시간
 		var year = now.getFullYear(); // 연도
 		$("year").val(year);
 	});
 
 	function frawChart2(sales_data) {
-
+		var gbn = $("#gbn").val();
 		console.log(sales_data);
 		var data = new google.visualization.DataTable();
 
 		data.addColumn("string", "일");
 		data.addColumn("number", "매출액");
+		if(gbn=="day"){
 		for (var i = 0; i < sales_data.length; i++) {
 			//console.log(sales_data[i].DAY_SALES);
 			//console.log(sales_data[i].SUM);
 			var sales_day = sales_data[i].sales_day;
-			var sales_month = sales_data[i].sales_month;
-			var sales_year = sales_data[i].sales_year;
-			//console.log(sales_day);
-			data.addRows([ [ sales_day, sales_data[i].or_totalcost ] ])
+			//var sales_year = sales_data[i].sales_year;
+			console.log(sales_data);
+			//data.addRows([ [ sales_day, sales_data[i].or_totalcost ],[ sales_month, sales_data[i].or_totalcost ],[ sales_year, sales_data[i].or_totalcost ] ])
+			
+				data.addRows([ [ sales_day, sales_data[i].or_totalcost ] ])
+				}
+			}else if(gbn=="month"){
+				for (var j = 0; j < sales_data.length; j++) {
+				var sales_month = sales_data[j].sales_month;
+				data.addRows([ [ sales_month, sales_data[j].or_totalcost ] ])
+				}
+			}else if(gbn=="year"){
+				for (var y = 0; y < sales_data.length; y++) {
+				var sales_year = sales_data[y].sales_year;
+				data.addRows([ [ sales_year, sales_data[y].or_totalcost ] ])
+				}
+			}
+		
+		
+	
 
-		}
-
-		// Set chart options
+		// 차트옵션
 		var chartOptions = {
 			scales : {
 				xAxes : [ {
@@ -137,8 +158,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.ColumnChart(document
-				.getElementById('chart1'));
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart1'));
 		chart.draw(data);
 
 	}
@@ -188,7 +208,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 			}
 		});
 	}
-	function ajax_excel() {
+/* 	function ajax_excel() {
 		var gbn = $("#gbn").val();
 		var s_date = $("#s_date").val();
 		var e_date = $("#e_date").val();
@@ -204,7 +224,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 			}
 		});
-	}
+	} */
 </script>
 </head>
 
@@ -217,7 +237,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 			<form action="${cp }/restaurant/excel?r_id=${vo.r_id}" method="get" id="selectBox">
 				<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">${vo.r_id }님의 매출을 확인하세요</h1>
 
-				<select id="gbn" name="gbn" class="select" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 일/월/년 을 선택해주세요">
+				<select id="gbn" name="gbn" class="select" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 일/월/년 을 선택해주세요!!">
 					<option disabled selected>일별/월별/년도 선택해주세요</option>
 					<option value="day">일별</option>
 					<option value="month">월별</option>
@@ -229,10 +249,10 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 			</form>
 -->
 
-				<input type="date" id="s_date" name="s_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 시작날짜를 선택하세요"> ~ <input type="date" id="e_date" name="e_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 마지막날짜 선택하세요">
-				<input type="button" value="검색" onclick="ajax_sales()" class="btn btn-success" style="CURSOR:hand;" title="검색을 눌러주세요"><br><br>
-				<h5 style="color: #7bcfbb">매출액 엑셀파일 다운로드</h5>
-				<input type="submit" value="다운로드" class="btn btn-danger" style="CURSOR:hand;" title="지금 보시는 그래프를 엑셀파일로 다운로드"><br>
+				<input type="date" id="s_date" name="s_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 시작날짜를 선택하세요!!"> ~ <input type="date" id="e_date" name="e_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 마지막날짜 선택하세요!!">
+				<input type="button" value="검색" onclick="ajax_sales()" class="btn btn-success" style="CURSOR:hand;" title="검색을 눌러주세요!!"><br><br>
+				<h2 style="color: #7bcfbb">매출액 엑셀파일 다운로드</h2>
+				<input type="submit" value="다운로드" class="btn btn-danger" style="CURSOR:hand;" title="지금 보시는 그래프를 엑셀파일로 다운로드!!"><br>
 
 
 				<!-- <button type="button" onclick="ajax_excel()">Excel</button>-->
