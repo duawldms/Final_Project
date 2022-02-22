@@ -11,7 +11,7 @@
 	margin-bottom:200px;  
 	padding: 35px;  
 	height:300px;   
-	font-size: 25x;                                         
+	font-size: 25x;                                              
 	}     
 	 .btn3 {
     color:white; 
