@@ -122,12 +122,12 @@
 		<c:choose>   
 			<c:when test="${i==param.pageNum }">
 				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}">
-				<span style='color:blue'>${i}</span>
+				<!--  <span style='color:blue'>${i}</span>-->
 				</a>
 			</c:when>
 			<c:otherwise>
 				<a href="${cp }/userdelivery?pageNum=${i}&field=${field}&keyword=${keyword}">
-				<span style='color:red'>${i}</span>
+				<!--<span style='color:red'>${i}</span>-->
 				</a>
 			</c:otherwise>
 		</c:choose>

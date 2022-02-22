@@ -43,6 +43,8 @@ public class RestaurantInfoUpdateController {
 
 	@GetMapping("/restaurant/infoupdate")
 	public String infoUpdateForm(Principal p, Model model) {
+		List<CategoryVo> list = service.getCategory();
+		model.addAttribute("list", list);
 		RestaurantVo vo=service.idCheck(p.getName());
 		model.addAttribute("vo",vo);
 		model.addAttribute("mypage", "/WEB-INF/views/restaurant/sideSellerInfoList.jsp");

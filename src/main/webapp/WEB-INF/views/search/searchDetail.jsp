@@ -38,6 +38,7 @@
 	height:422px;
 	border:1px solid black;
 	background-color:#7bcfbb;
+	border-radius:0.5em;
 }
 #cartTitle{
 	width:100%;
@@ -92,6 +93,7 @@
 	text-align:center;
 	position:relative;
 	background-color:white;
+	border-radius:0 0 0.5em 0.5em;
 }
 #incartdelcost{
 	font-size:0.9em;

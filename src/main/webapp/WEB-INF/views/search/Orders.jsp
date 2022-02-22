@@ -5,26 +5,29 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
 	#main{
-		padding-top:20px;
-		padding-bottom:20px
+		padding-top:80px;
+		padding-bottom:120px
 	}
 	#purchaseAc{
 		width:850px;
 	}
 	#cartlist{
 		position:absolute;
-		top:88px;
+		top:170px;
 		left:1170px;
 		width:352px;
 		height:400px;
 		background-color:#7bcfbb;
+		border-radius:0.3em;
 	}
 	#cartTitle{
 		width:100%;
 		height:40px;
 		border-bottom:1px solid black;
 		text-align:center;
-		border:1px solid black;
+		border:1px solid #D5D5D5;
+		border-radius: 0.3em 0.3em 0 0;
+		
 	}
 	#cartTitle h3{color:white}
 	#cartMain{
@@ -33,15 +36,16 @@
 		background-color:white;
 		padding-top:5px;
 		overflow:auto;
-		border-right:1px solid black;
-		border-left:1px solid black;
+		border-right:1px solid #D5D5D5;
+		border-left:1px solid #D5D5D5;
 	}
 	.costtotalbox{
 		width:100%;
-		border-right:1px solid black;
-		border-left:1px solid black;
-		border-bottom:1px solid black;
+		border-right:1px solid #D5D5D5;
+		border-left:1px solid #D5D5D5;
+		border-bottom:1px solid #D5D5D5;
 		background-color:white;
+		border-radius: 0 0 0.3em 0.3em;
 	}
 	.cart{
 		width:100%;
@@ -87,6 +91,8 @@
 	.purchase{
 		height:40px;
 		background-color:#7bcfbb;
+		border: 1px solid #D5D5D5;
+		border-bottom: 1px solid #A6A6A6
 	}
 	.purtitle{
 		position:relative;
@@ -96,7 +102,7 @@
 		font-size:1.1em;
 	}
 	.addrleft{
-		width:25%;
+		width:17%;
 		float:left;
 		display:inline-block;
 	}
@@ -108,7 +114,7 @@
 	    top: 8px;
 	}
 	.addrright{
-		width:75%;
+		width:83%;
 		float:right;
 		display:inline-block;
 	}
@@ -221,7 +227,7 @@
 			</h2>
 			<div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#purchaseAc">
 				<div class="accordion-body orderRequest">
-					<textarea rows="3" cols="100" id="or_request"
+					<textarea rows="3" cols="80" id="or_request"
 						placeholder='코로나19 예방을 위해 비대면 배달 권장드립니다. 요청사항에 "문 앞 배달"을 요청사항에 남겨주세요'></textarea>
 				</div>
 			</div>

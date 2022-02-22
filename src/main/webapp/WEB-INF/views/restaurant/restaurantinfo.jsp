@@ -5,6 +5,8 @@
 <style>
 #wrap {
 	text-align: center;
+	width: 70%;
+    height: 750px;
 }
 
 .restaurantinfo {
@@ -44,6 +46,10 @@
 <div class="wrap">
 	<form:form action="${cp }/restaurant/restaurantinfo?r_id=${vo.r_id}" method="get" id="restaurantinfo" enctype="multipart/form-data" acceptCharset="utf-8">
 		<table class="restaurantinfo">
+			<tr>
+				<td>카테고리</td>
+				<td>${vo.cg_name }</td>
+			</tr>
 		<c:forEach items="${list }" var="vo">
 			<tr>
 				<td>매장이름</td>

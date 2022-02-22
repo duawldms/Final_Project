@@ -106,7 +106,7 @@
 			                      o.or_paymethod,f.food_name,f.food_cost,r.r_name,o.or_num,r.r_delcost,r.r_addr
 			                      from  orders o,food f,orders_detail d,orders_option p,restaurant r,user_information u
 			                      where o.or_num=d.or_num 
-			                      and d.od_num=p.od_num 
+			                      and d.od_num=p.od_num(+)
 			                      and f.r_id=r.r_id 
 			                      and f.food_num=d.food_num  
 			                      and o.or_num=#{or_num}

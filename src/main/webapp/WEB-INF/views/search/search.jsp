@@ -4,11 +4,11 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style>
 	#main{padding-bottom:70px}
-	.where{padding-top:100px;}
+	.where{padding-top:80px;}
 	#up{position:relative;left:220px}
-	.searchplace{width:700px;margin-bottom:100px}
-	.searchbar{width:600px;margin-bottom:10px;}
-	.restaurant{width:600px;margin:auto;height:auto;padding-top:10px}
+	.searchplace{width:700px;margin-bottom:40px}
+	.searchbar{width:700px;margin-bottom:10px;}
+	.restaurant{width:680px;margin:auto;height:auto;padding-top:10px;margin-bottom:10px}
 	.restaurant img{float:left;margin-right:10px}
 	.resimg{width:100px;height:100px}
 	.paging{position:relative;margin:auto;top:60px}
@@ -47,7 +47,7 @@
 		<select class="form-control col-3" id="category">
 		<c:choose>
 			<c:when test="${category==''||category==null }">
-				<option value="all" selected>전체</option>
+				<option value="" selected>전체</option>
 				<c:forEach var="cg_name" items="${cglist }">
 					<option value="${cg_name }">${cg_name }</option>
 				</c:forEach>
@@ -71,7 +71,7 @@
 							aria-describedby="button-addon2" id="keyword" value="${param.keyword }">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
-	<div style="margin-bottom:30px;position:relative;left:270px">
+	<div style="margin-bottom:30px;position:relative;left:230px">
 		<ul class="nav nav-pills">
 			<li class="nav-item">
 				<a class="nav-link active" aria-current="page" id="orderhit" onclick="javascript:orderby('hit')" href="#">별점순</a>
