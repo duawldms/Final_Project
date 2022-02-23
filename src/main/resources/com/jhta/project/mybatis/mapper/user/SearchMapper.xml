@@ -76,7 +76,7 @@
 	</select>
 	<select id="findhit" parameterType="string" resultType="Double">
 		select nvl(avg(hit),0) hit from (
-			select distinct re.re_hit hit
+			select distinct re.re_num, re.re_hit hit
 			from restaurant r, review re, orders_detail o,food f
 			where r.r_id=f.r_id and re.or_num=o.or_num and o.food_num=f.food_num and r.r_id=#{r_id})
 	</select>

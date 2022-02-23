@@ -88,7 +88,6 @@ public class SearchDetailController {
 		model.addAttribute("flist",flist);
 		model.addAttribute("hit",Math.round(hit*10)/10.0);
 		model.addAttribute("detail","true");
-		
 		model.addAttribute("main","/WEB-INF/views/search/searchDetail.jsp");
 		return "layout";
 	}
