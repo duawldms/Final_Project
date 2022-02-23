@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Gaegu:wght@300;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 <style>
 #wrap {
 	text-align: center;
@@ -11,7 +19,7 @@
 
 .restaurantinfo {
 	margin: auto;
-	font-family: fantasy;
+	font-family:'Open Sans', sans-serif;
 	font-size: 18px;
 	width: 1200px;
 	border-collapse: collapse;
@@ -39,8 +47,7 @@
 }
 </style>
 
-<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">매장
-	설명&공지</h1>
+<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb; font-family: 'Dongle', sans-serif;font-size: 100px;">매장 설명&공지</h1>
 
 
 <div class="wrap">
@@ -88,8 +95,8 @@
 			</tr>
 			<tr>
 				<td colspan="4" style="text-align: right;">
-					<a href="${cp }/" style="text-decoration-line: none; color: #F6416C; position: absolute; left: 370px;">Home</a>
-					<a href="${cp }/restaurant/infoupdate"style="text-decoration-line: none; color: #F6416C;">수정</a> 
+					<a href="${cp }/" style="text-decoration-line: none; color: #F6416C; position: absolute; left: 370px; font-family: 'Dongle', sans-serif;font-size: 30px;CURSOR:hand;" title="HOME으로 가시려면 click!!">Home</a>
+					<a href="${cp }/restaurant/infoupdate"style="text-decoration-line: none; color: #F6416C; font-family: 'Dongle', sans-serif;font-size: 30px;CURSOR:hand;" title="수정하시려면 click!!">수정하기</a> 
 				</td>
 			</tr>
 			</c:forEach>

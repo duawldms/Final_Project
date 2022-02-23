@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Gaegu:wght@300;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -15,15 +19,15 @@
 }
 #infoupdate {
 	margin: auto;
-	font-family: fantasy;
-	font-size: 18px;
+	font-family:  'Open Sans', sans-serif;
+	font-size: 20px;
 	width: 1200px;
 	border-collapse: collapse;
 	text-align: center;
 }
 #infoupdate input {
 	border-collapse: collapse;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
@@ -31,7 +35,7 @@
 }
 #infoupdate select {
 	border-collapse: collapse;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
@@ -39,7 +43,7 @@
 }
 #infoupdate textarea {
 	border-collapse: collapse;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: normal;
 	color: #F6416C;
 	padding: 10px 8px;
@@ -65,7 +69,7 @@
 </head>
 <body>
 <div class="wrap">
-	<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">공지&소개 등록</h1>
+	<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb; font-family: 'Dongle', sans-serif;font-size: 100px;">공지&소개 등록</h1>
 	<form:form action="${cp }/restaurant/infoupdate" method="post" id="infoupdate" enctype="multipart/form-data" acceptCharset="utf-8" name="frm">
 			<input type="hidden" name="r_id" value="${vo.r_id }">
 		<h3 style="color: #F6416C">매장명</h3>
@@ -99,12 +103,12 @@
 		<h3 style="color: #F6416C">소개&공지사항</h3>
 		<textarea rows="5" cols="30" name="r_info" style="CURSOR:hand;" title="소개&공지를 입력해주세요!!">${vo.r_info }</textarea><br>
 		<h3 style="color: #F6416C">대표사진</h3>
-		<input type="file" id="r_img" name="file1"  ><img alt="대표사진" id="r_img" src="../resources/img/${vo.r_img }" style="width: 200px; height:200px;"><br>
+		<input type="file" id="r_img" name="file1" style="font-family: 'Dongle', sans-serif;font-size: 23px;" ><img alt="대표사진" id="r_img" src="../resources/img/${vo.r_img }" style="width: 200px; height:200px;"><br>
 		<h3 style="color: #F6416C">최소주문가격</h3>
 		<input type="text" name="r_minCost" value="${vo.r_minCost }" style="CURSOR:hand;" title="최소 주문가격을 입력해주세요!!">
 		<h3 style="color: #F6416C">배달가격</h3>
 		<input type="text" name="r_delCost" value="${vo.r_delCost }" style="CURSOR:hand;" title="배달료를 입력해주세요!!">
-		<input type="submit" value="수정완료" id="btn" onblur="infoCheck()"><br>
+		<input type="submit" value="수정완료" id="btn" onblur="infoCheck()" style="font-family: 'Dongle', sans-serif;font-size: 23px;"><br>
 		<!-- <button type="submit">등록</button> -->
 	</form:form>
 	</div>

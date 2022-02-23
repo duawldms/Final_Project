@@ -5,8 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Gaegu:wght@300;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -18,7 +21,7 @@
 }
 #selectBox {
 	margin: auto;
-	font-family: fantasy;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	width: 1200px;
 	border-collapse: collapse;
@@ -235,7 +238,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 		<div id="chart1"></div>
 		<div>
 			<form action="${cp }/restaurant/excel?r_id=${vo.r_id}" method="get" id="selectBox">
-				<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb">${vo.r_id }님의 매출을 확인하세요</h1>
+				<h1 style="text-align: center; padding-bottom: 50px; color: #7bcfbb; font-family: 'Dongle', sans-serif;font-size: 90px;">${vo.r_id }님의 매출을 확인하세요</h1>
 
 				<select id="gbn" name="gbn" class="select" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 일/월/년 을 선택해주세요!!">
 					<option disabled selected>일별/월별/년도 선택해주세요</option>
@@ -250,9 +253,9 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 -->
 
 				<input type="date" id="s_date" name="s_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 시작날짜를 선택하세요!!"> ~ <input type="date" id="e_date" name="e_date" style="color: #F6416C" style="CURSOR:hand;" title="원하시는 마지막날짜 선택하세요!!">
-				<input type="button" value="검색" onclick="ajax_sales()" class="btn btn-success" style="CURSOR:hand;" title="검색을 눌러주세요!!"><br><br>
-				<h2 style="color: #7bcfbb">매출액 엑셀파일 다운로드</h2>
-				<input type="submit" value="다운로드" class="btn btn-danger" style="CURSOR:hand;" title="지금 보시는 그래프를 엑셀파일로 다운로드!!"><br>
+				<input type="button" value="검색" onclick="ajax_sales()" class="btn btn-success" style="CURSOR:hand; font-family: 'Dongle', sans-serif;font-size: 22px;" title="검색을 눌러주세요!!"><br><br>
+				<h2 style="color: #7bcfbb; font-family: 'Dongle', sans-serif;font-size: 90px;">매출액 엑셀파일 다운로드</h2>
+				<input type="submit" value="다운로드" class="btn btn-danger" style="CURSOR:hand; font-family: 'Dongle', sans-serif;font-size: 22px;" title="지금 보시는 그래프를 엑셀파일로 다운로드!!"><br>
 
 
 				<!-- <button type="button" onclick="ajax_excel()">Excel</button>-->
