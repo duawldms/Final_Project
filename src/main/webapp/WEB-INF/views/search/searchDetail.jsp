@@ -357,8 +357,8 @@
 				necoptions.push($(this).val());
 			}else{
 				checkbox.push($(this).val());
+				optionscnt.push($(".cnt"+$(this).prop('class').substring(5)).val());
 			}
-			optionscnt.push($(".cnt"+$(this).prop('class').substring(5)).val());
 		});
 		let nec=[];
 		$("input[class='nec']:checked").each(function(i){
@@ -368,7 +368,7 @@
 			alert('필수항목을 선택해주세요');
 			return;
 		}
-		
+		console.log(checkbox+","+optionscnt);
 		$.ajax({
 			url:'${cp}/user/gocart',
 			type:'get',
