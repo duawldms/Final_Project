@@ -20,7 +20,7 @@ public class MailUtil {
 		String hostSMTPpw=""; //관리자 이메일 비밀번호
 		
 		//보내는 사람 
-		String fromEmail="yeoumjieun@gmail.com"; //보내는 사람 이메일 
+		String fromEmail=""; //보내는 사람 이메일 
 		String fromName="배달요기이츠관리자";
 		
 		String subject="배달 요기 이츠 임시 비밀번호 발급입니다.";
