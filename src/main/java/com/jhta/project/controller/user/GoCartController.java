@@ -84,14 +84,14 @@ public class GoCartController {
 			crty.setPath("/");
 			crty.setMaxAge(60*60*24);
 			resp.addCookie(crty);
-			Cookie delx=new Cookie("tmpcoordx","");
-			delx.setPath("/");
-			delx.setMaxAge(0);
-			resp.addCookie(delx);
-			Cookie dely=new Cookie("tmpcoordy","");
-			dely.setPath("/");
-			dely.setMaxAge(0);
-			resp.addCookie(dely);
+//			Cookie delx=new Cookie("tmpcoordx","");
+//			delx.setPath("/");
+//			delx.setMaxAge(0);
+//			resp.addCookie(delx);
+//			Cookie dely=new Cookie("tmpcoordy","");
+//			dely.setPath("/");
+//			dely.setMaxAge(0);
+//			resp.addCookie(dely);
 			if(ordercheck.equals("order")) {
 				map.put("result", "goorder");
 				return map;

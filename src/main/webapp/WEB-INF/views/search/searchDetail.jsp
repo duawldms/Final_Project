@@ -409,9 +409,11 @@
 					console.log(data.result)
 				}else if(data.result=='none'){
 					if("${param.cart}"=="empty"){
-						location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
+						console.log('empty');
+						//location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
 					}else{
-						location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
+						console.log("Aaa");
+						//location.href='${cp}/searchDetail?r_id='+data.r_id+'&distance='+data.distance;
 					}
 				}
 			}

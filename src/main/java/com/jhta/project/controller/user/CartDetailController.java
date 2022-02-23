@@ -48,11 +48,12 @@ public class CartDetailController {
 						coordy=URLDecoder.decode(c.getValue(),"utf-8");
 					}
 				}
-				map.put("user_coordx", coordx);
-				map.put("user_coordy", coordy);
-				map.put("r_coordx", resvo.getR_coordx());
-				map.put("r_coordy", resvo.getR_coordy());
-				Double distance=service.getdistance(map);
+				HashMap<String, Object> map1=new HashMap<String, Object>();
+				map1.put("user_coordx", coordx);
+				map1.put("user_coordy", coordy);
+				map1.put("r_coordx", resvo.getR_coordx());
+				map1.put("r_coordy", resvo.getR_coordy());
+				Double distance=service.getdistance(map1);
 				map.put("distance", distance);
 				map.put("r_id", r_id);
 				map.put("result", "none");
