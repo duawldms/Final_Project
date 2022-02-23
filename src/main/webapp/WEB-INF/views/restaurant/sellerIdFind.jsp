@@ -78,7 +78,7 @@
 				let id_find = document.querySelector(".id-find");
 				if (json.result == 'success') {
 					id_find.innerHTML = "";
-					id_find.innerHTML = "<br>회원님의 아이디는 <b id='b_r_id'>" + json.r_id + "</b>입니다."
+					id_find.innerHTML = "<br>회원님의 아이디는 <b id='b_r_id'>" + json.r_id + "</b>입니다.<br>"
 										+ `<input type='button' value='로그인' class='btn3' onclick='location.href="${cp}/loginRestaurant"'>`;
 				} else {
 					id_result.innerHTML = "<br>등록한 아이디가 존재하지 않습니다."

@@ -183,4 +183,11 @@
 			return;
 		}
 	}
+	
+	// 창 닫기
+	function closeWin() {
+		top.window.opener = top;
+		top.window.open('', '_parent', '');
+		top.window.close();
+	}
 </script>

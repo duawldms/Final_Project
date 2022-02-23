@@ -92,6 +92,14 @@ public class MenuController {
 	@PostMapping("/restaurant/optionAdd")
 	public String optionAdd(String select_option, FoodOptionVo vo, @RequestParam HashMap<String, Object> map, Model model) {
         String select = vo.getFo_category() + " (" + select_option + ")";
+        
+        for(String key : map.keySet()){
+        	 
+            String value = (String)map.get(key);
+ 
+            System.out.println(key+" : "+value);
+ 
+        }
         vo.setFo_category(select);
 		service.sideAdd(vo);
         int size = (map.size() - 5) / 2;

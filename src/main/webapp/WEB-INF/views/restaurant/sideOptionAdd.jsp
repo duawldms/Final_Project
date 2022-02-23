@@ -106,6 +106,7 @@
 			if (tCount > 1) {
 				table.removeChild(table.lastChild);
 				table.removeChild(table.lastChild);
+				cnt--;
 			}
 		}
 		
