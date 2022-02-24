@@ -27,7 +27,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="col1">이메일 인증</td>
+				<td class="col1">이메일 인증번호</td>
 				<td class="col2">
 					<input type="text" id="r_email_chk" name="r_email_chk" onblur="emailCheck()">
 					<span id="r_emailCheckResult"></span>
@@ -132,12 +132,14 @@
 		
 		if (r_email.value == '') {
 			document.getElementById("r_emailResult").innerText ="이메일을 입력해 주세요.";
+			document.getElementById("r_emailResult").style.color = "red";
 			r_email.foucs();
 			return;
 		}
 		
 		if (r_code.value == '') {
 			document.getElementById("r_emailCheckResult").innerText ="인증번호를 입력해 주세요.";
+			document.getElementById("r_emailCheckResult").style.color = "red";
 			r_code.foucs();
 			return;
 		}
@@ -151,9 +153,11 @@
 
 				if (json.result == 'success') {
 					r_emailCheckResult.innerText = "인증번호가 확인되었습니다.";
+					r_emailCheckResult.style.color = "blue";
 					emailCheckFlag = true;
 				} else {
 					r_emailCheckResult.innerText = "인증번호가 일치하지 않습니다.";
+					r_emailCheckResult.style.color = "red";
 					emailCheckFlag = false;
 				}
 			}
@@ -168,6 +172,7 @@
 		let idCheckResult = document.getElementById("r_idResult");
 		if (r_id.value == '') {
 			idCheckResult.innerText = "아이디를 입력해 주세요.";
+			idCheckResult.style.color = "red";
 			r_id.focus();
 			return;
 		}
@@ -180,9 +185,11 @@
 
 				if (json.result == 'success') {
 					idCheckResult.innerText = "사용 가능한 아이디입니다.";
+					idCheckResult.style.color = "blue";
 					idCheckFlag = true;
 				} else {
 					idCheckResult.innerText = "이미 사용중인 아이디입니다.";
+					idCheckResult.style.color = "red";
 					idCheckFlag = false;
 				}
 			}
@@ -195,10 +202,14 @@
 	// 메일 인증
 	function emailCodeSend() {
 		let r_email = document.getElementById("r_email");
+		
 		if (r_email.value == '') {
-			idCheckResult.innerText = "이메일을 입력해 주세요.";
-			r_email.focus();
+			document.getElementById("r_emailResult").innerText = "이메일을 입력해 주세요.";
+			document.getElementById("r_emailResult").style.color = "red";
+			r_email.foucs();
 			return;
+		} else {
+			document.getElementById("r_emailResult").innerText = "";
 		}
 		let url = "${cp}/emailCheck?r_email=" + r_email.value;
 		xhr = new XMLHttpRequest();
@@ -248,10 +259,12 @@
 		let r_pwd_check = document.getElementById("r_pwd_check");
 		let pwdCheckResult = document.getElementById("r_pwd_checkResult");
 		if (r_pwd.value != r_pwd_check.value) {
-			pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다."
+			pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다.";
+			pwdCheckResult.style.color = "red";
 		} else if (r_pwd.value != '' && r_pwd_check.value != ''
 				&& r_pwd.value === r_pwd_check.value) {
 			pwdCheckResult.innerText = "두 비밀번호가 일치합니다.";
+			pwdCheckResult.style.color = "blue";
 		}
 	}
 	// 비밀번호 확인 end
@@ -260,6 +273,7 @@
 	function sellerInsert() {
 		let r_id = document.getElementById("r_id");
 		let r_email = document.getElementById("r_email");
+		let r_email_chk = document.getElementById("r_email_chk");
 		let r_pwd = document.getElementById("r_pwd");
 		let r_pwd_check = document.getElementById("r_pwd_check");
 		let r_name = document.getElementById("r_name");
@@ -273,28 +287,48 @@
 		
 		if (r_id.value == '') {
 			document.getElementById("r_idResult").innerText = "아이디를 입력해 주세요.";
+			document.getElementById("r_idResult").style.color = "red";
 			r_id.focus();
 			return;
 		}
 		
 		if (r_email.value == '') {
-			document.getElementById("r_emailResult").innerText ="이메일을 입력해 주세요.";
+			document.getElementById("r_emailResult").innerText = "이메일을 입력해 주세요.";
+			document.getElementById("r_emailResult").style.color = "red";
 			r_email.foucs();
 			return;
 		}
 		
+		if (r_email_chk.value == '') {
+			document.getElementById("r_emailCheckResult").innerText = "인증번호를 입력해 주세요.";
+			document.getElementById("r_emailCheckResult").style.color = "red";
+			r_email_chk.foucs();
+		}
+		
+		
 		if (r_pwd.value == '') {
 			document.getElementById("r_pwdResult").innerText = "비밀번호를 입력해 주세요.";
+			document.getElementById("r_pwdResult").style.color = "red";
 			r_pwd.focus();
 			return;
 		}
 		if (r_pwd_check.value == '') {
 			document.getElementById("r_pwd_checkResult").innerText = "비밀번호를 확인해 주세요.";
+			document.getElementById("r_pwd_checkResult").style.color ="red";
 			r_pwd_check.focus();
 			return;
 		}
+		
+		if (r_pwd.value != r_pwd_check.value) {
+			pwdCheckResult.innerText = "두 비밀번호가 일치하지 않습니다.";
+			pwdCheckResult.style.color = "red";
+			r_pwd_check.focus();
+			return;
+		}
+		
 		if (r_name.value == '') {
 			document.getElementById("r_nameResult").innerText = "매장명을 입력해 주세요.";
+			document.getElementById("r_nameResult").style.color = "red";
 			r_name.focus();
 			return;
 		}
@@ -302,11 +336,13 @@
 
 		if (cg_name.options[cg_name.selectedIndex].text == '-카테고리 선택-') {
 			document.getElementById("cg_nameResult").innerText = "카테고리를 선택해 주세요.";
+			document.getElementById("cg_nameResult").style.color = "red";
 			cg_name.focus();
 			return;
 		}
 		if (addr1.value == '') {
 			document.getElementById("sample6_addressResult").innerHTML = "<br>주소를 입력해 주세요.<br>";
+			document.getElementById("sample6_addressResult").style.color = "red";
 			addr1.focus();
 			return;
 		} else {
@@ -314,6 +350,7 @@
 		}
 		if (addr2.value == '') {
 			document.getElementById("sample6_detailAddressResult").innerHTML = "<br>상세 주소를 입력해 주세요.<br>";
+			document.getElementById("sample6_detailAddressResult").style.color = "red";
 			addr2.focus();
 			return;
 		} else {
@@ -325,16 +362,19 @@
 
 		if (r_minCost.value == '') {
 			document.getElementById("r_minCostResult").innerText = "최소 주문 금액을 입력해 주세요.";
+			document.getElementById("r_minCostResult").style.color = "red";
 			r_minCost.focus();
 			return;
 		}
 		if (r_delCost.value == '') {
 			document.getElementById("r_delCostResult").innerText = "배달비를 입력해 주세요";
+			document.getElementById("r_delCostResult").style.color = "red";
 			r_delCost.focus();
 			return;
 		}
 		if (r_info.value == '') {
 			document.getElementById("r_infoResult").innerHTML = "<br>매장 소개를 입력해 주세요";
+			document.getElementById("r_infoResult").style.color = "red";
 			r_info.focus();
 			return;
 		}
@@ -419,6 +459,7 @@
 								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 								r_coordx.value = result[0].x;
 								r_coordy.value = result[0].y;
+								document.getElementById("sample6_addressResult").innerHTML = "";
 							}
 						});
 					}
