@@ -43,7 +43,7 @@ public class SelectAddrController {
 		return map;
 	}
 	@GetMapping(value="/user/search",produces= {MediaType.APPLICATION_JSON_VALUE})
-	public HashMap<String, Object> searchResaurant(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+	public HashMap<String, Object> searchRestaurant(@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			String field,String keyword,Double user_coordx,Double user_coordy,
 			@RequestParam(value="cg_name",defaultValue = "")String cg_name,
 			@RequestParam(value="orderby",defaultValue = "")String orderby,HttpServletResponse resp){

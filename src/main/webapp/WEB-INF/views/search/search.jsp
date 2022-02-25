@@ -67,7 +67,7 @@
 			</c:otherwise>
 		</c:choose>
 		</select>
-		<input type="text" class="form-control col-8 searchmenu" placeholder="먹고싶은 메뉴, 가게 검색" 
+		<input type="text" class="form-control col-8 searchmenu" placeholder="매장 이름으로 검색" 
 							aria-describedby="button-addon2" id="keyword" value="${param.keyword }">
 		<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 	</div>
