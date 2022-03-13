@@ -38,10 +38,10 @@
 
 <div align=center>
 
-![ERD](https://user-images.githubusercontent.com/94330244/158055829-152f32ac-096f-400b-8171-330f7f01d9cb.png) <br>
+![최종_erd](https://user-images.githubusercontent.com/94330244/158055888-3d98d0ba-4d3c-42cd-b78a-cffa49204116.png) <br>
 
   
 </div>  
 
 ## :family: Contributor
-| [김태형](https://github.com/kth01) | [김태주]() | [염지은](https://github.com/duawldms) | [용현우]() | 주대웅 | 김현주 | 
+| [김태형](https://github.com/kth01) | [김태주]() | [염지은](https://github.com/duawldms) | [용현우]() | [주대웅] | [김현주]| 
