@@ -28,11 +28,11 @@
 
 |:bookmark_tabs:임시비밀번호 발급|:two_men_holding_hands:기본정보 수정|
 |----------------------|--------------------------|
-|![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/94330244/158057210-926e83c6-7612-4c59-b637-763bdf642771.gif)|![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/94330244/158057039-6b9b46bf-99ad-4561-9e04-566ad7e45280.gif)||
+|![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/94330244/158057506-ee39a901-9447-469b-af28-22b023c0661b.gif)|![ezgif com-gif-maker (11)](https://user-images.githubusercontent.com/94330244/158057560-d81d7475-e896-4ed0-b164-8b21ffbde6e7.gif)|
 
 |:+1:배달내역 확인|:two_men_holding_hands:회원탈퇴하기|
 |-------------|-----------------------------------|
-|![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/94330244/158056956-b3341bb7-efcd-462f-8338-ba5a74c8ceec.gif)|![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/94330244/158057360-328b2ca4-3767-468b-8a86-8a19ca0e1c7f.gif)|
+|![ezgif com-gif-maker (12)](https://user-images.githubusercontent.com/94330244/158057586-c2a21fcc-cfa8-4315-b271-b6fe004955e5.gif)|![ezgif com-gif-maker (13)](https://user-images.githubusercontent.com/94330244/158057610-e943f88f-e736-4659-899f-e50ff632b187.gif)|
 
 ## :book:테이블구조 소개
 
