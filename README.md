@@ -3,7 +3,7 @@
 <div align=center>
 
 <img width="678" alt="메인페이지 " src="https://user-images.githubusercontent.com/94330244/158055642-dee2f264-220a-4d2b-a682-73e1cded6ef5.png"> &nbsp; <br><br>
-<img src="https://img.shields.io/badge/Java-v11-007396?&logo=spring&logoColor=white&style=flat/"> &nbsp;
+<img src="https://img.shields.io/badge/Spring-v11-007396?&logo=spring&logoColor=white&style=flat/"> &nbsp;
 <img src="https://img.shields.io/badge/Oracle-v11g-F80000?&logo=ORACLE&logoColor=red&style=flat"> &nbsp;<br>
   
   <b>(프로젝트기간) 22.01.17 ~ 22.02.23</b>
