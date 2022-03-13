@@ -24,15 +24,15 @@
 
 |:open_file_folder: 회원가입|:eyeglasses: 로그인|
 |--------------------------|---------------------|
-|![회원가입]![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/94330244/158056729-ac05f124-aa9f-4c01-8c6a-fbbaa9047c1c.gif)|![로그인]()|
+|![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/94330244/158056818-6d738a84-f47d-406a-b8e6-58accb55eadc.gif)|![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/94330244/158056877-3373bb2a-49ac-4a5e-8b49-a9f27a2ee41e.gif)|
 
-|:bookmark_tabs:임시비밀번호 발급|:heavy_check_mark:마이페이지|
+|:bookmark_tabs:임시비밀번호 발급|:two_men_holding_hands:기본정보 수정|
 |----------------------|--------------------------|
-|![임시비밀번호 발급]()|![마이페이지]()|
+|![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/94330244/158057210-926e83c6-7612-4c59-b637-763bdf642771.gif)|![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/94330244/158057039-6b9b46bf-99ad-4561-9e04-566ad7e45280.gif)||
 
-|:+1:배달내역 확인|:two_men_holding_hands:기본정보 수정|
+|:+1:배달내역 확인|:two_men_holding_hands:회원탈퇴하기|
 |-------------|-----------------------------------|
-|![배달내역 확인]()|![기본정보 수정]()|
+|![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/94330244/158056956-b3341bb7-efcd-462f-8338-ba5a74c8ceec.gif)|![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/94330244/158057360-328b2ca4-3767-468b-8a86-8a19ca0e1c7f.gif)|
 
 ## :book:테이블구조 소개
 
