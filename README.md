@@ -24,7 +24,7 @@
 
 |:open_file_folder: 회원가입|:eyeglasses: 로그인|
 |--------------------------|---------------------|
-|![회원가입]()|![로그인]()|
+|![회원가입]![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/94330244/158056729-ac05f124-aa9f-4c01-8c6a-fbbaa9047c1c.gif)|![로그인]()|
 
 |:bookmark_tabs:임시비밀번호 발급|:heavy_check_mark:마이페이지|
 |----------------------|--------------------------|
@@ -44,4 +44,4 @@
 </div>  
 
 ## :family: Contributor
-| [김태형](https://github.com/kth01) | [김태주]() | [염지은](https://github.com/duawldms) | [용현우]() | [주대웅] | [김현주]| 
+| [김태형](https://github.com/kth01) | [김태주]() | [염지은](https://github.com/duawldms) | [용현우]() | [주대웅]() | [김현주]()| 
