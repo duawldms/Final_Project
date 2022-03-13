@@ -22,15 +22,15 @@
 
 ## :bulb: 구현기능 소개
 
-|:eyes: 회원가입|:eyeglasses: 로그인|
+|:eyes: 회원가입|:star: 로그인|
 |--------------------------|---------------------|
 |![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/94330244/158057436-c9e4c0bc-dc46-472a-8483-c00eb64def55.gif)|![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/94330244/158057468-b6c6acf7-73d4-4c71-87be-7478c664ddfe.gif)|
 
-|:bookmark_tabs:임시비밀번호 발급|:two_men_holding_hands:기본정보 수정|
+|:exclamation:임시비밀번호 발급|:pencil2:기본정보 수정|
 |----------------------|--------------------------|
 |![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/94330244/158057506-ee39a901-9447-469b-af28-22b023c0661b.gif)|![ezgif com-gif-maker (11)](https://user-images.githubusercontent.com/94330244/158057560-d81d7475-e896-4ed0-b164-8b21ffbde6e7.gif)|
 
-|:+1:배달내역 확인|:two_men_holding_hands:회원탈퇴하기|
+|:hamburger:배달내역 확인|:wave:회원탈퇴하기|
 |-------------|-----------------------------------|
 |![ezgif com-gif-maker (12)](https://user-images.githubusercontent.com/94330244/158057586-c2a21fcc-cfa8-4315-b271-b6fe004955e5.gif)|![ezgif com-gif-maker (13)](https://user-images.githubusercontent.com/94330244/158057610-e943f88f-e736-4659-899f-e50ff632b187.gif)|
 
