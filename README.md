@@ -24,7 +24,7 @@
 
 |:open_file_folder: 회원가입|:eyeglasses: 로그인|
 |--------------------------|---------------------|
-|![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/94330244/158056818-6d738a84-f47d-406a-b8e6-58accb55eadc.gif)|![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/94330244/158056877-3373bb2a-49ac-4a5e-8b49-a9f27a2ee41e.gif)|
+|![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/94330244/158057436-c9e4c0bc-dc46-472a-8483-c00eb64def55.gif)|![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/94330244/158057468-b6c6acf7-73d4-4c71-87be-7478c664ddfe.gif)|
 
 |:bookmark_tabs:임시비밀번호 발급|:two_men_holding_hands:기본정보 수정|
 |----------------------|--------------------------|
