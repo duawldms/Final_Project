@@ -22,7 +22,7 @@
 
 ## :bulb: 구현기능 소개
 
-|:open_file_folder: 회원가입|:eyeglasses: 로그인|
+|:eyes: 회원가입|:eyeglasses: 로그인|
 |--------------------------|---------------------|
 |![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/94330244/158057436-c9e4c0bc-dc46-472a-8483-c00eb64def55.gif)|![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/94330244/158057468-b6c6acf7-73d4-4c71-87be-7478c664ddfe.gif)|
 
